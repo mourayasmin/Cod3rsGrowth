@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Cod3rsGrowth.Cod3rsGrowth.Dominio.Enum
+namespace Cod3rsGrowth.Dominio.Enum
 {
-    public enum EnumLinha
+    public enum LinhaEnum
     {
         Performance, 
         Casual, 

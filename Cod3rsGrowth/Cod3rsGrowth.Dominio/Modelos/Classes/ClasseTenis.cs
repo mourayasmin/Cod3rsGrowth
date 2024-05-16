@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Cod3rsGrowth.Cod3rsGrowth.Dominio.Enum
+using Cod3rsGrowth.Dominio.Enum
 
 namespace Cod3rsGrowth.Dominio
 {
     public class Tenis
     {
-        public EnumLinha Linha { get; set; }
+        public LinhaEnum Linha { get; set; }
         public int Id { get; set; }
         public int Idmarca { get; set; }
         public double Preco { get; set; }
