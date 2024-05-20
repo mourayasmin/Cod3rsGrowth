@@ -1,4 +1,4 @@
-namespace Cod3rsGrowth.Teste
+namespace Cod3rsGrowth.Testes
 {
     public class UnitTest1
     {

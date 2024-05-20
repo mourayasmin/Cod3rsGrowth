@@ -6,11 +6,7 @@ using System.Threading.Tasks;
 
 namespace Cod3rsGrowth.Dominio.Enum
 {
-    public enum LinhaEnum
+    internal class EnumLinha
     {
-        Performance, 
-        Casual, 
-        Skate, 
-        Corrida
     }
 }
