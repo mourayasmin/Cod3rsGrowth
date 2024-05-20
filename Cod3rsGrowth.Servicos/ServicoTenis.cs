@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cod3rsGrowth.Dominio.Enum;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,11 @@ using System.Threading.Tasks;
 
 namespace Cod3rsGrowth.Servicos
 {
-    internal class ServicoTenis
+    public class ServicoTenis : IServicoTenis
     {
+        public string ObterTodos()
+        {
+            return string.Empty;
+        }
     }
 }

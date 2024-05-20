@@ -8,5 +8,6 @@ namespace Cod3rsGrowth.Servicos
 {
     internal interface IServicoMarca
     {
+        public string ObterTodos();
     }
 }
