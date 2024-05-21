@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Cod3rsGrowth.Testes
 {
-    internal class TesteBase : IDisposable
+    public class TesteBase : IDisposable
     {
         protected ServiceProvider? ProviderService { get; private set; }
         public TesteBase() {
