@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Cod3rsGrowth.Servicos
 {
-    internal interface IServicoMarca
+    public interface IServicoMarca
     {
         public string ObterTodos();
     }

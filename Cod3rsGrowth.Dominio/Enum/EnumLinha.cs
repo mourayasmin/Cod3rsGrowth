@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Cod3rsGrowth.Dominio.Enum
 {
-    internal class EnumLinha
+    public class EnumLinha
     {
     }
 }

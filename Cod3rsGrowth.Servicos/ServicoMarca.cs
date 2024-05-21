@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Cod3rsGrowth.Servicos
 {
-    internal class ServicoMarca
+    public class ServicoMarca : IServicoMarca
     {
+        public string ObterTodos()
+        {
+            return string.Empty;
+        }
     }
 }

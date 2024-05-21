@@ -9,7 +9,7 @@ namespace Cod3rsGrowth.Dominio
 {
     public class Tenis
     {
-        public LinhaEnum Linha { get; set; }
+        public EnumLinha Linha { get; set; }
         public int Id { get; set; }
         public int Idmarca { get; set; }
         public double Preco { get; set; }
