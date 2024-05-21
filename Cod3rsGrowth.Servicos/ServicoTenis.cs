@@ -1,4 +1,5 @@
-﻿using Cod3rsGrowth.Dominio.Enum;
+﻿using Cod3rsGrowth.Dominio;
+using Cod3rsGrowth.Dominio.Enum;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,9 @@ namespace Cod3rsGrowth.Servicos
 {
     public class ServicoTenis : IServicoTenis
     {
-        public string ObterTodos()
+        public List<Tenis> ObterTodos()
         {
-            return string.Empty;
+            throw new NotImplementedException();    
         }
     }
 }
