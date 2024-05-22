@@ -12,7 +12,7 @@ namespace Cod3rsGrowth.Testes
         public static ServiceCollection Servico { get; set; }
         public ModuloDeInjecao() {
             Servico = new ServiceCollection();
-            Servico.AddScoped<IRepositorioMock, RepositorioMock>();
+            Servico.AddScoped<IMock, RepositorioMock>();
         }    
         public static ServiceProvider BuildServiceProvider()
         {

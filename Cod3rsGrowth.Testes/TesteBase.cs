@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Authentication.ExtendedProtection;
@@ -7,17 +8,21 @@ using System.Threading.Tasks;
 
 namespace Cod3rsGrowth.Testes
 {
-    public class TesteBase : IDisposable
+    internal class TesteBase : IDisposable
     {
-        protected ServiceProvider? ProviderService { get; private set; }
+        protected ServiceProvider? ProviderService;
         public TesteBase() {
             var servico = new ServiceCollection();
-            servico.AddScoped<IRepositorioMock, RepositorioMock>();
             ProviderService = servico.BuildServiceProvider();
         }
+
         public void Dispose()
         {
             ProviderService?.Dispose();
         }
+    }
+
+    internal interface IMock
+    {
     }
 }

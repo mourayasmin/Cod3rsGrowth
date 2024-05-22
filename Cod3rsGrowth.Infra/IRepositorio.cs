@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Cod3rsGrowth.Infra
 {
-    internal interface IMock
+    public interface IRepositorio
     {
     }
 }
