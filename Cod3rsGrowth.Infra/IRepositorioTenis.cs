@@ -11,7 +11,7 @@ namespace Cod3rsGrowth.Infra
     {
 
         public void Criar(Tenis tenis);
-        public void ObterPorId(int Id); 
+        public object ObterPorId(int Id); 
         public void Atualizar(Tenis tenis);
         public void Deletar(Tenis tenis);
         public List<Tenis> ObterTodos();

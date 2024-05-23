@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Cod3rsGrowth.Infra;
+using Xunit.Sdk;
 
 namespace Cod3rsGrowth.Testes
 {
@@ -14,7 +15,7 @@ namespace Cod3rsGrowth.Testes
         {
             throw new NotImplementedException();
         }
-        public void ObterPorId(int Id)
+        public object ObterPorId(int Id)
         {
             throw new NotImplementedException();
         }
