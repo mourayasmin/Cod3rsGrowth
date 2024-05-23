@@ -10,25 +10,26 @@ namespace Cod3rsGrowth.Testes
 {
     public class RepositorioMarcaMock : IRepositorioMarca
     {
-        public string Criar(Marca marca)
+        public void Criar()
         {
             throw new NotImplementedException();
         }
-        public string Ler(Marca marca)
+        public void Ler()
         {
             throw new NotImplementedException();
         }
-        public string Atualizar(Marca marca)
+        public void Atualizar()
         {
             throw new NotImplementedException();
         }
-        public string Deletar(Marca marca)
+        public void Deletar()
         {
             throw new NotImplementedException();
         }
-        public List<Marca> ObterTodos(int Id)
+        public List<Marca> ObterTodas(int Id)
         {
-            throw new NotImplementedException();
+            List<Marca> marca = new List<Marca>();
+            return marca;
         }
     }
 }

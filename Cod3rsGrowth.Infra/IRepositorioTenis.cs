@@ -10,15 +10,10 @@ namespace Cod3rsGrowth.Infra
     public interface IRepositorioTenis
     {
 
-        string Criar(Tenis tenis);
-        string Ler(Tenis tenis); 
-        string Atualizar(Tenis tenis);
-        string Deletar(Tenis tenis);
-
-        public List<Tenis> ObterTodos()
-        {
-            List <Tenis> tenis = new List <Tenis>();
-            return tenis;
-        }
+        public void Criar();
+        public void Ler(); 
+        public void Atualizar();
+        public void Deletar();
+        public List<Tenis> ObterTodos(int Id);
     }
 }

@@ -10,25 +10,26 @@ namespace Cod3rsGrowth.Testes
 {
     public class RepositorioTenisMock : IRepositorioTenis
     {
-        public string Criar(Tenis tenis)
+        public void Criar()
         {
             throw new NotImplementedException();
         }
-        public string Ler(Tenis tenis)
+        public void Ler()
         {
             throw new NotImplementedException();
         }
-        public string Atualizar(Tenis tenis)
+        public void Atualizar()
         {
             throw new NotImplementedException();
         }
-        public string Deletar(Tenis tenis)
+        public void Deletar()
         {
             throw new NotImplementedException();
         }
         public List<Tenis> ObterTodos(int Id)
         {
-            throw new NotImplementedException(); 
+            List<Tenis> tenis = new List<Tenis>();
+            return tenis;
         }
     }
 }
