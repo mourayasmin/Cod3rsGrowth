@@ -9,7 +9,7 @@ namespace Cod3rsGrowth.Servicos
 {
     public class ServicoMarca : IServicoMarca
     {
-        public List<Marca> ObterTodos()
+        public List<Marca> ObterTodas()
         {
             throw new NotImplementedException();
         }

@@ -8,21 +8,22 @@ using System.Threading.Tasks;
 
 namespace Cod3rsGrowth.Testes
 {
-    internal class TesteBase : IDisposable
+    public class TesteBase : IDisposable
     {
         protected ServiceProvider? ProviderService;
-        public TesteBase() {
-            var servico = new ServiceCollection();
-            ProviderService = servico.BuildServiceProvider();
+        public TesteBase() 
+        {
+            ProviderService = ExecutarServiceCollection().BuildServiceProvider();
         }
-
+        public IServiceCollection ExecutarServiceCollection()
+        {
+            var servicos = new ServiceCollection();
+            ModuloDeInjecao.BindService(servicos);
+            return servicos;
+        }
         public void Dispose()
         {
             ProviderService?.Dispose();
         }
-    }
-
-    internal interface IMock
-    {
     }
 }

@@ -3,20 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Cod3rsGrowth.Infra;
+using Cod3rsGrowth.Servicos;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Cod3rsGrowth.Testes
 {
     public class ModuloDeInjecao
     {
-        public static ServiceCollection Servico { get; set; }
-        public ModuloDeInjecao() {
-            Servico = new ServiceCollection();
-            Servico.AddScoped<IMock, RepositorioMock>();
-        }    
-        public static ServiceProvider BuildServiceProvider()
+        public static void  BindService(IServiceCollection Services)
         {
-            return Servico.BuildServiceProvider();
+            Services.AddScoped<IRepositorioTenis, RepositorioTenisMock>();
+            Services.AddScoped<IRepositorioMarca, RepositorioMarcaMock>();
+            Services.AddScoped<IServicoMarca, ServicoMarca>();
+            Services.AddScoped<IServicoTenis, ServicoTenis>();
         }
     }
 }

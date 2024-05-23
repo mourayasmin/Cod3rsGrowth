@@ -9,6 +9,6 @@ namespace Cod3rsGrowth.Servicos
 {
     public interface IServicoMarca
     {
-       public List<Marca> ObterTodos();
+       public List<Marca> ObterTodas();
     }
 }
