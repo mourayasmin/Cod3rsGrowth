@@ -14,7 +14,7 @@ namespace Cod3rsGrowth.Testes
         {
             throw new NotImplementedException();
         }
-        public object ObterPorId(int Id)
+        public Tenis ObterPorId(int Id)
         {
             throw new NotImplementedException();
         }

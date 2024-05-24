@@ -15,7 +15,7 @@ namespace Cod3rsGrowth.Testes
         {
             throw new NotImplementedException();
         }
-        public object ObterPorId(int Id)
+        public Marca ObterPorId(int Id)
         {
             throw new NotImplementedException();
         }

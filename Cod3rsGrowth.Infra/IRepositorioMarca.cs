@@ -10,7 +10,7 @@ namespace Cod3rsGrowth.Infra
     public interface IRepositorioMarca
     {
         public void Criar(Marca marca);
-        public object ObterPorId(int Id);
+        public Marca ObterPorId(int Id);
         public void Atualizar(Marca marca);
         public void Deletar(Marca marca);
         public List<Marca> ObterTodas();
