@@ -11,16 +11,16 @@ namespace Cod3rsGrowth.Infra
 {
     public sealed class SingletonTenis
     {
-        private static SingletonTenis _instanceTenis; //campo privado para armazenamento da instância
+        private static SingletonTenis _instanceTenis; 
         public string Value { get; set; }
         private static readonly object _lock = new object();
-        public static SingletonTenis GetInstance(string value) // método de criação público estático; chamar o construtor(?)
+        public static SingletonTenis GetInstance(string value) 
         {
             if (_instanceTenis == null)
             {
                 lock (_lock) {
                     if (_instanceTenis == null) {
-                        _instanceTenis = new SingletonTenis(); // cria o objeto; campo estático(?)
+                        _instanceTenis = new SingletonTenis(); 
                         _instanceTenis.Value = value;
                     }
                 }
