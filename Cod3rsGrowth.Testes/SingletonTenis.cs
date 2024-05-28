@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using Cod3rsGrowth.Dominio.Enum;
 using Cod3rsGrowth.Dominio;
 
-namespace Cod3rsGrowth.Infra
+namespace Cod3rsGrowth.Testes
 {
     public sealed class SingletonTenis
     {
