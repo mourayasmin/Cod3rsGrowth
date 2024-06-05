@@ -1,5 +1,5 @@
 ﻿using Cod3rsGrowth.Dominio;
-using Cod3rsGrowth.Infra;
+using Cod3rsGrowth.Dominio.InterfacesRepositorio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,8 +28,8 @@ namespace Cod3rsGrowth.Testes
         }
         public List<Tenis> ObterTodos()
         {
-            List<Tenis> tenis = new List<Tenis>();
-            return tenis;
+            List<Tenis> _repositoriotenis = SingletonTenis.Instancia;
+            return _repositoriotenis;
         }
     }
 }

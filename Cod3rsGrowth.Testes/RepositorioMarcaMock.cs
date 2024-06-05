@@ -1,10 +1,10 @@
 ﻿using Cod3rsGrowth.Dominio;
+using Cod3rsGrowth.Dominio.InterfacesRepositorio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Cod3rsGrowth.Infra;
 using Xunit.Sdk;
 
 namespace Cod3rsGrowth.Testes
@@ -29,8 +29,8 @@ namespace Cod3rsGrowth.Testes
         }
         public List<Marca> ObterTodas()
         {
-            List<Marca> marca = new List<Marca>();
-            return marca;
+            List<Marca> _repositoriomarca = SingletonMarca.Instancia;
+            return _repositoriomarca;
         }
     }
 }

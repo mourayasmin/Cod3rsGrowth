@@ -1,4 +1,6 @@
 ﻿using Cod3rsGrowth.Dominio;
+using Cod3rsGrowth.Dominio.Enum;
+using Cod3rsGrowth.Dominio.InterfacesRepositorio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +11,14 @@ namespace Cod3rsGrowth.Servicos
 {
     public class ServicoMarca : IServicoMarca
     {
-        public List<Marca> ObterTodas()
+        public ServicoMarca(IRepositorioMarca RepositorioMarcaMock)
         {
-            throw new NotImplementedException();
+            _repositoriomarca = RepositorioMarcaMock;
+        }
+        private IRepositorioMarca _repositoriomarca;
+        public List<Marca> ObterTodas() 
+        {
+            return _repositoriomarca.ObterTodas();
         }
     }
 }

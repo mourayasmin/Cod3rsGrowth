@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Cod3rsGrowth.Dominio.Enum
+using Cod3rsGrowth.Dominio.Enum;
 
 namespace Cod3rsGrowth.Dominio
 {

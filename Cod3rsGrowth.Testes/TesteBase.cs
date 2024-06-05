@@ -11,7 +11,7 @@ namespace Cod3rsGrowth.Testes
     public class TesteBase : IDisposable
     {
         protected ServiceProvider? ProviderService;
-        public TesteBase() 
+        public TesteBase()
         {
             ProviderService = ExecutarServiceCollection().BuildServiceProvider();
         }

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Cod3rsGrowth.Dominio;
+using Cod3rsGrowth.Dominio.Enum;
+using Cod3rsGrowth.Dominio.InterfacesRepositorio;
 
 namespace Cod3rsGrowth.Testes
 {
@@ -49,7 +51,7 @@ namespace Cod3rsGrowth.Testes
         {
             get 
             {
-                if (InstanciaMarca == null)
+                if (Instancia.Any())
                 {
                     InstanciaMarca = marcas;
                 }
