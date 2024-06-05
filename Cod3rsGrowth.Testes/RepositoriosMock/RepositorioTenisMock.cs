@@ -1,12 +1,13 @@
 ﻿using Cod3rsGrowth.Dominio;
-using Cod3rsGrowth.Infra;
+using Cod3rsGrowth.Dominio.InterfacesRepositorio;
+using Cod3rsGrowth.Testes.ClassesSingleton;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Cod3rsGrowth.Testes
+namespace Cod3rsGrowth.Testes.RepositoriosMock
 {
     public class RepositorioTenisMock : IRepositorioTenis
     {
@@ -28,8 +29,8 @@ namespace Cod3rsGrowth.Testes
         }
         public List<Tenis> ObterTodos()
         {
-            List<Tenis> tenis = new List<Tenis>();
-            return tenis;
+            List<Tenis> _repositoriotenis = SingletonTenis.Instancia;
+            return _repositoriotenis;
         }
     }
 }

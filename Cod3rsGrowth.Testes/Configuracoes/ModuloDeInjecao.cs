@@ -1,12 +1,14 @@
-﻿using Cod3rsGrowth.Infra;
-using Cod3rsGrowth.Servicos;
+﻿using Cod3rsGrowth.Dominio.InterfacesRepositorio;
+using Cod3rsGrowth.Servicos.InterfacesServicos;
+using Cod3rsGrowth.Servicos.Servicos;
+using Cod3rsGrowth.Testes.RepositoriosMock;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Cod3rsGrowth.Testes
+namespace Cod3rsGrowth.Testes.Configuracoes
 {
     public class ModuloDeInjecao
     {
-        public static void  BindService(IServiceCollection Services)
+        public static void BindService(IServiceCollection Services)
         {
             Services.AddScoped<IRepositorioTenis, RepositorioTenisMock>();
             Services.AddScoped<IRepositorioMarca, RepositorioMarcaMock>();

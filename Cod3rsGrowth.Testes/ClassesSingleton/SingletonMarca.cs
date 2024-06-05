@@ -4,8 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Cod3rsGrowth.Dominio;
+using Cod3rsGrowth.Dominio.Enum;
+using Cod3rsGrowth.Dominio.InterfacesRepositorio;
 
-namespace Cod3rsGrowth.Testes
+namespace Cod3rsGrowth.Testes.ClassesSingleton
 {
     public sealed class SingletonMarca
     {
@@ -47,9 +49,9 @@ namespace Cod3rsGrowth.Testes
         private SingletonMarca() { }
         public static List<Marca> Instancia
         {
-            get 
+            get
             {
-                if (InstanciaMarca == null)
+                if (!InstanciaMarca.Any())
                 {
                     InstanciaMarca = marcas;
                 }
@@ -57,4 +59,4 @@ namespace Cod3rsGrowth.Testes
             }
         }
     }
- }
+}
