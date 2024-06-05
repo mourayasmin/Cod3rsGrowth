@@ -20,7 +20,7 @@ namespace Cod3rsGrowth.Testes
         [Fact]
         public void Obter_Lista_De_Marcas_Cadastradas()
         {
-            var listaDeMarcas = _servicoMarca?.ObterTodas();
+            var listaDeMarcas = _servicoMarca.ObterTodas();
             Assert.NotNull(listaDeMarcas);
             Assert.Equal(4, listaDeMarcas.Count);
         }

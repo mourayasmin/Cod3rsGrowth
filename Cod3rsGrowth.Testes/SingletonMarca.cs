@@ -51,7 +51,7 @@ namespace Cod3rsGrowth.Testes
         {
             get 
             {
-                if (Instancia.Any())
+                if (!InstanciaMarca.Any())
                 {
                     InstanciaMarca = marcas;
                 }
