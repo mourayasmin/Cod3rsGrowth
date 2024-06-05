@@ -22,9 +22,18 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
         [Fact]
         public void Obter_Lista_De_Tenis_Cadastrados()
         {
-            var listaDeTenis = _servicoTenis?.ObterTodos();
+            var listaDeTenis = _servicoTenis.ObterTodos();
             Assert.NotNull(listaDeTenis);
             Assert.Equal(4, listaDeTenis.Count);
+        }
+
+        [Fact]
+        public void Obter_Tenis_Por_Id()
+        {
+            var idTenisProcurado = 0001;
+            idTenisProcurado = _servicoTenis.ObterPorId(int Id);
+            Assert.NotNull(idTenisProcurado);
+            Assert.Equal(1, idTenisProcurado.Count);
         }
     }
 }

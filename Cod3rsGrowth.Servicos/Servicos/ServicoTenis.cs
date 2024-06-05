@@ -21,5 +21,9 @@ namespace Cod3rsGrowth.Servicos.Servicos
         {
             return _repositoriotenis.ObterTodos();
         }
+        public int ObterPorId(int Id)
+        {
+            return _repositoriotenis.ObterPorId(int Id);
+        }
     }
 }

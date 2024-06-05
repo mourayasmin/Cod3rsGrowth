@@ -17,7 +17,8 @@ namespace Cod3rsGrowth.Testes.RepositoriosMock
         }
         public Tenis ObterPorId(int Id)
         {
-            throw new NotImplementedException();
+            Id _repositoriotenis = SingletonTenis.Instancia;
+            return _repositoriotenis;
         }
         public void Atualizar(Tenis tenis)
         {

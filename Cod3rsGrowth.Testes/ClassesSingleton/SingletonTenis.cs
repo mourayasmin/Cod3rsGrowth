@@ -15,6 +15,7 @@ namespace Cod3rsGrowth.Testes.ClassesSingleton
     public sealed class SingletonTenis
     {
         private static List<Tenis> InstanciaTenis = new();
+        private static int InstanciaIdTenis = new();
         private static readonly List<Tenis> tenis = new List<Tenis>()
         {
             new Tenis()
@@ -72,6 +73,16 @@ namespace Cod3rsGrowth.Testes.ClassesSingleton
                     InstanciaTenis = tenis;
                 }
                 return InstanciaTenis;
+            }
+        }
+        public static int InstanciaParaIdTenis
+        {
+            get 
+            {
+                if(!InstanciaTenis.Any()) {
+                    InstanciaIdTenis = Id;
+                }
+                return InstanciaIdTenis;
             }
         }
     }
