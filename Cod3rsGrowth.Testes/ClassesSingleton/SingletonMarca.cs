@@ -7,7 +7,7 @@ using Cod3rsGrowth.Dominio;
 using Cod3rsGrowth.Dominio.Enum;
 using Cod3rsGrowth.Dominio.InterfacesRepositorio;
 
-namespace Cod3rsGrowth.Testes
+namespace Cod3rsGrowth.Testes.ClassesSingleton
 {
     public sealed class SingletonMarca
     {
@@ -49,7 +49,7 @@ namespace Cod3rsGrowth.Testes
         private SingletonMarca() { }
         public static List<Marca> Instancia
         {
-            get 
+            get
             {
                 if (!InstanciaMarca.Any())
                 {
@@ -59,4 +59,4 @@ namespace Cod3rsGrowth.Testes
             }
         }
     }
- }
+}

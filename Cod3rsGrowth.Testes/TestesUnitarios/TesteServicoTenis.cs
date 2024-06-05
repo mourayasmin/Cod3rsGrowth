@@ -1,5 +1,4 @@
 ﻿using Cod3rsGrowth.Dominio;
-using Cod3rsGrowth.Servicos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,8 +6,10 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using System.Globalization;
+using Cod3rsGrowth.Testes.Configuracoes;
+using Cod3rsGrowth.Servicos.InterfacesServicos;
 
-namespace Cod3rsGrowth.Testes
+namespace Cod3rsGrowth.Testes.TestesUnitarios
 {
     public class TesteServicoTenis : TesteBase
     {

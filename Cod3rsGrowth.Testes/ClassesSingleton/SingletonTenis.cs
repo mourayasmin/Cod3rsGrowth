@@ -10,7 +10,7 @@ using Cod3rsGrowth.Dominio.Enum;
 using Cod3rsGrowth.Dominio;
 using Cod3rsGrowth.Dominio.InterfacesRepositorio;
 
-namespace Cod3rsGrowth.Testes
+namespace Cod3rsGrowth.Testes.ClassesSingleton
 {
     public sealed class SingletonTenis
     {
@@ -65,9 +65,9 @@ namespace Cod3rsGrowth.Testes
         private SingletonTenis() { }
         public static List<Tenis> Instancia
         {
-               get
+            get
             {
-                if(!InstanciaTenis.Any())
+                if (!InstanciaTenis.Any())
                 {
                     InstanciaTenis = tenis;
                 }

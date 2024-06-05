@@ -6,7 +6,7 @@ using System.Security.Authentication.ExtendedProtection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Cod3rsGrowth.Testes
+namespace Cod3rsGrowth.Testes.Configuracoes
 {
     public class TesteBase : IDisposable
     {

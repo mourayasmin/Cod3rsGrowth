@@ -1,36 +1,36 @@
 ﻿using Cod3rsGrowth.Dominio;
 using Cod3rsGrowth.Dominio.InterfacesRepositorio;
+using Cod3rsGrowth.Testes.ClassesSingleton;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Xunit.Sdk;
 
-namespace Cod3rsGrowth.Testes
+namespace Cod3rsGrowth.Testes.RepositoriosMock
 {
-    public class RepositorioMarcaMock : IRepositorioMarca
+    public class RepositorioTenisMock : IRepositorioTenis
     {
-        public void Criar(Marca marca)
+        public void Criar(Tenis tenis)
         {
             throw new NotImplementedException();
         }
-        public Marca ObterPorId(int Id)
+        public Tenis ObterPorId(int Id)
         {
             throw new NotImplementedException();
         }
-        public void Atualizar(Marca marca)
+        public void Atualizar(Tenis tenis)
         {
             throw new NotImplementedException();
         }
-        public void Deletar(Marca marca)
+        public void Deletar(Tenis tenis)
         {
             throw new NotImplementedException();
         }
-        public List<Marca> ObterTodas()
+        public List<Tenis> ObterTodos()
         {
-            List<Marca> _repositoriomarca = SingletonMarca.Instancia;
-            return _repositoriomarca;
+            List<Tenis> _repositoriotenis = SingletonTenis.Instancia;
+            return _repositoriotenis;
         }
     }
 }
