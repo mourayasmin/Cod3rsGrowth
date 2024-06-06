@@ -20,7 +20,7 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
         }
 
         [Fact]
-        public void Obter_Lista_De_Tenis_Cadastrados()
+        public void Deve_Retornar_Lista_De_Tenis_Cadastrados()
         {
             var listaDeTenis = _servicoTenis.ObterTodos();
             Assert.NotNull(listaDeTenis);
@@ -28,12 +28,12 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
         }
 
         [Fact]
-        public void Obter_Tenis_Por_Id()
+        public void Deve_Retornar_Tenis_Atraves_Do_Id_Informado()
         {
             var idTenisProcurado = 0001;
             idTenisProcurado = _servicoTenis.ObterPorId(int Id);
             Assert.NotNull(idTenisProcurado);
-            Assert.Equal(1, idTenisProcurado.Count);
+            Assert.Equal(1, idTenisProcurado);
         }
     }
 }

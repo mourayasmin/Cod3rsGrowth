@@ -75,15 +75,5 @@ namespace Cod3rsGrowth.Testes.ClassesSingleton
                 return InstanciaTenis;
             }
         }
-        public static int InstanciaParaIdTenis
-        {
-            get 
-            {
-                if(!InstanciaTenis.Any()) {
-                    InstanciaIdTenis = Id;
-                }
-                return InstanciaIdTenis;
-            }
-        }
     }
 }

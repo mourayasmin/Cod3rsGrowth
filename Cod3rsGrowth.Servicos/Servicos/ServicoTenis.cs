@@ -23,7 +23,15 @@ namespace Cod3rsGrowth.Servicos.Servicos
         }
         public int ObterPorId(int Id)
         {
-            return _repositoriotenis.ObterPorId(int Id);
+            foreach (var Id in List<Tenis>) 
+            {
+                    if(Id.List<Tenis> == Id) { //como ter acesso a idTenisProcurado se 
+                    //o servico nao tem acesso ao teste?
+                         Id = _repositoriotenis;
+                    }
+            }
+         return _repositoriotenis.ObterPorId(int Id);
+
         }
     }
 }
