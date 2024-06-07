@@ -15,10 +15,17 @@ namespace Cod3rsGrowth.Testes.RepositoriosMock
         {
             throw new NotImplementedException();
         }
+
         public Tenis ObterPorId(int Id)
         {
-            Id _repositoriotenis = SingletonTenis.Instancia;
-            return _repositoriotenis;
+            foreach (var tenis in SingletonTenis.Instancia)
+            {
+                if (tenis.Id == Id)
+                {
+                    return tenis;
+                }
+            }
+            return null;
         }
         public void Atualizar(Tenis tenis)
         {

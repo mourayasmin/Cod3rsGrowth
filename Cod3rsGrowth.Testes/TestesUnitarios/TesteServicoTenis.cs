@@ -31,9 +31,14 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
         public void Deve_Retornar_Tenis_Atraves_Do_Id_Informado()
         {
             var idTenisProcurado = 0001;
-            idTenisProcurado = _servicoTenis.ObterPorId(int Id);
+            idTenisProcurado = _servicoTenis.ObterPorId(Id);
             Assert.NotNull(idTenisProcurado);
             Assert.Equal(1, idTenisProcurado);
+        }
+        
+        public void Deve_Retornar_Mensagem_De_Erro_Pelo_Id_Inexistente()
+        {
+            
         }
     }
 }

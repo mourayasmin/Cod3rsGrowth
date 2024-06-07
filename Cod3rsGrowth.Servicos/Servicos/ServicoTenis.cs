@@ -21,17 +21,9 @@ namespace Cod3rsGrowth.Servicos.Servicos
         {
             return _repositoriotenis.ObterTodos();
         }
-        public int ObterPorId(int Id)
+        public Tenis ObterPorId(int Id)
         {
-            foreach (var Id in List<Tenis>) 
-            {
-                    if(Id.List<Tenis> == Id) { //como ter acesso a idTenisProcurado se 
-                    //o servico nao tem acesso ao teste?
-                         Id = _repositoriotenis;
-                    }
-            }
-         return _repositoriotenis.ObterPorId(int Id);
-
+            return _repositoriotenis.ObterPorId(Id) ?? throw new ArgumentException("Id inexistente");
         }
     }
 }
