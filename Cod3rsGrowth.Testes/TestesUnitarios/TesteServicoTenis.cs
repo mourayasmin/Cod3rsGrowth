@@ -31,14 +31,15 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
         public void Deve_Retornar_Tenis_Atraves_Do_Id_Informado()
         {
             var idTenisProcurado = 0001;
-            idTenisProcurado = _servicoTenis.ObterPorId(Id);
-            Assert.NotNull(idTenisProcurado);
-            Assert.Equal(1, idTenisProcurado);
+            var resultadoTenis = _servicoTenis.ObterPorId(idTenisProcurado);
+            var tenisEsperado = _servicoTenis.ObterPorId(0001);
+            Assert.Equivalent(resultadoTenis, tenisEsperado);
         }
-        
-        public void Deve_Retornar_Mensagem_De_Erro_Pelo_Id_Inexistente()
+        [Fact]
+        public void Deve_Retornar_Mensagem_De_Erro_Pelo_Id_De_Tenis_Inexistente()
         {
-            
+            var Id = 0000;
+            Assert.Throws<ArgumentException>(() => _servicoTenis.ObterPorId(Id));
         }
     }
 }

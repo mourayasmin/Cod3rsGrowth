@@ -18,7 +18,14 @@ namespace Cod3rsGrowth.Testes.RepositoriosMock
         }
         public Marca ObterPorId(int Id)
         {
-            throw new NotImplementedException();
+            foreach (var marca in SingletonMarca.Instancia)
+            {
+                if (marca.Id == Id)
+                {
+                    return marca;
+                }
+            }
+            return null;
         }
         public void Atualizar(Marca marca)
         {

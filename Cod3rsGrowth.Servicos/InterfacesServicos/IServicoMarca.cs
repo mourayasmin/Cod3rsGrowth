@@ -10,5 +10,6 @@ namespace Cod3rsGrowth.Servicos.InterfacesServicos
     public interface IServicoMarca
     {
         public List<Marca> ObterTodas();
+        public Marca ObterPorId(int Id);
     }
 }
