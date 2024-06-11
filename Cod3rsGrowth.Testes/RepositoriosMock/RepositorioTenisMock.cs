@@ -3,6 +3,7 @@ using Cod3rsGrowth.Dominio.InterfacesRepositorio;
 using Cod3rsGrowth.Testes.ClassesSingleton;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,14 +19,10 @@ namespace Cod3rsGrowth.Testes.RepositoriosMock
 
         public Tenis ObterPorId(int Id)
         {
-            foreach (var tenis in SingletonTenis.Instancia)
-            {
-                if (tenis.Id == Id)
-                {
-                    return tenis;
-                }
-            }
-            return null;
+            List<Tenis> tenis = SingletonTenis.Instancia;
+            var tenisPorId = tenis.FirstOrDefault(Tenis => Tenis.Id == Id);
+            
+            return tenisPorId;
         }
         public void Atualizar(Tenis tenis)
         {

@@ -32,16 +32,25 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
         [Fact]
         public void Deve_Retornar_Marca_Atraves_Do_Id_De_Marca_Informado()
         {
-            var idMarca = 2222;
-            var resultado = _servicoMarca.ObterPorId(idMarca);
-            var marcaEsperada = _servicoMarca.ObterPorId(2222);
-            Assert.Equivalent(resultado, marcaEsperada);
-        }
+            var idMarcaProcurada = 1111;
+            var nomeMarcaProcurada = "Adidas do Brasil LTDA";
+            var telefoneMarcaProcurada = 1155463700;
+            var resultadoMarca = _servicoMarca.ObterPorId(idMarcaProcurada);
+            Assert.NotNull(resultadoMarca);
+            Assert.Equal(resultadoMarca.Id, idMarcaProcurada);
+            Assert.Equal(resultadoMarca.Nome, nomeMarcaProcurada);
+            Assert.Equal(resultadoMarca.Telefone, telefoneMarcaProcurada);
 
-        public void Ao_Obter_Por_Id_De_Marca_Inexistente_Deve_Retornar_Exceção()
+        }
+        [Theory]
+        [InlineData(0000)]
+        [InlineData(45669)]
+        [InlineData(87087)]
+
+        public void Ao_Obter_Por_Id_De_Marca_Inexistente_Deve_Retornar_Exceção(int Id)
             {
-            var Id = 5698;
-            Assert.Throws<ArgumentException>(() => _servicoMarca.ObterPorId(Id));
-            }
+            var mensagemDeErro = Assert.Throws<ArgumentException>(() => _servicoMarca.ObterPorId(Id));
+            Assert.Contains("Id inexistente", mensagemDeErro.Message);
+        }
     }
 }

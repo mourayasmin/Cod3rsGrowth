@@ -23,7 +23,7 @@ namespace Cod3rsGrowth.Servicos.Servicos
         }
         public Marca ObterPorId(int Id)
         {
-            return _repositoriomarca.ObterPorId(Id) ?? throw new ArgumentException("Id de marca inexistente");
+            return _repositoriomarca.ObterPorId(Id) ?? throw new ArgumentException("Id inexistente");
         }
     }
 }

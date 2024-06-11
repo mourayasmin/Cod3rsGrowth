@@ -18,14 +18,10 @@ namespace Cod3rsGrowth.Testes.RepositoriosMock
         }
         public Marca ObterPorId(int Id)
         {
-            foreach (var marca in SingletonMarca.Instancia)
-            {
-                if (marca.Id == Id)
-                {
-                    return marca;
-                }
-            }
-            return null;
+            List<Marca> marca = SingletonMarca.Instancia;
+            var marcaPorId = marca.FirstOrDefault(Marca => Marca.Id == Id);
+
+            return marcaPorId;
         }
         public void Atualizar(Marca marca)
         {

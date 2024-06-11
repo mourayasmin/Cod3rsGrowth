@@ -31,15 +31,25 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
         public void Deve_Retornar_Tenis_Atraves_Do_Id_Informado()
         {
             var idTenisProcurado = 0001;
+            var nomeTenisProcurado = "Streetball";
+            var idMarca = 1111;
             var resultadoTenis = _servicoTenis.ObterPorId(idTenisProcurado);
-            var tenisEsperado = _servicoTenis.ObterPorId(0001);
-            Assert.Equivalent(resultadoTenis, tenisEsperado);
+            Assert.NotNull(resultadoTenis);
+            Assert.Equal(resultadoTenis.Id, idTenisProcurado);
+            Assert.Equal(resultadoTenis.Nome, nomeTenisProcurado);
+            Assert.Equal(resultadoTenis.Idmarca, idMarca);
+           
         }
-        [Fact]
-        public void Deve_Retornar_Mensagem_De_Erro_Pelo_Id_De_Tenis_Inexistente()
+        [Theory]
+        [InlineData(0000)]
+        [InlineData(0007)]
+        [InlineData(87087)]
+        public void Deve_Retornar_Mensagem_De_Erro_Pelo_Id_De_Tenis_Inexistente(int Id)
         {
-            var Id = 0000;
-            Assert.Throws<ArgumentException>(() => _servicoTenis.ObterPorId(Id));
+           
+            var mensagemDeErro = Assert.Throws<ArgumentException>(() => _servicoTenis.ObterPorId(Id));
+            Assert.Contains("Id inexistente", mensagemDeErro.Message);
+            
         }
     }
 }

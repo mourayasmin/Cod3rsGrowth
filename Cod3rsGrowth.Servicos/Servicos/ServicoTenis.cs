@@ -23,7 +23,7 @@ namespace Cod3rsGrowth.Servicos.Servicos
         }
         public Tenis ObterPorId(int Id)
         {
-            return _repositoriotenis.ObterPorId(Id) ?? throw new ArgumentException("Id de tenis inexistente");
+            return _repositoriotenis.ObterPorId(Id) ?? throw new ArgumentException("Id inexistente");
         }
     }
 }
