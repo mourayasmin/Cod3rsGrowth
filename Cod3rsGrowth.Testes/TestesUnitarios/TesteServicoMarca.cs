@@ -49,7 +49,7 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
         public void Ao_Obter_Por_Id_De_Marca_Inexistente_Deve_Retornar_Exceção(int Id)
             {
             var mensagemDeErro = Assert.Throws<ArgumentException>(() => _servicoMarca.ObterPorId(Id));
-            Assert.Contains("O Id inserido é inválido.", mensagemDeErro.Message);
+            Assert.Contains("O Id informado é inválido.", mensagemDeErro.Message);
         }
     }
 }
