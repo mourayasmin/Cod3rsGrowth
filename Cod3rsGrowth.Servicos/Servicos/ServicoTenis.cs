@@ -21,5 +21,9 @@ namespace Cod3rsGrowth.Servicos.Servicos
         {
             return _repositoriotenis.ObterTodos();
         }
+        public Tenis ObterPorId(int Id)
+        {
+            return _repositoriotenis.ObterPorId(Id) ?? throw new ArgumentException("Id inválido. Insira um Id existente.");
+        }
     }
 }

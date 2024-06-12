@@ -18,7 +18,7 @@ namespace Cod3rsGrowth.Testes.RepositoriosMock
         }
         public Marca ObterPorId(int Id)
         {
-            throw new NotImplementedException();
+            return SingletonMarca.Instancia.FirstOrDefault(marca => marca.Id == Id);
         }
         public void Atualizar(Marca marca)
         {
