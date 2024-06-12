@@ -37,9 +37,9 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
             var telefoneMarcaProcurada = 1155463700;
             var resultadoMarca = _servicoMarca.ObterPorId(idMarcaProcurada);
             Assert.NotNull(resultadoMarca);
-            Assert.Equal(resultadoMarca.Id, idMarcaProcurada);
-            Assert.Equal(resultadoMarca.Nome, nomeMarcaProcurada);
-            Assert.Equal(resultadoMarca.Telefone, telefoneMarcaProcurada);
+            Assert.Equal(idMarcaProcurada, resultadoMarca.Id);
+            Assert.Equal(nomeMarcaProcurada, resultadoMarca.Nome);
+            Assert.Equal(telefoneMarcaProcurada, resultadoMarca.Telefone);
 
         }
         [Theory]
@@ -50,7 +50,7 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
         public void Ao_Obter_Por_Id_De_Marca_Inexistente_Deve_Retornar_Exceção(int Id)
             {
             var mensagemDeErro = Assert.Throws<ArgumentException>(() => _servicoMarca.ObterPorId(Id));
-            Assert.Contains("Id inexistente", mensagemDeErro.Message);
+            Assert.Contains("Id inválido. Insira um Id existente.", mensagemDeErro.Message);
         }
     }
 }

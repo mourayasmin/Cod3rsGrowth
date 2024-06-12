@@ -35,9 +35,9 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
             var idMarca = 1111;
             var resultadoTenis = _servicoTenis.ObterPorId(idTenisProcurado);
             Assert.NotNull(resultadoTenis);
-            Assert.Equal(resultadoTenis.Id, idTenisProcurado);
-            Assert.Equal(resultadoTenis.Nome, nomeTenisProcurado);
-            Assert.Equal(resultadoTenis.Idmarca, idMarca);
+            Assert.Equal(idTenisProcurado, resultadoTenis.Id);
+            Assert.Equal(nomeTenisProcurado, resultadoTenis.Nome);
+            Assert.Equal(idMarca, resultadoTenis.Idmarca);
            
         }
         [Theory]
@@ -48,7 +48,7 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
         {
            
             var mensagemDeErro = Assert.Throws<ArgumentException>(() => _servicoTenis.ObterPorId(Id));
-            Assert.Contains("Id inexistente", mensagemDeErro.Message);
+            Assert.Contains("Id inválido. Insira um Id existente.", mensagemDeErro.Message);
             
         }
     }
