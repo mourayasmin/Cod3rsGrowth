@@ -30,26 +30,24 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
         [Fact]
         public void Deve_Retornar_Tenis_Atraves_Do_Id_Informado()
         {
-            var idTenisProcurado = 0001;
-            var nomeTenisProcurado = "Streetball";
-            var idMarca = 1111;
-            var resultadoTenis = _servicoTenis.ObterPorId(idTenisProcurado);
-            Assert.NotNull(resultadoTenis);
-            Assert.Equal(idTenisProcurado, resultadoTenis.Id);
-            Assert.Equal(nomeTenisProcurado, resultadoTenis.Nome);
-            Assert.Equal(idMarca, resultadoTenis.Idmarca);
-           
+            var idTenisEsperado = 0001;
+            var nomeTenisEsperado = "Streetball";
+            var idMarcaEsperada = 1111;
+            var tenisRetornado = _servicoTenis.ObterPorId(idTenisEsperado);
+            Assert.NotNull(tenisRetornado);
+            Assert.Equal(idTenisEsperado, tenisRetornado.Id);
+            Assert.Equal(nomeTenisEsperado, tenisRetornado.Nome);
+            Assert.Equal(idMarcaEsperada, tenisRetornado.Idmarca);
         }
+
         [Theory]
         [InlineData(0000)]
         [InlineData(0007)]
         [InlineData(87087)]
         public void Deve_Retornar_Mensagem_De_Erro_Pelo_Id_De_Tenis_Inexistente(int Id)
         {
-           
             var mensagemDeErro = Assert.Throws<ArgumentException>(() => _servicoTenis.ObterPorId(Id));
-            Assert.Contains("Id inválido. Insira um Id existente.", mensagemDeErro.Message);
-            
+            Assert.Contains("O Id informado é inválido.", mensagemDeErro.Message);
         }
     }
 }

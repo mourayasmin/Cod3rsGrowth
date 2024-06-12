@@ -19,10 +19,7 @@ namespace Cod3rsGrowth.Testes.RepositoriosMock
 
         public Tenis ObterPorId(int Id)
         {
-            List<Tenis> tenis = SingletonTenis.Instancia;
-            var tenisPorId = tenis.FirstOrDefault(Tenis => Tenis.Id == Id);
-            
-            return tenisPorId;
+            return SingletonTenis.Instancia.FirstOrDefault(tenis => tenis.Id == Id);
         }
         public void Atualizar(Tenis tenis)
         {

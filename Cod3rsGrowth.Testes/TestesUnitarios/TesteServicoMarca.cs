@@ -32,25 +32,24 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
         [Fact]
         public void Deve_Retornar_Marca_Atraves_Do_Id_De_Marca_Informado()
         {
-            var idMarcaProcurada = 1111;
-            var nomeMarcaProcurada = "Adidas do Brasil LTDA";
-            var telefoneMarcaProcurada = 1155463700;
-            var resultadoMarca = _servicoMarca.ObterPorId(idMarcaProcurada);
-            Assert.NotNull(resultadoMarca);
-            Assert.Equal(idMarcaProcurada, resultadoMarca.Id);
-            Assert.Equal(nomeMarcaProcurada, resultadoMarca.Nome);
-            Assert.Equal(telefoneMarcaProcurada, resultadoMarca.Telefone);
-
+            var idMarcaEsperada = 1111;
+            var nomeMarcaEsperada = "Adidas do Brasil LTDA";
+            var telefoneMarcaEsperada = 1155463700;
+            var marcaRetornada = _servicoMarca.ObterPorId(idMarcaEsperada);
+            Assert.NotNull(marcaRetornada);
+            Assert.Equal(idMarcaEsperada, marcaRetornada.Id);
+            Assert.Equal(nomeMarcaEsperada, marcaRetornada.Nome);
+            Assert.Equal(telefoneMarcaEsperada, marcaRetornada.Telefone);
         }
+
         [Theory]
         [InlineData(0000)]
         [InlineData(45669)]
         [InlineData(87087)]
-
         public void Ao_Obter_Por_Id_De_Marca_Inexistente_Deve_Retornar_Exceção(int Id)
             {
             var mensagemDeErro = Assert.Throws<ArgumentException>(() => _servicoMarca.ObterPorId(Id));
-            Assert.Contains("Id inválido. Insira um Id existente.", mensagemDeErro.Message);
+            Assert.Contains("O Id inserido é inválido.", mensagemDeErro.Message);
         }
     }
 }
