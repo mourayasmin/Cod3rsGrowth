@@ -12,9 +12,10 @@ namespace Cod3rsGrowth.Testes.RepositoriosMock
 {
     public class RepositorioTenisMock : IRepositorioTenis
     {
-        public void Criar(Tenis tenis)
+        public Tenis Criar(Tenis tenisCriado)
         {
-            throw new NotImplementedException();
+            SingletonTenis.tenis.Add(tenisCriado);
+            return tenisCriado;
         }
 
         public Tenis ObterPorId(int Id)

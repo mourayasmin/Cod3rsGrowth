@@ -14,8 +14,8 @@ namespace Cod3rsGrowth.Testes.ClassesSingleton
 {
     public sealed class SingletonTenis
     {
-        private static List<Tenis> InstanciaTenis = new();
-        private static readonly List<Tenis> tenis = new List<Tenis>()
+        public static List<Tenis> InstanciaTenis = new();
+        public static readonly List<Tenis> tenis = new List<Tenis>()
         {
             new Tenis()
             {
