@@ -57,7 +57,7 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
         [Fact]
         public void Deve_Retornar_Tenis_Criado()
         {
-            var tenisCriado = new Tenis()
+            var tenis = new Tenis()
             {
                 Linha = Dominio.Enum.LinhaEnum.Casual,
                 Id = 0005,
@@ -68,10 +68,9 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
                 Nome = "Pharrell Williams Hu",
                 Disponibilidade = false
             };
-
-            var resultadoTenis = _servicoTenis.Criar(tenisCriado);
+            var resultadoTenis = _servicoTenis.Criar(tenis);
             Assert.NotNull(resultadoTenis);
-            Assert.Equal(resultadoTenis, tenisCriado);
+            Assert.Equal(resultadoTenis, tenis);
             var a = SingletonTenis.Instancia.Contains(resultadoTenis);
             Assert.IsType<Tenis>(resultadoTenis);
         }
@@ -79,7 +78,7 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
         [Fact]
         public void Linha_Nula_Deve_Retornar_Erro()
         {
-            var tenisCriado = new Tenis()
+            var tenis = new Tenis()
             {
                 Linha = null,
                 Id = 0005,
@@ -90,14 +89,14 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
                 Nome = "Pharrell Williams Hu",
                 Disponibilidade = false
             };
-
-            var mensagemDeErro = Assert.Throws<ValidationException>(() => _servicoTenis.Criar(tenisCriado));
+            var mensagemDeErro = Assert.Throws<ValidationException>(() => _servicoTenis.Criar(tenis));
             Assert.Contains("Informe o nome da linha.", mensagemDeErro.Message);
         }
+
         [Fact]
         public void Preco_Nulo_Deve_Retornar_Erro()
         {
-            var tenisCriado = new Tenis()
+            var tenis = new Tenis()
             {
                 Linha = Dominio.Enum.LinhaEnum.Casual,
                 Id = 0005,
@@ -108,13 +107,14 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
                 Nome = "Pharrell Williams Hu",
                 Disponibilidade = false
             };
-            var mensagemDeErro = Assert.Throws<ValidationException>(() => _servicoTenis.Criar(tenisCriado));
+            var mensagemDeErro = Assert.Throws<ValidationException>(() => _servicoTenis.Criar(tenis));
             Assert.Contains("Informe o preço do produto.", mensagemDeErro.Message);
         }
+
         [Fact]
         public void Preco_Igual_A_Zero_Deve_Retornar_Erro()
         { 
-            var tenisCriado = new Tenis()
+            var tenis = new Tenis()
             {
                 Linha = Dominio.Enum.LinhaEnum.Casual,
                 Id = 0005,
@@ -125,14 +125,14 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
                 Nome = "Pharrell Williams Hu",
                 Disponibilidade = false
             };
-            var mensagemDeErro = Assert.Throws<ValidationException>(() => _servicoTenis.Criar(tenisCriado));
+            var mensagemDeErro = Assert.Throws<ValidationException>(() => _servicoTenis.Criar(tenis));
             Assert.Contains("O preço informado é inválido.", mensagemDeErro.Message);
         }
 
         [Fact]
         public void Preco_Maior_Que_Vinte_Mil_Deve_Retornar_Erro()
         {
-            var tenisCriado = new Tenis()
+            var tenis = new Tenis()
             {
                 Linha = Dominio.Enum.LinhaEnum.Casual,
                 Id = 0005,
@@ -143,13 +143,14 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
                 Nome = "Pharrell Williams Hu",
                 Disponibilidade = false
             };
-            var mensagemDeErro = Assert.Throws<ValidationException>(() => _servicoTenis.Criar(tenisCriado));
+            var mensagemDeErro = Assert.Throws<ValidationException>(() => _servicoTenis.Criar(tenis));
             Assert.Contains("O preço informado é inválido. O limite de preço é 20000.", mensagemDeErro.Message);
         }
+
         [Fact]
         public void Preco_Menor_Que_Zero_Deve_Retornar_Erro()
         {
-            var tenisCriado = new Tenis()
+            var tenis = new Tenis()
             {
                 Linha = Dominio.Enum.LinhaEnum.Casual,
                 Id = 0005,
@@ -160,14 +161,14 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
                 Nome = "Pharrell Williams Hu",
                 Disponibilidade = false
             };
-            var mensagemDeErro = Assert.Throws<ValidationException>(() => _servicoTenis.Criar(tenisCriado));
+            var mensagemDeErro = Assert.Throws<ValidationException>(() => _servicoTenis.Criar(tenis));
             Assert.Contains("O preço informado é inválido.", mensagemDeErro.Message);
         }
 
         [Fact]
         public void Avaliacao_Menor_Que_Zero_Deve_Retornar_Erro()
         {
-            var tenisCriado = new Tenis()
+            var tenis = new Tenis()
             {
                 Linha = Dominio.Enum.LinhaEnum.Casual,
                 Id = 0005,
@@ -178,14 +179,14 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
                 Nome = "Pharrell Williams Hu",
                 Disponibilidade = false
             };
-            var mensagemDeErro = Assert.Throws<ValidationException>(() => _servicoTenis.Criar(tenisCriado));
+            var mensagemDeErro = Assert.Throws<ValidationException>(() => _servicoTenis.Criar(tenis));
             Assert.Contains("A avaliação informada é inválida. Informe uma avaliação de 0 a 10.", mensagemDeErro.Message);
         }
 
         [Fact]
         public void Avaliacao_Maior_Que_Dez_Deve_Retornar_Erro()
         {
-            var tenisCriado = new Tenis()
+            var tenis = new Tenis()
             {
                 Linha = Dominio.Enum.LinhaEnum.Casual,
                 Id = 0005,
@@ -196,14 +197,14 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
                 Nome = "Pharrell Williams Hu",
                 Disponibilidade = false
             };
-            var mensagemDeErro = Assert.Throws<ValidationException>(() => _servicoTenis.Criar(tenisCriado));
+            var mensagemDeErro = Assert.Throws<ValidationException>(() => _servicoTenis.Criar(tenis));
             Assert.Contains("A avaliação informada é inválida. Informe uma avaliação de 0 a 10.", mensagemDeErro.Message);
         }
 
         [Fact]
         public void Nome_Nulo_Deve_Retornar_Erro()
         {
-            var tenisCriado = new Tenis()
+            var tenis = new Tenis()
             {
                 Linha = Dominio.Enum.LinhaEnum.Casual,
                 Id = 0005,
@@ -214,14 +215,14 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
                 Nome = null,
                 Disponibilidade = false
             };
-            var mensagemDeErro = Assert.Throws<ValidationException>(() => _servicoTenis.Criar(tenisCriado));
+            var mensagemDeErro = Assert.Throws<ValidationException>(() => _servicoTenis.Criar(tenis));
             Assert.Contains("Informe o nome da marca.", mensagemDeErro.Message);
         }
 
         [Fact]
         public void Nome_Vazio_Deve_Retornar_Erro()
         {
-            var tenisCriado = new Tenis()
+            var tenis = new Tenis()
             {
                 Linha = Dominio.Enum.LinhaEnum.Casual,
                 Id = 0005,
@@ -232,7 +233,7 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
                 Nome = " ",
                 Disponibilidade = false
             };
-            var mensagemDeErro = Assert.Throws<ValidationException>(() => _servicoTenis.Criar(tenisCriado));
+            var mensagemDeErro = Assert.Throws<ValidationException>(() => _servicoTenis.Criar(tenis));
             Assert.Contains("Informe o nome da marca.", mensagemDeErro.Message);
         }
     }

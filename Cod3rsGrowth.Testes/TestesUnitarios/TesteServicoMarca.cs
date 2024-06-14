@@ -57,7 +57,7 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
         [Fact]
         public void Deve_Retornar_Marca_Criada()
         {
-            var marcaCriada = new Marca()
+            var marca = new Marca()
             {
                 Cnpj = "65498732132165",
                 Email = "oxerbrasil@oxer.com.br",
@@ -65,14 +65,14 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
                 Telefone = 1158963256,
                 Id = 6666
             };
-            var resultadoMarca = _servicoMarca.Criar(marcaCriada);
-            Assert.Equal(resultadoMarca, marcaCriada);
+            var resultadoMarca = _servicoMarca.Criar(marca);
+            Assert.Equal(resultadoMarca, marca);
         }
 
         [Fact]
         public void Cnpj_Nulo_Deve_Retornar_Erro()
         {
-            var marcaCriada = new Marca()
+            var marca = new Marca()
             {
                 Cnpj = null,
                 Email = "oxerbrasil@oxer.com.br",
@@ -80,14 +80,14 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
                 Telefone = 1158963256,
                 Id = 6666
             };
-            var mensagemDeErro = Assert.Throws<ValidationException>(() => _servicoMarca.Criar(marcaCriada));
+            var mensagemDeErro = Assert.Throws<ValidationException>(() => _servicoMarca.Criar(marca));
             Assert.Contains("Informe o CNPJ da marca.", mensagemDeErro.Message);
         }
 
         [Fact]
         public void Cnpj_Vazio_Deve_Retornar_Erro()
         {
-            var marcaCriada = new Marca()
+            var marca = new Marca()
             {
                 Cnpj = " ",
                 Email = "oxerbrasil@oxer.com.br",
@@ -95,14 +95,14 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
                 Telefone = 1158963256,
                 Id = 6666
             };
-            var mensagemDeErro = Assert.Throws<ValidationException>(() => _servicoMarca.Criar(marcaCriada));
+            var mensagemDeErro = Assert.Throws<ValidationException>(() => _servicoMarca.Criar(marca));
             Assert.Contains("Informe o CNPJ da marca.", mensagemDeErro.Message);
         }
 
         [Fact]
         public void Cnpj_De_Tamanho_Errado_Deve_Retornar_Erro()
         {
-            var marcaCriada = new Marca()
+            var marca = new Marca()
             {
                 Cnpj = "654987321321",
                 Email = "oxerbrasil@oxer.com.br",
@@ -110,14 +110,14 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
                 Telefone = 1158963256,
                 Id = 6666
             };
-            var mensagemDeErro = Assert.Throws<ValidationException>(() => _servicoMarca.Criar(marcaCriada));
+            var mensagemDeErro = Assert.Throws<ValidationException>(() => _servicoMarca.Criar(marca));
             Assert.Contains("Informe um CNPJ válido.", mensagemDeErro.Message);
         }
 
         [Fact]
         public void Nome_Da_Marca_Nulo_Deve_Retornar_Erro()
         {
-            var marcaCriada = new Marca()
+            var marca = new Marca()
             {
                 Cnpj = "65498732132165",
                 Email = "oxerbrasil@oxer.com.br",
@@ -125,14 +125,14 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
                 Telefone = 1158963256,
                 Id = 6666
             };
-            var mensagemDeErro = Assert.Throws<ValidationException>(() => _servicoMarca.Criar(marcaCriada));
+            var mensagemDeErro = Assert.Throws<ValidationException>(() => _servicoMarca.Criar(marca));
             Assert.Contains("O nome da marca está vazio.", mensagemDeErro.Message);
         }
 
         [Fact]
         public void Nome_Da_Marca_Vazio_Deve_Retornar_Erro()
         {
-            var marcaCriada = new Marca()
+            var marca = new Marca()
             {
                 Cnpj = "65498732132165",
                 Email = "oxerbrasil@oxer.com.br",
@@ -140,14 +140,14 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
                 Telefone = 1158963256,
                 Id = 6666
             };
-            var mensagemDeErro = Assert.Throws<ValidationException>(() => _servicoMarca.Criar(marcaCriada));
+            var mensagemDeErro = Assert.Throws<ValidationException>(() => _servicoMarca.Criar(marca));
             Assert.Contains("O nome da marca está vazio.", mensagemDeErro.Message);
         }
 
         [Fact]
         public void Id_Da_Marca_Nulo_Deve_Retornar_Erro()
         {
-            var marcaCriada = new Marca()
+            var marca = new Marca()
             {
                 Cnpj = "65498732132165",
                 Email = "oxerbrasil@oxer.com.br",
@@ -155,7 +155,7 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
                 Telefone = 1158963256,
                 Id = null
             };
-            var mensagemDeErro = Assert.Throws<ValidationException>(() => _servicoMarca.Criar(marcaCriada));
+            var mensagemDeErro = Assert.Throws<ValidationException>(() => _servicoMarca.Criar(marca));
             Assert.Contains("O Id está vazio.", mensagemDeErro.Message);
         }
     }

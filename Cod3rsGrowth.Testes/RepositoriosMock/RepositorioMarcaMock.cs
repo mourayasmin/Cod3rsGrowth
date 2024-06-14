@@ -13,10 +13,10 @@ namespace Cod3rsGrowth.Testes.RepositoriosMock
 {
     public class RepositorioMarcaMock : IRepositorioMarca
     {
-        public Marca Criar(Marca marcaCriada)
+        public Marca Criar(Marca marca)
         {
-            SingletonMarca.marcas.Add(marcaCriada);
-            return marcaCriada;
+            SingletonMarca.marcas.Add(marca);
+            return marca;
         }
         public Marca ObterPorId(int Id)
         {

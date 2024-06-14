@@ -12,10 +12,10 @@ namespace Cod3rsGrowth.Testes.RepositoriosMock
 {
     public class RepositorioTenisMock : IRepositorioTenis
     {
-        public Tenis Criar(Tenis tenisCriado)
+        public Tenis Criar(Tenis tenis)
         {
-            SingletonTenis.tenis.Add(tenisCriado);
-            return tenisCriado;
+            SingletonTenis.tenis.Add(tenis);
+            return tenis;
         }
         public Tenis ObterPorId(int Id)
         {
