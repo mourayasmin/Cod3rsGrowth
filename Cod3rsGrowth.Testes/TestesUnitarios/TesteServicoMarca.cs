@@ -4,12 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Globalization;
 using Microsoft.Extensions.DependencyInjection;
 using Cod3rsGrowth.Testes.Configuracoes;
 using Cod3rsGrowth.Servicos.InterfacesServicos;
 using Cod3rsGrowth.Servicos.Servicos;
-using System.ComponentModel.DataAnnotations;
 using Cod3rsGrowth.Testes.ClassesSingleton;
+using Cod3rsGrowth.Servicos.Validacoes;
+using FluentValidation;
 
 namespace Cod3rsGrowth.Testes.TestesUnitarios
 {
@@ -47,9 +49,101 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
         [InlineData(45669)]
         [InlineData(87087)]
         public void Ao_Obter_Por_Id_De_Marca_Inexistente_Deve_Retornar_Exceção(int Id)
-            {
+        {
             var mensagemDeErro = Assert.Throws<ArgumentException>(() => _servicoMarca.ObterPorId(Id));
             Assert.Contains("O Id informado é inválido.", mensagemDeErro.Message);
+        }
+
+        [Fact]
+        public void Deve_Retornar_Marca_Criada()
+        {
+            var marcaCriada = new Marca()
+            {
+                Cnpj = "65498732132165",
+                Email = "oxerbrasil@oxer.com.br",
+                Nome = "Oxer do Brasil LTDA",
+                Telefone = 1158963256,
+                Id = 6666
+            };
+            var resultadoMarca = _servicoMarca.Criar(marcaCriada);
+            Assert.Equal(resultadoMarca, marcaCriada);
+            var a = SingletonMarca.Instancia.Contains(resultadoMarca);
+            Assert.IsType<Marca>(resultadoMarca);
+        }
+
+        [Fact]
+        public void Cnpj_Nulo_Deve_Retornar_Erro()
+        {
+            var marcaCriada = new Marca()
+            {
+                Cnpj = null,
+                Email = "oxerbrasil@oxer.com.br",
+                Nome = "Oxer do Brasil LTDA",
+                Telefone = 1158963256,
+                Id = 6666
+            };
+            var mensagemDeErro = Assert.Throws<ValidationException>(() => _servicoMarca.Criar(marcaCriada));
+            Assert.Contains("Informe o CNPJ da marca.", mensagemDeErro.Message);
+        }
+
+        [Fact]
+        public void Cnpj_Vazio_Deve_Retornar_Erro()
+        {
+            var marcaCriada = new Marca()
+            {
+                Cnpj = " ",
+                Email = "oxerbrasil@oxer.com.br",
+                Nome = "Oxer do Brasil LTDA",
+                Telefone = 1158963256,
+                Id = 6666
+            };
+            var mensagemDeErro = Assert.Throws<ValidationException>(() => _servicoMarca.Criar(marcaCriada));
+            Assert.Contains("Informe o CNPJ da marca.", mensagemDeErro.Message);
+        }
+
+        [Fact]
+        public void Nome_Da_Marca_Nulo_Deve_Retornar_Erro()
+        {
+            var marcaCriada = new Marca()
+            {
+                Cnpj = "65498732132165",
+                Email = "oxerbrasil@oxer.com.br",
+                Nome = null,
+                Telefone = 1158963256,
+                Id = 6666
+            };
+            var mensagemDeErro = Assert.Throws<ValidationException>(() => _servicoMarca.Criar(marcaCriada));
+            Assert.Contains("Informe o nome da marca.", mensagemDeErro.Message);
+        }
+
+        [Fact]
+        public void Nome_Da_Marca_Vazio_Deve_Retornar_Erro()
+        {
+            var marcaCriada = new Marca()
+            {
+                Cnpj = "65498732132165",
+                Email = "oxerbrasil@oxer.com.br",
+                Nome = " ",
+                Telefone = 1158963256,
+                Id = 6666
+            };
+            var mensagemDeErro = Assert.Throws<ValidationException>(() => _servicoMarca.Criar(marcaCriada));
+            Assert.Contains("Informe o nome da marca.", mensagemDeErro.Message);
+        }
+
+        [Fact]
+        public void Id_Da_Marca_Nulo_Deve_Retornar_Erro()
+        {
+            var marcaCriada = new Marca()
+            {
+                Cnpj = "65498732132165",
+                Email = "oxerbrasil@oxer.com.br",
+                Nome = "Oxer do Brasil LTDA",
+                Telefone = 1158963256,
+                Id = null
+            };
+            var mensagemDeErro = Assert.Throws<ValidationException>(() => _servicoMarca.Criar(marcaCriada));
+            Assert.Contains("Informe o Id da marca.", mensagemDeErro.Message);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,8 +12,8 @@ namespace Cod3rsGrowth.Testes.ClassesSingleton
 {
     public sealed class SingletonMarca
     {
-        private static List<Marca> InstanciaMarca = new();
-        private static readonly List<Marca> marcas = new List<Marca>()
+        public static List<Marca> InstanciaMarca = new();
+        public static readonly List<Marca> marcas = new List<Marca>()
         {
             new Marca()
             {

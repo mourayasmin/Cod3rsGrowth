@@ -18,6 +18,7 @@ namespace Cod3rsGrowth.Testes.Configuracoes
             Services.AddScoped<IServicoMarca, ServicoMarca>();
             Services.AddScoped<IServicoTenis, ServicoTenis>();
             Services.AddScoped<IValidator<Tenis>, ValidacaoTenis>();
+            Services.AddScoped<IValidator<Marca>, ValidacaoMarca>();
         }
     }
 }

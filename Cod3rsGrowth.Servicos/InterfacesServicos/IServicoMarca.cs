@@ -11,5 +11,7 @@ namespace Cod3rsGrowth.Servicos.InterfacesServicos
     {
         public List<Marca> ObterTodas();
         public Marca ObterPorId(int Id);
+        public Marca Criar(Marca marcaCriada);
+
     }
 }

@@ -10,7 +10,6 @@ using Cod3rsGrowth.Testes.Configuracoes;
 using Cod3rsGrowth.Servicos.InterfacesServicos;
 using Cod3rsGrowth.Servicos.Servicos;
 using Cod3rsGrowth.Testes.ClassesSingleton;
-using Cod3rsGrowth.Testes.Validacoes;
 using Cod3rsGrowth.Servicos.Validacoes;
 using FluentValidation;
 
@@ -93,24 +92,148 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
             };
 
             var mensagemDeErro = Assert.Throws<ValidationException>(() => _servicoTenis.Criar(tenisCriado));
-            Assert.Contains("A linha informada é inválida.", mensagemDeErro.Message);
+            Assert.Contains("Informe o nome da linha.", mensagemDeErro.Message);
         }
-        [Theory]
-        [InlineData(null)]
-        public void Tipo_De_Linha_Diferente_De_Enum_Deve_Retornar_Erro(double Preco)
+        [Fact]
+        public void Preco_Nulo_Deve_Retornar_Erro()
+        {
+            var tenisCriado = new Tenis()
+            {
+                Linha = Dominio.Enum.LinhaEnum.Casual,
+                Id = 0005,
+                Idmarca = 1111,
+                Preco = null,
+                Lancamento = DateTime.Parse("14/02/2018"),
+                Avaliacao = 9.7M,
+                Nome = "Pharrell Williams Hu",
+                Disponibilidade = false
+            };
+            var mensagemDeErro = Assert.Throws<ValidationException>(() => _servicoTenis.Criar(tenisCriado));
+            Assert.Contains("Informe o preço do produto.", mensagemDeErro.Message);
+        }
+        [Fact]
+        public void Preco_Igual_A_Zero_Deve_Retornar_Erro()
         { 
             var tenisCriado = new Tenis()
             {
                 Linha = Dominio.Enum.LinhaEnum.Casual,
                 Id = 0005,
                 Idmarca = 1111,
+                Preco = 0.0,
                 Lancamento = DateTime.Parse("14/02/2018"),
                 Avaliacao = 9.7M,
                 Nome = "Pharrell Williams Hu",
                 Disponibilidade = false
             };
+            var mensagemDeErro = Assert.Throws<ValidationException>(() => _servicoTenis.Criar(tenisCriado));
+            Assert.Contains("O preço informado é inválido.", mensagemDeErro.Message);
+        }
 
+        [Fact]
+        public void Preco_Maior_Que_Vinte_Mil_Deve_Retornar_Erro()
+        {
+            var tenisCriado = new Tenis()
+            {
+                Linha = Dominio.Enum.LinhaEnum.Casual,
+                Id = 0005,
+                Idmarca = 1111,
+                Preco = 30000.0,
+                Lancamento = DateTime.Parse("14/02/2018"),
+                Avaliacao = 9.7M,
+                Nome = "Pharrell Williams Hu",
+                Disponibilidade = false
+            };
+            var mensagemDeErro = Assert.Throws<ValidationException>(() => _servicoTenis.Criar(tenisCriado));
+            Assert.Contains("O preço informado é inválido. O limite de preço é 20000.", mensagemDeErro.Message);
+        }
+        [Fact]
+        public void Preco_Menor_Que_Zero_Deve_Retornar_Erro()
+        {
+            var tenisCriado = new Tenis()
+            {
+                Linha = Dominio.Enum.LinhaEnum.Casual,
+                Id = 0005,
+                Idmarca = 1111,
+                Preco = -32.0,
+                Lancamento = DateTime.Parse("14/02/2018"),
+                Avaliacao = 9.7M,
+                Nome = "Pharrell Williams Hu",
+                Disponibilidade = false
+            };
+            var mensagemDeErro = Assert.Throws<ValidationException>(() => _servicoTenis.Criar(tenisCriado));
+            Assert.Contains("O preço informado é inválido.", mensagemDeErro.Message);
+        }
 
+        [Fact]
+        public void Avaliacao_Menor_Que_Zero_Deve_Retornar_Erro()
+        {
+            var tenisCriado = new Tenis()
+            {
+                Linha = Dominio.Enum.LinhaEnum.Casual,
+                Id = 0005,
+                Idmarca = 1111,
+                Preco = 399.99,
+                Lancamento = DateTime.Parse("14/02/2018"),
+                Avaliacao = -3.0M,
+                Nome = "Pharrell Williams Hu",
+                Disponibilidade = false
+            };
+            var mensagemDeErro = Assert.Throws<ValidationException>(() => _servicoTenis.Criar(tenisCriado));
+            Assert.Contains("A avaliação informada é inválida. Informe uma avaliação de 0 a 10.", mensagemDeErro.Message);
+        }
+
+        [Fact]
+        public void Avaliacao_Maior_Que_Dez_Deve_Retornar_Erro()
+        {
+            var tenisCriado = new Tenis()
+            {
+                Linha = Dominio.Enum.LinhaEnum.Casual,
+                Id = 0005,
+                Idmarca = 1111,
+                Preco = 399.99,
+                Lancamento = DateTime.Parse("14/02/2018"),
+                Avaliacao = 11.0M,
+                Nome = "Pharrell Williams Hu",
+                Disponibilidade = false
+            };
+            var mensagemDeErro = Assert.Throws<ValidationException>(() => _servicoTenis.Criar(tenisCriado));
+            Assert.Contains("A avaliação informada é inválida. Informe uma avaliação de 0 a 10.", mensagemDeErro.Message);
+        }
+
+        [Fact]
+        public void Nome_Nulo_Deve_Retornar_Erro()
+        {
+            var tenisCriado = new Tenis()
+            {
+                Linha = Dominio.Enum.LinhaEnum.Casual,
+                Id = 0005,
+                Idmarca = 1111,
+                Preco = 399.99,
+                Lancamento = DateTime.Parse("14/02/2018"),
+                Avaliacao = 11.0M,
+                Nome = null,
+                Disponibilidade = false
+            };
+            var mensagemDeErro = Assert.Throws<ValidationException>(() => _servicoTenis.Criar(tenisCriado));
+            Assert.Contains("Informe o nome da marca.", mensagemDeErro.Message);
+        }
+
+        [Fact]
+        public void Nome_Vazio_Deve_Retornar_Erro()
+        {
+            var tenisCriado = new Tenis()
+            {
+                Linha = Dominio.Enum.LinhaEnum.Casual,
+                Id = 0005,
+                Idmarca = 1111,
+                Preco = 399.99,
+                Lancamento = DateTime.Parse("14/02/2018"),
+                Avaliacao = 11.0M,
+                Nome = " ",
+                Disponibilidade = false
+            };
+            var mensagemDeErro = Assert.Throws<ValidationException>(() => _servicoTenis.Criar(tenisCriado));
+            Assert.Contains("Informe o nome da marca.", mensagemDeErro.Message);
         }
     }
 }

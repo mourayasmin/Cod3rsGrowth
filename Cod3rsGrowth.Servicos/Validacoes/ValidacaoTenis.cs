@@ -14,30 +14,24 @@ namespace Cod3rsGrowth.Servicos.Validacoes
         {
             RuleFor(tenis => tenis.Linha)
                 .NotNull()
-                .WithMessage("A linha informada é inválida.");
+                .WithMessage("Informe o nome da linha.");
             RuleFor(tenis => tenis.Preco)
                 .NotNull()
-                .WithMessage("O preço informado é inválido.")
-                .NotEmpty()
-                .WithMessage("O preço informado é inválido.")
-                .LessThanOrEqualTo(5000.00)
-                .WithMessage("O preço informado é inválido. Informe um preço de 0 a 5000 reais.")
+                .WithMessage("Informe o preço do produto.")
+                .LessThanOrEqualTo(20000.00)
+                .WithMessage("O preço informado é inválido. O limite de preço é 20000.")
                 .GreaterThan(0)
-                .WithMessage("O preço informado é inválido. Informe um preço de 0 a 5000 reais.");
+                .WithMessage("O preço informado é inválido.");
             RuleFor(tenis => tenis.Avaliacao)
-                .NotNull()
-                .WithMessage("A avaliação informada é inválida.")
-                .NotEmpty()
-                .WithMessage("A avaliação informada é inválida.")
-                .GreaterThan(10)
+                .GreaterThan(0)
                 .WithMessage("A avaliação informada é inválida. Informe uma avaliação de 0 a 10.")
-                .LessThanOrEqualTo(0)
+                .LessThanOrEqualTo(10)
                 .WithMessage("A avaliação informada é inválida. Informe uma avaliação de 0 a 10.");
             RuleFor(tenis => tenis.Nome)
                 .NotNull()
-                .WithMessage("O nome informado é inválido.")
+                .WithMessage("Informe o nome da marca.")
                 .NotEmpty()
-                .WithMessage("O nome informado é inválido.");
+                .WithMessage("Informe o nome da marca.");
         }
     }
 }
