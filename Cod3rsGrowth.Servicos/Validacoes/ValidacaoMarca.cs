@@ -16,15 +16,17 @@ namespace Cod3rsGrowth.Servicos.Validacoes
                 .NotNull()
                 .WithMessage("Informe o CNPJ da marca.")
                 .NotEmpty()
-                .WithMessage("Informe o CNPJ da marca.");
+                .WithMessage("Informe o CNPJ da marca.")
+                .Length(14)
+                .WithMessage("Informe um CNPJ válido.");
             RuleFor(marca => marca.Nome)
                 .NotNull()
-                .WithMessage("Informe o nome da marca.")
+                .WithMessage("O nome da marca está vazio.")
                 .NotEmpty()
-                .WithMessage("Informe o nome da marca.");
+                .WithMessage("O nome da marca está vazio.");
             RuleFor(marca => marca.Id)
                 .NotNull()
-                .WithMessage("Informe o Id da marca.");
+                .WithMessage("O Id está vazio.");
         }
     }
 }
