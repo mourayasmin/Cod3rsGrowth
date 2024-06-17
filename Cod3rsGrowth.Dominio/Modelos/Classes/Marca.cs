@@ -12,6 +12,6 @@ namespace Cod3rsGrowth.Dominio
         public string ?Email { get; set; }
         public string ?Nome { get; set; }
         public int Telefone { get; set; }
-        public int ?Id { get; set; }
+        public int Id { get; set; }
     }
 }

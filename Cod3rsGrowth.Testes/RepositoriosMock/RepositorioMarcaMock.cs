@@ -22,9 +22,9 @@ namespace Cod3rsGrowth.Testes.RepositoriosMock
         {
             return SingletonMarca.Instancia.FirstOrDefault(marca => marca.Id == Id);
         }
-        public Marca Atualizar(Marca marca, int Id)
+        public Marca Atualizar(Marca marca)
         {
-            var marcaEditada = ObterPorId(Id);
+            var marcaEditada = ObterPorId(marca.Id);
             marcaEditada.Email = marca.Email;
             marcaEditada.Telefone = marca.Telefone;
             return marcaEditada;

@@ -35,10 +35,14 @@ namespace Cod3rsGrowth.Servicos.Servicos
             _validator.ValidateAndThrow(tenis);
             return _repositoriotenis.Criar(tenis);
         }
-        public Tenis Atualizar(Tenis tenis, int Id)
+        public Tenis Atualizar(Tenis tenis)
         {
+            if (tenis == null)
+            {
+                throw new Exception("O tênis não foi informado.");
+            }
             _validator.ValidateAndThrow(tenis);
-            return _repositoriotenis.Atualizar(tenis, Id);
+            return _repositoriotenis.Atualizar(tenis);
         }
     }
 }

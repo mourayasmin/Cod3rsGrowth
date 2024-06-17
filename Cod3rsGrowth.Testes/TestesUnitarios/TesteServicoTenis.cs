@@ -224,7 +224,7 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
             var Id = 0001;
             var tenisEditado = _servicoTenis.ObterPorId(Id);
             tenisEditado.Preco = 299.99;
-            var tenisRetornado = _servicoTenis.Atualizar(tenisEditado, Id);
+            var tenisRetornado = _servicoTenis.Atualizar(tenisEditado);
             Assert.Equal(tenisRetornado.Preco, 299.99);
         }
 
@@ -234,7 +234,7 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
             var Id = 0001;
             var tenisEditado = _servicoTenis.ObterPorId(Id);
             tenisEditado.Disponibilidade = false;
-            var tenisRetornado = _servicoTenis.Atualizar(tenisEditado, Id);
+            var tenisRetornado = _servicoTenis.Atualizar(tenisEditado);
             Assert.Equal(tenisRetornado.Disponibilidade, false);
         }
 
@@ -244,8 +244,16 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
             var Id = 0001;
             var tenisEditado = _servicoTenis.ObterPorId(Id);
             tenisEditado.Avaliacao = 7.2M;
-            var tenisRetornado = _servicoTenis.Atualizar(tenisEditado, Id);
+            var tenisRetornado = _servicoTenis.Atualizar(tenisEditado);
             Assert.Equal(tenisRetornado.Avaliacao, 7.2M);
+        }
+
+        [Fact]
+        public void Deve_Retornar_Erro_Por_Tenis_Nulo()
+        {
+            Tenis tenis = null;
+            var mensagemDeErro = Assert.Throws<Exception>(() => _servicoTenis.Atualizar(tenis));
+            Assert.Contains("O tênis não foi informado.", mensagemDeErro.Message);
         }
     }
 }

@@ -119,27 +119,12 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
         }
 
         [Fact]
-        public void Id_Da_Marca_Nulo_Deve_Retornar_Erro()
-        {
-            var marca = new Marca()
-            {
-                Cnpj = "65498732132165",
-                Email = "oxerbrasil@oxer.com.br",
-                Nome = "Oxer do Brasil LTDA",
-                Telefone = 1158963256,
-                Id = null
-            };
-            var mensagemDeErro = Assert.Throws<ValidationException>(() => _servicoMarca.Criar(marca));
-            Assert.Contains("O Id está vazio.", mensagemDeErro.Message);
-        }
-
-        [Fact]
         public void Deve_Retornar_Email_Da_Marca_Editado()
         {
             var Id = 1111;
             var marcaEditada = _servicoMarca.ObterPorId(Id);
             marcaEditada.Email = "contato@adidasbrasil.com.br";
-            var marcaRetornada = _servicoMarca.Atualizar(marcaEditada, Id);
+            var marcaRetornada = _servicoMarca.Atualizar(marcaEditada);
             Assert.Equal(marcaRetornada.Email, "contato@adidasbrasil.com.br");
         }
 
@@ -151,8 +136,8 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
         {
             var Id = 1111;
             var marcaEditada = _servicoMarca.ObterPorId(Id);
-            var marcaRetornada = _servicoMarca.Atualizar(marcaEditada, Id);
-            var mensagemDeErro = Assert.Throws<ValidationException>(() => _servicoMarca.Atualizar(marcaRetornada, Id));
+            var marcaRetornada = _servicoMarca.Atualizar(marcaEditada);
+            var mensagemDeErro = Assert.Throws<ValidationException>(() => _servicoMarca.Atualizar(marcaRetornada));
             Assert.Contains("Informe um e-mail válido.", mensagemDeErro.Message);
         }
 
@@ -162,8 +147,16 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
             var Id = 1111;
             var marcaEditada = _servicoMarca.ObterPorId(Id);
             marcaEditada.Telefone = 1112345678;
-            var marcaRetornada = _servicoMarca.Atualizar(marcaEditada, Id);
+            var marcaRetornada = _servicoMarca.Atualizar(marcaEditada);
             Assert.Equal(marcaRetornada.Telefone, 1112345678);
+        }
+
+        [Fact]
+        public void Deve_Retornar_Erro_Por_Tenis_Nulo()
+        {
+            Marca marca = null;
+            var mensagemDeErro = Assert.Throws<Exception>(() => _servicoMarca.Atualizar(marca));
+            Assert.Contains("A marca não foi informada.", mensagemDeErro.Message);
         }
     }
 }
