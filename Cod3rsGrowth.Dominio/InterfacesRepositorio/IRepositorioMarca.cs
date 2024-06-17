@@ -9,7 +9,7 @@ namespace Cod3rsGrowth.Dominio.InterfacesRepositorio
 {
     public interface IRepositorioMarca
     {
-        public void Criar(Marca marca);
+        public Marca Criar(Marca marca);
         public Marca ObterPorId(int Id);
         public void Atualizar(Marca marca);
         public void Deletar(Marca marca);

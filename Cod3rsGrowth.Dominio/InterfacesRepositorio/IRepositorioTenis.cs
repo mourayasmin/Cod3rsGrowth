@@ -9,7 +9,7 @@ namespace Cod3rsGrowth.Dominio.InterfacesRepositorio
 {
     public interface IRepositorioTenis
     {
-        public void Criar(Tenis tenis);
+        public Tenis Criar(Tenis tenis);
         public Tenis ObterPorId(int Id); 
         public void Atualizar(Tenis tenis);
         public void Deletar(Tenis tenis);

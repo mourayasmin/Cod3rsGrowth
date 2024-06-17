@@ -3,6 +3,7 @@ using Cod3rsGrowth.Dominio.InterfacesRepositorio;
 using Cod3rsGrowth.Testes.ClassesSingleton;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,9 +13,10 @@ namespace Cod3rsGrowth.Testes.RepositoriosMock
 {
     public class RepositorioMarcaMock : IRepositorioMarca
     {
-        public void Criar(Marca marca)
+        public Marca Criar(Marca marca)
         {
-            throw new NotImplementedException();
+            SingletonMarca.marcas.Add(marca);
+            return marca;
         }
         public Marca ObterPorId(int Id)
         {
