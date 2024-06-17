@@ -28,10 +28,10 @@ namespace Cod3rsGrowth.Servicos.Servicos
         {
             return _repositoriomarca.ObterPorId(Id) ?? throw new ArgumentException("O Id informado é inválido.");
         }
-        public Marca Criar(Marca marcaCriada)
+        public Marca Criar(Marca marca)
         {
-            _validator.ValidateAndThrow(marcaCriada);
-            return _repositoriomarca.Criar(marcaCriada);
+            _validator.ValidateAndThrow(marca);
+            return _repositoriomarca.Criar(marca);
         }
     }
 }

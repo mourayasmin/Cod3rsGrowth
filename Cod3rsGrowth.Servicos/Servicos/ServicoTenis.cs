@@ -30,10 +30,10 @@ namespace Cod3rsGrowth.Servicos.Servicos
         {
             return _repositoriotenis.ObterPorId(Id) ?? throw new ArgumentException("O Id informado é inválido.");
         }
-        public Tenis Criar(Tenis tenisCriado)
+        public Tenis Criar(Tenis tenis)
         {
-            _validator.ValidateAndThrow(tenisCriado);
-            return _repositoriotenis.Criar(tenisCriado);
+            _validator.ValidateAndThrow(tenis);
+            return _repositoriotenis.Criar(tenis);
         }
     }
 }

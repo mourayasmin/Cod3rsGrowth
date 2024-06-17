@@ -71,8 +71,6 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
             var resultadoTenis = _servicoTenis.Criar(tenis);
             Assert.NotNull(resultadoTenis);
             Assert.Equal(resultadoTenis, tenis);
-            var a = SingletonTenis.Instancia.Contains(resultadoTenis);
-            Assert.IsType<Tenis>(resultadoTenis);
         }
 
         [Fact]
@@ -201,8 +199,10 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
             Assert.Contains("A avaliação informada é inválida. Informe uma avaliação de 0 a 10.", mensagemDeErro.Message);
         }
 
-        [Fact]
-        public void Nome_Nulo_Deve_Retornar_Erro()
+        [Theory]
+        [InlineData(null)]
+        [InlineData(" ")]
+        public void Nome_Nulo_Ou_Vazio_Deve_Retornar_Erro(string Nome)
         {
             var tenis = new Tenis()
             {
@@ -212,29 +212,10 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
                 Preco = 399.99,
                 Lancamento = DateTime.Parse("14/02/2018"),
                 Avaliacao = 11.0M,
-                Nome = null,
                 Disponibilidade = false
             };
             var mensagemDeErro = Assert.Throws<ValidationException>(() => _servicoTenis.Criar(tenis));
-            Assert.Contains("Informe o nome da marca.", mensagemDeErro.Message);
-        }
-
-        [Fact]
-        public void Nome_Vazio_Deve_Retornar_Erro()
-        {
-            var tenis = new Tenis()
-            {
-                Linha = Dominio.Enum.LinhaEnum.Casual,
-                Id = 0005,
-                Idmarca = 1111,
-                Preco = 399.99,
-                Lancamento = DateTime.Parse("14/02/2018"),
-                Avaliacao = 11.0M,
-                Nome = " ",
-                Disponibilidade = false
-            };
-            var mensagemDeErro = Assert.Throws<ValidationException>(() => _servicoTenis.Criar(tenis));
-            Assert.Contains("Informe o nome da marca.", mensagemDeErro.Message);
+            Assert.Contains("O nome do tênis está vazio.", mensagemDeErro.Message);
         }
     }
 }

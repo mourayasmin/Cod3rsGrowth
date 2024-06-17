@@ -29,9 +29,9 @@ namespace Cod3rsGrowth.Servicos.Validacoes
                 .WithMessage("A avaliação informada é inválida. Informe uma avaliação de 0 a 10.");
             RuleFor(tenis => tenis.Nome)
                 .NotNull()
-                .WithMessage("Informe o nome da marca.")
+                .WithMessage("O nome do tênis está vazio.")
                 .NotEmpty()
-                .WithMessage("Informe o nome da marca.");
+                .WithMessage("O nome do tênis está vazio.");
         }
     }
 }
