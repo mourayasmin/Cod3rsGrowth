@@ -12,6 +12,7 @@ using Cod3rsGrowth.Servicos.Servicos;
 using Cod3rsGrowth.Testes.ClassesSingleton;
 using Cod3rsGrowth.Servicos.Validacoes;
 using FluentValidation;
+using System.Text.RegularExpressions;
 
 namespace Cod3rsGrowth.Testes.TestesUnitarios
 {
@@ -130,6 +131,39 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
             };
             var mensagemDeErro = Assert.Throws<ValidationException>(() => _servicoMarca.Criar(marca));
             Assert.Contains("O Id está vazio.", mensagemDeErro.Message);
+        }
+
+        [Fact]
+        public void Deve_Retornar_Email_Da_Marca_Editado()
+        {
+            var Id = 1111;
+            var marcaEditada = _servicoMarca.ObterPorId(Id);
+            marcaEditada.Email = "contato@adidasbrasil.com.br";
+            var marcaRetornada = _servicoMarca.Atualizar(marcaEditada, Id);
+            Assert.Equal(marcaRetornada.Email, "contato@adidasbrasil.com.br");
+        }
+
+        [Theory]
+        [InlineData(null)]
+        [InlineData(" ")]
+
+        public void Deve_Retornar_Erro_Por_Email_Nulo_Ou_Vazio(string Email)
+        {
+            var Id = 1111;
+            var marcaEditada = _servicoMarca.ObterPorId(Id);
+            var marcaRetornada = _servicoMarca.Atualizar(marcaEditada, Id);
+            var mensagemDeErro = Assert.Throws<ValidationException>(() => _servicoMarca.Atualizar(marcaRetornada, Id));
+            Assert.Contains("Informe um e-mail válido.", mensagemDeErro.Message);
+        }
+
+        [Fact]
+        public void Deve_Retornar_Telefone_Da_Marca_Editado()
+        {
+            var Id = 1111;
+            var marcaEditada = _servicoMarca.ObterPorId(Id);
+            marcaEditada.Telefone = 1112345678;
+            var marcaRetornada = _servicoMarca.Atualizar(marcaEditada, Id);
+            Assert.Equal(marcaRetornada.Telefone, 1112345678);
         }
     }
 }

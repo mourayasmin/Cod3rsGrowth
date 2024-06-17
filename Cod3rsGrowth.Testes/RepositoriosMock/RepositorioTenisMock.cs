@@ -21,9 +21,13 @@ namespace Cod3rsGrowth.Testes.RepositoriosMock
         {
             return SingletonTenis.Instancia.FirstOrDefault(tenis => tenis.Id == Id);
         }
-        public void Atualizar(Tenis tenis)
+        public Tenis Atualizar(Tenis tenis, int Id)
         {
-            throw new NotImplementedException();
+            var tenisParaEditar = ObterPorId(Id);
+            tenisParaEditar.Disponibilidade = tenis.Disponibilidade;
+            tenisParaEditar.Avaliacao = tenis.Avaliacao;
+            tenisParaEditar.Preco = tenis.Preco;
+            return tenisParaEditar;
         }
         public void Deletar(Tenis tenis)
         {

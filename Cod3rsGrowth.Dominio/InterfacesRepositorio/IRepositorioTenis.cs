@@ -11,7 +11,7 @@ namespace Cod3rsGrowth.Dominio.InterfacesRepositorio
     {
         public Tenis Criar(Tenis tenis);
         public Tenis ObterPorId(int Id); 
-        public void Atualizar(Tenis tenis);
+        public Tenis Atualizar(Tenis tenis, int Id);
         public void Deletar(Tenis tenis);
         public List<Tenis> ObterTodos();
     }

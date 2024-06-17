@@ -11,7 +11,7 @@ namespace Cod3rsGrowth.Dominio.InterfacesRepositorio
     {
         public Marca Criar(Marca marca);
         public Marca ObterPorId(int Id);
-        public void Atualizar(Marca marca);
+        public Marca Atualizar(Marca marca, int Id);
         public void Deletar(Marca marca);
         public List<Marca> ObterTodas();
     }

@@ -22,9 +22,12 @@ namespace Cod3rsGrowth.Testes.RepositoriosMock
         {
             return SingletonMarca.Instancia.FirstOrDefault(marca => marca.Id == Id);
         }
-        public void Atualizar(Marca marca)
+        public Marca Atualizar(Marca marca, int Id)
         {
-            throw new NotImplementedException();
+            var marcaEditada = ObterPorId(Id);
+            marcaEditada.Email = marca.Email;
+            marcaEditada.Telefone = marca.Telefone;
+            return marcaEditada;
         }
         public void Deletar(Marca marca)
         {

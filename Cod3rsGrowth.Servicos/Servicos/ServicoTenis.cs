@@ -35,5 +35,10 @@ namespace Cod3rsGrowth.Servicos.Servicos
             _validator.ValidateAndThrow(tenis);
             return _repositoriotenis.Criar(tenis);
         }
+        public Tenis Atualizar(Tenis tenis, int Id)
+        {
+            _validator.ValidateAndThrow(tenis);
+            return _repositoriotenis.Atualizar(tenis, Id);
+        }
     }
 }

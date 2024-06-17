@@ -33,5 +33,10 @@ namespace Cod3rsGrowth.Servicos.Servicos
             _validator.ValidateAndThrow(marca);
             return _repositoriomarca.Criar(marca);
         }
+        public Marca Atualizar(Marca marca, int Id)
+        {
+            _validator.ValidateAndThrow(marca);
+            return _repositoriomarca.Atualizar(marca, Id);
+        }
     }
 }

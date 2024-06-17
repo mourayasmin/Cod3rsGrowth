@@ -217,5 +217,35 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
             var mensagemDeErro = Assert.Throws<ValidationException>(() => _servicoTenis.Criar(tenis));
             Assert.Contains("O nome do tênis está vazio.", mensagemDeErro.Message);
         }
+
+        [Fact]
+        public void Deve_Retornar_Tenis_Com_Preco_Editado()
+        {
+            var Id = 0001;
+            var tenisEditado = _servicoTenis.ObterPorId(Id);
+            tenisEditado.Preco = 299.99;
+            var tenisRetornado = _servicoTenis.Atualizar(tenisEditado, Id);
+            Assert.Equal(tenisRetornado.Preco, 299.99);
+        }
+
+        [Fact]
+        public void Deve_Retornar_Tenis_Com_Disponibilidade_Editada()
+        {
+            var Id = 0001;
+            var tenisEditado = _servicoTenis.ObterPorId(Id);
+            tenisEditado.Disponibilidade = false;
+            var tenisRetornado = _servicoTenis.Atualizar(tenisEditado, Id);
+            Assert.Equal(tenisRetornado.Disponibilidade, false);
+        }
+
+        [Fact]
+        public void Deve_Retornar_Tenis_Com_Avaliacao_Editada()
+        {
+            var Id = 0001;
+            var tenisEditado = _servicoTenis.ObterPorId(Id);
+            tenisEditado.Avaliacao = 7.2M;
+            var tenisRetornado = _servicoTenis.Atualizar(tenisEditado, Id);
+            Assert.Equal(tenisRetornado.Avaliacao, 7.2M);
+        }
     }
 }
