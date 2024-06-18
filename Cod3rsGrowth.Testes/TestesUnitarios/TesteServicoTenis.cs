@@ -12,6 +12,7 @@ using Cod3rsGrowth.Servicos.Servicos;
 using Cod3rsGrowth.Testes.ClassesSingleton;
 using Cod3rsGrowth.Servicos.Validacoes;
 using FluentValidation;
+using Microsoft.VisualStudio.TestPlatform.ObjectModel.DataCollection;
 
 namespace Cod3rsGrowth.Testes.TestesUnitarios
 {
