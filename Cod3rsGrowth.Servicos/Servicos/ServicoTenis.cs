@@ -26,14 +26,23 @@ namespace Cod3rsGrowth.Servicos.Servicos
         {
             return _repositoriotenis.ObterTodos();
         }
-        public Tenis ObterPorId(int Id)
+        public Tenis ObterPorId(int id)
         {
-            return _repositoriotenis.ObterPorId(Id) ?? throw new ArgumentException("O Id informado é inválido.");
+            return _repositoriotenis.ObterPorId(id) ?? throw new ArgumentException("O Id informado é inválido.");
         }
         public Tenis Criar(Tenis tenis)
         {
             _validator.ValidateAndThrow(tenis);
             return _repositoriotenis.Criar(tenis);
+        }
+        public Tenis Atualizar(Tenis tenis)
+        {
+            if (tenis == null)
+            {
+                throw new Exception("O tênis não foi informado.");
+            }
+            _validator.ValidateAndThrow(tenis);
+            return _repositoriotenis.Atualizar(tenis);
         }
     }
 }

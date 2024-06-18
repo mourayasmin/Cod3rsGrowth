@@ -18,13 +18,16 @@ namespace Cod3rsGrowth.Testes.RepositoriosMock
             SingletonMarca.marcas.Add(marca);
             return marca;
         }
-        public Marca ObterPorId(int Id)
+        public Marca ObterPorId(int id)
         {
-            return SingletonMarca.Instancia.FirstOrDefault(marca => marca.Id == Id);
+            return SingletonMarca.Instancia.FirstOrDefault(marca => marca.Id == id);
         }
-        public void Atualizar(Marca marca)
+        public Marca Atualizar(Marca marca)
         {
-            throw new NotImplementedException();
+            var marcaEditada = ObterPorId(marca.Id);
+            marcaEditada.Email = marca.Email;
+            marcaEditada.Telefone = marca.Telefone;
+            return marcaEditada;
         }
         public void Deletar(Marca marca)
         {

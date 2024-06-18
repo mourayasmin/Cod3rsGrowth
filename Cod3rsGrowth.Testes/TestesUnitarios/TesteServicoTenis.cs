@@ -24,7 +24,7 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
         }
 
         [Fact]
-        public void Deve_Retornar_Lista_De_Tenis_Cadastrados()
+        public void deve_retornar_lista_de_tenis_cadastrados()
         {
             var listaDeTenis = _servicoTenis.ObterTodos();
             Assert.NotNull(listaDeTenis);
@@ -32,7 +32,7 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
         }
 
         [Fact]
-        public void Deve_Retornar_Tenis_Atraves_Do_Id_Informado()
+        public void deve_retornar_tenis_atraves_do_id_informado()
         {
             var idTenisEsperado = 0001;
             var nomeTenisEsperado = "Streetball";
@@ -48,14 +48,14 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
         [InlineData(0000)]
         [InlineData(0007)]
         [InlineData(87087)]
-        public void Deve_Retornar_Mensagem_De_Erro_Pelo_Id_De_Tenis_Inexistente(int Id)
+        public void deve_retornar_erro_por_id_de_tenis_inexistente(int id)
         {
-            var mensagemDeErro = Assert.Throws<ArgumentException>(() => _servicoTenis.ObterPorId(Id));
+            var mensagemDeErro = Assert.Throws<ArgumentException>(() => _servicoTenis.ObterPorId(id));
             Assert.Contains("O Id informado é inválido.", mensagemDeErro.Message);
         }
 
         [Fact]
-        public void Deve_Retornar_Tenis_Criado()
+        public void deve_retornar_tenis_criado()
         {
             var tenis = new Tenis()
             {
@@ -74,7 +74,7 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
         }
 
         [Fact]
-        public void Linha_Nula_Deve_Retornar_Erro()
+        public void deve_retornar_erro_por_linha_nula()
         {
             var tenis = new Tenis()
             {
@@ -92,7 +92,7 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
         }
 
         [Fact]
-        public void Preco_Nulo_Deve_Retornar_Erro()
+        public void deve_retornar_erro_por_preco_nulo()
         {
             var tenis = new Tenis()
             {
@@ -110,7 +110,7 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
         }
 
         [Fact]
-        public void Preco_Igual_A_Zero_Deve_Retornar_Erro()
+        public void deve_retornar_erro_por_preco_igual_a_zero_()
         { 
             var tenis = new Tenis()
             {
@@ -128,7 +128,7 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
         }
 
         [Fact]
-        public void Preco_Maior_Que_Vinte_Mil_Deve_Retornar_Erro()
+        public void deve_retornar_erro_por_preco_maior_que_vinte_mil_()
         {
             var tenis = new Tenis()
             {
@@ -146,7 +146,7 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
         }
 
         [Fact]
-        public void Preco_Menor_Que_Zero_Deve_Retornar_Erro()
+        public void deve_retornar_erro_por_preco_menor_que_zero()
         {
             var tenis = new Tenis()
             {
@@ -164,7 +164,7 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
         }
 
         [Fact]
-        public void Avaliacao_Menor_Que_Zero_Deve_Retornar_Erro()
+        public void deve_retornar_erro_por_avaliacao_menor_que_zero()
         {
             var tenis = new Tenis()
             {
@@ -182,7 +182,7 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
         }
 
         [Fact]
-        public void Avaliacao_Maior_Que_Dez_Deve_Retornar_Erro()
+        public void deve_retornar_erro_por_avaliacao_maior_que_dez()
         {
             var tenis = new Tenis()
             {
@@ -202,7 +202,7 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
         [Theory]
         [InlineData(null)]
         [InlineData(" ")]
-        public void Nome_Nulo_Ou_Vazio_Deve_Retornar_Erro(string Nome)
+        public void deve_retornar_erro_por_nome_nulo_ou_vazio(string Nome)
         {
             var tenis = new Tenis()
             {
@@ -216,6 +216,69 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
             };
             var mensagemDeErro = Assert.Throws<ValidationException>(() => _servicoTenis.Criar(tenis));
             Assert.Contains("O nome do tênis está vazio.", mensagemDeErro.Message);
+        }
+
+        [Fact]
+        public void deve_retornar_tenis_editado_com_sucesso()
+        {
+            var tenis = new Tenis()
+            {
+                Linha = Dominio.Enum.LinhaEnum.Casual,
+                Id = 0001,
+                Idmarca = 1111,
+                Preco = 599.99,
+                Lancamento = DateTime.Parse("27/03/2020"),
+                Avaliacao = 5.2M,
+                Nome = "Streetball",
+                Disponibilidade = false,
+            };
+            var tenisEditado = _servicoTenis.Atualizar(tenis);
+            Assert.Equivalent(tenisEditado, tenis);
+        }
+
+        [Fact]
+        public void deve_retornar_erro_por_preco_editado_invalido()
+        {
+            var tenis = new Tenis()
+            {
+                Linha = Dominio.Enum.LinhaEnum.Casual,
+                Id = 0001,
+                Idmarca = 1111,
+                Preco = -250.00,
+                Lancamento = DateTime.Parse("27/03/2020"),
+                Avaliacao = 5.2M,
+                Nome = "Streetball",
+                Disponibilidade = false,
+            };
+            var mensagemDeErro = Assert.Throws<ValidationException>(() => _servicoTenis.Atualizar(tenis));
+            Assert.Contains("O preço informado é inválido.", mensagemDeErro.Message);
+        }
+
+        [Theory]
+        [InlineData(-3)]
+        [InlineData(11)]
+        public void deve_retornar_erro_por_avaliacao_editada_invalida(decimal avaliacao)
+        {
+            var tenis = new Tenis()
+            {
+                Linha = Dominio.Enum.LinhaEnum.Casual,
+                Id = 0001,
+                Idmarca = 1111,
+                Preco = 549.99,
+                Lancamento = DateTime.Parse("27/03/2020"),
+                Nome = "Streetball",
+                Disponibilidade = false,
+            };
+            var mensagemDeErro = Assert.Throws<ValidationException>(() => _servicoTenis.Atualizar(tenis));
+            Assert.Contains("A avaliação informada é inválida. Informe uma avaliação de 0 a 10.", mensagemDeErro.Message);
+        }
+
+        [Fact]
+        public void deve_retornar_erro_por_tenis_nulo()
+        {
+            Tenis tenis = null;
+            var mensagemDeErro = Assert.Throws<Exception>(() => _servicoTenis.Atualizar(tenis));
+            Assert.Contains("O tênis não foi informado.", mensagemDeErro.Message);
         }
     }
 }

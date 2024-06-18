@@ -24,9 +24,11 @@ namespace Cod3rsGrowth.Servicos.Validacoes
                 .WithMessage("O nome da marca está vazio.")
                 .NotEmpty()
                 .WithMessage("O nome da marca está vazio.");
-            RuleFor(marca => marca.Id)
+            RuleFor(marca => marca.Email)
                 .NotNull()
-                .WithMessage("O Id está vazio.");
+                .WithMessage("Informe um e-mail válido.")
+                .NotEmpty()
+                .WithMessage("Informe um e-mail válido.");
         }
     }
 }

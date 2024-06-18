@@ -17,13 +17,17 @@ namespace Cod3rsGrowth.Testes.RepositoriosMock
             SingletonTenis.tenis.Add(tenis);
             return tenis;
         }
-        public Tenis ObterPorId(int Id)
+        public Tenis ObterPorId(int id)
         {
-            return SingletonTenis.Instancia.FirstOrDefault(tenis => tenis.Id == Id);
+            return SingletonTenis.Instancia.FirstOrDefault(tenis => tenis.Id == id);
         }
-        public void Atualizar(Tenis tenis)
+        public Tenis Atualizar(Tenis tenis)
         {
-            throw new NotImplementedException();
+            var tenisParaEditar = ObterPorId(tenis.Id);
+            tenisParaEditar.Disponibilidade = tenis.Disponibilidade;
+            tenisParaEditar.Avaliacao = tenis.Avaliacao;
+            tenisParaEditar.Preco = tenis.Preco;
+            return tenisParaEditar;
         }
         public void Deletar(Tenis tenis)
         {
