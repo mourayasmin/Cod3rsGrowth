@@ -30,9 +30,10 @@ namespace Cod3rsGrowth.Testes.RepositoriosMock
             tenisParaEditar.Preco = tenis.Preco;
             return tenisParaEditar;
         }
-        public void Deletar(Tenis tenis)
+        public void Deletar(int id)
         {
-            throw new NotImplementedException();
+            Tenis tenisParaDeletar = ObterPorId(id);
+            SingletonTenis.tenis.Remove(tenisParaDeletar);
         }
         public List<Tenis> ObterTodos()
         {

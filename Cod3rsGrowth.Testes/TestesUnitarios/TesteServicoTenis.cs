@@ -281,5 +281,15 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
             var mensagemDeErro = Assert.Throws<Exception>(() => _servicoTenis.Atualizar(tenis));
             Assert.Contains("O tênis não foi informado.", mensagemDeErro.Message);
         }
+
+        [Fact]
+        public void deve_remover_tenis_com_sucesso()
+        {
+            var id = 0001;
+            _servicoTenis.Deletar(id);
+            var tenisParaDeletar = SingletonTenis.Instancia.Find(delegate (Tenis tenis) { return tenis.Id == id; });
+            var listaDeTenis = _servicoTenis.ObterTodos();
+            Assert.DoesNotContain(tenisParaDeletar, listaDeTenis);
+        }
     }
 }

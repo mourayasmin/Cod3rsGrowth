@@ -13,5 +13,6 @@ namespace Cod3rsGrowth.Servicos.InterfacesServicos
         public Tenis ObterPorId(int id);
         public Tenis Criar(Tenis tenisCriado);
         public Tenis Atualizar(Tenis tenis);
+        public void Deletar(int id);
     }
 }
