@@ -18,9 +18,9 @@ namespace Cod3rsGrowth.Testes.RepositoriosMock
             SingletonMarca.marcas.Add(marca);
             return marca;
         }
-        public Marca ObterPorId(int Id)
+        public Marca ObterPorId(int id)
         {
-            return SingletonMarca.Instancia.FirstOrDefault(marca => marca.Id == Id);
+            return SingletonMarca.Instancia.FirstOrDefault(marca => marca.Id == id);
         }
         public Marca Atualizar(Marca marca)
         {

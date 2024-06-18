@@ -19,7 +19,7 @@ namespace Cod3rsGrowth.Testes.ClassesSingleton
         {
             new Tenis()
             {
-                Linha = LinhaEnum.Casual,
+                Linha = Dominio.Enum.LinhaEnum.Casual,
                 Id = 0001,
                 Idmarca = 1111,
                 Preco = 549.99,
@@ -30,7 +30,7 @@ namespace Cod3rsGrowth.Testes.ClassesSingleton
             },
             new Tenis()
             {
-                Linha = LinhaEnum.Corrida,
+                Linha = Dominio.Enum.LinhaEnum.Corrida,
                 Id = 0002,
                 Idmarca = 2222,
                 Preco = 1899.99,
@@ -41,7 +41,7 @@ namespace Cod3rsGrowth.Testes.ClassesSingleton
             },
             new Tenis()
             {
-                Linha =LinhaEnum.Skate,
+                Linha = Dominio.Enum.LinhaEnum.Skate,
                 Id = 0003,
                 Idmarca = 3333,
                 Preco = 599.99,
@@ -52,7 +52,7 @@ namespace Cod3rsGrowth.Testes.ClassesSingleton
             },
             new Tenis()
             {
-                Linha = LinhaEnum.Casual,
+                Linha = Dominio.Enum.LinhaEnum.Casual,
                 Id = 0004,
                 Idmarca = 4444,
                 Preco = 999.99,

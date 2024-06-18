@@ -10,7 +10,7 @@ namespace Cod3rsGrowth.Servicos.InterfacesServicos
     public interface IServicoMarca
     {
         public List<Marca> ObterTodas();
-        public Marca ObterPorId(int Id);
+        public Marca ObterPorId(int id);
         public Marca Criar(Marca marcaCriada);
         public Marca Atualizar(Marca marcaEditada);
     }

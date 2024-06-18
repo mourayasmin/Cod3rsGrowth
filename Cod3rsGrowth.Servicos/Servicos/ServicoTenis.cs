@@ -26,9 +26,9 @@ namespace Cod3rsGrowth.Servicos.Servicos
         {
             return _repositoriotenis.ObterTodos();
         }
-        public Tenis ObterPorId(int Id)
+        public Tenis ObterPorId(int id)
         {
-            return _repositoriotenis.ObterPorId(Id) ?? throw new ArgumentException("O Id informado é inválido.");
+            return _repositoriotenis.ObterPorId(id) ?? throw new ArgumentException("O Id informado é inválido.");
         }
         public Tenis Criar(Tenis tenis)
         {

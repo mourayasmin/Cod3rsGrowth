@@ -10,7 +10,7 @@ namespace Cod3rsGrowth.Servicos.InterfacesServicos
     public interface IServicoTenis
     {
         public List<Tenis> ObterTodos();
-        public Tenis ObterPorId(int Id);
+        public Tenis ObterPorId(int id);
         public Tenis Criar(Tenis tenisCriado);
         public Tenis Atualizar(Tenis tenis);
     }

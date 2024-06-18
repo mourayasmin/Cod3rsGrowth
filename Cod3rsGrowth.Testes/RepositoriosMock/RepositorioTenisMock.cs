@@ -17,9 +17,9 @@ namespace Cod3rsGrowth.Testes.RepositoriosMock
             SingletonTenis.tenis.Add(tenis);
             return tenis;
         }
-        public Tenis ObterPorId(int Id)
+        public Tenis ObterPorId(int id)
         {
-            return SingletonTenis.Instancia.FirstOrDefault(tenis => tenis.Id == Id);
+            return SingletonTenis.Instancia.FirstOrDefault(tenis => tenis.Id == id);
         }
         public Tenis Atualizar(Tenis tenis)
         {

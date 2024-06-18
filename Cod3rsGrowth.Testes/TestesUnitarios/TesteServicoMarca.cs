@@ -25,7 +25,7 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
         }
 
         [Fact]
-        public void Obter_Lista_De_Marcas_Cadastradas()
+        public void deve_obter_lista_de_marcas_cadastradas()
         {
             var listaDeMarcas = _servicoMarca.ObterTodas();
             Assert.NotNull(listaDeMarcas);
@@ -33,7 +33,7 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
         }
 
         [Fact]
-        public void Deve_Retornar_Marca_Atraves_Do_Id_De_Marca_Informado()
+        public void deve_retornar_marca_atraves_do_id_de_marca_informado()
         {
             var idMarca = 1111;
             var nomeMarca = "Adidas do Brasil LTDA";
@@ -49,14 +49,14 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
         [InlineData(0000)]
         [InlineData(45669)]
         [InlineData(87087)]
-        public void Ao_Obter_Por_Id_De_Marca_Inexistente_Deve_Retornar_Exceção(int Id)
+        public void deve_retornar_erro_ao_obter_por_id_de_marca_inexistente_(int id)
         {
-            var mensagemDeErro = Assert.Throws<ArgumentException>(() => _servicoMarca.ObterPorId(Id));
+            var mensagemDeErro = Assert.Throws<ArgumentException>(() => _servicoMarca.ObterPorId(id));
             Assert.Contains("O Id informado é inválido.", mensagemDeErro.Message);
         }
 
         [Fact]
-        public void Deve_Retornar_Marca_Criada()
+        public void deve_retornar_marca_criada()
         {
             var marca = new Marca()
             {
@@ -74,7 +74,7 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
         [Theory]
         [InlineData(null)]
         [InlineData(" ")]
-        public void Cnpj_Nulo_Ou_Vazio_Deve_Retornar_Erro(string Cnpj)
+        public void deve_retornar_erro_por_cnpj_nulo_ou_vazio(string cnpj)
         {
             var marca = new Marca()
             {
@@ -88,7 +88,7 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
         }
 
         [Fact]
-        public void Cnpj_De_Tamanho_Errado_Deve_Retornar_Erro()
+        public void deve_retornar_erro_por_cnpj_de_tamanho_errado()
         {
             var marca = new Marca()
             {
@@ -105,7 +105,7 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
         [Theory]
         [InlineData(null)]
         [InlineData(" ")]
-        public void Nome_Nulo_Ou_Vazio_Deve_Retornar_Erro(string Nome)
+        public void deve_retornar_erro_por_nome_nulo_ou_vazio(string nome)
         {
             var marca = new Marca()
             {
@@ -118,41 +118,53 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
             Assert.Contains("O nome da marca está vazio.", mensagemDeErro.Message);
         }
 
-        [Fact]
-        public void Deve_Retornar_Email_Da_Marca_Editado()
-        {
-            var Id = 1111;
-            var marcaEditada = _servicoMarca.ObterPorId(Id);
-            marcaEditada.Email = "contato@adidasbrasil.com.br";
-            var marcaRetornada = _servicoMarca.Atualizar(marcaEditada);
-            Assert.Equal(marcaRetornada.Email, "contato@adidasbrasil.com.br");
-        }
-
         [Theory]
         [InlineData(null)]
         [InlineData(" ")]
-
-        public void Deve_Retornar_Erro_Por_Email_Nulo_Ou_Vazio(string Email)
+        public void deve_retornar_erro_por_email_nulo_ou_vazio(string email)
         {
-            var Id = 1111;
-            var marcaEditada = _servicoMarca.ObterPorId(Id);
-            var marcaRetornada = _servicoMarca.Atualizar(marcaEditada);
-            var mensagemDeErro = Assert.Throws<ValidationException>(() => _servicoMarca.Atualizar(marcaRetornada));
+            var marca = new Marca()
+            {
+                Cnpj = "65498732132165",
+                Telefone = 1158963256,
+                Id = 6666
+            };
+            var mensagemDeErro = Assert.Throws<ValidationException>(() => _servicoMarca.Criar(marca));
             Assert.Contains("Informe um e-mail válido.", mensagemDeErro.Message);
         }
 
         [Fact]
-        public void Deve_Retornar_Telefone_Da_Marca_Editado()
+        public void deve_retornar_marca_editada_com_sucesso()
         {
-            var Id = 1111;
-            var marcaEditada = _servicoMarca.ObterPorId(Id);
-            marcaEditada.Telefone = 1112345678;
-            var marcaRetornada = _servicoMarca.Atualizar(marcaEditada);
-            Assert.Equal(marcaRetornada.Telefone, 1112345678);
+                var marca = new Marca()
+                {
+                Cnpj = "42274696002561",
+                Email = "contato@adidasbrasil.com.br",
+                Nome = "Adidas do Brasil LTDA",
+                Telefone = 1158963256,
+                Id = 1111
+                };
+            var marcaEditada = _servicoMarca.Atualizar(marca);
+            Assert.Equivalent(marcaEditada, marca);
         }
 
         [Fact]
-        public void Deve_Retornar_Erro_Por_Tenis_Nulo()
+        public void deve_retornar_erro_por_email_editado_nulo()
+        {
+            var marca = new Marca()
+            {
+                Cnpj = "42274696002561",
+                Email = null,
+                Nome = "Adidas do Brasil LTDA",
+                Telefone = 1158963256,
+                Id = 1111
+            };
+            var mensagemDeErro = Assert.Throws<ValidationException>(() => _servicoMarca.Atualizar(marca));
+            Assert.Contains("Informe um e-mail válido.", mensagemDeErro.Message);
+        }
+
+        [Fact]
+        public void deve_retornar_erro_por_tenis_nulo()
         {
             Marca marca = null;
             var mensagemDeErro = Assert.Throws<Exception>(() => _servicoMarca.Atualizar(marca));
