@@ -279,8 +279,7 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
             var id = 0001;
             _servicoTenis.Deletar(id);
             var tenisParaDeletar = SingletonTenis.Instancia.Find(tenis => tenis.Id == id);
-            var listaDeTenis = _servicoTenis.ObterTodos();
-            Assert.DoesNotContain(tenisParaDeletar, listaDeTenis);
+            Assert.Null(tenisParaDeletar);
         }
     }
 }
