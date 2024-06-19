@@ -176,7 +176,7 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
         {
             var id = 1111;
             _servicoMarca.Deletar(id);
-            var marcaParaDeletar = SingletonMarca.Instancia.Find(delegate (Marca marca) { return marca.Id == id; });
+            var marcaParaDeletar = SingletonMarca.Instancia.Find(marca => marca.Id == id);
             var listaDeMarcas = _servicoMarca.ObterTodas();
             Assert.DoesNotContain(marcaParaDeletar, listaDeMarcas);
         }

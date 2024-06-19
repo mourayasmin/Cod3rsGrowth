@@ -1,18 +1,9 @@
 ﻿using Cod3rsGrowth.Dominio;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Extensions.DependencyInjection;
-using System.Globalization;
-using Cod3rsGrowth.Testes.Configuracoes;
 using Cod3rsGrowth.Servicos.InterfacesServicos;
-using Cod3rsGrowth.Servicos.Servicos;
 using Cod3rsGrowth.Testes.ClassesSingleton;
-using Cod3rsGrowth.Servicos.Validacoes;
+using Cod3rsGrowth.Testes.Configuracoes;
 using FluentValidation;
-using Microsoft.VisualStudio.TestPlatform.ObjectModel.DataCollection;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Cod3rsGrowth.Testes.TestesUnitarios
 {
@@ -287,7 +278,7 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
         {
             var id = 0001;
             _servicoTenis.Deletar(id);
-            var tenisParaDeletar = SingletonTenis.Instancia.Find(delegate (Tenis tenis) { return tenis.Id == id; });
+            var tenisParaDeletar = SingletonTenis.Instancia.Find(tenis => tenis.Id == id);
             var listaDeTenis = _servicoTenis.ObterTodos();
             Assert.DoesNotContain(tenisParaDeletar, listaDeTenis);
         }
