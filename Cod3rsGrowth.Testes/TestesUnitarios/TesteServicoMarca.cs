@@ -170,5 +170,14 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
             var mensagemDeErro = Assert.Throws<Exception>(() => _servicoMarca.Atualizar(marca));
             Assert.Contains("A marca não foi informada.", mensagemDeErro.Message);
         }
+
+        [Fact]
+        public void deve_remover_marca_com_sucesso()
+        {
+            var id = 1111;
+            _servicoMarca.Deletar(id);
+            var marcaParaDeletar = SingletonMarca.Instancia.Find(marca => marca.Id == id);
+            Assert.Null(marcaParaDeletar);
+        }
     }
 }

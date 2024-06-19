@@ -42,5 +42,9 @@ namespace Cod3rsGrowth.Servicos.Servicos
             _validator.ValidateAndThrow(marca);
             return _repositoriomarca.Atualizar(marca);
         }
+        public void Deletar(int id)
+        {
+            _repositoriomarca.Deletar(id);
+        }
     }
 }

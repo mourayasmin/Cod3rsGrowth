@@ -29,9 +29,10 @@ namespace Cod3rsGrowth.Testes.RepositoriosMock
             marcaEditada.Telefone = marca.Telefone;
             return marcaEditada;
         }
-        public void Deletar(Marca marca)
+        public void Deletar(int id)
         {
-            throw new NotImplementedException();
+            Marca marcaParaDeletar = ObterPorId(id);
+            SingletonMarca.marcas.Remove(marcaParaDeletar);
         }
         public List<Marca> ObterTodas()
         {

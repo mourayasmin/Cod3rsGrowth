@@ -13,5 +13,6 @@ namespace Cod3rsGrowth.Servicos.InterfacesServicos
         public Marca ObterPorId(int id);
         public Marca Criar(Marca marcaCriada);
         public Marca Atualizar(Marca marcaEditada);
+        public void Deletar(int id);
     }
 }

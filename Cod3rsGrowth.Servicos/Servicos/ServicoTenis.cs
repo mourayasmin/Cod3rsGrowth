@@ -44,5 +44,9 @@ namespace Cod3rsGrowth.Servicos.Servicos
             _validator.ValidateAndThrow(tenis);
             return _repositoriotenis.Atualizar(tenis);
         }
+        public void Deletar(int id)
+        {
+            _repositoriotenis.Deletar(id);
+        }
     }
 }
