@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Cod3rsGrowth.Dominio;
-using Cod3rsGrowth.Dominio.Enum;
-using Cod3rsGrowth.Dominio.InterfacesRepositorio;
+﻿using Cod3rsGrowth.Dominio;
+
 
 namespace Cod3rsGrowth.Testes.ClassesSingleton
 {

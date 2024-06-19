@@ -1,13 +1,6 @@
 ﻿using Cod3rsGrowth.Dominio;
 using Cod3rsGrowth.Dominio.InterfacesRepositorio;
 using Cod3rsGrowth.Testes.ClassesSingleton;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xunit.Sdk;
 
 namespace Cod3rsGrowth.Testes.RepositoriosMock
 {

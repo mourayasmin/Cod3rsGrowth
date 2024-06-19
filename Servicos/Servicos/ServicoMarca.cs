@@ -1,6 +1,8 @@
 ﻿using Cod3rsGrowth.Dominio;
 using Cod3rsGrowth.Dominio.InterfacesRepositorio;
 using FluentValidation;
+using System;
+using System.Collections.Generic;
 
 namespace Cod3rsGrowth.Servicos.Servicos
 {
