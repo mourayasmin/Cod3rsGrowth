@@ -1,16 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Cod3rsGrowth.Dominio;
+using Cod3rsGrowth.Dominio.Enum;
+using Cod3rsGrowth.Dominio.InterfacesRepositorio;
 
-namespace Cod3rsGrowth.Testes
+namespace Cod3rsGrowth.Testes.ClassesSingleton
 {
     public sealed class SingletonMarca
     {
-        private static List<Marca> InstanciaMarca = new();
-        private static readonly List<Marca> marcas = new List<Marca>()
+        public static List<Marca> InstanciaMarca = new();
+        public static readonly List<Marca> marcas = new List<Marca>()
         {
             new Marca()
             {
@@ -47,9 +50,9 @@ namespace Cod3rsGrowth.Testes
         private SingletonMarca() { }
         public static List<Marca> Instancia
         {
-            get 
+            get
             {
-                if (InstanciaMarca == null)
+                if (!InstanciaMarca.Any())
                 {
                     InstanciaMarca = marcas;
                 }
@@ -57,4 +60,4 @@ namespace Cod3rsGrowth.Testes
             }
         }
     }
- }
+}

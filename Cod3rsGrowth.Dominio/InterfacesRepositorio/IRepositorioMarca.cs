@@ -5,14 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Cod3rsGrowth.Infra
+namespace Cod3rsGrowth.Dominio.InterfacesRepositorio
 {
     public interface IRepositorioMarca
     {
-        public void Criar(Marca marca);
-        public Marca ObterPorId(int Id);
-        public void Atualizar(Marca marca);
-        public void Deletar(Marca marca);
+        public Marca Criar(Marca marca);
+        public Marca ObterPorId(int id);
+        public Marca Atualizar(Marca marca);
+        public void Deletar(int id);
         public List<Marca> ObterTodas();
     }
 }

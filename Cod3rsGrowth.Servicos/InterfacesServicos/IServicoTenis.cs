@@ -5,10 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Cod3rsGrowth.Servicos
+namespace Cod3rsGrowth.Servicos.InterfacesServicos
 {
     public interface IServicoTenis
     {
         public List<Tenis> ObterTodos();
+        public Tenis ObterPorId(int id);
+        public Tenis Criar(Tenis tenisCriado);
+        public Tenis Atualizar(Tenis tenis);
+        public void Deletar(int id);
     }
 }

@@ -8,17 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using Cod3rsGrowth.Dominio.Enum;
 using Cod3rsGrowth.Dominio;
+using Cod3rsGrowth.Dominio.InterfacesRepositorio;
 
-namespace Cod3rsGrowth.Testes
+namespace Cod3rsGrowth.Testes.ClassesSingleton
 {
     public sealed class SingletonTenis
     {
-        private static List<Tenis> InstanciaTenis = new();
-        private static readonly List<Tenis> tenis = new List<Tenis>()
+        public static List<Tenis> InstanciaTenis = new();
+        public static readonly List<Tenis> tenis = new List<Tenis>()
         {
             new Tenis()
             {
-                Linha = LinhaEnum.Casual,
+                Linha = Dominio.Enum.LinhaEnum.Casual,
                 Id = 0001,
                 Idmarca = 1111,
                 Preco = 549.99,
@@ -29,7 +30,7 @@ namespace Cod3rsGrowth.Testes
             },
             new Tenis()
             {
-                Linha = LinhaEnum.Corrida,
+                Linha = Dominio.Enum.LinhaEnum.Corrida,
                 Id = 0002,
                 Idmarca = 2222,
                 Preco = 1899.99,
@@ -40,7 +41,7 @@ namespace Cod3rsGrowth.Testes
             },
             new Tenis()
             {
-                Linha =LinhaEnum.Skate,
+                Linha = Dominio.Enum.LinhaEnum.Skate,
                 Id = 0003,
                 Idmarca = 3333,
                 Preco = 599.99,
@@ -51,7 +52,7 @@ namespace Cod3rsGrowth.Testes
             },
             new Tenis()
             {
-                Linha = LinhaEnum.Casual,
+                Linha = Dominio.Enum.LinhaEnum.Casual,
                 Id = 0004,
                 Idmarca = 4444,
                 Preco = 999.99,
@@ -64,9 +65,9 @@ namespace Cod3rsGrowth.Testes
         private SingletonTenis() { }
         public static List<Tenis> Instancia
         {
-               get
+            get
             {
-                if(InstanciaTenis == null)
+                if (!InstanciaTenis.Any())
                 {
                     InstanciaTenis = tenis;
                 }
