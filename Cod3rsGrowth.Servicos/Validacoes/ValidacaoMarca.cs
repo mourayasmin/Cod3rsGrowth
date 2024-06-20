@@ -1,16 +1,11 @@
-﻿using FluentValidation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Cod3rsGrowth.Dominio;
+﻿using Cod3rsGrowth.Dominio;
+using FluentValidation;
 
 namespace Cod3rsGrowth.Servicos.Validacoes
 {
     public class ValidacaoMarca : AbstractValidator<Marca>
     {
-        public ValidacaoMarca() 
+        public ValidacaoMarca()
         {
             RuleFor(marca => marca.Cnpj)
                 .NotNull()
