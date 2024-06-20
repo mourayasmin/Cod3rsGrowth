@@ -9,7 +9,7 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
 {
     public class TesteServicoMarca : TesteBase
     {
-        protected ServicoMarca _servicoMarca;
+        private ServicoMarca _servicoMarca;
         public TesteServicoMarca()
         {
             _servicoMarca = ProviderService?.GetService<ServicoMarca>();

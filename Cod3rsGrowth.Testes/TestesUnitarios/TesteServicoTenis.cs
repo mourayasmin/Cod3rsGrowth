@@ -9,7 +9,7 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
 {
     public class TesteServicoTenis : TesteBase
     {
-        protected ServicoTenis _servicoTenis;
+        private  ServicoTenis _servicoTenis;
         public TesteServicoTenis()
         {
             _servicoTenis = ProviderService?.GetService<ServicoTenis>();
