@@ -1,4 +1,6 @@
-﻿namespace Cod3rsGrowth.Dominio.InterfacesRepositorio
+﻿using System.Collections.Generic;
+
+namespace Cod3rsGrowth.Dominio.InterfacesRepositorio
 {
     public interface IRepositorioMarca
     {

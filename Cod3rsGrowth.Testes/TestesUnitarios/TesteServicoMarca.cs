@@ -18,9 +18,10 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
         [Fact]
         public void deve_obter_lista_de_marcas_cadastradas()
         {
+            const int quantidadeDeMarcasNaLista = 5;
             var listaDeMarcas = _servicoMarca.ObterTodas();
             Assert.NotNull(listaDeMarcas);
-            Assert.Equal(5, listaDeMarcas.Count);
+            Assert.Equal(quantidadeDeMarcasNaLista, listaDeMarcas.Count);
         }
 
         [Fact]
@@ -165,9 +166,16 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
         [Fact]
         public void deve_remover_marca_com_sucesso()
         {
-            var idMarcaDeletada = 1111;
-            _servicoMarca.Deletar(idMarcaDeletada);
-            var marcaParaDeletar = SingletonMarca.Instancia.Find(marca => marca.Id == idMarcaDeletada);
+            var marcaASerDeletada = new Marca()
+            {
+                Cnpj = "42274696002561",
+                Email = "empresarial@adidas.com.br",
+                Nome = "Adidas do Brasil",
+                Telefone = 1158963256,
+                Id = 7894
+            };
+            _servicoMarca.Deletar(marcaASerDeletada.Id);
+            var marcaParaDeletar = SingletonMarca.Instancia.Find(marca => marca.Id == marcaASerDeletada.Id);
             Assert.Null(marcaParaDeletar);
         }
     }

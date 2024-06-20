@@ -13,9 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cod3rsGrowth.Forms", "Cod3r
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cod3rsGrowth.Infra", "Cod3rsGrowth.Infra\Cod3rsGrowth.Infra.csproj", "{87D383C5-6B28-47A9-A0A6-590FBDE24D3A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cod3rsGrowth.Dominio", "Dominio\Cod3rsGrowth.Dominio.csproj", "{16601DA3-8D76-4DF1-B416-B1E394DB2006}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cod3rsGrowth.Dominio", "Cod3rsGrowth.Dominio\Cod3rsGrowth.Dominio.csproj", "{16601DA3-8D76-4DF1-B416-B1E394DB2006}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cod3rsGrowth.Servicos", "Servicos\Cod3rsGrowth.Servicos.csproj", "{C5418DE8-EA33-440A-9DE4-4018C2A58C7B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cod3rsGrowth.Servicos", "Cod3rsGrowth.Servicos\Cod3rsGrowth.Servicos.csproj", "{C5418DE8-EA33-440A-9DE4-4018C2A58C7B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

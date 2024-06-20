@@ -4,7 +4,6 @@ using Cod3rsGrowth.Testes.Configuracoes;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 using Cod3rsGrowth.Servicos.Servicos;
-using System.Collections.Generic;
 
 namespace Cod3rsGrowth.Testes.TestesUnitarios
 {
@@ -21,7 +20,8 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
         {
             var listaDeTenis = _servicoTenis.ObterTodos();
             Assert.NotNull(listaDeTenis);
-            Assert.Equal(4, listaDeTenis.Count);
+            const int quantidadeDeTenisNaLista = 4;
+            Assert.Equal(quantidadeDeTenisNaLista, listaDeTenis.Count);
         }
 
         [Fact]
@@ -277,7 +277,7 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
         [Fact]
         public void deve_remover_tenis_com_sucesso()
         {
-            var tenisDeletado = new Tenis()
+            var tenisASerDeletado = new Tenis()
             {
                 Linha = Dominio.Enum.LinhaEnum.Casual,
                 Id = 4321,
@@ -287,8 +287,8 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
                 Nome = "Streetball",
                 Disponibilidade = false,
             };
-            _servicoTenis.Deletar(tenisDeletado.Id);
-            var tenisParaDeletar = SingletonTenis.Instancia.Find(tenis => tenis.Id == tenisDeletado.Id);
+            _servicoTenis.Deletar(tenisASerDeletado.Id);
+            var tenisParaDeletar = SingletonTenis.Instancia.Find(tenis => tenis.Id == tenisASerDeletado.Id);
             Assert.Null(tenisParaDeletar);
         }
     }
