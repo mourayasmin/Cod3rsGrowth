@@ -6,8 +6,10 @@ using Cod3rsGrowth.Dominio.InterfacesRepositorio;
 
 namespace Cod3rsGrowth.Infra.Repositories
 {
-    internal class RepositorioMarca : IRepositorioMarca
+    public class RepositorioMarca : IRepositorioMarca
     {
+        private readonly DBCod3rsGrowth _db;
+
         List<Marca> IRepositorioMarca.ObterTodas()
         {
             throw new NotImplementedException();
