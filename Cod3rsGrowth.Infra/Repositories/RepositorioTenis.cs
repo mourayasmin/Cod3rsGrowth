@@ -9,11 +9,11 @@ using LinqToDB.Data;
 
 namespace Cod3rsGrowth.Infra.Repositories
 {
-    public class RepositoryTenis : IRepositorioTenis
+    public class RepositorioTenis : IRepositorioTenis
     {
         private readonly DBCod3rsGrowth _db;
 
-        List<Tenis> IRepositorioTenis.ObterTodos(string? Nome, DateTime Lancamento, bool Disponibilidade)
+        List<Tenis> IRepositorioTenis.ObterTodos()
         {
             throw new NotImplementedException();
         }

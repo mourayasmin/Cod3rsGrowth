@@ -9,6 +9,6 @@ namespace Cod3rsGrowth.Dominio.InterfacesRepositorio
         Tenis ObterPorId(int id);
         Tenis Atualizar(Tenis tenis);
         void Deletar(int id);
-        List<Tenis> ObterTodos(string? Nome, DateTime Lancamento, bool Disponibilidade);
+        List<Tenis> ObterTodos();
     }
 }

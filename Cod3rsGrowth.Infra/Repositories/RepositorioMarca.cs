@@ -6,7 +6,7 @@ using Cod3rsGrowth.Dominio.InterfacesRepositorio;
 
 namespace Cod3rsGrowth.Infra.Repositories
 {
-    internal class RepositoryMarca : IRepositorioMarca
+    internal class RepositorioMarca : IRepositorioMarca
     {
         List<Marca> IRepositorioMarca.ObterTodas()
         {
