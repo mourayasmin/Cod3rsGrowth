@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Cod3rsGrowth.Dominio.InterfacesRepositorio
 {
@@ -8,6 +9,6 @@ namespace Cod3rsGrowth.Dominio.InterfacesRepositorio
         Tenis ObterPorId(int id);
         Tenis Atualizar(Tenis tenis);
         void Deletar(int id);
-        List<Tenis> ObterTodos();
+        List<Tenis> ObterTodos(string? Nome, DateTime Lancamento, bool Disponibilidade);
     }
 }
