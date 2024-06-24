@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cod3rsGrowth.Dominio.Filtros;
+using System;
 using System.Collections.Generic;
 
 namespace Cod3rsGrowth.Dominio.InterfacesRepositorio
@@ -9,6 +10,6 @@ namespace Cod3rsGrowth.Dominio.InterfacesRepositorio
         Tenis ObterPorId(int id);
         Tenis Atualizar(Tenis tenis);
         void Deletar(int id);
-        List<Tenis> ObterTodos();
+        List<Tenis> ObterTodos(FiltrosTenis filtros);
     }
 }
