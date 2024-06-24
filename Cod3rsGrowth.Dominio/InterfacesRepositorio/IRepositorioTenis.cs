@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Cod3rsGrowth.Dominio.InterfacesRepositorio
 {
