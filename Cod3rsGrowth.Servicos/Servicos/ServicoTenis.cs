@@ -1,4 +1,5 @@
 ﻿using Cod3rsGrowth.Dominio;
+using Cod3rsGrowth.Dominio.Filtros;
 using Cod3rsGrowth.Dominio.InterfacesRepositorio;
 using FluentValidation;
 using System;
@@ -16,9 +17,9 @@ namespace Cod3rsGrowth.Servicos.Servicos
             _validator = validator;
         }
 
-        public List<Tenis> ObterTodos()
+        public List<Tenis> ObterTodos(FiltrosTenis filtros)
         {
-            return _repositoriotenis.ObterTodos();
+            return _repositoriotenis.ObterTodos(null);
         }
 
         public Tenis ObterPorId(int id)

@@ -1,4 +1,5 @@
 ﻿using Cod3rsGrowth.Dominio;
+using Cod3rsGrowth.Dominio.Filtros;
 using Cod3rsGrowth.Dominio.InterfacesRepositorio;
 using FluentValidation;
 using System;
@@ -16,9 +17,9 @@ namespace Cod3rsGrowth.Servicos.Servicos
             _validator = validator;
         }
 
-        public List<Marca> ObterTodas()
+        public List<Marca> ObterTodas(FiltrosMarca filtros)
         {
-            return _repositoriomarca.ObterTodas();
+            return _repositoriomarca.ObterTodas(null);
         }
 
         public Marca ObterPorId(int Id)

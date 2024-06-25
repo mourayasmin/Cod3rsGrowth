@@ -18,9 +18,9 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
         [Fact]
         public void deve_obter_lista_de_marcas_cadastradas()
         {
-            const int quantidadeDeMarcasNaLista = 5;
-            var listaDeMarcas = _servicoMarca.ObterTodas();
+            var listaDeMarcas = _servicoMarca.ObterTodas(null);
             Assert.NotNull(listaDeMarcas);
+            const int quantidadeDeMarcasNaLista = 4;
             Assert.Equal(quantidadeDeMarcasNaLista, listaDeMarcas.Count);
         }
 
@@ -61,6 +61,7 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
             var resultadoMarca = _servicoMarca.Criar(marcaCriada);
             Assert.NotNull(resultadoMarca);
             Assert.Equal(resultadoMarca, marcaCriada);
+            SingletonMarca.Instancia.Remove(marcaCriada);
         }
 
         [Theory]
@@ -172,7 +173,7 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
                 Email = "empresarial@adidas.com.br",
                 Nome = "Adidas do Brasil",
                 Telefone = 1158963256,
-                Id = 7894
+                Id = 7984
             };
             _servicoMarca.Deletar(marcaASerDeletada.Id);
             var marcaParaDeletar = SingletonMarca.Instancia.Find(marca => marca.Id == marcaASerDeletada.Id);

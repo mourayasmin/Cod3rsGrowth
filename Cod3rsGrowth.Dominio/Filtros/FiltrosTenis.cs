@@ -11,5 +11,6 @@ namespace Cod3rsGrowth.Dominio.Filtros
         public DateTime? Lancamento { get; set; }
         public double Preco { get; set; }
         public LinhaEnum? Linha { get; set; }
+        public bool Disponibilidade = false;
     }
 }

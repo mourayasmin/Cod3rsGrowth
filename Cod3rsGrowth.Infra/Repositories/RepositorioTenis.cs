@@ -15,23 +15,37 @@ namespace Cod3rsGrowth.Infra.Repositories
 {
     public class RepositorioTenis : IRepositorioTenis
     {
-        private readonly DBCod3rsGrowth _db;
         List<Tenis> IRepositorioTenis.ObterTodos(FiltrosTenis? filtros = null)
         {
-            IQueryable<Tenis> query = _db.Tenis.AsQueryable();
-            if (filtros?.Linha != null) 
-
-            { query = query.Where (tenis => tenis.Linha == LinhaEnum.Casual)
-
-
-                    // return. ToList(); return final
-            }
-            
-                
+            using (var _db = new DataConnection())
             {
-                //consertar obtenção da linha; from, select
-                ObterTodos(filtros).Where(tenis => x.Linha == linha).ToList();
+                using var db = new DBCod3rsGrowth();
+                IQueryable<Tenis> query = db.Tenis.AsQueryable();
+                if(filtros != null)
+                {
+                    if (filtros.Disponibilidade && filtros.Disponibilidade != null)
+                    {
+                        query = query.Where(x => x.Disponibilidade == true);
+                    }
+                    if (filtros.Linha != null)
+                    {
+                        query = query.Where(x => x.Linha == filtros.Linha);
+                    }
+                    if (filtros.Nome != null)
+                    {
+                        query = query.Where(x => x.Nome == filtros.Nome);
+                    }
+                    if (filtros.Preco != null)
+                    {
+                        query = query.Where(x => x.Preco == filtros.Preco);
+                    }
+                    if (filtros.Lancamento != null)
+                    {
+                        query = query.Where(x => x.Lancamento == filtros.Lancamento);
+                    }
+                }
 
+                return query.ToList();
             }
         }
 

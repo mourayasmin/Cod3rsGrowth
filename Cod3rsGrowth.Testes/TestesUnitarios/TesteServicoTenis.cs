@@ -4,6 +4,7 @@ using Cod3rsGrowth.Testes.Configuracoes;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 using Cod3rsGrowth.Servicos.Servicos;
+using Cod3rsGrowth.Dominio.Filtros;
 
 namespace Cod3rsGrowth.Testes.TestesUnitarios
 {
@@ -18,7 +19,7 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
         [Fact]
         public void deve_retornar_lista_de_tenis_cadastrados()
         {
-            var listaDeTenis = _servicoTenis.ObterTodos();
+            var listaDeTenis = _servicoTenis.ObterTodos(null);
             Assert.NotNull(listaDeTenis);
             const int quantidadeDeTenisNaLista = 4;
             Assert.Equal(quantidadeDeTenisNaLista, listaDeTenis.Count);

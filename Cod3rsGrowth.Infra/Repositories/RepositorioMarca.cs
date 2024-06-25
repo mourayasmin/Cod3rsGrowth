@@ -1,18 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 using Cod3rsGrowth.Dominio;
+using Cod3rsGrowth.Dominio.Filtros;
 using Cod3rsGrowth.Dominio.InterfacesRepositorio;
+using LinqToDB.Data;
 
 namespace Cod3rsGrowth.Infra.Repositories
 {
     public class RepositorioMarca : IRepositorioMarca
     {
-        private readonly DBCod3rsGrowth _db;
-
-        List<Marca> IRepositorioMarca.ObterTodas()
+        List<Marca> IRepositorioMarca.ObterTodas(FiltrosMarca? filtros = null)
         {
-            throw new NotImplementedException();
+            using (var _db = new DataConnection())
+            {
+                using var db = new DBCod3rsGrowth();
+                IQueryable<Marca> query = db.Marca.AsQueryable();
+                if (filtros != null)
+                {
+                    if (filtros.Nome != null)
+                    {
+                        query = query.Where(x => x.Nome == filtros.Nome);
+                    }
+                }
+                return query.ToList();
+            }
         }
 
         Marca IRepositorioMarca.Criar(Marca marca)

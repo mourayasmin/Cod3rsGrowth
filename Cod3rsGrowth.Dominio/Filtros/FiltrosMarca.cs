@@ -4,7 +4,8 @@ using System.Text;
 
 namespace Cod3rsGrowth.Dominio.Filtros
 {
-    internal class FiltrosMarca
+    public class FiltrosMarca
     {
+        public string? Nome { get; set; }
     }
 }
