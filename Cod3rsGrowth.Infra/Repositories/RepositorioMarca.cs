@@ -10,12 +10,11 @@ namespace Cod3rsGrowth.Infra.Repositories
 {
     public class RepositorioMarca : IRepositorioMarca
     {
-        List<Marca> IRepositorioMarca.ObterTodas(FiltrosMarca? filtros = null)
+        public List<Marca> ObterTodas(FiltrosMarca? filtros = null)
         {
-            using (var _db = new DataConnection())
+            using (var _db = new DBCod3rsGrowth())
             {
-                using var db = new DBCod3rsGrowth();
-                IQueryable<Marca> query = db.Marca.AsQueryable();
+                IQueryable<Marca> query = _db.Marca.AsQueryable();
                 if (filtros != null)
                 {
                     if (filtros.Nome != null)
@@ -27,22 +26,22 @@ namespace Cod3rsGrowth.Infra.Repositories
             }
         }
 
-        Marca IRepositorioMarca.Criar(Marca marca)
+        public Marca Criar(Marca marca)
         {
             throw new NotImplementedException();
         }
 
-        Marca IRepositorioMarca.ObterPorId(int id)
+        public Marca ObterPorId(int id)
         {
             throw new NotImplementedException();
         }
 
-        Marca IRepositorioMarca.Atualizar(Marca marca)
+        public Marca Atualizar(Marca marca)
         {
             throw new NotImplementedException();
         }
 
-        void IRepositorioMarca.Deletar(int id)
+        public void Deletar(int id)
         {
             throw new NotImplementedException();
         }

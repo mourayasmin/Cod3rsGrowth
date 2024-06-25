@@ -19,7 +19,7 @@ namespace Cod3rsGrowth.Servicos.Servicos
 
         public List<Marca> ObterTodas(FiltrosMarca filtros)
         {
-            return _repositoriomarca.ObterTodas(null);
+            return _repositoriomarca.ObterTodas(filtros);
         }
 
         public Marca ObterPorId(int Id)

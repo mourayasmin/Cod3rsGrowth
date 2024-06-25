@@ -19,7 +19,7 @@ namespace Cod3rsGrowth.Servicos.Servicos
 
         public List<Tenis> ObterTodos(FiltrosTenis filtros)
         {
-            return _repositoriotenis.ObterTodos(null);
+            return _repositoriotenis.ObterTodos(filtros);
         }
 
         public Tenis ObterPorId(int id)

@@ -15,22 +15,27 @@ namespace Cod3rsGrowth.Infra.Repositories
 {
     public class RepositorioTenis : IRepositorioTenis
     {
-        List<Tenis> IRepositorioTenis.ObterTodos(FiltrosTenis? filtros = null)
+        public List<Tenis> ObterTodos(FiltrosTenis? filtros = null)
         {
-            using (var _db = new DataConnection())
+
+            using (var _db = new DBCod3rsGrowth())
             {
-                using var db = new DBCod3rsGrowth();
-                IQueryable<Tenis> query = db.Tenis.AsQueryable();
+
+                IQueryable<Tenis> query = _db.Tenis.AsQueryable();
+
                 if(filtros != null)
                 {
+
                     if (filtros.Disponibilidade && filtros.Disponibilidade != null)
                     {
                         query = query.Where(x => x.Disponibilidade == true);
                     }
+
                     if (filtros.Linha != null)
                     {
                         query = query.Where(x => x.Linha == filtros.Linha);
                     }
+
                     if (filtros.Nome != null)
                     {
                         query = query.Where(x => x.Nome == filtros.Nome);
@@ -49,22 +54,22 @@ namespace Cod3rsGrowth.Infra.Repositories
             }
         }
 
-        Tenis IRepositorioTenis.Criar(Tenis tenis)
+        public Tenis Criar(Tenis tenis)
         {
             throw new NotImplementedException();
         }
 
-        Tenis IRepositorioTenis.ObterPorId(int id)
+        public Tenis ObterPorId(int id)
         {
             throw new NotImplementedException();
         }
 
-        Tenis IRepositorioTenis.Atualizar(Tenis tenis)
+        public Tenis Atualizar(Tenis tenis)
         {
             throw new NotImplementedException();
         }
 
-        void IRepositorioTenis.Deletar(int id)
+        public void Deletar(int id)
         {
             throw new NotImplementedException();
         }
