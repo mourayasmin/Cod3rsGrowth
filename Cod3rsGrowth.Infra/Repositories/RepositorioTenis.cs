@@ -51,9 +51,11 @@ namespace Cod3rsGrowth.Infra.Repositories
 
         public Tenis Criar(Tenis tenis)
         {
-            using var _db = new DBCod3rsGrowth();
-            _db.Insert(tenis);
-            return tenis;
+            using (var _db = new DBCod3rsGrowth())
+            {
+                _db.Insert(tenis);
+                return tenis;
+            }
         }
 
         public Tenis ObterPorId(int id)

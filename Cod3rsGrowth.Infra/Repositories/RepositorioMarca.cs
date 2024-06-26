@@ -28,7 +28,11 @@ namespace Cod3rsGrowth.Infra.Repositories
 
         public Marca Criar(Marca marca)
         {
-            throw new NotImplementedException();
+            using (var _db = new DBCod3rsGrowth())
+            {
+                _db.Insert(marca);
+                return marca;
+            }
         }
 
         public Marca ObterPorId(int id)
