@@ -31,8 +31,8 @@ namespace Cod3rsGrowth.Infra.Repositories
             using (var _db = new DBCod3rsGrowth())
             {
                 _db.Insert(marca);
-                return marca;
             }
+            return marca;
         }
 
         public Marca ObterPorId(int id)
@@ -42,7 +42,11 @@ namespace Cod3rsGrowth.Infra.Repositories
 
         public Marca Atualizar(Marca marca)
         {
-            throw new NotImplementedException();
+            using (var _db = new DBCod3rsGrowth())
+            {
+                _db.Update(marca);
+            }
+            return marca;
         }
 
         public void Deletar(int id)

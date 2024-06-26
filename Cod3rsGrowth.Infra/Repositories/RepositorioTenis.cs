@@ -54,8 +54,8 @@ namespace Cod3rsGrowth.Infra.Repositories
             using (var _db = new DBCod3rsGrowth())
             {
                 _db.Insert(tenis);
-                return tenis;
             }
+            return tenis;
         }
 
         public Tenis ObterPorId(int id)
@@ -65,7 +65,11 @@ namespace Cod3rsGrowth.Infra.Repositories
 
         public Tenis Atualizar(Tenis tenis)
         {
-            throw new NotImplementedException();
+            using (var _db = new DBCod3rsGrowth())
+            {
+                _db.Update(tenis);
+            }
+            return tenis;
         }
 
         public void Deletar(int id)
