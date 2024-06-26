@@ -74,7 +74,11 @@ namespace Cod3rsGrowth.Infra.Repositories
 
         public void Deletar(int id)
         {
-            throw new NotImplementedException();
+            using (var _db = new DBCod3rsGrowth())
+            {
+                var tenis = _db.Tenis.Where(x => x.Id == id);
+                _db.Delete(tenis);
+            }
         }
     }
 }
