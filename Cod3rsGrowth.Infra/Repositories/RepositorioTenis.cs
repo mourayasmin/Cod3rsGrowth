@@ -63,7 +63,7 @@ namespace Cod3rsGrowth.Infra.Repositories
             Tenis tenis;
             using (var _db = new DBCod3rsGrowth())
             {
-                tenis = _db.Tenis.Where(x => x.Id == id).FirstOrDefault();
+                tenis = _db.Tenis.FirstOrDefault(x => x.Id == id);
             }
             return tenis;
         }

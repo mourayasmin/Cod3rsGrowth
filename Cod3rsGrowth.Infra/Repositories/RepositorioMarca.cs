@@ -40,7 +40,7 @@ namespace Cod3rsGrowth.Infra.Repositories
             Marca marca;
             using (var _db = new DBCod3rsGrowth())
             {
-                marca = _db.Marca.Where(x => x.Id == id).FirstOrDefault();
+                marca = _db.Marca.FirstOrDefault(x => x.Id == id);
             }
             return marca;
         }
