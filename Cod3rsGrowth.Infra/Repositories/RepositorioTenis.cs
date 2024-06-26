@@ -60,7 +60,12 @@ namespace Cod3rsGrowth.Infra.Repositories
 
         public Tenis ObterPorId(int id)
         {
-            throw new NotImplementedException();
+            Tenis tenis;
+            using (var _db = new DBCod3rsGrowth())
+            {
+                tenis = _db.Tenis.Where(x => x.Id == id).FirstOrDefault();
+            }
+            return tenis;
         }
 
         public Tenis Atualizar(Tenis tenis)
