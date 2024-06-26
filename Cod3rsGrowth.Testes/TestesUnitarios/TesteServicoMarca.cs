@@ -29,23 +29,20 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
         [Fact]
         public void deve_retornar_marca_atraves_do_id_de_marca_informado()
         {
-            const int idMarca = 1111;
-            const string nomeMarca = "Adidas do Brasil LTDA";
-            const int telefoneMarca = 1155463700;
             var marca = new Marca
             {
-                Id = idMarca,
-                Nome = nomeMarca,
-                Telefone = telefoneMarca,
+                Id = 1111,
+                Nome = "Adidas do Brasil LTDA",
+                Telefone = 1155463700,
             };
 
             SingletonMarca.Instancia.Add(marca);
-            var marcaRetornada = _servicoMarca.ObterPorId(idMarca);
+            var marcaRetornada = _servicoMarca.ObterPorId(marca.Id);
 
             Assert.NotNull(marcaRetornada);
-            Assert.Equal(idMarca, marcaRetornada.Id);
-            Assert.Equal(nomeMarca, marcaRetornada.Nome);
-            Assert.Equal(telefoneMarca, marcaRetornada.Telefone);
+            Assert.Equal(marca.Id, marcaRetornada.Id);
+            Assert.Equal(marca.Nome, marcaRetornada.Nome);
+            Assert.Equal(marca.Telefone, marcaRetornada.Telefone);
         }
 
         [Theory]
