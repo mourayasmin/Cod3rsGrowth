@@ -18,7 +18,7 @@ namespace Cod3rsGrowth.Servicos.Validacoes
                 .GreaterThan(0)
                 .WithMessage("O preço informado é inválido.");
             RuleFor(tenis => tenis.Avaliacao)
-                .GreaterThan(0)
+                .GreaterThanOrEqualTo(0)
                 .WithMessage("A avaliação informada é inválida. Informe uma avaliação de 0 a 10.")
                 .LessThanOrEqualTo(10)
                 .WithMessage("A avaliação informada é inválida. Informe uma avaliação de 0 a 10.");

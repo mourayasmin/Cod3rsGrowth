@@ -1,36 +1,47 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 using Cod3rsGrowth.Dominio;
+using Cod3rsGrowth.Dominio.Filtros;
 using Cod3rsGrowth.Dominio.InterfacesRepositorio;
+using LinqToDB;
 
 namespace Cod3rsGrowth.Infra.Repositories
 {
     public class RepositorioMarca : IRepositorioMarca
     {
-        private readonly DBCod3rsGrowth _db;
+        public List<Marca> ObterTodas(FiltrosMarca? filtros = null)
+        {
+            using (var _db = new DBCod3rsGrowth())
+            {
+                IQueryable<Marca> query = _db.Marca.AsQueryable();
+                if (filtros != null)
+                {
+                    if (filtros.Nome != null)
+                    {
+                        query = query.Where(x => x.Nome == filtros.Nome);
+                    }
+                }
+                return query.ToList();
+            }
+        }
 
-        List<Marca> IRepositorioMarca.ObterTodas()
+        public Marca Criar(Marca marca)
         {
             throw new NotImplementedException();
         }
 
-        Marca IRepositorioMarca.Criar(Marca marca)
+        public Marca ObterPorId(int id)
         {
             throw new NotImplementedException();
         }
 
-        Marca IRepositorioMarca.ObterPorId(int id)
+        public Marca Atualizar(Marca marca)
         {
             throw new NotImplementedException();
         }
 
-        Marca IRepositorioMarca.Atualizar(Marca marca)
-        {
-            throw new NotImplementedException();
-        }
-
-        void IRepositorioMarca.Deletar(int id)
+        public void Deletar(int id)
         {
             throw new NotImplementedException();
         }

@@ -1,4 +1,5 @@
 ﻿using Cod3rsGrowth.Dominio;
+using Cod3rsGrowth.Dominio.Filtros;
 using Cod3rsGrowth.Dominio.InterfacesRepositorio;
 using Cod3rsGrowth.Testes.ClassesSingleton;
 
@@ -31,7 +32,7 @@ namespace Cod3rsGrowth.Testes.RepositoriosMock
             SingletonMarca.marcas.Remove(marcaParaDeletar);
         }
 
-        public List<Marca> ObterTodas()
+        public List<Marca> ObterTodas(FiltrosMarca filtros)
         {
             List<Marca> _repositoriomarca = SingletonMarca.Instancia;
             return _repositoriomarca;
