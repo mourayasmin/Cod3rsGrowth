@@ -4,7 +4,7 @@ using System.Linq;
 using Cod3rsGrowth.Dominio;
 using Cod3rsGrowth.Dominio.Filtros;
 using Cod3rsGrowth.Dominio.InterfacesRepositorio;
-using LinqToDB.Data;
+using LinqToDB;
 
 namespace Cod3rsGrowth.Infra.Repositories
 {

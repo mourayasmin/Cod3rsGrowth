@@ -17,15 +17,11 @@ namespace Cod3rsGrowth.Infra.Repositories
     {
         public List<Tenis> ObterTodos(FiltrosTenis? filtros = null)
         {
-
             using (var _db = new DBCod3rsGrowth())
             {
-
                 IQueryable<Tenis> query = _db.Tenis.AsQueryable();
-
                 if(filtros != null)
                 {
-
                     if (filtros.Disponibilidade && filtros.Disponibilidade != null)
                     {
                         query = query.Where(x => x.Disponibilidade == true);
@@ -49,7 +45,6 @@ namespace Cod3rsGrowth.Infra.Repositories
                         query = query.Where(x => x.Lancamento == filtros.Lancamento);
                     }
                 }
-
                 return query.ToList();
             }
         }

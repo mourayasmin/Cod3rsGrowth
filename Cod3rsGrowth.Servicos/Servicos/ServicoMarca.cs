@@ -17,7 +17,7 @@ namespace Cod3rsGrowth.Servicos.Servicos
             _validator = validator;
         }
 
-        public List<Marca> ObterTodas(FiltrosMarca filtros)
+        public List<Marca> ObterTodas(FiltrosMarca? filtros = null)
         {
             return _repositoriomarca.ObterTodas(filtros);
         }

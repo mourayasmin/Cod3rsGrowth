@@ -4,7 +4,6 @@ using Cod3rsGrowth.Testes.Configuracoes;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 using Cod3rsGrowth.Servicos.Servicos;
-using Cod3rsGrowth.Dominio.Filtros;
 
 namespace Cod3rsGrowth.Testes.TestesUnitarios
 {
@@ -14,28 +13,34 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
         public TesteServicoTenis()
         {
             _servicoTenis = ProviderService?.GetService<ServicoTenis>();
+            SingletonTenis.Instancia.Clear();
         }
 
         [Fact]
         public void deve_retornar_lista_de_tenis_cadastrados()
         {
+            SingletonTenis.Instancia.AddRange(new List<Tenis> { new Tenis(), new Tenis() });
             var listaDeTenis = _servicoTenis.ObterTodos(null);
             Assert.NotNull(listaDeTenis);
-            const int quantidadeDeTenisNaLista = 4;
+            const int quantidadeDeTenisNaLista = 2;
             Assert.Equal(quantidadeDeTenisNaLista, listaDeTenis.Count);
         }
 
         [Fact]
         public void deve_retornar_tenis_atraves_do_id_informado()
         {
-            var idTenisEsperado = 0001;
-            var nomeTenisEsperado = "Streetball";
-            var idMarcaEsperada = 1111;
-            var tenisRetornado = _servicoTenis.ObterPorId(idTenisEsperado);
+            var tenisEsperado = new Tenis()
+            {
+                Id = 0001,
+                Nome = "Streetball",
+                Idmarca = 1111
+            };
+            SingletonTenis.Instancia.Add(tenisEsperado);
+            var tenisRetornado = _servicoTenis.ObterPorId(tenisEsperado.Id);
             Assert.NotNull(tenisRetornado);
-            Assert.Equal(idTenisEsperado, tenisRetornado.Id);
-            Assert.Equal(nomeTenisEsperado, tenisRetornado.Nome);
-            Assert.Equal(idMarcaEsperada, tenisRetornado.Idmarca);
+            Assert.Equal(tenisEsperado.Id, tenisRetornado.Id);
+            Assert.Equal(tenisEsperado.Nome, tenisRetornado.Nome);
+            Assert.Equal(tenisEsperado.Idmarca, tenisRetornado.Idmarca);
         }
 
         [Theory]
@@ -196,10 +201,11 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
         [Theory]
         [InlineData(null)]
         [InlineData(" ")]
-        public void deve_retornar_erro_por_nome_nulo_ou_vazio(string Nome)
+        public void deve_retornar_erro_por_nome_nulo_ou_vazio(string nome)
         {
             var tenisCriado = new Tenis()
             {
+                Nome = nome,
                 Linha = Dominio.Enum.LinhaEnum.Casual,
                 Id = 0005,
                 Idmarca = 1111,
@@ -226,6 +232,7 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
                 Nome = "Streetball",
                 Disponibilidade = false,
             };
+            SingletonTenis.Instancia.Add(tenisEditado);
             var tenisRetornado = _servicoTenis.Atualizar(tenisEditado);
             Assert.Equivalent(tenisEditado, tenisRetornado);
         }
@@ -260,9 +267,11 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
                 Idmarca = 1111,
                 Preco = 549.99,
                 Lancamento = DateTime.Parse("27/03/2020"),
+                Avaliacao = avaliacao,
                 Nome = "Streetball",
                 Disponibilidade = false,
             };
+            SingletonTenis.Instancia.Add(tenisEditado);
             var mensagemDeErro = Assert.Throws<ValidationException>(() => _servicoTenis.Atualizar(tenisEditado));
             Assert.Contains("A avaliação informada é inválida. Informe uma avaliação de 0 a 10.", mensagemDeErro.Message);
         }
@@ -271,6 +280,7 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
         public void deve_retornar_erro_por_tenis_nulo()
         {
             Tenis tenisRetornado = null;
+            SingletonTenis.Instancia.Add(tenisRetornado);
             var mensagemDeErro = Assert.Throws<Exception>(() => _servicoTenis.Atualizar(tenisRetornado));
             Assert.Contains("O tênis não foi informado.", mensagemDeErro.Message);
         }
@@ -285,9 +295,11 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
                 Idmarca = 1111,
                 Preco = 549.99,
                 Lancamento = DateTime.Parse("27/03/2020"),
+                Avaliacao = 9.7M,
                 Nome = "Streetball",
                 Disponibilidade = false,
             };
+            SingletonTenis.Instancia.Add(tenisASerDeletado);
             _servicoTenis.Deletar(tenisASerDeletado.Id);
             var tenisParaDeletar = SingletonTenis.Instancia.Find(tenis => tenis.Id == tenisASerDeletado.Id);
             Assert.Null(tenisParaDeletar);
