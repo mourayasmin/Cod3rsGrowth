@@ -12,9 +12,9 @@ namespace Cod3rsGrowth.Dominio.Migracoes
                 .WithColumn("Idmarca").AsInt32().ForeignKey().NotNullable().Unique()
                 .WithColumn("Nome").AsString().Nullable()
                 .WithColumn("Linha").AsInt32().Nullable()
-                .WithColumn("Preco").AsDouble().Nullable()
-                .WithColumn("Avaliacao").AsDecimal().Nullable()
-                .WithColumn("Lancamento").AsDateTime().NotNullable()
+                .WithColumn("Preço").AsDouble().Nullable()
+                .WithColumn("Avaliação").AsDecimal().Nullable()
+                .WithColumn("Lançamento").AsDateTime().NotNullable()
                 .WithColumn("Disponibilidade").AsBoolean().NotNullable();
             Create.ForeignKey("Id").FromTable("Tenis").ForeignColumn("Idmarca").ToTable("Marca").PrimaryColumn("Id");
         }
