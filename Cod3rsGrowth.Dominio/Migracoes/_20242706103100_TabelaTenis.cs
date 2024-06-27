@@ -23,5 +23,13 @@ namespace Cod3rsGrowth.Dominio.Migracoes
         {
             Delete.Table("Tenis");
         }
+
+        public void AlterTable()
+        {
+            Alter.Table("Tenis")
+                .AlterColumn("Preço")
+                .AsDecimal()
+                .Nullable();
+        }
     }
 }

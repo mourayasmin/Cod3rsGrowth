@@ -4,7 +4,7 @@ using LinqToDB.Mapping;
 [Table("Marca")]
     public class Marca
     {
-    [PrimaryKey]
+    [Column("Id")]
         public int Id { get; set; }
 
     [Column("Nome")]

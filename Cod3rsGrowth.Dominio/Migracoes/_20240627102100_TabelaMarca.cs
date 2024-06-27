@@ -22,5 +22,12 @@ namespace Cod3rsGrowth.Dominio.Migracoes
     {
         Delete.Table("Marca");
     }
+    public void AlterTable()
+    {
+            Alter.Table("Marca")
+                .AlterColumn("CNPJ")
+                .AsInt32()
+                .Nullable();
+    }
     }
 }
