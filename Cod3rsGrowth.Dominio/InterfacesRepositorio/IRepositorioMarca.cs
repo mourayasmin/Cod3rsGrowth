@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Cod3rsGrowth.Dominio.Filtros;
+using System.Collections.Generic;
 
 namespace Cod3rsGrowth.Dominio.InterfacesRepositorio
 {
@@ -8,6 +9,6 @@ namespace Cod3rsGrowth.Dominio.InterfacesRepositorio
         public Marca ObterPorId(int id);
         public Marca Atualizar(Marca marca);
         public void Deletar(int id);
-        public List<Marca> ObterTodas();
+        public List<Marca> ObterTodas(FiltrosMarca? filtros);
     }
 }
