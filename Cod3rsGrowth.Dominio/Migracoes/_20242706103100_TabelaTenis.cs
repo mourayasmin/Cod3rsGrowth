@@ -5,7 +5,8 @@ using FluentMigrator;
 
 namespace Cod3rsGrowth.Dominio.Migracoes
 {
-    public class _20242706103100_TabelaTenis : Migration
+    [Migration(20240627103100)]
+    public class _20240627103100_TabelaTenis : Migration
     {
         public override void Up()
         {
