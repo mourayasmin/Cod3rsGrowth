@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using FluentMigrator;
+﻿using FluentMigrator;
 
 namespace Cod3rsGrowth.Dominio.Migracoes
 {
@@ -11,14 +8,15 @@ namespace Cod3rsGrowth.Dominio.Migracoes
         public override void Up()
         {
             Create.Table("Tenis")
-                .WithColumn("Id").AsInt64().PrimaryKey().Identity().NotNullable()
-                .WithColumn("Idmarca").AsInt32().NotNullable()
+                .WithColumn("Id").AsInt32().PrimaryKey().Identity().NotNullable().Unique()
+                .WithColumn("Idmarca").AsInt32().ForeignKey().NotNullable().Unique()
                 .WithColumn("Nome").AsString().Nullable()
                 .WithColumn("Linha").AsInt32().Nullable()
                 .WithColumn("Preco").AsDouble().Nullable()
                 .WithColumn("Avaliacao").AsDecimal().Nullable()
                 .WithColumn("Lancamento").AsDateTime().NotNullable()
                 .WithColumn("Disponibilidade").AsBoolean().NotNullable();
+            Create.ForeignKey("Id").FromTable("Tenis").ForeignColumn("Idmarca").ToTable("Marca").PrimaryColumn("Id");
         }
 
         public override void Down()

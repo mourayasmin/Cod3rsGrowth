@@ -10,14 +10,13 @@ namespace Cod3rsGrowth.Dominio.Migracoes
     {
         public override void Up()
     {
-        Create.Table("Marca")
-            .WithColumn("Id").AsInt64().PrimaryKey().Identity()
-            .WithColumn("Nome").AsString()
-            .WithColumn("Endereco").AsString()
-            .WithColumn("CNPJ").AsString()
-            .WithColumn("E-mail").AsString()
-            .WithColumn("Telefone").AsString();
-    }
+            Create.Table("Marca")
+                .WithColumn("Id").AsInt32().ForeignKey().Identity()
+                .WithColumn("Nome").AsString().Nullable()
+                .WithColumn("CNPJ").AsString().Unique().Nullable()
+                .WithColumn("Email").AsString().Nullable()
+                .WithColumn("Telefone").AsString().NotNullable();
+        }
 
     public override void Down()
     {
