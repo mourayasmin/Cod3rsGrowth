@@ -37,7 +37,11 @@ namespace Cod3rsGrowth.Infra.Repositories
 
         public Marca ObterPorId(int id)
         {
-            throw new NotImplementedException();
+            using (var _db = new DBCod3rsGrowth())
+            {
+                var marca = _db.Marca.FirstOrDefault(x => x.Id == id);
+                return marca;
+            }
         }
 
         public Marca Atualizar(Marca marca)
