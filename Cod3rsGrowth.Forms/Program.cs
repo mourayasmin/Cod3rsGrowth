@@ -1,5 +1,3 @@
-using Cod3rsGrowth.Dominio;
-using Cod3rsGrowth.Dominio.Migracoes;
 using FluentMigrator.Runner;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -29,7 +27,7 @@ namespace Cod3rsGrowth.Forms
                 .ConfigureRunner(rb => rb
                     .AddSqlServer()
                     .WithGlobalConnectionString(connection)
-                    .ScanIn(typeof(_20240627102100_TabelaMarca).Assembly).For.Migrations())
+                    .ScanIn(typeof(Marca).Assembly).For.Migrations())
                 .AddLogging(lb => lb.AddFluentMigratorConsole())
                 .BuildServiceProvider(false);
         }
