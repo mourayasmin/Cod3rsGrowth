@@ -1,11 +1,21 @@
-﻿namespace Cod3rsGrowth.Dominio
-{
+﻿using LinqToDB.Data;
+using LinqToDB.Mapping;
+
+[Table("Marca")]
     public class Marca
     {
-        public string? Cnpj { get; set; }
-        public string? Email { get; set; }
-        public string? Nome { get; set; }
-        public int Telefone { get; set; }
+    [Column("Id")]
         public int Id { get; set; }
+
+    [Column("Nome")]
+        public string? Nome { get; set; }
+
+    [Column("CNPJ"), NotNull]
+        public string? Cnpj { get; set; }
+
+    [Column("Email")]
+        public string? Email { get; set; }
+
+    [Column("Telefone"), NotNull]   
+        public int Telefone { get; set; }
     }
-}

@@ -1,4 +1,5 @@
 ﻿using Cod3rsGrowth.Dominio;
+using Cod3rsGrowth.Dominio.Filtros;
 using Cod3rsGrowth.Dominio.InterfacesRepositorio;
 using Cod3rsGrowth.Testes.ClassesSingleton;
 
@@ -32,7 +33,7 @@ namespace Cod3rsGrowth.Testes.RepositoriosMock
             SingletonTenis.tenis.Remove(tenisParaDeletar);
         }
 
-        public List<Tenis> ObterTodos()
+        public List<Tenis> ObterTodos(FiltrosTenis filtros)
         {
             List<Tenis> _repositoriotenis = SingletonTenis.Instancia;
             return _repositoriotenis;
