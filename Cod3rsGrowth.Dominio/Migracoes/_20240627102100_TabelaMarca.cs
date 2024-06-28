@@ -10,7 +10,7 @@ namespace Cod3rsGrowth.Dominio.Migracoes
             Create.Table("Marca")
                 .WithColumn("Id").AsInt32().PrimaryKey().Identity()
                 .WithColumn("Nome").AsString().Nullable()
-                .WithColumn("CNPJ").AsString().Unique().Nullable()
+                .WithColumn("CNPJ's").AsString().Unique().Nullable()
                 .WithColumn("Email").AsString().Nullable()
                 .WithColumn("Telefone").AsString().NotNullable();
         }

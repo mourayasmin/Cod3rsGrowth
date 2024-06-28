@@ -7,7 +7,7 @@ namespace Cod3rsGrowth.Dominio.Migracoes
     {
         public override void Up()
         {
-            Rename.Column("CNPJ").OnTable("Marca").To("CNPJotas");
+            Rename.Column("CNPJ's").OnTable("Marca").To("CNPJ");
         }
 
         public override void Down()
