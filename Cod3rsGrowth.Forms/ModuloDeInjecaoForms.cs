@@ -1,5 +1,8 @@
 ﻿using Cod3rsGrowth.Dominio.InterfacesRepositorio;
 using Cod3rsGrowth.Infra.Repositories;
+using Cod3rsGrowth.Servicos.Servicos;
+using Cod3rsGrowth.Servicos.Validacoes;
+using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -11,8 +14,11 @@ namespace Cod3rsGrowth.Forms
         {
             return Host.CreateDefaultBuilder()
                 .ConfigureServices((context, services) => {
-                    services.AddScoped<RepositorioMarca>();
-                    services.AddScoped<RepositorioTenis>();
+                    services.AddScoped<ServicoMarca>();
+                    services.AddScoped<ServicoTenis>();
+                    services.AddScoped<IValidator<Tenis>, ValidacaoTenis>();
+                    services.AddScoped<IRepositorioMarca, RepositorioMarca>();
+                    services.AddScoped<IRepositorioTenis, RepositorioTenis>();
                 });
         }
     }

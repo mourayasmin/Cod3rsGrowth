@@ -15,8 +15,8 @@ namespace Cod3rsGrowth.Forms
             {
                 UpdateDatabase(scope.ServiceProvider);
             }
-            Application.Run(new Form1());
             ApplicationConfiguration.Initialize();
+            Application.Run(new Form1());
             var host = CreateHostBuilder().Build();
             ProviderService = host.Services;
             Application.Run(ProviderService.GetRequiredService<Form1>());
