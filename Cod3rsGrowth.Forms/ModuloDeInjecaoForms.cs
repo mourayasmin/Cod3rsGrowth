@@ -17,6 +17,7 @@ namespace Cod3rsGrowth.Forms
                     services.AddScoped<ServicoMarca>();
                     services.AddScoped<ServicoTenis>();
                     services.AddScoped<IValidator<Tenis>, ValidacaoTenis>();
+                    services.AddScoped<IValidator<Marca>, ValidacaoMarca>();
                     services.AddScoped<IRepositorioMarca, RepositorioMarca>();
                     services.AddScoped<IRepositorioTenis, RepositorioTenis>();
                 });
