@@ -15,10 +15,11 @@ namespace Cod3rsGrowth.Forms
             {
                 UpdateDatabase(scope.ServiceProvider);
             }
+            Application.Run(new Form1());
             ApplicationConfiguration.Initialize();
             var host = CreateHostBuilder().Build();
             ProviderService = host.Services;
-            Application.Run(new Form1());
+            Application.Run(ProviderService.GetRequiredService<Form1>());
         }
 
         public static IServiceProvider ProviderService { get; private set; }
