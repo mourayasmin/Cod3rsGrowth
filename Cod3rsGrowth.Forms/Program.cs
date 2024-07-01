@@ -1,10 +1,12 @@
+using static Cod3rsGrowth.Forms.ModuloDeInjecaoForms;
 using FluentMigrator.Runner;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Cod3rsGrowth.Forms
 {
-    public static class Program
+    public class Program
     {
+
         [STAThread]
         static void Main()
         {
@@ -15,7 +17,12 @@ namespace Cod3rsGrowth.Forms
             }
             ApplicationConfiguration.Initialize();
             Application.Run(new Form1());
+            var host = CreateHostBuilder().Build();
+            ProviderService = host.Services;
+            Application.Run(ProviderService.GetRequiredService<Form1>());
         }
+
+        public static IServiceProvider ProviderService { get; private set; }
 
         private static ServiceProvider CreateServices()
         {
@@ -24,12 +31,12 @@ namespace Cod3rsGrowth.Forms
             ConnectionStrings["ConnectionString"].ConnectionString;
             return new ServiceCollection()
                        .AddFluentMigratorCore()
-                .ConfigureRunner(rb => rb
-                    .AddSqlServer()
-                    .WithGlobalConnectionString(connection)
-                    .ScanIn(typeof(Marca).Assembly).For.Migrations())
-                .AddLogging(lb => lb.AddFluentMigratorConsole())
-                .BuildServiceProvider(false);
+                        .ConfigureRunner(rb => rb
+                            .AddSqlServer()
+                            .WithGlobalConnectionString(connection)
+                            .ScanIn(typeof(Marca).Assembly).For.Migrations())
+                        .AddLogging(lb => lb.AddFluentMigratorConsole())
+                        .BuildServiceProvider(false);
         }
 
         private static void UpdateDatabase(IServiceProvider serviceProvider)
