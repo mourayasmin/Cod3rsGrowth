@@ -19,8 +19,6 @@ namespace Cod3rsGrowth.Testes.Configuracoes
             Services.AddScoped<ServicoTenis>();
             Services.AddScoped<IValidator<Tenis>, ValidacaoTenis>();
             Services.AddScoped<IValidator<Marca>, ValidacaoMarca>();
-            Services.AddScoped<IRepositorioMarca, RepositorioMarca>();
-            Services.AddScoped<IRepositorioTenis, RepositorioTenis>();
         }
     }
 }
