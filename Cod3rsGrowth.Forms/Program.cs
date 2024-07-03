@@ -1,48 +1,39 @@
-using static Cod3rsGrowth.Forms.ModuloDeInjecaoForms;
+using static Cod3rsGrowth.Forms.Injecao.ModuloDeInjecaoForms;
 using FluentMigrator.Runner;
 using Microsoft.Extensions.DependencyInjection;
+using Cod3rsGrowth.Servicos.Servicos;
+using Cod3rsGrowth.Infra;
+using LinqToDB;
+using LinqToDB.AspNet;
+using LinqToDB.AspNet.Logging;
+using Cod3rsGrowth.Dominio.InterfacesRepositorio;
+using Microsoft.Data.SqlClient;
+using Cod3rsGrowth.Infra.Repositories;
+using Cod3rsGrowth.Servicos.Injecao;
+using Cod3rsGrowth.Infra.Injecao;
+using System.Configuration;
 
 namespace Cod3rsGrowth.Forms
 {
     public class Program
     {
+        private static IServiceProvider? _serviceProvider;
 
         [STAThread]
         static void Main()
         {
-            using (var serviceProvider = CreateServices())
-            using (var scope = serviceProvider.CreateScope())
-            {
-                UpdateDatabase(scope.ServiceProvider);
-            }
-            ApplicationConfiguration.Initialize();
-            Application.Run(new Form1());
-            var host = CreateHostBuilder().Build();
-            ProviderService = host.Services;
-            Application.Run(ProviderService.GetRequiredService<Form1>());
-        }
-
-        public static IServiceProvider ProviderService { get; private set; }
-
-        private static ServiceProvider CreateServices()
-        {
             var connection =
-            System.Configuration.ConfigurationManager.
-            ConnectionStrings["ConnectionString"].ConnectionString;
-            return new ServiceCollection()
-                       .AddFluentMigratorCore()
-                        .ConfigureRunner(rb => rb
-                            .AddSqlServer()
-                            .WithGlobalConnectionString(connection)
-                            .ScanIn(typeof(Marca).Assembly).For.Migrations())
-                        .AddLogging(lb => lb.AddFluentMigratorConsole())
-                        .BuildServiceProvider(false);
-        }
+            ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
 
-        private static void UpdateDatabase(IServiceProvider serviceProvider)
-        {
-            var runner = serviceProvider.GetRequiredService<IMigrationRunner>();
-            runner.MigrateUp();
+            var colecaoDeServicos = new ServiceCollection();
+            ModuloDeInjecaoServico.Configurar(colecaoDeServicos);
+            ModuloDeInjecaoInfra.Configurar(colecaoDeServicos, connection);
+            _serviceProvider = colecaoDeServicos.BuildServiceProvider();
+
+            ModuloDeInjecaoInfra.RodarMigration(_serviceProvider);
+
+            ApplicationConfiguration.Initialize();
+            Application.Run(new Form1(_serviceProvider.GetRequiredService<ServicoMarca>()));
         }
     }
 }

@@ -33,7 +33,7 @@ namespace Cod3rsGrowth.Testes.ClassesSingleton
             },
             new Marca()
             {
-                Cnpj = " 45075049000141",
+                Cnpj = "45075049000141",
                 Email = "comercial@newbalance.com.br",
                 Nome = "New Balance do Brasil LTDA",
                 Telefone = 1123949704,

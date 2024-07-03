@@ -12,7 +12,7 @@ namespace Cod3rsGrowth.Dominio.Migracoes
                 .WithColumn("Nome").AsString().Nullable()
                 .WithColumn("CNPJ's").AsString().Unique().Nullable()
                 .WithColumn("Email").AsString().Nullable()
-                .WithColumn("Telefone").AsString().NotNullable();
+                .WithColumn("Telefone").AsInt32().NotNullable();
         }
         public override void Down()
         {

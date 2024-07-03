@@ -9,7 +9,7 @@ namespace Cod3rsGrowth.Infra
 {
     public class DBCod3rsGrowth : DataConnection
     {
-        public DBCod3rsGrowth() : base("Cod3rsGrowth") { }
+        public DBCod3rsGrowth(DataOptions<DBCod3rsGrowth> options) : base(options.Options) { }
 
         public ITable<Tenis> Tenis => this.GetTable<Tenis>();
         public ITable<Marca> Marca => this.GetTable<Marca>();
