@@ -1,4 +1,3 @@
-using static Cod3rsGrowth.Forms.Injecao.ModuloDeInjecaoForms;
 using FluentMigrator.Runner;
 using Microsoft.Extensions.DependencyInjection;
 using Cod3rsGrowth.Servicos.Servicos;
@@ -29,11 +28,11 @@ namespace Cod3rsGrowth.Forms
             ModuloDeInjecaoServico.Configurar(colecaoDeServicos);
             ModuloDeInjecaoInfra.Configurar(colecaoDeServicos, connection);
             _serviceProvider = colecaoDeServicos.BuildServiceProvider();
-
+            
             ModuloDeInjecaoInfra.RodarMigration(_serviceProvider);
 
             ApplicationConfiguration.Initialize();
-            Application.Run(new Form1(_serviceProvider.GetRequiredService<ServicoMarca>()));
+            Application.Run(new TelaDeLista(_serviceProvider.GetRequiredService<ServicoMarca>(), _serviceProvider.GetRequiredService<ServicoTenis>()));
         }
     }
 }

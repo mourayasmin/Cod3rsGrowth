@@ -16,7 +16,7 @@ namespace Cod3rsGrowth.Infra.Repositories
         public List<Tenis> ObterTodos(FiltrosTenis? filtros = null)
         {
             IQueryable<Tenis> query = _db.Tenis.AsQueryable();
-            if(filtros != null)
+            if (filtros != null)
             {
                 if (filtros.Disponibilidade && filtros.Disponibilidade != null)
                 {

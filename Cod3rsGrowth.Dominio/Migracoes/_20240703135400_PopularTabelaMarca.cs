@@ -12,18 +12,25 @@ namespace Cod3rsGrowth.Dominio.Migracoes
         {
             Execute.Sql(@"
                 INSERT INTO Marca (Nome, CNPJ, Email, Telefone) 
-                VALUES ('Adidas do Brasil LTDA', '42274696002561', 'comercial@adidasbrasil.com.br', 1155463700);"
+                VALUES ('Adidas do Brasil LTDA', '42274696002561', 'comercial@adidasbrasil.com.br', '1155463700'),
+                       ('Nike do Brasil LTDA', '59546515004555', 'comercial@nikebrasil.com.br', '1150399711'),
+                       ('Vans Do Brasil LTDA', '07900208007704', 'comercial@vansbrasil.com.br', '1156482955'),
+                       ('New Balance do Brasil LTDA', '45075049000141', 'comercial@newbalance.com.br', '1123949704'),
+                       ('Puma Sports LTDA', '05406034002229', 'vendas@pumabrasil.com.br', '1135896478'),
+                       ('Asics America Corporation', '08416135000144', 'empresarial@asicsbrasil', '1112659874');"
             );
         }
         public override void Down() {
             Execute.Sql(@"
                 DELETE FROM Marca 
-                WHERE nome IN (
+                WHERE Nome IN (
                     'Adidas do Brasil LTDA', 
-                                    
-);"
+                    'Nike do Brasil LTDA', 
+                    'Vans do Brasil LTDA', 
+                    'New Balance do Brasil do LTDA',
+                    'Puma Sports LTDA'),
+                    'Asics America Corporation');"
             );
-
         }
     }
 }
