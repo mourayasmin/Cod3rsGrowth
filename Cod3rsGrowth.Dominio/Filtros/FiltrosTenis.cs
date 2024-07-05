@@ -12,5 +12,6 @@ namespace Cod3rsGrowth.Dominio.Filtros
         public double Preco { get; set; }
         public LinhaEnum? Linha { get; set; }
         public bool Disponibilidade = false;
+        public List<int> IdsMarcas { get; set; }
     }
 }

@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            dataGridView1 = new DataGridView();
+            marcaDataGridView = new DataGridView();
             idDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             nomeDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             cnpjDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
@@ -39,7 +39,7 @@
             button1 = new Button();
             button2 = new Button();
             button3 = new Button();
-            dataGridView2 = new DataGridView();
+            tenisDataGridView = new DataGridView();
             linhaDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             idDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
             idmarcaDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
@@ -49,23 +49,26 @@
             nomeDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
             disponibilidadeDataGridViewCheckBoxColumn = new DataGridViewCheckBoxColumn();
             tenisBindingSource = new BindingSource(components);
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)marcaDataGridView).BeginInit();
             ((System.ComponentModel.ISupportInitialize)marcaBindingSource).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)tenisDataGridView).BeginInit();
             ((System.ComponentModel.ISupportInitialize)tenisBindingSource).BeginInit();
             SuspendLayout();
             // 
-            // dataGridView1
+            // marcaDataGridView
             // 
-            dataGridView1.AutoGenerateColumns = false;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { idDataGridViewTextBoxColumn, nomeDataGridViewTextBoxColumn, cnpjDataGridViewTextBoxColumn, emailDataGridViewTextBoxColumn, telefoneDataGridViewTextBoxColumn });
-            dataGridView1.DataSource = marcaBindingSource;
-            dataGridView1.Location = new Point(25, 26);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowTemplate.Height = 25;
-            dataGridView1.Size = new Size(543, 370);
-            dataGridView1.TabIndex = 0;
+            marcaDataGridView.AutoGenerateColumns = false;
+            marcaDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            marcaDataGridView.Columns.AddRange(new DataGridViewColumn[] { idDataGridViewTextBoxColumn, nomeDataGridViewTextBoxColumn, cnpjDataGridViewTextBoxColumn, emailDataGridViewTextBoxColumn, telefoneDataGridViewTextBoxColumn });
+            marcaDataGridView.DataSource = marcaBindingSource;
+            marcaDataGridView.Location = new Point(25, 77);
+            marcaDataGridView.Name = "marcaDataGridView";
+            marcaDataGridView.RowTemplate.Height = 25;
+            marcaDataGridView.Size = new Size(543, 319);
+            marcaDataGridView.TabIndex = 0;
+            marcaDataGridView.CellClick += marcaDataGridView_CellContentClick;
+            marcaDataGridView.CellContentClick += marcaDataGridView_CellContentClick;
+            marcaDataGridView.DragDrop += marcaDataGridView_CellContentClick;
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -130,18 +133,18 @@
             button3.Text = "Remover";
             button3.UseVisualStyleBackColor = true;
             // 
-            // dataGridView2
+            // tenisDataGridView
             // 
-            dataGridView2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            dataGridView2.AutoGenerateColumns = false;
-            dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView2.Columns.AddRange(new DataGridViewColumn[] { linhaDataGridViewTextBoxColumn, idDataGridViewTextBoxColumn1, idmarcaDataGridViewTextBoxColumn, precoDataGridViewTextBoxColumn, lancamentoDataGridViewTextBoxColumn, avaliacaoDataGridViewTextBoxColumn, nomeDataGridViewTextBoxColumn1, disponibilidadeDataGridViewCheckBoxColumn });
-            dataGridView2.DataSource = tenisBindingSource;
-            dataGridView2.Location = new Point(595, 26);
-            dataGridView2.Name = "dataGridView2";
-            dataGridView2.RowTemplate.Height = 25;
-            dataGridView2.Size = new Size(504, 370);
-            dataGridView2.TabIndex = 4;
+            tenisDataGridView.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            tenisDataGridView.AutoGenerateColumns = false;
+            tenisDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            tenisDataGridView.Columns.AddRange(new DataGridViewColumn[] { linhaDataGridViewTextBoxColumn, idDataGridViewTextBoxColumn1, idmarcaDataGridViewTextBoxColumn, precoDataGridViewTextBoxColumn, lancamentoDataGridViewTextBoxColumn, avaliacaoDataGridViewTextBoxColumn, nomeDataGridViewTextBoxColumn1, disponibilidadeDataGridViewCheckBoxColumn });
+            tenisDataGridView.DataSource = tenisBindingSource;
+            tenisDataGridView.Location = new Point(595, 77);
+            tenisDataGridView.Name = "tenisDataGridView";
+            tenisDataGridView.RowTemplate.Height = 25;
+            tenisDataGridView.Size = new Size(483, 319);
+            tenisDataGridView.TabIndex = 4;
             // 
             // linhaDataGridViewTextBoxColumn
             // 
@@ -200,23 +203,23 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1090, 459);
-            Controls.Add(dataGridView2);
+            Controls.Add(tenisDataGridView);
             Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(button1);
-            Controls.Add(dataGridView1);
+            Controls.Add(marcaDataGridView);
             Name = "TelaDeLista";
             Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)marcaDataGridView).EndInit();
             ((System.ComponentModel.ISupportInitialize)marcaBindingSource).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)tenisDataGridView).EndInit();
             ((System.ComponentModel.ISupportInitialize)tenisBindingSource).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private DataGridView dataGridView1;
+        private DataGridView marcaDataGridView;
         private Button button1;
         private Button button2;
         private Button button3;
@@ -226,7 +229,7 @@
         private DataGridViewTextBoxColumn emailDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn telefoneDataGridViewTextBoxColumn;
         private BindingSource marcaBindingSource;
-        private DataGridView dataGridView2;
+        private DataGridView tenisDataGridView;
         private DataGridViewTextBoxColumn linhaDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn1;
         private DataGridViewTextBoxColumn idmarcaDataGridViewTextBoxColumn;

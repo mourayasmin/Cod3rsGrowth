@@ -1,13 +1,5 @@
-using FluentMigrator.Runner;
 using Microsoft.Extensions.DependencyInjection;
 using Cod3rsGrowth.Servicos.Servicos;
-using Cod3rsGrowth.Infra;
-using LinqToDB;
-using LinqToDB.AspNet;
-using LinqToDB.AspNet.Logging;
-using Cod3rsGrowth.Dominio.InterfacesRepositorio;
-using Microsoft.Data.SqlClient;
-using Cod3rsGrowth.Infra.Repositories;
 using Cod3rsGrowth.Servicos.Injecao;
 using Cod3rsGrowth.Infra.Injecao;
 using System.Configuration;

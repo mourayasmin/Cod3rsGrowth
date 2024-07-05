@@ -4,7 +4,7 @@ using Cod3rsGrowth.Dominio.Filtros;
 using Cod3rsGrowth.Dominio.InterfacesRepositorio;
 using LinqToDB;
 
-namespace Cod3rsGrowth.Infra.Repositories
+namespace Cod3rsGrowth.Infra.Repositorios
 {
     public class RepositorioMarca : IRepositorioMarca
     {

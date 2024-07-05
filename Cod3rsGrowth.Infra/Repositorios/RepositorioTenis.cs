@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using LinqToDB;
 using System.Linq;
 
-namespace Cod3rsGrowth.Infra.Repositories
+namespace Cod3rsGrowth.Infra.Repositorios
 {
     public class RepositorioTenis : IRepositorioTenis
     {
@@ -13,7 +13,7 @@ namespace Cod3rsGrowth.Infra.Repositories
         {
             _db = db;
         }
-        public List<Tenis> ObterTodos(FiltrosTenis? filtros = null)
+        public List<Tenis> ObterTodos(FiltrosTenis? filtros)
         {
             IQueryable<Tenis> query = _db.Tenis.AsQueryable();
             if (filtros != null)
@@ -32,13 +32,17 @@ namespace Cod3rsGrowth.Infra.Repositories
                 {
                     query = query.Where(x => x.Nome == filtros.Nome);
                 }
-                if (filtros.Preco != null)
+                if (filtros.Preco != null && filtros.Preco != 0)
                 {
                     query = query.Where(x => x.Preco == filtros.Preco);
                 }
                 if (filtros.Lancamento != null)
                 {
                     query = query.Where(x => x.Lancamento == filtros.Lancamento);
+                }
+                if (filtros.IdsMarcas.Any())
+                {
+                    query = query.Where(x => filtros.IdsMarcas.Contains(x.Idmarca));
                 }
             }
             return query.ToList();
