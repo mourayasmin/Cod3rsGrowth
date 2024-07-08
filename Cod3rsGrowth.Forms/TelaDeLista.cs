@@ -8,13 +8,15 @@ namespace Cod3rsGrowth.Forms
     {
         private readonly ServicoMarca _servicoMarca;
         private readonly ServicoTenis _servicoTenis;
+        private readonly FiltrosMarca _filtrosMarca = new FiltrosMarca();
+
 
         public TelaDeLista(ServicoMarca servicoMarca, ServicoTenis servicoTenis)
         {
             _servicoMarca = servicoMarca;
             _servicoTenis = servicoTenis;
             InitializeComponent();
-            marcaDataGridView.DataSource = _servicoMarca.ObterTodas(null);
+            marcaDataGridView.DataSource = _servicoMarca.ObterTodas();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -23,7 +25,6 @@ namespace Cod3rsGrowth.Forms
 
         private void marcaDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            var marca = new Marca();
 
             if (marcaDataGridView.SelectedRows.Count != 0)
             {
@@ -38,6 +39,23 @@ namespace Cod3rsGrowth.Forms
         private void marcaDataGridView_CellContentClick(object sender, DragEventArgs e)
         {
 
+        }
+
+        private void textBoxBuscaMarca_TextChanged(object sender, EventArgs e)
+        {
+            _filtrosMarca.Nome = textBoxBuscaMarca.Text;
+            marcaDataGridView.DataSource = _servicoMarca.ObterTodas(_filtrosMarca);
+        }
+
+        private void dateTimePickerInicio_ValueChanged(object sender, EventArgs e)
+        {
+            _filtrosMarca.DataDeInicio = dateTimePickerInicio.Value;
+            marcaDataGridView.DataSource = _servicoMarca.ObterTodas(_filtrosMarca);
+        }
+        private void dateTimePickerFim_ValueChanged(object sender, EventArgs e)
+        {
+            _filtrosMarca.DataDeFim = dateTimePickerFim.Value;
+            marcaDataGridView.DataSource = _servicoMarca.ObterTodas(_filtrosMarca);
         }
     }
 }

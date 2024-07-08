@@ -22,7 +22,11 @@ namespace Cod3rsGrowth.Infra.Repositorios
                 {
                     if (filtros.Nome != null)
                     {
-                        query = query.Where(x => x.Nome == filtros.Nome);
+                        query = query.Where(x => x.Nome.Contains(filtros.Nome));
+                    }
+                    if(filtros.DataDeInicio != null && filtros.DataDeFim != null)
+                    {
+                        query = query.Where(marca => marca.DataDeCriacao >= filtros.DataDeInicio && marca.DataDeCriacao <= filtros.DataDeFim);
                     }
                 }
                 return query.ToList();

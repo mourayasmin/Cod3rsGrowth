@@ -1,5 +1,5 @@
-﻿using LinqToDB.Data;
-using LinqToDB.Mapping;
+﻿using LinqToDB.Mapping;
+using System;
 
 [Table("Marca")]
 public class Marca
@@ -18,4 +18,7 @@ public class Marca
 
     [Column("Telefone"), NotNull]
     public string Telefone { get; set; }
+
+    [Column("DataDeCriacao")]
+    public DateTime DataDeCriacao { get; set; }
 }
