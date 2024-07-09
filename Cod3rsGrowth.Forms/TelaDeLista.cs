@@ -1,5 +1,4 @@
 using Cod3rsGrowth.Dominio.Filtros;
-using Cod3rsGrowth.Infra.Repositorios;
 using Cod3rsGrowth.Servicos.Servicos;
 
 namespace Cod3rsGrowth.Forms
@@ -10,7 +9,6 @@ namespace Cod3rsGrowth.Forms
         private readonly ServicoTenis _servicoTenis;
         private readonly FiltrosMarca _filtrosMarca = new FiltrosMarca();
 
-
         public TelaDeLista(ServicoMarca servicoMarca, ServicoTenis servicoTenis)
         {
             _servicoMarca = servicoMarca;
@@ -19,13 +17,8 @@ namespace Cod3rsGrowth.Forms
             marcaDataGridView.DataSource = _servicoMarca.ObterTodas();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void aoClicarNoMarcaDataGridView(object sender, DataGridViewCellEventArgs e)
         {
-        }
-
-        private void marcaDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
             if (marcaDataGridView.SelectedRows.Count != 0)
             {
                 var idMarca = (int)marcaDataGridView.Rows[e.RowIndex].Cells[0].Value;
@@ -36,26 +29,35 @@ namespace Cod3rsGrowth.Forms
             }
         }
 
-        private void marcaDataGridView_CellContentClick(object sender, DragEventArgs e)
-        {
-
-        }
-
-        private void textBoxBuscaMarca_TextChanged(object sender, EventArgs e)
+        private void aoAlterarTextBoxBuscaMarca(object sender, EventArgs e)
         {
             _filtrosMarca.Nome = textBoxBuscaMarca.Text;
-            marcaDataGridView.DataSource = _servicoMarca.ObterTodas(_filtrosMarca);
+            marcaDataGridView.DataSource = _servicoMarca.ObterTodas(new FiltrosMarca { Nome = _filtrosMarca.Nome});
+            tenisDataGridView.DataSource = null;
         }
 
-        private void dateTimePickerInicio_ValueChanged(object sender, EventArgs e)
+        private void aoAlterarDateTimePickerInicio(object sender, EventArgs e)
         {
             _filtrosMarca.DataDeInicio = dateTimePickerInicio.Value;
-            marcaDataGridView.DataSource = _servicoMarca.ObterTodas(_filtrosMarca);
-        }
-        private void dateTimePickerFim_ValueChanged(object sender, EventArgs e)
-        {
             _filtrosMarca.DataDeFim = dateTimePickerFim.Value;
             marcaDataGridView.DataSource = _servicoMarca.ObterTodas(_filtrosMarca);
         }
+
+        private void aoAlterarDateTimePickerFim(object sender, EventArgs e)
+        {
+            _filtrosMarca.DataDeInicio = dateTimePickerInicio.Value;
+            _filtrosMarca.DataDeFim = dateTimePickerFim.Value;
+            marcaDataGridView.DataSource = _servicoMarca.ObterTodas(_filtrosMarca);
+        }
+
+        private void aoClicarNoBotaoLimparFiltros(object sender, EventArgs e)
+        {
+            textBoxBuscaMarca.Clear();
+            dateTimePickerFim.Value = DateTime.Today.Date;
+            dateTimePickerInicio.Value = DateTime.Today.Date;
+            marcaDataGridView.DataSource = _servicoMarca.ObterTodas(null);
+            tenisDataGridView.DataSource = null;
+        }
     }
 }
+

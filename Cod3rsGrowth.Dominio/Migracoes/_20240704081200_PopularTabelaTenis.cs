@@ -1,7 +1,4 @@
 ﻿using FluentMigrator;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Cod3rsGrowth.Dominio.Migracoes
 {
@@ -25,6 +22,7 @@ namespace Cod3rsGrowth.Dominio.Migracoes
                (2, 'Nike Full Force Low', 1, 699.99, 8.0, '05/09/2020', 0);"
             );
         }
+
         public override void Down()
         {
             Execute.Sql(@"

@@ -15,6 +15,7 @@ namespace Cod3rsGrowth.Dominio.Migracoes
                 .WithColumn("Telefone").AsString().NotNullable()
                 .WithColumn("DataDeCriacao").AsDateTime().Nullable();
         }
+
         public override void Down()
         {
             Delete.Table("Marca");

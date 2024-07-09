@@ -1,7 +1,4 @@
 ﻿using FluentMigrator;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Cod3rsGrowth.Dominio.Migracoes
 {
@@ -20,6 +17,7 @@ namespace Cod3rsGrowth.Dominio.Migracoes
                        ('Asics America Corporation', '08416135000144', 'empresarial@asicsbrasil', '1112659874', '21/07/1977');"
             );
         }
+
         public override void Down() {
             Execute.Sql(@"
                 DELETE FROM Marca 

@@ -29,7 +29,7 @@ namespace Cod3rsGrowth.Infra.Repositorios
                         query = query.Where(marca => marca.DataDeCriacao >= filtros.DataDeInicio && marca.DataDeCriacao <= filtros.DataDeFim);
                     }
                 }
-                return query.ToList();
+              return query.ToList();
         }
 
         public Marca Criar(Marca marca)

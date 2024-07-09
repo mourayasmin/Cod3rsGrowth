@@ -1,16 +1,10 @@
 ﻿using Cod3rsGrowth.Dominio.InterfacesRepositorio;
-using Cod3rsGrowth.Servicos.Servicos;
-using Cod3rsGrowth.Servicos.Validacoes;
-using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 using LinqToDB;
 using LinqToDB.AspNet;
 using LinqToDB.AspNet.Logging;
 using Cod3rsGrowth.Infra.Repositorios;
-using System.Configuration;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using FluentMigrator.Runner;
 using Cod3rsGrowth.Dominio.Migracoes;
 
