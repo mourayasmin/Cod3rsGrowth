@@ -1,5 +1,4 @@
-﻿using Cod3rsGrowth.Dominio;
-using Cod3rsGrowth.Dominio.Filtros;
+﻿using Cod3rsGrowth.Dominio.Filtros;
 using Cod3rsGrowth.Dominio.InterfacesRepositorio;
 using FluentValidation;
 using System;

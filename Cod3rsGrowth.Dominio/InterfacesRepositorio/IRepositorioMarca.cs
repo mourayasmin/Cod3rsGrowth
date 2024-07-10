@@ -9,6 +9,6 @@ namespace Cod3rsGrowth.Dominio.InterfacesRepositorio
         public Marca ObterPorId(int id);
         public Marca Atualizar(Marca marca);
         public void Deletar(int id);
-        public List<Marca> ObterTodas(FiltrosMarca? filtros);
+        public List<Marca> ObterTodas(FiltrosMarca? filtros = null);
     }
 }

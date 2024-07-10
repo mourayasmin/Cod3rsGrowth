@@ -1,6 +1,5 @@
 ﻿using Cod3rsGrowth.Dominio.Enum;
 using System;
-using LinqToDB.Data;
 using LinqToDB.Mapping;
 
 [Table("Tenis")]
