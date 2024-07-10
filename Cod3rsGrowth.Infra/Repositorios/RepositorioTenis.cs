@@ -32,19 +32,23 @@ namespace Cod3rsGrowth.Infra.Repositorios
                 {
                     query = query.Where(x => x.Nome == filtros.Nome);
                 }
+
                 if (filtros.Preco != null && filtros.Preco != 0)
                 {
                     query = query.Where(x => x.Preco == filtros.Preco);
                 }
+
                 if (filtros.Lancamento != null)
                 {
                     query = query.Where(x => x.Lancamento == filtros.Lancamento);
                 }
+
                 if (filtros.IdsMarcas.Any())
                 {
                     query = query.Where(x => filtros.IdsMarcas.Contains(x.Idmarca));
                 }
             }
+
             return query.ToList();
         }
 

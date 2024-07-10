@@ -16,20 +16,21 @@ namespace Cod3rsGrowth.Infra.Repositorios
 
         public List<Marca> ObterTodas(FiltrosMarca? filtros = null)
         {
-            
-                IQueryable<Marca> query = _db.Marca.AsQueryable();
-                if (filtros != null)
+            IQueryable<Marca> query = _db.Marca.AsQueryable();
+            if (filtros != null)
+            {
+                if (filtros.Nome != null)
                 {
-                    if (filtros.Nome != null)
-                    {
-                        query = query.Where(x => x.Nome.Contains(filtros.Nome));
-                    }
-                    if(filtros.DataDeInicio != null && filtros.DataDeFim != null)
-                    {
-                        query = query.Where(marca => marca.DataDeCriacao >= filtros.DataDeInicio && marca.DataDeCriacao <= filtros.DataDeFim);
-                    }
+                    query = query.Where(x => x.Nome.Contains(filtros.Nome));
                 }
-              return query.ToList();
+
+                if(filtros.DataDeInicio != null && filtros.DataDeFim != null)
+                {
+                    query = query.Where(marca => marca.DataDeCriacao >= filtros.DataDeInicio && marca.DataDeCriacao <= filtros.DataDeFim);
+                }
+            }
+
+            return query.ToList();
         }
 
         public Marca Criar(Marca marca)
@@ -40,8 +41,8 @@ namespace Cod3rsGrowth.Infra.Repositorios
 
         public Marca ObterPorId(int id)
         {
-                var marca = _db.Marca.FirstOrDefault(x => x.Id == id);
-                return marca;
+            var marca = _db.Marca.FirstOrDefault(x => x.Id == id);
+            return marca;
         }
 
         public Marca Atualizar(Marca marca)
@@ -52,8 +53,8 @@ namespace Cod3rsGrowth.Infra.Repositorios
 
         public void Deletar(int id)
         {
-                var marca = _db.Tenis.Where(x => x.Id == id);
-                _db.Delete(marca);
+            var marca = _db.Tenis.Where(x => x.Id == id);
+            _db.Delete(marca);
         }
     }
 }

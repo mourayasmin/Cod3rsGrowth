@@ -19,9 +19,12 @@ namespace Cod3rsGrowth.Forms
 
         private void aoClicarNoMarcaDataGridView(object sender, DataGridViewCellEventArgs e)
         {
-            if (marcaDataGridView.SelectedRows.Count != 0)
+            var quantidadeDeLinhasSelecionadas = marcaDataGridView.SelectedRows.Count;
+            const int vazio = 0;
+            const int colunaId = 0;
+            if (quantidadeDeLinhasSelecionadas != vazio)
             {
-                var idMarca = (int)marcaDataGridView.Rows[e.RowIndex].Cells[0].Value;
+                var idMarca = (int)marcaDataGridView.Rows[e.RowIndex].Cells[colunaId].Value;
                 tenisDataGridView.DataSource = _servicoTenis.ObterTodos(new FiltrosTenis
                 {
                     IdsMarcas = new List<int> { idMarca },
