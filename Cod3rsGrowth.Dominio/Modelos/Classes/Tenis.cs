@@ -8,7 +8,7 @@ using LinqToDB.Mapping;
     [Column("Linha")]
         public LinhaEnum? Linha { get; set; }
 
-    [PrimaryKey]
+    [PrimaryKey, Identity]
         public int Id { get; set; }
 
     [Column("Idmarca")]

@@ -59,6 +59,9 @@
             groupBox1 = new GroupBox();
             botaoLimparFiltros = new Button();
             labelTabelatenis = new Label();
+            button1 = new Button();
+            button2 = new Button();
+            button3 = new Button();
             ((System.ComponentModel.ISupportInitialize)marcaDataGridView).BeginInit();
             ((System.ComponentModel.ISupportInitialize)marcaBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)tenisDataGridView).BeginInit();
@@ -134,6 +137,7 @@
             botaoAdicionar.TabIndex = 1;
             botaoAdicionar.Text = "Adicionar";
             botaoAdicionar.UseVisualStyleBackColor = true;
+            botaoAdicionar.Click += aoClicarNoBotaoAdicionar;
             // 
             // botaoEditar
             // 
@@ -312,11 +316,41 @@
             labelTabelatenis.TabIndex = 14;
             labelTabelatenis.Text = "Relação De Tênis Por Marca";
             // 
+            // button1
+            // 
+            button1.Location = new Point(836, 440);
+            button1.Name = "button1";
+            button1.Size = new Size(75, 23);
+            button1.TabIndex = 15;
+            button1.Text = "Adicionar";
+            button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            button2.Location = new Point(940, 440);
+            button2.Name = "button2";
+            button2.Size = new Size(75, 23);
+            button2.TabIndex = 16;
+            button2.Text = "Editar";
+            button2.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            button3.Location = new Point(1040, 440);
+            button3.Name = "button3";
+            button3.Size = new Size(75, 23);
+            button3.TabIndex = 17;
+            button3.Text = "Remover";
+            button3.UseVisualStyleBackColor = true;
+            // 
             // TelaDeLista
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1127, 489);
+            Controls.Add(button3);
+            Controls.Add(button2);
+            Controls.Add(button1);
             Controls.Add(labelTabelatenis);
             Controls.Add(groupBox1);
             Controls.Add(tenisDataGridView);
@@ -368,5 +402,8 @@
         private DataGridViewCheckBoxColumn disponibilidadeDataGridViewCheckBoxColumn;
         private DataGridViewTextBoxColumn lancamentoDataGridViewTextBoxColumn;
         private Label labelTabelatenis;
+        private Button button1;
+        private Button button2;
+        private Button button3;
     }
 }

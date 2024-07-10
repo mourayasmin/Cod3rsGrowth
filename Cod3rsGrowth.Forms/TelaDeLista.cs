@@ -24,7 +24,7 @@ namespace Cod3rsGrowth.Forms
             const int colunaId = 0;
             string tituloDoErro = "Erro";
             string mensagemDeErro = "Selecione apenas uma marca.";
-            try 
+            try
             {
                 var idMarca = (int)marcaDataGridView.Rows[e.RowIndex].Cells[colunaId].Value;
                 tenisDataGridView.DataSource = _servicoTenis.ObterTodos(new FiltrosTenis
@@ -41,7 +41,7 @@ namespace Cod3rsGrowth.Forms
         private void aoAlterarTextBoxBuscaMarca(object sender, EventArgs e)
         {
             _filtrosMarca.Nome = textBoxBuscaMarca.Text;
-            marcaDataGridView.DataSource = _servicoMarca.ObterTodas(new FiltrosMarca { Nome = _filtrosMarca.Nome});
+            marcaDataGridView.DataSource = _servicoMarca.ObterTodas(new FiltrosMarca { Nome = _filtrosMarca.Nome });
             tenisDataGridView.DataSource = null;
         }
 
@@ -70,7 +70,14 @@ namespace Cod3rsGrowth.Forms
 
         private void mostrarMensagemDeErro(string tituloDoErro, string mensagemDeErro)
         {
-            MessageBox.Show(tituloDoErro, mensagemDeErro,  MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(tituloDoErro, mensagemDeErro, MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void aoClicarNoBotaoAdicionar(object sender, EventArgs e)
+        {
+            TelaDeCadastroMarca formularioCadastro = new TelaDeCadastroMarca(_servicoMarca, _servicoTenis);
+            formularioCadastro.ShowDialog();
+            marcaDataGridView.DataSource = _servicoMarca.ObterTodas();
         }
     }
 }
