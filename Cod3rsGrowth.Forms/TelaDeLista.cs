@@ -22,13 +22,19 @@ namespace Cod3rsGrowth.Forms
             var quantidadeDeLinhasSelecionadas = marcaDataGridView.SelectedRows.Count;
             const int vazio = 0;
             const int colunaId = 0;
-            if (quantidadeDeLinhasSelecionadas != vazio)
+            string tituloDoErro = "Erro";
+            string mensagemDeErro = "Selecione apenas uma marca.";
+            try 
             {
                 var idMarca = (int)marcaDataGridView.Rows[e.RowIndex].Cells[colunaId].Value;
                 tenisDataGridView.DataSource = _servicoTenis.ObterTodos(new FiltrosTenis
                 {
                     IdsMarcas = new List<int> { idMarca },
                 });
+            }
+            catch (Exception)
+            {
+                mostrarMensagemDeErro(mensagemDeErro, tituloDoErro);
             }
         }
 
@@ -60,6 +66,11 @@ namespace Cod3rsGrowth.Forms
             dateTimePickerInicio.Value = DateTime.Today.Date;
             marcaDataGridView.DataSource = _servicoMarca.ObterTodas(null);
             tenisDataGridView.DataSource = null;
+        }
+
+        private void mostrarMensagemDeErro(string tituloDoErro, string mensagemDeErro)
+        {
+            MessageBox.Show(tituloDoErro, mensagemDeErro,  MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }
