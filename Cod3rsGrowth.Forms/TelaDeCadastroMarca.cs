@@ -1,4 +1,6 @@
 ﻿using Cod3rsGrowth.Servicos.Servicos;
+using Cod3rsGrowth.Servicos.Validacoes;
+using FluentValidation;
 
 
 namespace Cod3rsGrowth.Forms
@@ -8,7 +10,8 @@ namespace Cod3rsGrowth.Forms
 
         private readonly ServicoMarca _servicoMarca;
         private readonly ServicoTenis _servicoTenis;
-        private readonly DataGridView marcaDataGridView;
+        private readonly DataGridView _marcaDataGridView;
+        private readonly ValidacaoMarca _validacaoMarca;
 
         public TelaDeCadastroMarca(ServicoMarca servicoMarca, ServicoTenis servicoTenis)
         {
@@ -17,14 +20,12 @@ namespace Cod3rsGrowth.Forms
             InitializeComponent();
         }
 
-        private void aoClicarNoBotaoSalvarCadastroMarca(object sender, EventArgs e)
+        private void AoClicarNoBotaoSalvarCadastroMarca(object sender, EventArgs e)
         {
-            maskedTextBoxCNPJCadastroMarca.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
-            maskedTextBoxTelefoneCadastroMarca.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
-            var mensagemDeSucesso = "Marca cadastrada com sucesso.";
-
             try
             {
+                maskedTextBoxCNPJCadastroMarca.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
+                maskedTextBoxTelefoneCadastroMarca.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
                 Marca marcaAdicionada = new Marca
                 {
                     Nome = textBoxNomeCadastroMarca.Text,
@@ -34,16 +35,23 @@ namespace Cod3rsGrowth.Forms
                     DataDeCriacao = dateTimePickerDataDeCriacaoCadastroMarca.Value
                 };
                 _servicoMarca.Criar(marcaAdicionada);
-                MessageBox.Show(mensagemDeSucesso);
+                string mensagem = "Marca cadastrada com sucesso.";
+                MensagensErroOuSucesso.MostrarMensagemDeSucesso(mensagem);
                 this.Close();
             }
-            catch (Exception)
+            catch (ValidationException excecoes)
             {
+                string mensagemErro = "";
 
+                foreach (var erro in excecoes.Errors)
+                {
+                    mensagemErro += erro.ErrorMessage + "\n";
+                }
+                MensagensErroOuSucesso.MostrarMensagemDeErro(mensagemErro);
             }
         }
 
-        private void aoClicarNoBotaoCancelarCadastroMarca(object sender, EventArgs e)
+        private void AoClicarNoBotaoCancelarCadastroMarca(object sender, EventArgs e)
         {
             textBoxNomeCadastroMarca.Clear();
             maskedTextBoxCNPJCadastroMarca.Clear();

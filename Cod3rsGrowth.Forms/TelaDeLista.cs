@@ -17,12 +17,11 @@ namespace Cod3rsGrowth.Forms
             marcaDataGridView.DataSource = _servicoMarca.ObterTodas();
         }
 
-        private void aoClicarNoMarcaDataGridView(object sender, DataGridViewCellEventArgs e)
+        private void AoClicarNoMarcaDataGridView(object sender, DataGridViewCellEventArgs e)
         {
             var quantidadeDeLinhasSelecionadas = marcaDataGridView.SelectedRows.Count;
             const int vazio = 0;
             const int colunaId = 0;
-            string tituloDoErro = "Erro";
             string mensagemDeErro = "Selecione apenas uma marca.";
             try
             {
@@ -34,32 +33,32 @@ namespace Cod3rsGrowth.Forms
             }
             catch (Exception)
             {
-                mostrarMensagemDeErro(mensagemDeErro, tituloDoErro);
+                MensagensErroOuSucesso.MostrarMensagemDeErro(mensagemDeErro);
             }
         }
 
-        private void aoAlterarTextBoxBuscaMarca(object sender, EventArgs e)
+        private void AoAlterarTextBoxBuscaMarca(object sender, EventArgs e)
         {
             _filtrosMarca.Nome = textBoxBuscaMarca.Text;
             marcaDataGridView.DataSource = _servicoMarca.ObterTodas(new FiltrosMarca { Nome = _filtrosMarca.Nome });
             tenisDataGridView.DataSource = null;
         }
 
-        private void aoAlterarDateTimePickerInicio(object sender, EventArgs e)
+        private void AoAlterarDateTimePickerInicio(object sender, EventArgs e)
         {
             _filtrosMarca.DataDeInicio = dateTimePickerInicio.Value;
             _filtrosMarca.DataDeFim = dateTimePickerFim.Value;
             marcaDataGridView.DataSource = _servicoMarca.ObterTodas(_filtrosMarca);
         }
 
-        private void aoAlterarDateTimePickerFim(object sender, EventArgs e)
+        private void AoAlterarDateTimePickerFim(object sender, EventArgs e)
         {
             _filtrosMarca.DataDeInicio = dateTimePickerInicio.Value;
             _filtrosMarca.DataDeFim = dateTimePickerFim.Value;
             marcaDataGridView.DataSource = _servicoMarca.ObterTodas(_filtrosMarca);
         }
 
-        private void aoClicarNoBotaoLimparFiltros(object sender, EventArgs e)
+        private void AoClicarNoBotaoLimparFiltros(object sender, EventArgs e)
         {
             textBoxBuscaMarca.Clear();
             dateTimePickerFim.Value = DateTime.Today.Date;
@@ -68,16 +67,18 @@ namespace Cod3rsGrowth.Forms
             tenisDataGridView.DataSource = null;
         }
 
-        private void mostrarMensagemDeErro(string tituloDoErro, string mensagemDeErro)
-        {
-            MessageBox.Show(tituloDoErro, mensagemDeErro, MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
-
-        private void aoClicarNoBotaoAdicionar(object sender, EventArgs e)
+        private void AoClicarNoBotaoAdicionarMarca(object sender, EventArgs e)
         {
             TelaDeCadastroMarca formularioCadastro = new TelaDeCadastroMarca(_servicoMarca, _servicoTenis);
             formularioCadastro.ShowDialog();
             marcaDataGridView.DataSource = _servicoMarca.ObterTodas();
+        }
+
+        private void AoClicarNoBotaoAdicionarTenis(object sender, EventArgs e)
+        {
+            TelaDeCadastroTenis formularioCadastro = new TelaDeCadastroTenis(_servicoMarca, _servicoTenis);
+            formularioCadastro.ShowDialog();
+            tenisDataGridView.DataSource = _servicoTenis.ObterTodos();
         }
     }
 }

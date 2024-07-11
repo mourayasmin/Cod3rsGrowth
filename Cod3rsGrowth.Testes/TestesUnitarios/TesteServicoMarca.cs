@@ -1,5 +1,4 @@
-﻿using Cod3rsGrowth.Dominio;
-using Cod3rsGrowth.Servicos.Servicos;
+﻿using Cod3rsGrowth.Servicos.Servicos;
 using Cod3rsGrowth.Testes.ClassesSingleton;
 using Cod3rsGrowth.Testes.Configuracoes;
 using FluentValidation;

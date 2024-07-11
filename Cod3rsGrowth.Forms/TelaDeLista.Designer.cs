@@ -80,7 +80,7 @@
             marcaDataGridView.RowTemplate.Height = 25;
             marcaDataGridView.Size = new Size(641, 242);
             marcaDataGridView.TabIndex = 0;
-            marcaDataGridView.CellClick += aoClicarNoMarcaDataGridView;
+            marcaDataGridView.CellClick += AoClicarNoMarcaDataGridView;
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -137,7 +137,7 @@
             botaoAdicionar.TabIndex = 1;
             botaoAdicionar.Text = "Adicionar";
             botaoAdicionar.UseVisualStyleBackColor = true;
-            botaoAdicionar.Click += aoClicarNoBotaoAdicionar;
+            botaoAdicionar.Click += AoClicarNoBotaoAdicionarMarca;
             // 
             // botaoEditar
             // 
@@ -231,7 +231,7 @@
             textBoxBuscaMarca.PlaceholderText = "Buscar Por Nome";
             textBoxBuscaMarca.Size = new Size(243, 23);
             textBoxBuscaMarca.TabIndex = 7;
-            textBoxBuscaMarca.TextChanged += aoAlterarTextBoxBuscaMarca;
+            textBoxBuscaMarca.TextChanged += AoAlterarTextBoxBuscaMarca;
             // 
             // dateTimePickerInicio
             // 
@@ -241,7 +241,7 @@
             dateTimePickerInicio.Size = new Size(97, 23);
             dateTimePickerInicio.TabIndex = 8;
             dateTimePickerInicio.Value = new DateTime(2024, 7, 9, 0, 0, 0, 0);
-            dateTimePickerInicio.ValueChanged += aoAlterarDateTimePickerInicio;
+            dateTimePickerInicio.ValueChanged += AoAlterarDateTimePickerInicio;
             // 
             // dateTimePickerFim
             // 
@@ -251,7 +251,7 @@
             dateTimePickerFim.Size = new Size(97, 23);
             dateTimePickerFim.TabIndex = 9;
             dateTimePickerFim.Value = new DateTime(2024, 7, 9, 0, 0, 0, 0);
-            dateTimePickerFim.ValueChanged += aoAlterarDateTimePickerFim;
+            dateTimePickerFim.ValueChanged += AoAlterarDateTimePickerFim;
             // 
             // descricaoCalendarioMarca
             // 
@@ -305,7 +305,7 @@
             botaoLimparFiltros.TabIndex = 13;
             botaoLimparFiltros.Text = "Limpar Filtros";
             botaoLimparFiltros.UseVisualStyleBackColor = true;
-            botaoLimparFiltros.Click += aoClicarNoBotaoLimparFiltros;
+            botaoLimparFiltros.Click += AoClicarNoBotaoLimparFiltros;
             // 
             // labelTabelatenis
             // 
@@ -324,6 +324,7 @@
             button1.TabIndex = 15;
             button1.Text = "Adicionar";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += AoClicarNoBotaoAdicionarTenis;
             // 
             // button2
             // 

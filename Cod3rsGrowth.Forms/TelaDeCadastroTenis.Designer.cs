@@ -28,12 +28,208 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "CadastroTenis";
+            textBoxNomeCadastroTenis = new TextBox();
+            textBoxIdMarcaCadastroTenis = new TextBox();
+            textBoxPrecoCadastroTenis = new TextBox();
+            comboBoxLinhaCadastroTenis = new ComboBox();
+            textBoxAvaliacaoCadastroTenis = new TextBox();
+            dateTimePickerLancamentoCadastroTenis = new DateTimePicker();
+            checkBoxDisponibilidadeCadastroTenis = new CheckBox();
+            groupBoxInformacoesDoTenisCadastroTenis = new GroupBox();
+            labelLancamentoCadastroTenis = new Label();
+            labelAvaliacaoCadastroTenis = new Label();
+            labelPrecoCadastroTenis = new Label();
+            labelIdDaMarcaCadastroTenis = new Label();
+            labelLinhaCadastroTenis = new Label();
+            labelNomeCadastroTenis = new Label();
+            botaoSalvarCadastroTenis = new Button();
+            botaoCancelarCadastroTenis = new Button();
+            groupBoxInformacoesDoTenisCadastroTenis.SuspendLayout();
+            SuspendLayout();
+            // 
+            // textBoxNomeCadastroTenis
+            // 
+            textBoxNomeCadastroTenis.Location = new Point(8, 45);
+            textBoxNomeCadastroTenis.Name = "textBoxNomeCadastroTenis";
+            textBoxNomeCadastroTenis.Size = new Size(148, 23);
+            textBoxNomeCadastroTenis.TabIndex = 0;
+            // 
+            // textBoxIdMarcaCadastroTenis
+            // 
+            textBoxIdMarcaCadastroTenis.Location = new Point(197, 45);
+            textBoxIdMarcaCadastroTenis.Name = "textBoxIdMarcaCadastroTenis";
+            textBoxIdMarcaCadastroTenis.Size = new Size(148, 23);
+            textBoxIdMarcaCadastroTenis.TabIndex = 1;
+            // 
+            // textBoxPrecoCadastroTenis
+            // 
+            textBoxPrecoCadastroTenis.Location = new Point(8, 99);
+            textBoxPrecoCadastroTenis.Name = "textBoxPrecoCadastroTenis";
+            textBoxPrecoCadastroTenis.Size = new Size(148, 23);
+            textBoxPrecoCadastroTenis.TabIndex = 2;
+            // 
+            // comboBoxLinhaCadastroTenis
+            // 
+            comboBoxLinhaCadastroTenis.FormattingEnabled = true;
+            comboBoxLinhaCadastroTenis.Location = new Point(198, 99);
+            comboBoxLinhaCadastroTenis.Name = "comboBoxLinhaCadastroTenis";
+            comboBoxLinhaCadastroTenis.Size = new Size(148, 23);
+            comboBoxLinhaCadastroTenis.TabIndex = 3;
+            // 
+            // textBoxAvaliacaoCadastroTenis
+            // 
+            textBoxAvaliacaoCadastroTenis.Location = new Point(8, 169);
+            textBoxAvaliacaoCadastroTenis.Name = "textBoxAvaliacaoCadastroTenis";
+            textBoxAvaliacaoCadastroTenis.Size = new Size(148, 23);
+            textBoxAvaliacaoCadastroTenis.TabIndex = 4;
+            // 
+            // dateTimePickerLancamentoCadastroTenis
+            // 
+            dateTimePickerLancamentoCadastroTenis.Format = DateTimePickerFormat.Short;
+            dateTimePickerLancamentoCadastroTenis.Location = new Point(201, 169);
+            dateTimePickerLancamentoCadastroTenis.Name = "dateTimePickerLancamentoCadastroTenis";
+            dateTimePickerLancamentoCadastroTenis.Size = new Size(148, 23);
+            dateTimePickerLancamentoCadastroTenis.TabIndex = 5;
+            // 
+            // checkBoxDisponibilidadeCadastroTenis
+            // 
+            checkBoxDisponibilidadeCadastroTenis.AutoSize = true;
+            checkBoxDisponibilidadeCadastroTenis.Location = new Point(8, 229);
+            checkBoxDisponibilidadeCadastroTenis.Name = "checkBoxDisponibilidadeCadastroTenis";
+            checkBoxDisponibilidadeCadastroTenis.Size = new Size(108, 19);
+            checkBoxDisponibilidadeCadastroTenis.TabIndex = 6;
+            checkBoxDisponibilidadeCadastroTenis.Text = "Disponibilidade";
+            checkBoxDisponibilidadeCadastroTenis.UseVisualStyleBackColor = true;
+            // 
+            // groupBoxInformacoesDoTenisCadastroTenis
+            // 
+            groupBoxInformacoesDoTenisCadastroTenis.Controls.Add(labelLancamentoCadastroTenis);
+            groupBoxInformacoesDoTenisCadastroTenis.Controls.Add(labelAvaliacaoCadastroTenis);
+            groupBoxInformacoesDoTenisCadastroTenis.Controls.Add(labelPrecoCadastroTenis);
+            groupBoxInformacoesDoTenisCadastroTenis.Controls.Add(labelIdDaMarcaCadastroTenis);
+            groupBoxInformacoesDoTenisCadastroTenis.Controls.Add(labelLinhaCadastroTenis);
+            groupBoxInformacoesDoTenisCadastroTenis.Controls.Add(labelNomeCadastroTenis);
+            groupBoxInformacoesDoTenisCadastroTenis.Controls.Add(textBoxNomeCadastroTenis);
+            groupBoxInformacoesDoTenisCadastroTenis.Controls.Add(checkBoxDisponibilidadeCadastroTenis);
+            groupBoxInformacoesDoTenisCadastroTenis.Controls.Add(textBoxIdMarcaCadastroTenis);
+            groupBoxInformacoesDoTenisCadastroTenis.Controls.Add(dateTimePickerLancamentoCadastroTenis);
+            groupBoxInformacoesDoTenisCadastroTenis.Controls.Add(textBoxPrecoCadastroTenis);
+            groupBoxInformacoesDoTenisCadastroTenis.Controls.Add(textBoxAvaliacaoCadastroTenis);
+            groupBoxInformacoesDoTenisCadastroTenis.Controls.Add(comboBoxLinhaCadastroTenis);
+            groupBoxInformacoesDoTenisCadastroTenis.Location = new Point(14, 13);
+            groupBoxInformacoesDoTenisCadastroTenis.Name = "groupBoxInformacoesDoTenisCadastroTenis";
+            groupBoxInformacoesDoTenisCadastroTenis.Size = new Size(355, 277);
+            groupBoxInformacoesDoTenisCadastroTenis.TabIndex = 7;
+            groupBoxInformacoesDoTenisCadastroTenis.TabStop = false;
+            groupBoxInformacoesDoTenisCadastroTenis.Text = "Informações do tênis";
+            // 
+            // labelLancamentoCadastroTenis
+            // 
+            labelLancamentoCadastroTenis.AutoSize = true;
+            labelLancamentoCadastroTenis.Location = new Point(197, 151);
+            labelLancamentoCadastroTenis.Name = "labelLancamentoCadastroTenis";
+            labelLancamentoCadastroTenis.Size = new Size(113, 15);
+            labelLancamentoCadastroTenis.TabIndex = 12;
+            labelLancamentoCadastroTenis.Text = "Data de lançamento";
+            // 
+            // labelAvaliacaoCadastroTenis
+            // 
+            labelAvaliacaoCadastroTenis.AutoSize = true;
+            labelAvaliacaoCadastroTenis.Location = new Point(8, 151);
+            labelAvaliacaoCadastroTenis.Name = "labelAvaliacaoCadastroTenis";
+            labelAvaliacaoCadastroTenis.Size = new Size(58, 15);
+            labelAvaliacaoCadastroTenis.TabIndex = 11;
+            labelAvaliacaoCadastroTenis.Text = "Avaliação";
+            // 
+            // labelPrecoCadastroTenis
+            // 
+            labelPrecoCadastroTenis.AutoSize = true;
+            labelPrecoCadastroTenis.Location = new Point(6, 81);
+            labelPrecoCadastroTenis.Name = "labelPrecoCadastroTenis";
+            labelPrecoCadastroTenis.Size = new Size(37, 15);
+            labelPrecoCadastroTenis.TabIndex = 10;
+            labelPrecoCadastroTenis.Text = "Preço";
+            // 
+            // labelIdDaMarcaCadastroTenis
+            // 
+            labelIdDaMarcaCadastroTenis.AutoSize = true;
+            labelIdDaMarcaCadastroTenis.Location = new Point(198, 17);
+            labelIdDaMarcaCadastroTenis.Name = "labelIdDaMarcaCadastroTenis";
+            labelIdDaMarcaCadastroTenis.Size = new Size(70, 15);
+            labelIdDaMarcaCadastroTenis.TabIndex = 9;
+            labelIdDaMarcaCadastroTenis.Text = "ID da marca";
+            // 
+            // labelLinhaCadastroTenis
+            // 
+            labelLinhaCadastroTenis.AutoSize = true;
+            labelLinhaCadastroTenis.Location = new Point(197, 81);
+            labelLinhaCadastroTenis.Name = "labelLinhaCadastroTenis";
+            labelLinhaCadastroTenis.Size = new Size(36, 15);
+            labelLinhaCadastroTenis.TabIndex = 8;
+            labelLinhaCadastroTenis.Text = "Linha";
+            // 
+            // labelNomeCadastroTenis
+            // 
+            labelNomeCadastroTenis.AutoSize = true;
+            labelNomeCadastroTenis.Location = new Point(8, 27);
+            labelNomeCadastroTenis.Name = "labelNomeCadastroTenis";
+            labelNomeCadastroTenis.Size = new Size(40, 15);
+            labelNomeCadastroTenis.TabIndex = 7;
+            labelNomeCadastroTenis.Text = "Nome";
+            // 
+            // botaoSalvarCadastroTenis
+            // 
+            botaoSalvarCadastroTenis.Location = new Point(14, 318);
+            botaoSalvarCadastroTenis.Name = "botaoSalvarCadastroTenis";
+            botaoSalvarCadastroTenis.Size = new Size(75, 23);
+            botaoSalvarCadastroTenis.TabIndex = 8;
+            botaoSalvarCadastroTenis.Text = "Salvar";
+            botaoSalvarCadastroTenis.UseVisualStyleBackColor = true;
+            botaoSalvarCadastroTenis.Click += AoClicarNoBotaoSalvarCadastroTenis;
+            // 
+            // botaoCancelarCadastroTenis
+            // 
+            botaoCancelarCadastroTenis.Location = new Point(294, 318);
+            botaoCancelarCadastroTenis.Name = "botaoCancelarCadastroTenis";
+            botaoCancelarCadastroTenis.Size = new Size(75, 23);
+            botaoCancelarCadastroTenis.TabIndex = 9;
+            botaoCancelarCadastroTenis.Text = "Cancelar";
+            botaoCancelarCadastroTenis.UseVisualStyleBackColor = true;
+            botaoCancelarCadastroTenis.Click += AoClicarNoBotaoCancelarCadastroTenis;
+            // 
+            // TelaDeCadastroTenis
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(381, 376);
+            Controls.Add(botaoCancelarCadastroTenis);
+            Controls.Add(botaoSalvarCadastroTenis);
+            Controls.Add(groupBoxInformacoesDoTenisCadastroTenis);
+            Name = "TelaDeCadastroTenis";
+            Text = "Cadastrar Tênis";
+            Load += TelaDeCadastroTenis_Load;
+            groupBoxInformacoesDoTenisCadastroTenis.ResumeLayout(false);
+            groupBoxInformacoesDoTenisCadastroTenis.PerformLayout();
+            ResumeLayout(false);
         }
 
         #endregion
+
+        private TextBox textBoxNomeCadastroTenis;
+        private TextBox textBoxIdMarcaCadastroTenis;
+        private TextBox textBoxPrecoCadastroTenis;
+        private ComboBox comboBoxLinhaCadastroTenis;
+        private TextBox textBoxAvaliacaoCadastroTenis;
+        private DateTimePicker dateTimePickerLancamentoCadastroTenis;
+        private CheckBox checkBoxDisponibilidadeCadastroTenis;
+        private GroupBox groupBoxInformacoesDoTenisCadastroTenis;
+        private Label labelNomeCadastroTenis;
+        private Label labelLinhaCadastroTenis;
+        private Label labelIdDaMarcaCadastroTenis;
+        private Label labelAvaliacaoCadastroTenis;
+        private Label labelPrecoCadastroTenis;
+        private Label labelLancamentoCadastroTenis;
+        private Button botaoSalvarCadastroTenis;
+        private Button botaoCancelarCadastroTenis;
     }
 }

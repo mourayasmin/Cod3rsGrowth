@@ -13,14 +13,14 @@ namespace Cod3rsGrowth.Testes.ClassesSingleton
                 Cnpj = "42274696002561",
                 Email = "comercial@adidasbrasil.com.br",
                 Nome = "Adidas do Brasil LTDA",
-                Telefone = 1155463700,
+                Telefone = "1155463700",
                 Id = 1111,
             },
             new Marca() {
                 Cnpj = "59546515004555",
                 Email = "comercial@nikebrasil.com.br",
                 Nome = "Nike do Brasil LTDA",
-                Telefone = 1150399711,
+                Telefone = "1150399711",
                 Id = 2222,
             },
             new Marca()
@@ -28,7 +28,7 @@ namespace Cod3rsGrowth.Testes.ClassesSingleton
                 Cnpj = "07900208007704",
                 Email = "comercial@vansbrasil.com.br",
                 Nome = "Vans do Brasil LTDA",
-                Telefone = 1156482955,
+                Telefone = "1156482955",
                 Id = 3333,
             },
             new Marca()
@@ -36,7 +36,7 @@ namespace Cod3rsGrowth.Testes.ClassesSingleton
                 Cnpj = "45075049000141",
                 Email = "comercial@newbalance.com.br",
                 Nome = "New Balance do Brasil LTDA",
-                Telefone = 1123949704,
+                Telefone = "1123949704",
                 Id = 4444,
             },
         };

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            groupBox1 = new GroupBox();
+            groupBoxInformacoesDaMarcaCadastroMarca = new GroupBox();
             maskedTextBoxTelefoneCadastroMarca = new MaskedTextBox();
             maskedTextBoxCNPJCadastroMarca = new MaskedTextBox();
             label5 = new Label();
@@ -39,45 +39,45 @@
             dateTimePickerDataDeCriacaoCadastroMarca = new DateTimePicker();
             textBoxEmailCadastroMarca = new TextBox();
             textBoxNomeCadastroMarca = new TextBox();
-            botaoSalvarCadastroMarca = new Button();
             botaoCancelarCadastroMarca = new Button();
-            groupBox1.SuspendLayout();
+            botaoSalvarCadastroMarca = new Button();
+            groupBoxInformacoesDaMarcaCadastroMarca.SuspendLayout();
             SuspendLayout();
             // 
-            // groupBox1
+            // groupBoxInformacoesDaMarcaCadastroMarca
             // 
-            groupBox1.Controls.Add(maskedTextBoxTelefoneCadastroMarca);
-            groupBox1.Controls.Add(maskedTextBoxCNPJCadastroMarca);
-            groupBox1.Controls.Add(label5);
-            groupBox1.Controls.Add(label4);
-            groupBox1.Controls.Add(label3);
-            groupBox1.Controls.Add(label2);
-            groupBox1.Controls.Add(label1);
-            groupBox1.Controls.Add(dateTimePickerDataDeCriacaoCadastroMarca);
-            groupBox1.Controls.Add(textBoxEmailCadastroMarca);
-            groupBox1.Controls.Add(textBoxNomeCadastroMarca);
-            groupBox1.Location = new Point(17, 21);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(339, 288);
-            groupBox1.TabIndex = 0;
-            groupBox1.TabStop = false;
-            groupBox1.Text = "Informações Da Marca";
+            groupBoxInformacoesDaMarcaCadastroMarca.Controls.Add(maskedTextBoxTelefoneCadastroMarca);
+            groupBoxInformacoesDaMarcaCadastroMarca.Controls.Add(maskedTextBoxCNPJCadastroMarca);
+            groupBoxInformacoesDaMarcaCadastroMarca.Controls.Add(label5);
+            groupBoxInformacoesDaMarcaCadastroMarca.Controls.Add(label4);
+            groupBoxInformacoesDaMarcaCadastroMarca.Controls.Add(label3);
+            groupBoxInformacoesDaMarcaCadastroMarca.Controls.Add(label2);
+            groupBoxInformacoesDaMarcaCadastroMarca.Controls.Add(label1);
+            groupBoxInformacoesDaMarcaCadastroMarca.Controls.Add(dateTimePickerDataDeCriacaoCadastroMarca);
+            groupBoxInformacoesDaMarcaCadastroMarca.Controls.Add(textBoxEmailCadastroMarca);
+            groupBoxInformacoesDaMarcaCadastroMarca.Controls.Add(textBoxNomeCadastroMarca);
+            groupBoxInformacoesDaMarcaCadastroMarca.Location = new Point(17, 21);
+            groupBoxInformacoesDaMarcaCadastroMarca.Name = "groupBoxInformacoesDaMarcaCadastroMarca";
+            groupBoxInformacoesDaMarcaCadastroMarca.Size = new Size(339, 288);
+            groupBoxInformacoesDaMarcaCadastroMarca.TabIndex = 7;
+            groupBoxInformacoesDaMarcaCadastroMarca.TabStop = false;
+            groupBoxInformacoesDaMarcaCadastroMarca.Text = "Informações da marca";
             // 
             // maskedTextBoxTelefoneCadastroMarca
             // 
             maskedTextBoxTelefoneCadastroMarca.Location = new Point(181, 165);
             maskedTextBoxTelefoneCadastroMarca.Mask = "(00)00000-0000";
             maskedTextBoxTelefoneCadastroMarca.Name = "maskedTextBoxTelefoneCadastroMarca";
-            maskedTextBoxTelefoneCadastroMarca.Size = new Size(132, 23);
-            maskedTextBoxTelefoneCadastroMarca.TabIndex = 11;
+            maskedTextBoxTelefoneCadastroMarca.Size = new Size(148, 23);
+            maskedTextBoxTelefoneCadastroMarca.TabIndex = 3;
             // 
             // maskedTextBoxCNPJCadastroMarca
             // 
             maskedTextBoxCNPJCadastroMarca.Location = new Point(13, 165);
             maskedTextBoxCNPJCadastroMarca.Mask = "00,000,000/0000-00";
             maskedTextBoxCNPJCadastroMarca.Name = "maskedTextBoxCNPJCadastroMarca";
-            maskedTextBoxCNPJCadastroMarca.Size = new Size(128, 23);
-            maskedTextBoxCNPJCadastroMarca.TabIndex = 10;
+            maskedTextBoxCNPJCadastroMarca.Size = new Size(148, 23);
+            maskedTextBoxCNPJCadastroMarca.TabIndex = 2;
             // 
             // label5
             // 
@@ -129,43 +129,42 @@
             dateTimePickerDataDeCriacaoCadastroMarca.Format = DateTimePickerFormat.Short;
             dateTimePickerDataDeCriacaoCadastroMarca.Location = new Point(13, 224);
             dateTimePickerDataDeCriacaoCadastroMarca.Name = "dateTimePickerDataDeCriacaoCadastroMarca";
-            dateTimePickerDataDeCriacaoCadastroMarca.Size = new Size(128, 23);
-            dateTimePickerDataDeCriacaoCadastroMarca.TabIndex = 3;
+            dateTimePickerDataDeCriacaoCadastroMarca.Size = new Size(148, 23);
+            dateTimePickerDataDeCriacaoCadastroMarca.TabIndex = 4;
             // 
             // textBoxEmailCadastroMarca
             // 
             textBoxEmailCadastroMarca.Location = new Point(12, 104);
             textBoxEmailCadastroMarca.Name = "textBoxEmailCadastroMarca";
-            textBoxEmailCadastroMarca.Size = new Size(301, 23);
+            textBoxEmailCadastroMarca.Size = new Size(317, 23);
             textBoxEmailCadastroMarca.TabIndex = 1;
             // 
             // textBoxNomeCadastroMarca
             // 
             textBoxNomeCadastroMarca.Location = new Point(11, 47);
             textBoxNomeCadastroMarca.Name = "textBoxNomeCadastroMarca";
-            textBoxNomeCadastroMarca.Size = new Size(302, 23);
+            textBoxNomeCadastroMarca.Size = new Size(318, 23);
             textBoxNomeCadastroMarca.TabIndex = 0;
-            textBoxNomeCadastroMarca.TextChanged += aoClicarNoBotaoSalvarCadastroMarca;
-            // 
-            // botaoSalvarCadastroMarca
-            // 
-            botaoSalvarCadastroMarca.Location = new Point(17, 331);
-            botaoSalvarCadastroMarca.Name = "botaoSalvarCadastroMarca";
-            botaoSalvarCadastroMarca.Size = new Size(75, 23);
-            botaoSalvarCadastroMarca.TabIndex = 1;
-            botaoSalvarCadastroMarca.Text = "Salvar";
-            botaoSalvarCadastroMarca.UseVisualStyleBackColor = true;
-            botaoSalvarCadastroMarca.Click += aoClicarNoBotaoSalvarCadastroMarca;
             // 
             // botaoCancelarCadastroMarca
             // 
             botaoCancelarCadastroMarca.Location = new Point(281, 331);
             botaoCancelarCadastroMarca.Name = "botaoCancelarCadastroMarca";
             botaoCancelarCadastroMarca.Size = new Size(75, 23);
-            botaoCancelarCadastroMarca.TabIndex = 2;
+            botaoCancelarCadastroMarca.TabIndex = 6;
             botaoCancelarCadastroMarca.Text = "Cancelar";
             botaoCancelarCadastroMarca.UseVisualStyleBackColor = true;
-            botaoCancelarCadastroMarca.Click += aoClicarNoBotaoCancelarCadastroMarca;
+            botaoCancelarCadastroMarca.Click += AoClicarNoBotaoCancelarCadastroMarca;
+            // 
+            // botaoSalvarCadastroMarca
+            // 
+            botaoSalvarCadastroMarca.Location = new Point(17, 331);
+            botaoSalvarCadastroMarca.Name = "botaoSalvarCadastroMarca";
+            botaoSalvarCadastroMarca.Size = new Size(75, 23);
+            botaoSalvarCadastroMarca.TabIndex = 5;
+            botaoSalvarCadastroMarca.Text = "Salvar";
+            botaoSalvarCadastroMarca.UseVisualStyleBackColor = true;
+            botaoSalvarCadastroMarca.Click += AoClicarNoBotaoSalvarCadastroMarca;
             // 
             // TelaDeCadastroMarca
             // 
@@ -174,17 +173,17 @@
             ClientSize = new Size(381, 376);
             Controls.Add(botaoCancelarCadastroMarca);
             Controls.Add(botaoSalvarCadastroMarca);
-            Controls.Add(groupBox1);
+            Controls.Add(groupBoxInformacoesDaMarcaCadastroMarca);
             Name = "TelaDeCadastroMarca";
             Text = "Cadastrar Marca";
-            groupBox1.ResumeLayout(false);
-            groupBox1.PerformLayout();
+            groupBoxInformacoesDaMarcaCadastroMarca.ResumeLayout(false);
+            groupBoxInformacoesDaMarcaCadastroMarca.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private GroupBox groupBox1;
+        private GroupBox groupBoxInformacoesDaMarcaCadastroMarca;
         private TextBox textBoxNomeCadastroMarca;
         private Label label4;
         private Label label3;
@@ -193,9 +192,9 @@
         private DateTimePicker dateTimePickerDataDeCriacaoCadastroMarca;
         private TextBox textBoxEmailCadastroMarca;
         private Label label5;
-        private Button botaoSalvarCadastroMarca;
-        private Button botaoCancelarCadastroMarca;
         private MaskedTextBox maskedTextBoxTelefoneCadastroMarca;
         private MaskedTextBox maskedTextBoxCNPJCadastroMarca;
+        private Button botaoCancelarCadastroMarca;
+        private Button botaoSalvarCadastroMarca;
     }
 }
