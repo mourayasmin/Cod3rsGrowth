@@ -29,17 +29,17 @@
         private void InitializeComponent()
         {
             textBoxNomeCadastroTenis = new TextBox();
-            textBoxIdMarcaCadastroTenis = new TextBox();
             textBoxPrecoCadastroTenis = new TextBox();
             comboBoxLinhaCadastroTenis = new ComboBox();
             textBoxAvaliacaoCadastroTenis = new TextBox();
             dateTimePickerLancamentoCadastroTenis = new DateTimePicker();
             checkBoxDisponibilidadeCadastroTenis = new CheckBox();
             groupBoxInformacoesDoTenisCadastroTenis = new GroupBox();
+            comboBoxNomeDaMarcaCadastroTenis = new ComboBox();
             labelLancamentoCadastroTenis = new Label();
             labelAvaliacaoCadastroTenis = new Label();
             labelPrecoCadastroTenis = new Label();
-            labelIdDaMarcaCadastroTenis = new Label();
+            labelNomeDaMarcaCadastroTenis = new Label();
             labelLinhaCadastroTenis = new Label();
             labelNomeCadastroTenis = new Label();
             botaoSalvarCadastroTenis = new Button();
@@ -53,13 +53,6 @@
             textBoxNomeCadastroTenis.Name = "textBoxNomeCadastroTenis";
             textBoxNomeCadastroTenis.Size = new Size(148, 23);
             textBoxNomeCadastroTenis.TabIndex = 0;
-            // 
-            // textBoxIdMarcaCadastroTenis
-            // 
-            textBoxIdMarcaCadastroTenis.Location = new Point(197, 45);
-            textBoxIdMarcaCadastroTenis.Name = "textBoxIdMarcaCadastroTenis";
-            textBoxIdMarcaCadastroTenis.Size = new Size(148, 23);
-            textBoxIdMarcaCadastroTenis.TabIndex = 1;
             // 
             // textBoxPrecoCadastroTenis
             // 
@@ -86,9 +79,9 @@
             // dateTimePickerLancamentoCadastroTenis
             // 
             dateTimePickerLancamentoCadastroTenis.Format = DateTimePickerFormat.Short;
-            dateTimePickerLancamentoCadastroTenis.Location = new Point(201, 169);
+            dateTimePickerLancamentoCadastroTenis.Location = new Point(197, 169);
             dateTimePickerLancamentoCadastroTenis.Name = "dateTimePickerLancamentoCadastroTenis";
-            dateTimePickerLancamentoCadastroTenis.Size = new Size(148, 23);
+            dateTimePickerLancamentoCadastroTenis.Size = new Size(149, 23);
             dateTimePickerLancamentoCadastroTenis.TabIndex = 5;
             // 
             // checkBoxDisponibilidadeCadastroTenis
@@ -103,15 +96,15 @@
             // 
             // groupBoxInformacoesDoTenisCadastroTenis
             // 
+            groupBoxInformacoesDoTenisCadastroTenis.Controls.Add(comboBoxNomeDaMarcaCadastroTenis);
             groupBoxInformacoesDoTenisCadastroTenis.Controls.Add(labelLancamentoCadastroTenis);
             groupBoxInformacoesDoTenisCadastroTenis.Controls.Add(labelAvaliacaoCadastroTenis);
             groupBoxInformacoesDoTenisCadastroTenis.Controls.Add(labelPrecoCadastroTenis);
-            groupBoxInformacoesDoTenisCadastroTenis.Controls.Add(labelIdDaMarcaCadastroTenis);
+            groupBoxInformacoesDoTenisCadastroTenis.Controls.Add(labelNomeDaMarcaCadastroTenis);
             groupBoxInformacoesDoTenisCadastroTenis.Controls.Add(labelLinhaCadastroTenis);
             groupBoxInformacoesDoTenisCadastroTenis.Controls.Add(labelNomeCadastroTenis);
             groupBoxInformacoesDoTenisCadastroTenis.Controls.Add(textBoxNomeCadastroTenis);
             groupBoxInformacoesDoTenisCadastroTenis.Controls.Add(checkBoxDisponibilidadeCadastroTenis);
-            groupBoxInformacoesDoTenisCadastroTenis.Controls.Add(textBoxIdMarcaCadastroTenis);
             groupBoxInformacoesDoTenisCadastroTenis.Controls.Add(dateTimePickerLancamentoCadastroTenis);
             groupBoxInformacoesDoTenisCadastroTenis.Controls.Add(textBoxPrecoCadastroTenis);
             groupBoxInformacoesDoTenisCadastroTenis.Controls.Add(textBoxAvaliacaoCadastroTenis);
@@ -122,6 +115,14 @@
             groupBoxInformacoesDoTenisCadastroTenis.TabIndex = 7;
             groupBoxInformacoesDoTenisCadastroTenis.TabStop = false;
             groupBoxInformacoesDoTenisCadastroTenis.Text = "Informações do tênis";
+            // 
+            // comboBoxNomeDaMarcaCadastroTenis
+            // 
+            comboBoxNomeDaMarcaCadastroTenis.FormattingEnabled = true;
+            comboBoxNomeDaMarcaCadastroTenis.Location = new Point(197, 45);
+            comboBoxNomeDaMarcaCadastroTenis.Name = "comboBoxNomeDaMarcaCadastroTenis";
+            comboBoxNomeDaMarcaCadastroTenis.Size = new Size(149, 23);
+            comboBoxNomeDaMarcaCadastroTenis.TabIndex = 13;
             // 
             // labelLancamentoCadastroTenis
             // 
@@ -150,14 +151,14 @@
             labelPrecoCadastroTenis.TabIndex = 10;
             labelPrecoCadastroTenis.Text = "Preço";
             // 
-            // labelIdDaMarcaCadastroTenis
+            // labelNomeDaMarcaCadastroTenis
             // 
-            labelIdDaMarcaCadastroTenis.AutoSize = true;
-            labelIdDaMarcaCadastroTenis.Location = new Point(198, 17);
-            labelIdDaMarcaCadastroTenis.Name = "labelIdDaMarcaCadastroTenis";
-            labelIdDaMarcaCadastroTenis.Size = new Size(70, 15);
-            labelIdDaMarcaCadastroTenis.TabIndex = 9;
-            labelIdDaMarcaCadastroTenis.Text = "ID da marca";
+            labelNomeDaMarcaCadastroTenis.AutoSize = true;
+            labelNomeDaMarcaCadastroTenis.Location = new Point(198, 27);
+            labelNomeDaMarcaCadastroTenis.Name = "labelNomeDaMarcaCadastroTenis";
+            labelNomeDaMarcaCadastroTenis.Size = new Size(92, 15);
+            labelNomeDaMarcaCadastroTenis.TabIndex = 9;
+            labelNomeDaMarcaCadastroTenis.Text = "Nome da marca";
             // 
             // labelLinhaCadastroTenis
             // 
@@ -207,7 +208,7 @@
             Controls.Add(groupBoxInformacoesDoTenisCadastroTenis);
             Name = "TelaDeCadastroTenis";
             Text = "Cadastrar Tênis";
-            Load += TelaDeCadastroTenis_Load;
+            Load += AoCarregarTelaDeCadastroTenis;
             groupBoxInformacoesDoTenisCadastroTenis.ResumeLayout(false);
             groupBoxInformacoesDoTenisCadastroTenis.PerformLayout();
             ResumeLayout(false);
@@ -216,7 +217,6 @@
         #endregion
 
         private TextBox textBoxNomeCadastroTenis;
-        private TextBox textBoxIdMarcaCadastroTenis;
         private TextBox textBoxPrecoCadastroTenis;
         private ComboBox comboBoxLinhaCadastroTenis;
         private TextBox textBoxAvaliacaoCadastroTenis;
@@ -225,11 +225,12 @@
         private GroupBox groupBoxInformacoesDoTenisCadastroTenis;
         private Label labelNomeCadastroTenis;
         private Label labelLinhaCadastroTenis;
-        private Label labelIdDaMarcaCadastroTenis;
+        private Label labelNomeDaMarcaCadastroTenis;
         private Label labelAvaliacaoCadastroTenis;
         private Label labelPrecoCadastroTenis;
         private Label labelLancamentoCadastroTenis;
         private Button botaoSalvarCadastroTenis;
         private Button botaoCancelarCadastroTenis;
+        private ComboBox comboBoxNomeDaMarcaCadastroTenis;
     }
 }

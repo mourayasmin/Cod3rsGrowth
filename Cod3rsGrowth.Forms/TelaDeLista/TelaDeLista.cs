@@ -78,7 +78,6 @@ namespace Cod3rsGrowth.Forms
         {
             TelaDeCadastroTenis formularioCadastro = new TelaDeCadastroTenis(_servicoMarca, _servicoTenis);
             formularioCadastro.ShowDialog();
-            tenisDataGridView.DataSource = _servicoTenis.ObterTodos();
         }
     }
 }

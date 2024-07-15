@@ -1,17 +1,8 @@
 ﻿using Cod3rsGrowth.Dominio.Enum;
+using Cod3rsGrowth.Dominio.Filtros;
 using Cod3rsGrowth.Servicos.Servicos;
 using Cod3rsGrowth.Servicos.Validacoes;
 using FluentValidation;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace Cod3rsGrowth.Forms
 {
@@ -22,6 +13,8 @@ namespace Cod3rsGrowth.Forms
         private readonly ServicoTenis _servicoTenis;
         private readonly DataGridView _tenisDataGridView;
         private readonly ValidacaoTenis _validacaoTenis;
+        private readonly FiltrosMarca _filtrosMarca = new FiltrosMarca();
+
         public TelaDeCadastroTenis(ServicoMarca servicoMarca, ServicoTenis servicoTenis)
         {
             _servicoMarca = servicoMarca;
@@ -29,18 +22,26 @@ namespace Cod3rsGrowth.Forms
             InitializeComponent();
         }
 
+        private int RetornaIdDaMarca()
+        {
+            var marcaSelecionada = _servicoMarca.ObterTodas(new FiltrosMarca {
+                Nome = comboBoxNomeDaMarcaCadastroTenis.Text
+            });
+            const int indexDaMarcaSelecionada = 0;
+            return marcaSelecionada[indexDaMarcaSelecionada].Id;
+        }
+
         private void AoClicarNoBotaoSalvarCadastroTenis(object sender, EventArgs e)
         {
-
             try
             {
                 Tenis tenisAdicionado = new Tenis
                 {
                     Nome = textBoxNomeCadastroTenis.Text,
                     Linha = (LinhaEnum)comboBoxLinhaCadastroTenis.SelectedItem,
+                    IdMarca = RetornaIdDaMarca(),
                     Preco = Double.Parse(textBoxPrecoCadastroTenis.Text),
-                    Avaliacao = Decimal.Parse(textBoxAvaliacaoCadastroTenis.Text),
-                    Idmarca = int.Parse(textBoxIdMarcaCadastroTenis.Text),
+                    Avaliacao = textBoxAvaliacaoCadastroTenis.Text == "" ? 0 : Decimal.Parse(textBoxAvaliacaoCadastroTenis.Text),
                     Disponibilidade = checkBoxDisponibilidadeCadastroTenis.Checked,
                     Lancamento = dateTimePickerLancamentoCadastroTenis.Value
                 };
@@ -64,18 +65,17 @@ namespace Cod3rsGrowth.Forms
         private void AoClicarNoBotaoCancelarCadastroTenis(object sender, EventArgs e)
         {
             textBoxNomeCadastroTenis.Clear();
-            comboBoxLinhaCadastroTenis.Items.Clear();
             textBoxPrecoCadastroTenis.Clear();
             textBoxAvaliacaoCadastroTenis.Clear();
-            textBoxIdMarcaCadastroTenis.Clear();
             checkBoxDisponibilidadeCadastroTenis.Enabled = false;
             dateTimePickerLancamentoCadastroTenis.Value = DateTime.Today.Date;
             this.Close();
         }
 
-        private void TelaDeCadastroTenis_Load(object sender, EventArgs e)
+        private void AoCarregarTelaDeCadastroTenis(object sender, EventArgs e)
         {
             comboBoxLinhaCadastroTenis.DataSource = Enum.GetValues(typeof(LinhaEnum));
+            comboBoxNomeDaMarcaCadastroTenis.DataSource = _servicoMarca.ObterTodas().Select(x => x.Nome).ToList();
         }
     }
 }

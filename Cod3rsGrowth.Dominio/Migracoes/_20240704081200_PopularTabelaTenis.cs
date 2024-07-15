@@ -8,7 +8,7 @@ namespace Cod3rsGrowth.Dominio.Migracoes
         public override void Up()
         {
             Execute.Sql(@"
-        INSERT INTO Tenis (Idmarca, Nome, Linha, Preço, Avaliação, Lançamento, Disponibilidade)
+        INSERT INTO Tenis (IdMarca, Nome, Linha, Preço, Avaliação, Lançamento, Disponibilidade)
         VALUES (1, 'Streetball', 1, 549.99, 8.9, '27/03/2020', 1),
                (2, 'Alphafly 2', 3, 1899.99, 9.2, '02/04/2023', 1),
                (3, 'Knu Skool', 2, 599.99, 9.0, '14/01/2024', 1),

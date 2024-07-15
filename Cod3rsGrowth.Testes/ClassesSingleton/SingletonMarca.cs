@@ -1,7 +1,4 @@
-﻿using Cod3rsGrowth.Dominio;
-
-
-namespace Cod3rsGrowth.Testes.ClassesSingleton
+﻿namespace Cod3rsGrowth.Testes.ClassesSingleton
 {
     public sealed class SingletonMarca
     {
