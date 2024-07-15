@@ -41,7 +41,7 @@ namespace Cod3rsGrowth.Forms
                     Linha = (LinhaEnum)comboBoxLinhaCadastroTenis.SelectedItem,
                     IdMarca = RetornaIdDaMarca(),
                     Preco = Double.Parse(textBoxPrecoCadastroTenis.Text),
-                    Avaliacao = textBoxAvaliacaoCadastroTenis.Text == "" ? 0 : Decimal.Parse(textBoxAvaliacaoCadastroTenis.Text),
+                    Avaliacao = numericUpDownAvaliacaoCadastroTenis.Value, 
                     Disponibilidade = checkBoxDisponibilidadeCadastroTenis.Checked,
                     Lancamento = dateTimePickerLancamentoCadastroTenis.Value
                 };
@@ -66,7 +66,6 @@ namespace Cod3rsGrowth.Forms
         {
             textBoxNomeCadastroTenis.Clear();
             textBoxPrecoCadastroTenis.Clear();
-            textBoxAvaliacaoCadastroTenis.Clear();
             checkBoxDisponibilidadeCadastroTenis.Enabled = false;
             dateTimePickerLancamentoCadastroTenis.Value = DateTime.Today.Date;
             this.Close();
