@@ -49,6 +49,11 @@ namespace Cod3rsGrowth.Forms
                 }
                 MensagensErroOuSucesso.MostrarMensagemDeErro(mensagemErro);
             }
+            catch (Exception excecao)
+            {
+                string mensagemErroInesperado = "Ocorreu um erro na aplicação.";
+                MessageBox.Show(mensagemErroInesperado);
+            }
         }
 
         private void AoClicarNoBotaoCancelarCadastroMarca(object sender, EventArgs e)

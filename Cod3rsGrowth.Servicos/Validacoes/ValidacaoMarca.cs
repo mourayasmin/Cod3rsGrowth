@@ -29,6 +29,9 @@ namespace Cod3rsGrowth.Servicos.Validacoes
                 .Length(11)
                 .Matches("^\\d+$")
                 .WithMessage("Informe um telefone válido.");
+            RuleFor(marca => marca.Email)
+                .Matches(@"^[^@\s]+@[^@\s]+\.[^@\s]+$")
+                .WithMessage("Insira um e-mail válido.");
         }
     }
 }

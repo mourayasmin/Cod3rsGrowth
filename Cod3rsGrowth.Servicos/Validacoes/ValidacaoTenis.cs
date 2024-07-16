@@ -1,5 +1,4 @@
-﻿using Cod3rsGrowth.Dominio;
-using FluentValidation;
+﻿using FluentValidation;
 
 namespace Cod3rsGrowth.Servicos.Validacoes
 {

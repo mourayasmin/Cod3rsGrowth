@@ -24,7 +24,8 @@ namespace Cod3rsGrowth.Forms
 
         private int RetornaIdDaMarca()
         {
-            var marcaSelecionada = _servicoMarca.ObterTodas(new FiltrosMarca {
+            var marcaSelecionada = _servicoMarca.ObterTodas(new FiltrosMarca
+            {
                 Nome = comboBoxNomeDaMarcaCadastroTenis.Text
             });
             const int indexDaMarcaSelecionada = 0;
@@ -33,6 +34,7 @@ namespace Cod3rsGrowth.Forms
 
         private void AoClicarNoBotaoSalvarCadastroTenis(object sender, EventArgs e)
         {
+            const string vazio = "";
             try
             {
                 Tenis tenisAdicionado = new Tenis
@@ -40,8 +42,8 @@ namespace Cod3rsGrowth.Forms
                     Nome = textBoxNomeCadastroTenis.Text,
                     Linha = (LinhaEnum)comboBoxLinhaCadastroTenis.SelectedItem,
                     IdMarca = RetornaIdDaMarca(),
-                    Preco = Double.Parse(textBoxPrecoCadastroTenis.Text),
-                    Avaliacao = numericUpDownAvaliacaoCadastroTenis.Value, 
+                    Preco = textBoxPrecoCadastroMarca.Text == vazio ? (double)decimal.Zero : Double.Parse(textBoxPrecoCadastroMarca.Text),
+                    Avaliacao = numericUpDownAvaliacaoCadastroTenis.Value,
                     Disponibilidade = checkBoxDisponibilidadeCadastroTenis.Checked,
                     Lancamento = dateTimePickerLancamentoCadastroTenis.Value
                 };
@@ -60,12 +62,17 @@ namespace Cod3rsGrowth.Forms
                 }
                 MensagensErroOuSucesso.MostrarMensagemDeErro(mensagemErro);
             }
+            catch (Exception excecao)
+            {
+                string mensagem = "Ocorreu um erro na aplicação.";
+                MessageBox.Show(mensagem);
+            }
         }
 
         private void AoClicarNoBotaoCancelarCadastroTenis(object sender, EventArgs e)
         {
             textBoxNomeCadastroTenis.Clear();
-            textBoxPrecoCadastroTenis.Clear();
+            textBoxPrecoCadastroMarca.Clear();
             checkBoxDisponibilidadeCadastroTenis.Enabled = false;
             dateTimePickerLancamentoCadastroTenis.Value = DateTime.Today.Date;
             this.Close();
@@ -75,6 +82,24 @@ namespace Cod3rsGrowth.Forms
         {
             comboBoxLinhaCadastroTenis.DataSource = Enum.GetValues(typeof(LinhaEnum));
             comboBoxNomeDaMarcaCadastroTenis.DataSource = _servicoMarca.ObterTodas().Select(x => x.Nome).ToList();
+        }
+
+        private void KeyPressTextBoxPrecoCadastroTenis(object sender, KeyPressEventArgs e)
+        {
+            const int backspace = 8;
+            const int ponto = 46;
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != backspace && e.KeyChar != ponto)
+            {
+                e.Handled = true;
+            }
+            else if (e.KeyChar == ponto)
+            {
+                TextBox textBoxPrecoCadastroTenis = (TextBox)sender;
+                if (textBoxPrecoCadastroTenis.Text.Contains("."))
+                {
+                    e.Handled = true;
+                }
+            }
         }
     }
 }

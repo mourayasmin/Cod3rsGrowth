@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             marcaDataGridView = new DataGridView();
             idDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             nomeDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
@@ -41,14 +42,6 @@
             botaoEditar = new Button();
             botaoRemover = new Button();
             tenisDataGridView = new DataGridView();
-            idDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
-            IdMarca = new DataGridViewTextBoxColumn();
-            nomeDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
-            linhaDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            precoDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            Disponibilidade = new DataGridViewCheckBoxColumn();
-            avaliacaoDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            lancamentoDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             tenisBindingSource = new BindingSource(components);
             textBoxBuscaMarca = new TextBox();
             dateTimePickerInicio = new DateTimePicker();
@@ -62,6 +55,14 @@
             button1 = new Button();
             button2 = new Button();
             button3 = new Button();
+            idDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
+            IdMarca = new DataGridViewTextBoxColumn();
+            nomeDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
+            linhaDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            precoDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            Disponibilidade = new DataGridViewCheckBoxColumn();
+            avaliacaoDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            lancamentoDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)marcaDataGridView).BeginInit();
             ((System.ComponentModel.ISupportInitialize)marcaBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)tenisDataGridView).BeginInit();
@@ -171,54 +172,6 @@
             tenisDataGridView.RowTemplate.Height = 25;
             tenisDataGridView.Size = new Size(427, 386);
             tenisDataGridView.TabIndex = 4;
-            // 
-            // idDataGridViewTextBoxColumn1
-            // 
-            idDataGridViewTextBoxColumn1.DataPropertyName = "Id";
-            idDataGridViewTextBoxColumn1.HeaderText = "ID";
-            idDataGridViewTextBoxColumn1.Name = "idDataGridViewTextBoxColumn1";
-            // 
-            // IdMarca
-            // 
-            IdMarca.DataPropertyName = "IdMarca";
-            IdMarca.HeaderText = "IdMarca";
-            IdMarca.Name = "IdMarca";
-            // 
-            // nomeDataGridViewTextBoxColumn1
-            // 
-            nomeDataGridViewTextBoxColumn1.DataPropertyName = "Nome";
-            nomeDataGridViewTextBoxColumn1.HeaderText = "Nome";
-            nomeDataGridViewTextBoxColumn1.Name = "nomeDataGridViewTextBoxColumn1";
-            // 
-            // linhaDataGridViewTextBoxColumn
-            // 
-            linhaDataGridViewTextBoxColumn.DataPropertyName = "Linha";
-            linhaDataGridViewTextBoxColumn.HeaderText = "Linha";
-            linhaDataGridViewTextBoxColumn.Name = "linhaDataGridViewTextBoxColumn";
-            // 
-            // precoDataGridViewTextBoxColumn
-            // 
-            precoDataGridViewTextBoxColumn.DataPropertyName = "Preco";
-            precoDataGridViewTextBoxColumn.HeaderText = "Preço";
-            precoDataGridViewTextBoxColumn.Name = "precoDataGridViewTextBoxColumn";
-            // 
-            // Disponibilidade
-            // 
-            Disponibilidade.DataPropertyName = "Disponibilidade";
-            Disponibilidade.HeaderText = "Disponível";
-            Disponibilidade.Name = "Disponibilidade";
-            // 
-            // avaliacaoDataGridViewTextBoxColumn
-            // 
-            avaliacaoDataGridViewTextBoxColumn.DataPropertyName = "Avaliacao";
-            avaliacaoDataGridViewTextBoxColumn.HeaderText = "Avaliação";
-            avaliacaoDataGridViewTextBoxColumn.Name = "avaliacaoDataGridViewTextBoxColumn";
-            // 
-            // lancamentoDataGridViewTextBoxColumn
-            // 
-            lancamentoDataGridViewTextBoxColumn.DataPropertyName = "Lancamento";
-            lancamentoDataGridViewTextBoxColumn.HeaderText = "Lançamento";
-            lancamentoDataGridViewTextBoxColumn.Name = "lancamentoDataGridViewTextBoxColumn";
             // 
             // tenisBindingSource
             // 
@@ -343,6 +296,57 @@
             button3.TabIndex = 17;
             button3.Text = "Remover";
             button3.UseVisualStyleBackColor = true;
+            // 
+            // idDataGridViewTextBoxColumn1
+            // 
+            idDataGridViewTextBoxColumn1.DataPropertyName = "Id";
+            idDataGridViewTextBoxColumn1.HeaderText = "ID";
+            idDataGridViewTextBoxColumn1.Name = "idDataGridViewTextBoxColumn1";
+            // 
+            // IdMarca
+            // 
+            IdMarca.DataPropertyName = "IdMarca";
+            IdMarca.HeaderText = "IdMarca";
+            IdMarca.Name = "IdMarca";
+            // 
+            // nomeDataGridViewTextBoxColumn1
+            // 
+            nomeDataGridViewTextBoxColumn1.DataPropertyName = "Nome";
+            nomeDataGridViewTextBoxColumn1.HeaderText = "Nome";
+            nomeDataGridViewTextBoxColumn1.Name = "nomeDataGridViewTextBoxColumn1";
+            // 
+            // linhaDataGridViewTextBoxColumn
+            // 
+            linhaDataGridViewTextBoxColumn.DataPropertyName = "Linha";
+            linhaDataGridViewTextBoxColumn.HeaderText = "Linha";
+            linhaDataGridViewTextBoxColumn.Name = "linhaDataGridViewTextBoxColumn";
+            // 
+            // precoDataGridViewTextBoxColumn
+            // 
+            precoDataGridViewTextBoxColumn.DataPropertyName = "Preco";
+            dataGridViewCellStyle1.Format = "N2";
+            dataGridViewCellStyle1.NullValue = null;
+            precoDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
+            precoDataGridViewTextBoxColumn.HeaderText = "Preço";
+            precoDataGridViewTextBoxColumn.Name = "precoDataGridViewTextBoxColumn";
+            // 
+            // Disponibilidade
+            // 
+            Disponibilidade.DataPropertyName = "Disponibilidade";
+            Disponibilidade.HeaderText = "Disponível";
+            Disponibilidade.Name = "Disponibilidade";
+            // 
+            // avaliacaoDataGridViewTextBoxColumn
+            // 
+            avaliacaoDataGridViewTextBoxColumn.DataPropertyName = "Avaliacao";
+            avaliacaoDataGridViewTextBoxColumn.HeaderText = "Avaliação";
+            avaliacaoDataGridViewTextBoxColumn.Name = "avaliacaoDataGridViewTextBoxColumn";
+            // 
+            // lancamentoDataGridViewTextBoxColumn
+            // 
+            lancamentoDataGridViewTextBoxColumn.DataPropertyName = "Lancamento";
+            lancamentoDataGridViewTextBoxColumn.HeaderText = "Lançamento";
+            lancamentoDataGridViewTextBoxColumn.Name = "lancamentoDataGridViewTextBoxColumn";
             // 
             // TelaDeLista
             // 

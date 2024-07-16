@@ -1,8 +1,4 @@
-﻿using Cod3rsGrowth.Servicos.Servicos;
-using Cod3rsGrowth.Servicos.Validacoes;
-using System.Configuration.Internal;
-
-namespace Cod3rsGrowth.Forms
+﻿namespace Cod3rsGrowth.Forms
 {
     public class MensagensErroOuSucesso
     { 
