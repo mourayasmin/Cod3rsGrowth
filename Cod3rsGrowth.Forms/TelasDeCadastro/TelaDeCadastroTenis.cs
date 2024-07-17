@@ -87,15 +87,15 @@ namespace Cod3rsGrowth.Forms
         private void KeyPressTextBoxPrecoCadastroTenis(object sender, KeyPressEventArgs e)
         {
             const int backspace = 8;
-            const int ponto = 46;
-            if (!char.IsDigit(e.KeyChar) && e.KeyChar != backspace && e.KeyChar != ponto)
+            const int virgula = 44;
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != backspace && e.KeyChar != virgula)
             {
                 e.Handled = true;
             }
-            else if (e.KeyChar == ponto)
+            else if (e.KeyChar == virgula)
             {
                 TextBox textBoxPrecoCadastroTenis = (TextBox)sender;
-                if (textBoxPrecoCadastroTenis.Text.Contains("."))
+                if (textBoxPrecoCadastroTenis.Text.Contains(","))
                 {
                     e.Handled = true;
                 }

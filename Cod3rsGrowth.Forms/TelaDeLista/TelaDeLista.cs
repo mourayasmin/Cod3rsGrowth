@@ -71,6 +71,7 @@ namespace Cod3rsGrowth.Forms
         {
             TelaDeCadastroMarca formularioCadastro = new TelaDeCadastroMarca(_servicoMarca, _servicoTenis);
             formularioCadastro.ShowDialog();
+            marcaDataGridView.DataSource = _servicoMarca.ObterTodas();
         }
 
         private void AoClicarNoBotaoAdicionarTenis(object sender, EventArgs e)

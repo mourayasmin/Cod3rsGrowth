@@ -12,8 +12,6 @@ namespace Cod3rsGrowth.Servicos.Validacoes
             RuleFor(tenis => tenis.Preco)
                 .NotNull()
                 .WithMessage("Informe o preço do produto.")
-                .LessThanOrEqualTo(20000.00)
-                .WithMessage("O preço informado é inválido. O limite de preço é 20000.")
                 .GreaterThan(0)
                 .WithMessage("O preço informado é inválido.");
             RuleFor(tenis => tenis.Avaliacao)
