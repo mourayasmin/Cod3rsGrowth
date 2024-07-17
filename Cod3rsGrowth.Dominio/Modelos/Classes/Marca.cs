@@ -4,7 +4,7 @@ using System;
 [Table("Marca")]
 public class Marca
 {
-    [Column("Id")]
+    [PrimaryKey, Identity]
     public int Id { get; set; }
 
     [Column("Nome")]
@@ -17,7 +17,7 @@ public class Marca
     public string? Email { get; set; }
 
     [Column("Telefone"), NotNull]
-    public string Telefone { get; set; }
+    public string? Telefone { get; set; }
 
     [Column("DataDeCriacao")]
     public DateTime DataDeCriacao { get; set; }

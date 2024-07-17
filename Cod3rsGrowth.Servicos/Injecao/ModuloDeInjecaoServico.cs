@@ -2,9 +2,6 @@
 using Cod3rsGrowth.Servicos.Validacoes;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Cod3rsGrowth.Servicos.Injecao
 {

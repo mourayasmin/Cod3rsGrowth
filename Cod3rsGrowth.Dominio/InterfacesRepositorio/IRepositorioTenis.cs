@@ -10,6 +10,6 @@ namespace Cod3rsGrowth.Dominio.InterfacesRepositorio
         public Tenis ObterPorId(int id);
         public Tenis Atualizar(Tenis tenis);
         public void Deletar(int id);
-        public List<Tenis> ObterTodos(FiltrosTenis? filtros);
+        public List<Tenis> ObterTodos(FiltrosTenis? filtros = null);
     }
 }

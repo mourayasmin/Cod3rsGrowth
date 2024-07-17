@@ -1,5 +1,4 @@
-﻿using Cod3rsGrowth.Dominio;
-using Cod3rsGrowth.Testes.ClassesSingleton;
+﻿using Cod3rsGrowth.Testes.ClassesSingleton;
 using Cod3rsGrowth.Testes.Configuracoes;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
@@ -33,14 +32,14 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
             {
                 Id = 0001,
                 Nome = "Streetball",
-                Idmarca = 1111
+                IdMarca = 1111
             };
             SingletonTenis.Instancia.Add(tenisEsperado);
             var tenisRetornado = _servicoTenis.ObterPorId(tenisEsperado.Id);
             Assert.NotNull(tenisRetornado);
             Assert.Equal(tenisEsperado.Id, tenisRetornado.Id);
             Assert.Equal(tenisEsperado.Nome, tenisRetornado.Nome);
-            Assert.Equal(tenisEsperado.Idmarca, tenisRetornado.Idmarca);
+            Assert.Equal(tenisEsperado.IdMarca, tenisRetornado.IdMarca);
         }
 
         [Theory]
@@ -60,7 +59,7 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
             {
                 Linha = Dominio.Enum.LinhaEnum.Casual,
                 Id = 0005,
-                Idmarca = 1111,
+                IdMarca = 1111,
                 Preco = 399.99,
                 Lancamento = DateTime.Parse("14/02/2018"),
                 Avaliacao = 9.7M,
@@ -79,7 +78,7 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
             {
                 Linha = null,
                 Id = 0005,
-                Idmarca = 1111,
+                IdMarca = 1111,
                 Preco = 399.99,
                 Lancamento = DateTime.Parse("14/02/2018"),
                 Avaliacao = 9.7M,
@@ -97,7 +96,7 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
             {
                 Linha = Dominio.Enum.LinhaEnum.Casual,
                 Id = 0005,
-                Idmarca = 1111,
+                IdMarca = 1111,
                 Preco = null,
                 Lancamento = DateTime.Parse("14/02/2018"),
                 Avaliacao = 9.7M,
@@ -115,7 +114,7 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
             {
                 Linha = Dominio.Enum.LinhaEnum.Casual,
                 Id = 0005,
-                Idmarca = 1111,
+                IdMarca = 1111,
                 Preco = 0.0,
                 Lancamento = DateTime.Parse("14/02/2018"),
                 Avaliacao = 9.7M,
@@ -133,7 +132,7 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
             {
                 Linha = Dominio.Enum.LinhaEnum.Casual,
                 Id = 0005,
-                Idmarca = 1111,
+                IdMarca = 1111,
                 Preco = 30000.0,
                 Lancamento = DateTime.Parse("14/02/2018"),
                 Avaliacao = 9.7M,
@@ -151,7 +150,7 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
             {
                 Linha = Dominio.Enum.LinhaEnum.Casual,
                 Id = 0005,
-                Idmarca = 1111,
+                IdMarca = 1111,
                 Preco = -32.0,
                 Lancamento = DateTime.Parse("14/02/2018"),
                 Avaliacao = 9.7M,
@@ -169,7 +168,7 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
             {
                 Linha = Dominio.Enum.LinhaEnum.Casual,
                 Id = 0005,
-                Idmarca = 1111,
+                IdMarca = 1111,
                 Preco = 399.99,
                 Lancamento = DateTime.Parse("14/02/2018"),
                 Avaliacao = -3.0M,
@@ -187,7 +186,7 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
             {
                 Linha = Dominio.Enum.LinhaEnum.Casual,
                 Id = 0005,
-                Idmarca = 1111,
+                IdMarca = 1111,
                 Preco = 399.99,
                 Lancamento = DateTime.Parse("14/02/2018"),
                 Avaliacao = 11.0M,
@@ -208,7 +207,7 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
                 Nome = nome,
                 Linha = Dominio.Enum.LinhaEnum.Casual,
                 Id = 0005,
-                Idmarca = 1111,
+                IdMarca = 1111,
                 Preco = 399.99,
                 Lancamento = DateTime.Parse("14/02/2018"),
                 Avaliacao = 11.0M,
@@ -225,7 +224,7 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
             {
                 Linha = Dominio.Enum.LinhaEnum.Casual,
                 Id = 0001,
-                Idmarca = 1111,
+                IdMarca = 1111,
                 Preco = 599.99,
                 Lancamento = DateTime.Parse("27/03/2020"),
                 Avaliacao = 5.2M,
@@ -244,7 +243,7 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
             {
                 Linha = Dominio.Enum.LinhaEnum.Casual,
                 Id = 0001,
-                Idmarca = 1111,
+                IdMarca = 1111,
                 Preco = -250.00,
                 Lancamento = DateTime.Parse("27/03/2020"),
                 Avaliacao = 5.2M,
@@ -264,7 +263,7 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
             {
                 Linha = Dominio.Enum.LinhaEnum.Casual,
                 Id = 0001,
-                Idmarca = 1111,
+                IdMarca = 1111,
                 Preco = 549.99,
                 Lancamento = DateTime.Parse("27/03/2020"),
                 Avaliacao = avaliacao,
@@ -292,7 +291,7 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
             {
                 Linha = Dominio.Enum.LinhaEnum.Casual,
                 Id = 4321,
-                Idmarca = 1111,
+                IdMarca = 1111,
                 Preco = 549.99,
                 Lancamento = DateTime.Parse("27/03/2020"),
                 Avaliacao = 9.7M,

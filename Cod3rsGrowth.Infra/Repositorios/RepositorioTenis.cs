@@ -45,7 +45,7 @@ namespace Cod3rsGrowth.Infra.Repositorios
 
                 if (filtros.IdsMarcas.Any())
                 {
-                    query = query.Where(x => filtros.IdsMarcas.Contains(x.Idmarca));
+                    query = query.Where(x => filtros.IdsMarcas.Contains(x.IdMarca));
                 }
             }
 

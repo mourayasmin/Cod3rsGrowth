@@ -3,29 +3,29 @@ using System;
 using LinqToDB.Mapping;
 
 [Table("Tenis")]
-    public class Tenis
-    {
+public class Tenis
+{
     [Column("Linha")]
-        public LinhaEnum? Linha { get; set; }
+    public LinhaEnum? Linha { get; set; }
 
-    [PrimaryKey]
-        public int Id { get; set; }
+    [PrimaryKey, Identity]
+    public int Id { get; set; }
 
     [Column("Idmarca")]
-        public int Idmarca { get; set; }
+    public int IdMarca { get; set; }
 
     [Column("Preço")]
-        public double? Preco { get; set; }
+    public double? Preco { get; set; }
 
     [Column("Lançamento")]
-        public DateTime Lancamento { get; set; }
+    public DateTime Lancamento { get; set; }
 
     [Column("Avaliação")]
-        public decimal Avaliacao { get; set; }
+    public decimal? Avaliacao { get; set; }
 
     [Column("Nome")]
-        public string? Nome { get; set; }
+    public string? Nome { get; set; }
 
     [Column("Disponibilidade")]
-        public bool Disponibilidade { get; set; }
-    }
+    public bool Disponibilidade { get; set; }
+}
