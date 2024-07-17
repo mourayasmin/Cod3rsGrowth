@@ -9,14 +9,11 @@ namespace Cod3rsGrowth.Forms
     {
 
         private readonly ServicoMarca _servicoMarca;
-        private readonly ServicoTenis _servicoTenis;
         private readonly DataGridView _marcaDataGridView;
-        private readonly ValidacaoMarca _validacaoMarca;
 
         public TelaDeCadastroMarca(ServicoMarca servicoMarca, ServicoTenis servicoTenis)
         {
             _servicoMarca = servicoMarca;
-            _servicoTenis = servicoTenis;
             InitializeComponent();
         }
 
@@ -52,7 +49,7 @@ namespace Cod3rsGrowth.Forms
             catch (Exception excecao)
             {
                 string mensagemErroInesperado = "Ocorreu um erro na aplicação.";
-                MessageBox.Show(mensagemErroInesperado);
+                MensagensErroOuSucesso.MostrarMensagemDeErro(mensagemErroInesperado);
             }
         }
 
