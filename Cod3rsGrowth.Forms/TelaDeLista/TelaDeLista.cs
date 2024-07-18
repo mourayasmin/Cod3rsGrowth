@@ -1,7 +1,5 @@
 using Cod3rsGrowth.Dominio.Filtros;
-using Cod3rsGrowth.Infra;
 using Cod3rsGrowth.Servicos.Servicos;
-using LinqToDB;
 
 namespace Cod3rsGrowth.Forms
 {
