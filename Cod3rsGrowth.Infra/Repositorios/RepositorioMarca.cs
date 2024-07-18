@@ -53,7 +53,7 @@ namespace Cod3rsGrowth.Infra.Repositorios
 
         public void Deletar(int id)
         {
-            var marca = _db.Tenis.Where(x => x.Id == id);
+            var marca = _db.Marca.FirstOrDefault(x => x.Id == id);
             _db.Delete(marca);
         }
     }

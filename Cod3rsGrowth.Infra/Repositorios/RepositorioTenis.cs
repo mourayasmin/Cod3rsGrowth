@@ -43,9 +43,9 @@ namespace Cod3rsGrowth.Infra.Repositorios
                     query = query.Where(x => x.Lancamento == filtros.Lancamento);
                 }
 
-                if (filtros.IdsMarcas.Any())
+                if(filtros.IdMarca != null)
                 {
-                    query = query.Where(x => filtros.IdsMarcas.Contains(x.IdMarca));
+                    query = query.Where(x => x.IdMarca == filtros.IdMarca);
                 }
             }
 
@@ -72,7 +72,7 @@ namespace Cod3rsGrowth.Infra.Repositorios
 
         public void Deletar(int id)
         {
-            var tenis = _db.Tenis.Where(x => x.Id == id);
+            var tenis = _db.Tenis.FirstOrDefault(x => x.Id == id);
             _db.Delete(tenis);
         }
     }

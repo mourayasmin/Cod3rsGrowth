@@ -1,5 +1,7 @@
 using Cod3rsGrowth.Dominio.Filtros;
+using Cod3rsGrowth.Infra;
 using Cod3rsGrowth.Servicos.Servicos;
+using LinqToDB;
 
 namespace Cod3rsGrowth.Forms
 {
@@ -8,6 +10,7 @@ namespace Cod3rsGrowth.Forms
         private readonly ServicoMarca _servicoMarca;
         private readonly ServicoTenis _servicoTenis;
         private readonly FiltrosMarca _filtrosMarca = new FiltrosMarca();
+        private readonly FiltrosTenis _filtrosTenis = new FiltrosTenis();
 
         public TelaDeLista(ServicoMarca servicoMarca, ServicoTenis servicoTenis)
         {
@@ -19,21 +22,20 @@ namespace Cod3rsGrowth.Forms
 
         private void AoClicarNoMarcaDataGridView(object sender, DataGridViewCellEventArgs e)
         {
-            var quantidadeDeLinhasSelecionadas = marcaDataGridView.SelectedRows.Count;
-            const int vazio = 0;
             const int colunaId = 0;
-            string mensagemDeErro = "Selecione apenas uma marca.";
+            string mensagemDeErroAplicacao = "Ocorreu um erro na aplicação.";
+
             try
             {
                 var idMarca = (int)marcaDataGridView.Rows[e.RowIndex].Cells[colunaId].Value;
                 tenisDataGridView.DataSource = _servicoTenis.ObterTodos(new FiltrosTenis
                 {
-                    IdsMarcas = new List<int> { idMarca },
+                    IdMarca = idMarca,
                 });
             }
             catch (Exception)
             {
-                MensagensErroOuSucesso.MostrarMensagemDeErro(mensagemDeErro);
+                MensagensErroOuSucesso.MostrarMensagemDeErro(mensagemDeErroAplicacao);
             }
         }
 
@@ -78,6 +80,65 @@ namespace Cod3rsGrowth.Forms
         {
             TelaDeCadastroTenis formularioCadastro = new TelaDeCadastroTenis(_servicoMarca, _servicoTenis);
             formularioCadastro.ShowDialog();
+        }
+
+        private void AoClicarNoBotaoRemoverMarca(object sender, EventArgs e)
+        {
+            const int colunaId = 0;
+            string mensagemDeSucesso = "Marca removida com sucesso.";
+            string tituloMensagemDeConfirmacao = "Confirmação";
+            string mensagemDeConfirmacao = "Deseja remover a marca selecionada?";
+
+            try
+            {
+                var idMarca = (int)marcaDataGridView.CurrentRow.Cells[colunaId].Value;
+                if (MessageBox.Show(mensagemDeConfirmacao, tituloMensagemDeConfirmacao, MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    var tenis = _servicoTenis.ObterTodos(new FiltrosTenis { IdMarca = idMarca });
+                    tenis.ForEach(tenis => _servicoTenis.Deletar(tenis.Id));
+                    _servicoMarca.Deletar(idMarca);
+
+                    MensagensErroOuSucesso.MostrarMensagemDeSucesso(mensagemDeSucesso);
+                    marcaDataGridView.DataSource = _servicoMarca.ObterTodas();
+
+                    tenisDataGridView.DataSource = _servicoTenis.ObterTodos(new FiltrosTenis
+                    {
+                        IdMarca = idMarca, 
+                    });
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ocorreu um erro na aplicação.");
+            }
+        }
+
+        private void AoClicarNoBotaoRemoverTenis(object sender, EventArgs e)
+        {
+            const int colunaId = 0;
+            string mensagemDeSucesso = "Tênis removido com sucesso.";
+            string tituloMensagemDeConfirmacao = "Confirmação";
+            string mensagemDeConfirmacao = "Deseja remover o tênis selecionado?";
+            var idMarcaDoTenisRemovido = (int)tenisDataGridView.CurrentRow.Cells[1].Value;
+
+            try
+            {
+                var idTenisASerRemovido = (int)tenisDataGridView.CurrentRow.Cells[colunaId].Value;
+                if (MessageBox.Show(mensagemDeConfirmacao, tituloMensagemDeConfirmacao, MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    _servicoTenis.Deletar(idTenisASerRemovido);
+                    MensagensErroOuSucesso.MostrarMensagemDeSucesso(mensagemDeSucesso);
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Ocorreu um erro na aplicação.");
+            }
+
+            tenisDataGridView.DataSource = _servicoTenis.ObterTodos(new FiltrosTenis
+            {
+                IdMarca = idMarcaDoTenisRemovido,
+            });
         }
     }
 }
