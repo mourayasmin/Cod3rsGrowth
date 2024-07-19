@@ -167,6 +167,8 @@
             // 
             tenisDataGridView.AllowUserToAddRows = false;
             tenisDataGridView.AllowUserToDeleteRows = false;
+            tenisDataGridView.AllowUserToResizeColumns = false;
+            tenisDataGridView.AllowUserToResizeRows = false;
             tenisDataGridView.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             tenisDataGridView.AutoGenerateColumns = false;
             tenisDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -175,6 +177,7 @@
             tenisDataGridView.Location = new Point(688, 31);
             tenisDataGridView.Name = "tenisDataGridView";
             tenisDataGridView.RowTemplate.Height = 25;
+            tenisDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             tenisDataGridView.Size = new Size(427, 386);
             tenisDataGridView.TabIndex = 4;
             // 
