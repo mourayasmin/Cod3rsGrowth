@@ -114,6 +114,7 @@ namespace Cod3rsGrowth.Forms
         private void AoClicarNoBotaoRemoverTenis(object sender, EventArgs e)
         {
             const int colunaId = 0;
+            const int colunaIdMarca = 1;
             string mensagemDeSucesso = "Tênis removido com sucesso.";
             string tituloMensagemDeConfirmacao = "Confirmação";
             string mensagemDeConfirmacao = "Deseja remover o tênis selecionado?";
@@ -122,12 +123,12 @@ namespace Cod3rsGrowth.Forms
             {
                 if (tenisDataGridView.CurrentRow != null)
                 {
-                    if (tenisDataGridView.CurrentRow.Cells[1] != null && tenisDataGridView.CurrentRow.Cells[1].Value != null)
+                    if (tenisDataGridView.CurrentRow.Cells[colunaIdMarca] != null && tenisDataGridView.CurrentRow.Cells[colunaIdMarca].Value != null)
                     {
                         var idTenisASerRemovido = (int)tenisDataGridView.CurrentRow.Cells[colunaId].Value;
                         if (MessageBox.Show(mensagemDeConfirmacao, tituloMensagemDeConfirmacao, MessageBoxButtons.YesNo) == DialogResult.Yes)
                         {
-                            var idMarcaDoTenisRemovido = (int)tenisDataGridView.CurrentRow.Cells[1].Value;
+                            var idMarcaDoTenisRemovido = (int)tenisDataGridView.CurrentRow.Cells[colunaIdMarca].Value;
                             _servicoTenis.Deletar(idTenisASerRemovido);
                             Mensagens.MostrarMensagemDeSucesso(mensagemDeSucesso);
                             tenisDataGridView.DataSource = _servicoTenis.ObterTodos(new FiltrosTenis
@@ -146,7 +147,7 @@ namespace Cod3rsGrowth.Forms
                     MessageBox.Show("Nenhuma linha selecionada.");
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Ocorreu um erro na aplicação.");
             }
