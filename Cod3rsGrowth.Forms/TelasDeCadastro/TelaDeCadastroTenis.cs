@@ -49,7 +49,7 @@ namespace Cod3rsGrowth.Forms
                 };
                 _servicoTenis.Criar(tenisAdicionado);
                 string mensagem = "Tenis cadastrado com sucesso.";
-                MensagensErroOuSucesso.MostrarMensagemDeSucesso(mensagem);
+                Mensagens.MostrarMensagemDeSucesso(mensagem);
                 this.Close();
             }
             catch (ValidationException excecoes)
@@ -60,7 +60,7 @@ namespace Cod3rsGrowth.Forms
                 {
                     mensagemErro += erro.ErrorMessage + "\n";
                 }
-                MensagensErroOuSucesso.MostrarMensagemDeErro(mensagemErro);
+                Mensagens.MostrarMensagemDeErro(mensagemErro);
             }
             catch (Exception excecao)
             {

@@ -38,10 +38,18 @@
             telefoneDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             DataDeCriacao = new DataGridViewTextBoxColumn();
             marcaBindingSource = new BindingSource(components);
-            botaoAdicionar = new Button();
-            botaoEditar = new Button();
-            botaoRemover = new Button();
+            botaoAdicionarMarca = new Button();
+            botaoEditarMarca = new Button();
+            botaoRemoverMarca = new Button();
             tenisDataGridView = new DataGridView();
+            idDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
+            IdMarca = new DataGridViewTextBoxColumn();
+            nomeDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
+            linhaDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            precoDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            Disponibilidade = new DataGridViewCheckBoxColumn();
+            avaliacaoDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            lancamentoDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             tenisBindingSource = new BindingSource(components);
             textBoxBuscaMarca = new TextBox();
             dateTimePickerInicio = new DateTimePicker();
@@ -52,17 +60,9 @@
             groupBox1 = new GroupBox();
             botaoLimparFiltros = new Button();
             labelTabelatenis = new Label();
-            button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
-            idDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
-            IdMarca = new DataGridViewTextBoxColumn();
-            nomeDataGridViewTextBoxColumn1 = new DataGridViewTextBoxColumn();
-            linhaDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            precoDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            Disponibilidade = new DataGridViewCheckBoxColumn();
-            avaliacaoDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            lancamentoDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            botaoAdicionarTenis = new Button();
+            botaoEditarTenis = new Button();
+            botaoRemoverTenis = new Button();
             ((System.ComponentModel.ISupportInitialize)marcaDataGridView).BeginInit();
             ((System.ComponentModel.ISupportInitialize)marcaBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)tenisDataGridView).BeginInit();
@@ -72,13 +72,17 @@
             // 
             // marcaDataGridView
             // 
+            marcaDataGridView.AllowUserToResizeColumns = false;
+            marcaDataGridView.AllowUserToResizeRows = false;
             marcaDataGridView.AutoGenerateColumns = false;
             marcaDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             marcaDataGridView.Columns.AddRange(new DataGridViewColumn[] { idDataGridViewTextBoxColumn, nomeDataGridViewTextBoxColumn, cnpjDataGridViewTextBoxColumn, emailDataGridViewTextBoxColumn, telefoneDataGridViewTextBoxColumn, DataDeCriacao });
             marcaDataGridView.DataSource = marcaBindingSource;
             marcaDataGridView.Location = new Point(12, 175);
+            marcaDataGridView.MultiSelect = false;
             marcaDataGridView.Name = "marcaDataGridView";
             marcaDataGridView.RowTemplate.Height = 25;
+            marcaDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             marcaDataGridView.Size = new Size(641, 242);
             marcaDataGridView.TabIndex = 0;
             marcaDataGridView.CellClick += AoClicarNoMarcaDataGridView;
@@ -129,39 +133,42 @@
             // 
             marcaBindingSource.DataSource = typeof(Marca);
             // 
-            // botaoAdicionar
+            // botaoAdicionarMarca
             // 
-            botaoAdicionar.ForeColor = SystemColors.ControlText;
-            botaoAdicionar.Location = new Point(25, 440);
-            botaoAdicionar.Name = "botaoAdicionar";
-            botaoAdicionar.Size = new Size(75, 23);
-            botaoAdicionar.TabIndex = 1;
-            botaoAdicionar.Text = "Adicionar";
-            botaoAdicionar.UseVisualStyleBackColor = true;
-            botaoAdicionar.Click += AoClicarNoBotaoAdicionarMarca;
+            botaoAdicionarMarca.ForeColor = SystemColors.ControlText;
+            botaoAdicionarMarca.Location = new Point(25, 440);
+            botaoAdicionarMarca.Name = "botaoAdicionarMarca";
+            botaoAdicionarMarca.Size = new Size(75, 23);
+            botaoAdicionarMarca.TabIndex = 1;
+            botaoAdicionarMarca.Text = "Adicionar";
+            botaoAdicionarMarca.UseVisualStyleBackColor = true;
+            botaoAdicionarMarca.Click += AoClicarNoBotaoAdicionarMarca;
             // 
-            // botaoEditar
+            // botaoEditarMarca
             // 
-            botaoEditar.Location = new Point(129, 440);
-            botaoEditar.Name = "botaoEditar";
-            botaoEditar.Size = new Size(75, 23);
-            botaoEditar.TabIndex = 2;
-            botaoEditar.Text = "Editar";
-            botaoEditar.UseVisualStyleBackColor = true;
+            botaoEditarMarca.Location = new Point(129, 440);
+            botaoEditarMarca.Name = "botaoEditarMarca";
+            botaoEditarMarca.Size = new Size(75, 23);
+            botaoEditarMarca.TabIndex = 2;
+            botaoEditarMarca.Text = "Editar";
+            botaoEditarMarca.UseVisualStyleBackColor = true;
             // 
-            // botaoRemover
+            // botaoRemoverMarca
             // 
-            botaoRemover.Location = new Point(236, 440);
-            botaoRemover.Name = "botaoRemover";
-            botaoRemover.Size = new Size(75, 23);
-            botaoRemover.TabIndex = 3;
-            botaoRemover.Text = "Remover";
-            botaoRemover.UseVisualStyleBackColor = true;
+            botaoRemoverMarca.Location = new Point(236, 440);
+            botaoRemoverMarca.Name = "botaoRemoverMarca";
+            botaoRemoverMarca.Size = new Size(75, 23);
+            botaoRemoverMarca.TabIndex = 3;
+            botaoRemoverMarca.Text = "Remover";
+            botaoRemoverMarca.UseVisualStyleBackColor = true;
+            botaoRemoverMarca.Click += AoClicarNoBotaoRemoverMarca;
             // 
             // tenisDataGridView
             // 
             tenisDataGridView.AllowUserToAddRows = false;
             tenisDataGridView.AllowUserToDeleteRows = false;
+            tenisDataGridView.AllowUserToResizeColumns = false;
+            tenisDataGridView.AllowUserToResizeRows = false;
             tenisDataGridView.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             tenisDataGridView.AutoGenerateColumns = false;
             tenisDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -170,8 +177,60 @@
             tenisDataGridView.Location = new Point(688, 31);
             tenisDataGridView.Name = "tenisDataGridView";
             tenisDataGridView.RowTemplate.Height = 25;
+            tenisDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             tenisDataGridView.Size = new Size(427, 386);
             tenisDataGridView.TabIndex = 4;
+            // 
+            // idDataGridViewTextBoxColumn1
+            // 
+            idDataGridViewTextBoxColumn1.DataPropertyName = "Id";
+            idDataGridViewTextBoxColumn1.HeaderText = "ID";
+            idDataGridViewTextBoxColumn1.Name = "idDataGridViewTextBoxColumn1";
+            // 
+            // IdMarca
+            // 
+            IdMarca.DataPropertyName = "IdMarca";
+            IdMarca.HeaderText = "IdMarca";
+            IdMarca.Name = "IdMarca";
+            // 
+            // nomeDataGridViewTextBoxColumn1
+            // 
+            nomeDataGridViewTextBoxColumn1.DataPropertyName = "Nome";
+            nomeDataGridViewTextBoxColumn1.HeaderText = "Nome";
+            nomeDataGridViewTextBoxColumn1.Name = "nomeDataGridViewTextBoxColumn1";
+            // 
+            // linhaDataGridViewTextBoxColumn
+            // 
+            linhaDataGridViewTextBoxColumn.DataPropertyName = "Linha";
+            linhaDataGridViewTextBoxColumn.HeaderText = "Linha";
+            linhaDataGridViewTextBoxColumn.Name = "linhaDataGridViewTextBoxColumn";
+            // 
+            // precoDataGridViewTextBoxColumn
+            // 
+            precoDataGridViewTextBoxColumn.DataPropertyName = "Preco";
+            dataGridViewCellStyle1.Format = "N2";
+            dataGridViewCellStyle1.NullValue = null;
+            precoDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
+            precoDataGridViewTextBoxColumn.HeaderText = "Preço";
+            precoDataGridViewTextBoxColumn.Name = "precoDataGridViewTextBoxColumn";
+            // 
+            // Disponibilidade
+            // 
+            Disponibilidade.DataPropertyName = "Disponibilidade";
+            Disponibilidade.HeaderText = "Disponível";
+            Disponibilidade.Name = "Disponibilidade";
+            // 
+            // avaliacaoDataGridViewTextBoxColumn
+            // 
+            avaliacaoDataGridViewTextBoxColumn.DataPropertyName = "Avaliacao";
+            avaliacaoDataGridViewTextBoxColumn.HeaderText = "Avaliação";
+            avaliacaoDataGridViewTextBoxColumn.Name = "avaliacaoDataGridViewTextBoxColumn";
+            // 
+            // lancamentoDataGridViewTextBoxColumn
+            // 
+            lancamentoDataGridViewTextBoxColumn.DataPropertyName = "Lancamento";
+            lancamentoDataGridViewTextBoxColumn.HeaderText = "Lançamento";
+            lancamentoDataGridViewTextBoxColumn.Name = "lancamentoDataGridViewTextBoxColumn";
             // 
             // tenisBindingSource
             // 
@@ -269,99 +328,49 @@
             labelTabelatenis.TabIndex = 14;
             labelTabelatenis.Text = "Relação De Tênis Por Marca";
             // 
-            // button1
+            // botaoAdicionarTenis
             // 
-            button1.Location = new Point(836, 440);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 15;
-            button1.Text = "Adicionar";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += AoClicarNoBotaoAdicionarTenis;
+            botaoAdicionarTenis.Location = new Point(836, 440);
+            botaoAdicionarTenis.Name = "botaoAdicionarTenis";
+            botaoAdicionarTenis.Size = new Size(75, 23);
+            botaoAdicionarTenis.TabIndex = 15;
+            botaoAdicionarTenis.Text = "Adicionar";
+            botaoAdicionarTenis.UseVisualStyleBackColor = true;
+            botaoAdicionarTenis.Click += AoClicarNoBotaoAdicionarTenis;
             // 
-            // button2
+            // botaoEditarTenis
             // 
-            button2.Location = new Point(940, 440);
-            button2.Name = "button2";
-            button2.Size = new Size(75, 23);
-            button2.TabIndex = 16;
-            button2.Text = "Editar";
-            button2.UseVisualStyleBackColor = true;
+            botaoEditarTenis.Location = new Point(940, 440);
+            botaoEditarTenis.Name = "botaoEditarTenis";
+            botaoEditarTenis.Size = new Size(75, 23);
+            botaoEditarTenis.TabIndex = 16;
+            botaoEditarTenis.Text = "Editar";
+            botaoEditarTenis.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // botaoRemoverTenis
             // 
-            button3.Location = new Point(1040, 440);
-            button3.Name = "button3";
-            button3.Size = new Size(75, 23);
-            button3.TabIndex = 17;
-            button3.Text = "Remover";
-            button3.UseVisualStyleBackColor = true;
-            // 
-            // idDataGridViewTextBoxColumn1
-            // 
-            idDataGridViewTextBoxColumn1.DataPropertyName = "Id";
-            idDataGridViewTextBoxColumn1.HeaderText = "ID";
-            idDataGridViewTextBoxColumn1.Name = "idDataGridViewTextBoxColumn1";
-            // 
-            // IdMarca
-            // 
-            IdMarca.DataPropertyName = "IdMarca";
-            IdMarca.HeaderText = "IdMarca";
-            IdMarca.Name = "IdMarca";
-            // 
-            // nomeDataGridViewTextBoxColumn1
-            // 
-            nomeDataGridViewTextBoxColumn1.DataPropertyName = "Nome";
-            nomeDataGridViewTextBoxColumn1.HeaderText = "Nome";
-            nomeDataGridViewTextBoxColumn1.Name = "nomeDataGridViewTextBoxColumn1";
-            // 
-            // linhaDataGridViewTextBoxColumn
-            // 
-            linhaDataGridViewTextBoxColumn.DataPropertyName = "Linha";
-            linhaDataGridViewTextBoxColumn.HeaderText = "Linha";
-            linhaDataGridViewTextBoxColumn.Name = "linhaDataGridViewTextBoxColumn";
-            // 
-            // precoDataGridViewTextBoxColumn
-            // 
-            precoDataGridViewTextBoxColumn.DataPropertyName = "Preco";
-            dataGridViewCellStyle1.Format = "N2";
-            dataGridViewCellStyle1.NullValue = null;
-            precoDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
-            precoDataGridViewTextBoxColumn.HeaderText = "Preço";
-            precoDataGridViewTextBoxColumn.Name = "precoDataGridViewTextBoxColumn";
-            // 
-            // Disponibilidade
-            // 
-            Disponibilidade.DataPropertyName = "Disponibilidade";
-            Disponibilidade.HeaderText = "Disponível";
-            Disponibilidade.Name = "Disponibilidade";
-            // 
-            // avaliacaoDataGridViewTextBoxColumn
-            // 
-            avaliacaoDataGridViewTextBoxColumn.DataPropertyName = "Avaliacao";
-            avaliacaoDataGridViewTextBoxColumn.HeaderText = "Avaliação";
-            avaliacaoDataGridViewTextBoxColumn.Name = "avaliacaoDataGridViewTextBoxColumn";
-            // 
-            // lancamentoDataGridViewTextBoxColumn
-            // 
-            lancamentoDataGridViewTextBoxColumn.DataPropertyName = "Lancamento";
-            lancamentoDataGridViewTextBoxColumn.HeaderText = "Lançamento";
-            lancamentoDataGridViewTextBoxColumn.Name = "lancamentoDataGridViewTextBoxColumn";
+            botaoRemoverTenis.Location = new Point(1040, 440);
+            botaoRemoverTenis.Name = "botaoRemoverTenis";
+            botaoRemoverTenis.Size = new Size(75, 23);
+            botaoRemoverTenis.TabIndex = 17;
+            botaoRemoverTenis.Text = "Remover";
+            botaoRemoverTenis.UseVisualStyleBackColor = true;
+            botaoRemoverTenis.Click += AoClicarNoBotaoRemoverTenis;
             // 
             // TelaDeLista
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1127, 489);
-            Controls.Add(button3);
-            Controls.Add(button2);
-            Controls.Add(button1);
+            Controls.Add(botaoRemoverTenis);
+            Controls.Add(botaoEditarTenis);
+            Controls.Add(botaoAdicionarTenis);
             Controls.Add(labelTabelatenis);
             Controls.Add(groupBox1);
             Controls.Add(tenisDataGridView);
-            Controls.Add(botaoRemover);
-            Controls.Add(botaoEditar);
-            Controls.Add(botaoAdicionar);
+            Controls.Add(botaoRemoverMarca);
+            Controls.Add(botaoEditarMarca);
+            Controls.Add(botaoAdicionarMarca);
             Controls.Add(marcaDataGridView);
             Name = "TelaDeLista";
             Text = "Formulário Comercial";
@@ -378,9 +387,9 @@
         #endregion
 
         private DataGridView marcaDataGridView;
-        private Button botaoAdicionar;
-        private Button botaoEditar;
-        private Button botaoRemover;
+        private Button botaoAdicionarMarca;
+        private Button botaoEditarMarca;
+        private Button botaoRemoverMarca;
         private BindingSource marcaBindingSource;
         private DataGridView tenisDataGridView;
         private BindingSource tenisBindingSource;
@@ -399,9 +408,9 @@
         private DataGridViewTextBoxColumn telefoneDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn DataDeCriacao;
         private Label labelTabelatenis;
-        private Button button1;
-        private Button button2;
-        private Button button3;
+        private Button botaoAdicionarTenis;
+        private Button botaoEditarTenis;
+        private Button botaoRemoverTenis;
         private DataGridViewCheckBoxColumn disponibilidadeDataGridViewCheckBoxColumn;
         private DataGridViewTextBoxColumn idmarcaDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn1;

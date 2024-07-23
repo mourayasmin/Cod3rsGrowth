@@ -33,7 +33,7 @@ namespace Cod3rsGrowth.Forms
                 };
                 _servicoMarca.Criar(marcaAdicionada);
                 string mensagem = "Marca cadastrada com sucesso.";
-                MensagensErroOuSucesso.MostrarMensagemDeSucesso(mensagem);
+                Mensagens.MostrarMensagemDeSucesso(mensagem);
                 this.Close();
             }
             catch (ValidationException excecoes)
@@ -44,12 +44,12 @@ namespace Cod3rsGrowth.Forms
                 {
                     mensagemErro += erro.ErrorMessage + "\n";
                 }
-                MensagensErroOuSucesso.MostrarMensagemDeErro(mensagemErro);
+                Mensagens.MostrarMensagemDeErro(mensagemErro);
             }
             catch (Exception excecao)
             {
                 string mensagemErroInesperado = "Ocorreu um erro na aplicação.";
-                MensagensErroOuSucesso.MostrarMensagemDeErro(mensagemErroInesperado);
+                Mensagens.MostrarMensagemDeErro(mensagemErroInesperado);
             }
         }
 
