@@ -1,5 +1,4 @@
 ﻿using Cod3rsGrowth.Servicos.Servicos;
-using Cod3rsGrowth.Servicos.Validacoes;
 using FluentValidation;
 
 
@@ -10,31 +9,54 @@ namespace Cod3rsGrowth.Forms
 
         private readonly ServicoMarca _servicoMarca;
         private readonly DataGridView _marcaDataGridView;
+        private readonly Marca _marca;
 
-        public TelaDeCadastroMarca(ServicoMarca servicoMarca, ServicoTenis servicoTenis)
+        public TelaDeCadastroMarca(ServicoMarca servicoMarca, ServicoTenis servicoTenis, Marca? marca)
         {
             _servicoMarca = servicoMarca;
+            _marca = marca;
             InitializeComponent();
+            if (_marca != null)
+            {
+                PreencherDadosAutomaticamente();
+            }
         }
 
         private void AoClicarNoBotaoSalvarCadastroMarca(object sender, EventArgs e)
         {
+
             try
             {
-                maskedTextBoxCNPJCadastroMarca.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
-                maskedTextBoxTelefoneCadastroMarca.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
-                Marca marcaAdicionada = new Marca
+                if (_marca == null)
                 {
-                    Nome = textBoxNomeCadastroMarca.Text,
-                    Cnpj = maskedTextBoxCNPJCadastroMarca.Text,
-                    Email = textBoxEmailCadastroMarca.Text,
-                    Telefone = maskedTextBoxTelefoneCadastroMarca.Text,
-                    DataDeCriacao = dateTimePickerDataDeCriacaoCadastroMarca.Value
-                };
-                _servicoMarca.Criar(marcaAdicionada);
-                string mensagem = "Marca cadastrada com sucesso.";
-                Mensagens.MostrarMensagemDeSucesso(mensagem);
-                this.Close();
+                    maskedTextBoxCNPJCadastroMarca.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
+                    maskedTextBoxTelefoneCadastroMarca.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
+                    Marca marcaAdicionada = new Marca
+                    {
+                        Nome = textBoxNomeCadastroMarca.Text,
+                        Cnpj = maskedTextBoxCNPJCadastroMarca.Text,
+                        Email = textBoxEmailCadastroMarca.Text,
+                        Telefone = maskedTextBoxTelefoneCadastroMarca.Text,
+                        DataDeCriacao = dateTimePickerDataDeCriacaoCadastroMarca.Value
+                    };
+                    _servicoMarca.Criar(marcaAdicionada);
+                    string mensagem = "Marca cadastrada com sucesso.";
+                    Mensagens.MostrarMensagemDeSucesso(mensagem);
+                    this.Close();
+                }
+                else
+                {
+                    maskedTextBoxTelefoneCadastroMarca.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
+                    _marca.Email = textBoxEmailCadastroMarca.Text;
+                    _marca.Telefone = maskedTextBoxTelefoneCadastroMarca.Text;
+                    maskedTextBoxCNPJCadastroMarca.ReadOnly = true;
+                    dateTimePickerDataDeCriacaoCadastroMarca.Enabled = false;
+
+                    _servicoMarca.Atualizar(_marca);
+                    string mensagem = "Marca atualizada com sucesso.";
+                    Mensagens.MostrarMensagemDeSucesso(mensagem);
+                    this.Close();
+                }
             }
             catch (ValidationException excecoes)
             {
@@ -46,11 +68,12 @@ namespace Cod3rsGrowth.Forms
                 }
                 Mensagens.MostrarMensagemDeErro(mensagemErro);
             }
-            catch (Exception excecao)
+            catch (Exception)
             {
                 string mensagemErroInesperado = "Ocorreu um erro na aplicação.";
                 Mensagens.MostrarMensagemDeErro(mensagemErroInesperado);
             }
+
         }
 
         private void AoClicarNoBotaoCancelarCadastroMarca(object sender, EventArgs e)
@@ -61,6 +84,16 @@ namespace Cod3rsGrowth.Forms
             maskedTextBoxTelefoneCadastroMarca.Clear();
             dateTimePickerDataDeCriacaoCadastroMarca.Value = DateTime.Today.Date;
             this.Close();
+        }
+
+        private void PreencherDadosAutomaticamente()
+        {
+            maskedTextBoxTelefoneCadastroMarca.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
+            textBoxNomeCadastroMarca.Text = _marca.Nome;
+            maskedTextBoxCNPJCadastroMarca.Text = _marca.Cnpj;
+            textBoxEmailCadastroMarca.Text = _marca.Email;
+            maskedTextBoxTelefoneCadastroMarca.Text = _marca.Telefone;
+            dateTimePickerDataDeCriacaoCadastroMarca.Value = _marca.DataDeCriacao;
         }
     }
 }
