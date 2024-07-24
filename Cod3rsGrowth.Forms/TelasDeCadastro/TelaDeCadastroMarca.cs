@@ -1,4 +1,5 @@
-﻿using Cod3rsGrowth.Servicos.Servicos;
+﻿using Cod3rsGrowth.Dominio.Migracoes;
+using Cod3rsGrowth.Servicos.Servicos;
 using FluentValidation;
 
 
@@ -88,12 +89,21 @@ namespace Cod3rsGrowth.Forms
 
         private void PreencherDadosAutomaticamente()
         {
-            maskedTextBoxTelefoneCadastroMarca.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
             textBoxNomeCadastroMarca.Text = _marca.Nome;
             maskedTextBoxCNPJCadastroMarca.Text = _marca.Cnpj;
             textBoxEmailCadastroMarca.Text = _marca.Email;
             maskedTextBoxTelefoneCadastroMarca.Text = _marca.Telefone;
             dateTimePickerDataDeCriacaoCadastroMarca.Value = _marca.DataDeCriacao;
+        }
+
+        private void AoCarregarTelaDeCadastroMarcaParaEditar(object sender, EventArgs e)
+        {
+            if(_marca != null)
+            {
+                textBoxNomeCadastroMarca.Enabled = false;
+                maskedTextBoxCNPJCadastroMarca.Enabled = false;
+                dateTimePickerDataDeCriacaoCadastroMarca.Enabled = false;
+            }
         }
     }
 }

@@ -54,7 +54,6 @@ namespace Cod3rsGrowth.Forms
                 }
                 else
                 {
-                    textBoxNomeCadastroTenis.Enabled = false;
                     _tenis.Preco = textBoxPrecoCadastroTenis.Text == vazio ? (double)decimal.Zero : Double.Parse(textBoxPrecoCadastroTenis.Text);
                     _tenis.Avaliacao = numericUpDownAvaliacaoCadastroTenis.Value;
                     _tenis.Disponibilidade = checkBoxDisponibilidadeCadastroTenis.Checked;
@@ -94,10 +93,14 @@ namespace Cod3rsGrowth.Forms
 
         private void AoCarregarTelaDeCadastroTenis(object sender, EventArgs e)
         {
-            if (_tenis == null)
+            comboBoxLinhaCadastroTenis.DataSource = Enum.GetValues(typeof(LinhaEnum));
+            comboBoxNomeDaMarcaCadastroTenis.DataSource = _servicoMarca.ObterTodas().Select(x => x.Nome).ToList();
+
+            if(_tenis != null)
             {
-                comboBoxLinhaCadastroTenis.DataSource = Enum.GetValues(typeof(LinhaEnum));
-                comboBoxNomeDaMarcaCadastroTenis.DataSource = _servicoMarca.ObterTodas().Select(x => x.Nome).ToList();
+                textBoxNomeCadastroTenis.Enabled = false;
+                comboBoxLinhaCadastroTenis.Enabled = false;
+                comboBoxNomeDaMarcaCadastroTenis.Enabled = false;
             }
         }
 
