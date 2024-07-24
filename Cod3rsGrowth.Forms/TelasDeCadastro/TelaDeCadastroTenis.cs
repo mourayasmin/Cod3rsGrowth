@@ -3,13 +3,11 @@ using Cod3rsGrowth.Dominio.Filtros;
 using Cod3rsGrowth.Servicos.Servicos;
 using Cod3rsGrowth.Servicos.Validacoes;
 using FluentValidation;
-using LinqToDB.Common;
 
 namespace Cod3rsGrowth.Forms
 {
     public partial class TelaDeCadastroTenis : Form
     {
-
         private readonly ServicoMarca _servicoMarca;
         private readonly ServicoTenis _servicoTenis;
         private readonly DataGridView _tenisDataGridView;
@@ -22,7 +20,9 @@ namespace Cod3rsGrowth.Forms
             _tenis = tenis;
             _servicoMarca = servicoMarca;
             _servicoTenis = servicoTenis;
+
             InitializeComponent();
+
             if(_tenis != null)
             {
                 PreencherDadosDoTenisAutomaticamente();
@@ -32,6 +32,7 @@ namespace Cod3rsGrowth.Forms
         private void AoClicarNoBotaoSalvarCadastroTenis(object sender, EventArgs e)
         {
             const string vazio = "";
+
             try
             {
                 if (_tenis == null)

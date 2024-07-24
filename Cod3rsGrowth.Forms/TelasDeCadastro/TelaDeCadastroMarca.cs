@@ -1,5 +1,4 @@
-﻿using Cod3rsGrowth.Dominio.Migracoes;
-using Cod3rsGrowth.Servicos.Servicos;
+﻿using Cod3rsGrowth.Servicos.Servicos;
 using FluentValidation;
 
 
@@ -7,7 +6,6 @@ namespace Cod3rsGrowth.Forms
 {
     public partial class TelaDeCadastroMarca : Form
     {
-
         private readonly ServicoMarca _servicoMarca;
         private readonly DataGridView _marcaDataGridView;
         private readonly Marca _marca;
@@ -16,7 +14,9 @@ namespace Cod3rsGrowth.Forms
         {
             _servicoMarca = servicoMarca;
             _marca = marca;
+
             InitializeComponent();
+
             if (_marca != null)
             {
                 PreencherDadosAutomaticamente();
@@ -40,6 +40,7 @@ namespace Cod3rsGrowth.Forms
                         Telefone = maskedTextBoxTelefoneCadastroMarca.Text,
                         DataDeCriacao = dateTimePickerDataDeCriacaoCadastroMarca.Value
                     };
+
                     _servicoMarca.Criar(marcaAdicionada);
                     string mensagem = "Marca cadastrada com sucesso.";
                     Mensagens.MostrarMensagemDeSucesso(mensagem);
@@ -50,8 +51,6 @@ namespace Cod3rsGrowth.Forms
                     maskedTextBoxTelefoneCadastroMarca.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
                     _marca.Email = textBoxEmailCadastroMarca.Text;
                     _marca.Telefone = maskedTextBoxTelefoneCadastroMarca.Text;
-                    maskedTextBoxCNPJCadastroMarca.ReadOnly = true;
-                    dateTimePickerDataDeCriacaoCadastroMarca.Enabled = false;
 
                     _servicoMarca.Atualizar(_marca);
                     string mensagem = "Marca atualizada com sucesso.";
@@ -87,6 +86,16 @@ namespace Cod3rsGrowth.Forms
             this.Close();
         }
 
+        private void AoCarregarTelaDeCadastroMarcaParaEditar(object sender, EventArgs e)
+        {
+            if (_marca != null)
+            {
+                textBoxNomeCadastroMarca.Enabled = false;
+                maskedTextBoxCNPJCadastroMarca.Enabled = false;
+                dateTimePickerDataDeCriacaoCadastroMarca.Enabled = false;
+            }
+        }
+         
         private void PreencherDadosAutomaticamente()
         {
             textBoxNomeCadastroMarca.Text = _marca.Nome;
@@ -94,16 +103,6 @@ namespace Cod3rsGrowth.Forms
             textBoxEmailCadastroMarca.Text = _marca.Email;
             maskedTextBoxTelefoneCadastroMarca.Text = _marca.Telefone;
             dateTimePickerDataDeCriacaoCadastroMarca.Value = _marca.DataDeCriacao;
-        }
-
-        private void AoCarregarTelaDeCadastroMarcaParaEditar(object sender, EventArgs e)
-        {
-            if(_marca != null)
-            {
-                textBoxNomeCadastroMarca.Enabled = false;
-                maskedTextBoxCNPJCadastroMarca.Enabled = false;
-                dateTimePickerDataDeCriacaoCadastroMarca.Enabled = false;
-            }
         }
     }
 }
