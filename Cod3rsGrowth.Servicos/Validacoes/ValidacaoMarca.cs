@@ -1,5 +1,4 @@
-﻿using Cod3rsGrowth.Dominio;
-using FluentValidation;
+﻿using FluentValidation;
 
 namespace Cod3rsGrowth.Servicos.Validacoes
 {
@@ -13,6 +12,8 @@ namespace Cod3rsGrowth.Servicos.Validacoes
                 .NotEmpty()
                 .WithMessage("Informe o CNPJ da marca.")
                 .Length(14)
+                .WithMessage("Informe um CNPJ válido.")
+                .Matches("^\\d+$")
                 .WithMessage("Informe um CNPJ válido.");
             RuleFor(marca => marca.Nome)
                 .NotNull()
@@ -24,6 +25,13 @@ namespace Cod3rsGrowth.Servicos.Validacoes
                 .WithMessage("Informe um e-mail válido.")
                 .NotEmpty()
                 .WithMessage("Informe um e-mail válido.");
+            RuleFor(marca => marca.Telefone)
+                .Length(11)
+                .Matches("^\\d+$")
+                .WithMessage("Informe um telefone válido.");
+            RuleFor(marca => marca.Email)
+                .Matches(@"^[^@\s]+@[^@\s]+\.[^@\s]+$")
+                .WithMessage("Insira um e-mail válido.");
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using Cod3rsGrowth.Dominio;
-using Cod3rsGrowth.Dominio.InterfacesRepositorio;
+﻿using Cod3rsGrowth.Dominio.InterfacesRepositorio;
 using Cod3rsGrowth.Servicos.Servicos;
 using Cod3rsGrowth.Servicos.Validacoes;
 using Cod3rsGrowth.Testes.RepositoriosMock;
