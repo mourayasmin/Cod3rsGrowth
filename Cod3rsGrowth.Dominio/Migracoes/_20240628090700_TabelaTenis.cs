@@ -9,7 +9,7 @@ namespace Cod3rsGrowth.Dominio.Migracoes
         {
             Create.Table("Tenis")
                 .WithColumn("Id").AsInt32().PrimaryKey().Identity().NotNullable().Unique()
-                .WithColumn("Idmarca").AsInt32().NotNullable()
+                .WithColumn("IdMarca").AsInt32().NotNullable()
                 .WithColumn("Nome").AsString().Nullable()
                 .WithColumn("Linha").AsInt32().Nullable()
                 .WithColumn("Preço").AsDouble().Nullable()
