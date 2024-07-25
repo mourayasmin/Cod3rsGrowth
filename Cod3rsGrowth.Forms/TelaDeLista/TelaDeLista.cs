@@ -1,5 +1,6 @@
 using Cod3rsGrowth.Dominio.Filtros;
 using Cod3rsGrowth.Servicos.Servicos;
+using System.Text.RegularExpressions;
 
 namespace Cod3rsGrowth.Forms
 {
@@ -69,14 +70,14 @@ namespace Cod3rsGrowth.Forms
 
         private void AoClicarNoBotaoAdicionarMarca(object sender, EventArgs e)
         {
-            TelaDeCadastroMarca formularioCadastro = new TelaDeCadastroMarca(_servicoMarca, _servicoTenis);
+            TelaDeCadastroMarca formularioCadastro = new TelaDeCadastroMarca(_servicoMarca, _servicoTenis, null);
             formularioCadastro.ShowDialog();
             marcaDataGridView.DataSource = _servicoMarca.ObterTodas();
         }
 
         private void AoClicarNoBotaoAdicionarTenis(object sender, EventArgs e)
         {
-            TelaDeCadastroTenis formularioCadastro = new TelaDeCadastroTenis(_servicoMarca, _servicoTenis);
+            TelaDeCadastroTenis formularioCadastro = new TelaDeCadastroTenis(_servicoMarca, _servicoTenis, null);
             formularioCadastro.ShowDialog();
         }
 
@@ -148,6 +149,44 @@ namespace Cod3rsGrowth.Forms
                 }
             }
             catch (Exception)
+            {
+                MessageBox.Show("Ocorreu um erro na aplicação.");
+            }
+        }
+
+        private void AoClicarNoBotaoEditarMarca(object sender, EventArgs e)
+        {
+            const int colunaIdMarca = 0;
+            var idMarca = (int)marcaDataGridView.CurrentRow.Cells[colunaIdMarca].Value;
+            var marca = _servicoMarca.ObterPorId(idMarca);
+
+            TelaDeCadastroMarca formularioCadastro = new TelaDeCadastroMarca(_servicoMarca, _servicoTenis, marca);
+            formularioCadastro.ShowDialog();
+            marcaDataGridView.DataSource = _servicoMarca.ObterTodas();
+        }
+
+        private void AoClicarNoBotaoEditarTenis(object sender, EventArgs e)
+        {
+            try
+            {
+                const int colunaIdTenis = 0;
+                const int colunaIdMarca = 1;
+                var idMarca = (int)tenisDataGridView.CurrentRow.Cells[colunaIdMarca].Value;
+                var idTenis = (int)tenisDataGridView.CurrentRow.Cells[colunaIdTenis].Value;
+                var tenis = _servicoTenis.ObterPorId(idTenis);
+
+                TelaDeCadastroTenis formularioCadastro = new TelaDeCadastroTenis(_servicoMarca, _servicoTenis, tenis);
+                formularioCadastro.ShowDialog();
+                tenisDataGridView.DataSource = _servicoTenis.ObterTodos(new FiltrosTenis
+                {
+                    IdMarca = idMarca,
+                });
+            }
+            catch(SystemException)
+            {
+                MessageBox.Show("Escolha uma marca e um tênis referente a ela.");
+            }
+            catch(Exception)
             {
                 MessageBox.Show("Ocorreu um erro na aplicação.");
             }

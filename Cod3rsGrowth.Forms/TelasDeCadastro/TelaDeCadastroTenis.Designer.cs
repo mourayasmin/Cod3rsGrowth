@@ -33,7 +33,7 @@
             dateTimePickerLancamentoCadastroTenis = new DateTimePicker();
             checkBoxDisponibilidadeCadastroTenis = new CheckBox();
             groupBoxInformacoesDoTenisCadastroTenis = new GroupBox();
-            textBoxPrecoCadastroMarca = new TextBox();
+            textBoxPrecoCadastroTenis = new TextBox();
             numericUpDownAvaliacaoCadastroTenis = new NumericUpDown();
             comboBoxNomeDaMarcaCadastroTenis = new ComboBox();
             labelLancamentoCadastroTenis = new Label();
@@ -83,7 +83,7 @@
             // 
             // groupBoxInformacoesDoTenisCadastroTenis
             // 
-            groupBoxInformacoesDoTenisCadastroTenis.Controls.Add(textBoxPrecoCadastroMarca);
+            groupBoxInformacoesDoTenisCadastroTenis.Controls.Add(textBoxPrecoCadastroTenis);
             groupBoxInformacoesDoTenisCadastroTenis.Controls.Add(numericUpDownAvaliacaoCadastroTenis);
             groupBoxInformacoesDoTenisCadastroTenis.Controls.Add(comboBoxNomeDaMarcaCadastroTenis);
             groupBoxInformacoesDoTenisCadastroTenis.Controls.Add(labelLancamentoCadastroTenis);
@@ -103,15 +103,15 @@
             groupBoxInformacoesDoTenisCadastroTenis.TabStop = false;
             groupBoxInformacoesDoTenisCadastroTenis.Text = "Informações do tênis";
             // 
-            // textBoxPrecoCadastroMarca
+            // textBoxPrecoCadastroTenis
             // 
-            textBoxPrecoCadastroMarca.Location = new Point(8, 99);
-            textBoxPrecoCadastroMarca.MaxLength = 8;
-            textBoxPrecoCadastroMarca.Name = "textBoxPrecoCadastroMarca";
-            textBoxPrecoCadastroMarca.PlaceholderText = "Formato: 00000.00";
-            textBoxPrecoCadastroMarca.Size = new Size(148, 23);
-            textBoxPrecoCadastroMarca.TabIndex = 2;
-            textBoxPrecoCadastroMarca.KeyPress += KeyPressTextBoxPrecoCadastroTenis;
+            textBoxPrecoCadastroTenis.Location = new Point(8, 99);
+            textBoxPrecoCadastroTenis.MaxLength = 8;
+            textBoxPrecoCadastroTenis.Name = "textBoxPrecoCadastroTenis";
+            textBoxPrecoCadastroTenis.PlaceholderText = "Formato: 00000.00";
+            textBoxPrecoCadastroTenis.Size = new Size(148, 23);
+            textBoxPrecoCadastroTenis.TabIndex = 2;
+            textBoxPrecoCadastroTenis.KeyPress += KeyPressTextBoxPrecoCadastroTenis;
             // 
             // numericUpDownAvaliacaoCadastroTenis
             // 
@@ -238,6 +238,6 @@
         private Button botaoCancelarCadastroTenis;
         private ComboBox comboBoxNomeDaMarcaCadastroTenis;
         private NumericUpDown numericUpDownAvaliacaoCadastroTenis;
-        private TextBox textBoxPrecoCadastroMarca;
+        private TextBox textBoxPrecoCadastroTenis;
     }
 }
