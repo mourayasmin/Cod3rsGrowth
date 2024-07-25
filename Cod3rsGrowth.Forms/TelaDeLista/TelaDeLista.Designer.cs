@@ -152,6 +152,7 @@
             botaoEditarMarca.TabIndex = 2;
             botaoEditarMarca.Text = "Editar";
             botaoEditarMarca.UseVisualStyleBackColor = true;
+            botaoEditarMarca.Click += AoClicarNoBotaoEditarMarca;
             // 
             // botaoRemoverMarca
             // 
@@ -346,6 +347,7 @@
             botaoEditarTenis.TabIndex = 16;
             botaoEditarTenis.Text = "Editar";
             botaoEditarTenis.UseVisualStyleBackColor = true;
+            botaoEditarTenis.Click += AoClicarNoBotaoEditarTenis;
             // 
             // botaoRemoverTenis
             // 

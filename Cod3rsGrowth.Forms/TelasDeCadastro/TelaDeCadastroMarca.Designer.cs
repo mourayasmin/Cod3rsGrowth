@@ -175,7 +175,8 @@
             Controls.Add(botaoSalvarCadastroMarca);
             Controls.Add(groupBoxInformacoesDaMarcaCadastroMarca);
             Name = "TelaDeCadastroMarca";
-            Text = "Cadastrar Marca";
+            Text = "Informações da marca";
+            Load += AoCarregarTelaDeCadastroMarcaParaEditar;
             groupBoxInformacoesDaMarcaCadastroMarca.ResumeLayout(false);
             groupBoxInformacoesDaMarcaCadastroMarca.PerformLayout();
             ResumeLayout(false);
