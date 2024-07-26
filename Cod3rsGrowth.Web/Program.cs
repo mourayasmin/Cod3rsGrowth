@@ -1,8 +1,7 @@
 using Cod3rsGrowth.Web.Injecao;
-using Cod3rsGrowth.Infra.Injecao;
-using Cod3rsGrowth.Servicos.Injecao;
 
 var builder = WebApplication.CreateBuilder(args);
+var colecaoDeServicos = new ServiceCollection();
 
 // Add services to the container.
 
@@ -11,6 +10,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.ConfigurarServicos();
+builder.Configurar(colecaoDeServicos, "ConnectionString");
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
