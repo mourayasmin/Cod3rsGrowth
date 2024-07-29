@@ -1,9 +1,7 @@
-﻿using FluentValidation;
+﻿using LinqToDB.SqlQuery;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
-using SharpYaml.Serialization;
 using System.Diagnostics;
 
 namespace Cod3rsGrowth.Web.DetalhesDeProblemas
@@ -25,11 +23,22 @@ namespace Cod3rsGrowth.Web.DetalhesDeProblemas
                         {
                             Instance = context.Request.HttpContext.Request.Path
                         };
-                        if (exception is ValidationException excecoes)
+                        if (exception is FluentValidation.ValidationException excecoes)
                         {
                             problemDetails.Title = "A requisição é inválida.";
                             problemDetails.Status = StatusCodes.Status400BadRequest;
                             problemDetails.Detail = excecoes.Message;
+                            problemDetails.Instance = excecoes.StackTrace;
+                            problemDetails.Extensions["Erro de validação"] = excecoes.Errors
+                             .GroupBy(x => x.PropertyName, x => x.ErrorMessage)
+                             .ToDictionary(y => y.Key, y => y.ToList());
+                        }
+                        else if (exception is SqlException sqlException)
+                        {
+                            problemDetails.Title = "Erro no Banco de Dados";
+                            problemDetails.Status = StatusCodes.Status500InternalServerError;
+                            problemDetails.Detail = sqlException.StackTrace;
+                            problemDetails.Extensions["Erro Banco de Dados"] = sqlException.Message;
                         }
                         else
                         {
