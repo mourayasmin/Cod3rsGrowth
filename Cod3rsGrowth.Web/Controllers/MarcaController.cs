@@ -21,5 +21,12 @@ namespace Cod3rsGrowth.Web.Controllers
             var marcas = _servicoMarca.ObterTodas(filtros);
             return Ok(marcas);
         }
+
+        [HttpGet("{Id}")]
+        public IActionResult ObterPorId(int id)
+        {
+            var marca = _servicoMarca.ObterPorId(id);
+            return Ok(marca);
+        }
     }
 }
