@@ -1,7 +1,9 @@
+using Cod3rsGrowth.Web.DetalhesDeProblemas;
 using Cod3rsGrowth.Web.Injecao;
 
 var builder = WebApplication.CreateBuilder(args);
 var colecaoDeServicos = new ServiceCollection();
+
 
 // Add services to the container.
 
@@ -10,6 +12,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.ConfigurarServicos();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -24,5 +27,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.ExibeDetalhesDeProblemasDeExcecaoNaAPI(app.Services.GetRequiredService<ILoggerFactory>());
 
 app.Run();
