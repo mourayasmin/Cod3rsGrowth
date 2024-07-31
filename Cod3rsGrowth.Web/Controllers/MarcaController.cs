@@ -28,5 +28,12 @@ namespace Cod3rsGrowth.Web.Controllers
             var marca = _servicoMarca.ObterPorId(id);
             return Ok(marca);
         }
+
+        [HttpPost]
+        public CreatedResult Criar([FromBody] Marca marca)
+        {
+            _servicoMarca.Criar(marca);
+            return Created(marca.Id.ToString(), marca);
+        }
     }
 }

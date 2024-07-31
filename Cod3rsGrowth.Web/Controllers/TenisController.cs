@@ -13,5 +13,12 @@ namespace Cod3rsGrowth.Web.Controllers
         {
             _servicoTenis = servicoTenis;
         }
+
+        [HttpPost]
+        public CreatedResult Criar([FromBody] Tenis tenis)
+        {
+            _servicoTenis.Criar(tenis);
+            return Created(tenis.Id.ToString(), tenis);
+        }
     }
 }
