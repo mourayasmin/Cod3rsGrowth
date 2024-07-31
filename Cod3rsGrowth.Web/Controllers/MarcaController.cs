@@ -30,10 +30,10 @@ namespace Cod3rsGrowth.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult Criar([FromBody] Marca marca)
+        public CreatedResult Criar([FromBody] Marca marca)
         {
             _servicoMarca.Criar(marca);
-            return Ok(marca);
+            return Created(marca.Id.ToString(), marca);
         }
     }
 }

@@ -15,10 +15,10 @@ namespace Cod3rsGrowth.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult Criar([FromBody] Tenis tenis)
+        public CreatedResult Criar([FromBody] Tenis tenis)
         {
             _servicoTenis.Criar(tenis);
-            return Ok(tenis);
+            return Created(tenis.Id.ToString(), tenis);
         }
     }
 }

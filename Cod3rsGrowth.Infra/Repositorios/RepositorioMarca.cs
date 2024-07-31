@@ -35,7 +35,7 @@ namespace Cod3rsGrowth.Infra.Repositorios
 
         public Marca Criar(Marca marca)
         {
-            _db.Insert(marca);
+            marca.Id = _db.InsertWithInt32Identity(marca);
             return marca;
         }
 
