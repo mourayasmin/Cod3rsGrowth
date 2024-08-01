@@ -10,12 +10,10 @@ namespace Cod3rsGrowth.Web.Controllers
     public class MarcaController : ControllerBase
     {
         private readonly ServicoMarca _servicoMarca;
-        private readonly DBCod3rsGrowth _db;
 
-        public MarcaController(ServicoMarca servicoMarca, DBCod3rsGrowth db)
+        public MarcaController(ServicoMarca servicoMarca)
         {
             _servicoMarca = servicoMarca;
-            _db = db;
         }
 
         [HttpGet]
