@@ -1,4 +1,5 @@
 ﻿using Cod3rsGrowth.Dominio.Filtros;
+using Cod3rsGrowth.Infra;
 using Cod3rsGrowth.Servicos.Servicos;
 using Microsoft.AspNetCore.Mvc;
 
@@ -34,6 +35,13 @@ namespace Cod3rsGrowth.Web.Controllers
         {
             _servicoMarca.Criar(marca);
             return Created(marca.Id.ToString(), marca);
+        }
+
+        [HttpPatch]
+        public IActionResult Atualizar([FromBody] Marca marca)
+        {
+            _servicoMarca.Atualizar(marca);
+            return Ok();
         }
     }
 }
