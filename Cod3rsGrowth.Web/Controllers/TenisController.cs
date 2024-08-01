@@ -22,9 +22,10 @@ namespace Cod3rsGrowth.Web.Controllers
         }
 
         [HttpPatch]
-        public void Atualizar([FromBody] Tenis tenis)
+        public IActionResult Atualizar([FromBody] Tenis tenis)
         {
             _servicoTenis.Atualizar(tenis);
+            return Ok();
         }
     }
 }

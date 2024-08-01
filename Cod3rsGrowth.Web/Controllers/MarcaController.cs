@@ -38,9 +38,10 @@ namespace Cod3rsGrowth.Web.Controllers
         }
 
         [HttpPatch]
-        public void Atualizar([FromBody] Marca marca)
+        public IActionResult Atualizar([FromBody] Marca marca)
         {
             _servicoMarca.Atualizar(marca);
+            return Ok();
         }
     }
 }
