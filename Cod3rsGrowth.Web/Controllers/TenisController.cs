@@ -1,3 +1,4 @@
+using Cod3rsGrowth.Dominio.Filtros;
 using Cod3rsGrowth.Servicos.Servicos;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,6 +13,13 @@ namespace Cod3rsGrowth.Web.Controllers
         public TenisController(ServicoTenis servicoTenis)
         {
             _servicoTenis = servicoTenis;
+        }
+
+        [HttpGet]
+        public IActionResult ObterTodos([FromQuery] FiltrosTenis filtros)
+        {
+            var tenis = _servicoTenis.ObterTodos(filtros);
+            return Ok(tenis);
         }
 
         [HttpPost]
