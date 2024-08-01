@@ -43,5 +43,12 @@ namespace Cod3rsGrowth.Web.Controllers
             _servicoMarca.Atualizar(marca);
             return Ok();
         }
+
+        [HttpDelete("{Id}")]
+        public IActionResult Deletar(int id)
+        {
+            _servicoMarca.Deletar(id);
+            return Ok();
+        }
     }
 }

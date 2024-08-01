@@ -27,5 +27,12 @@ namespace Cod3rsGrowth.Web.Controllers
             _servicoTenis.Atualizar(tenis);
             return Ok();
         }
+
+        [HttpDelete("{Id}")]
+        public IActionResult Deletar(int id)
+        {
+            _servicoTenis.Deletar(id);
+            return Ok();
+        }
     }
 }
