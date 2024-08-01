@@ -22,6 +22,13 @@ namespace Cod3rsGrowth.Web.Controllers
             return Ok(tenis);
         }
 
+        [HttpGet("{Id}")]
+        public IActionResult ObterPorId(int id)
+        {
+            var tenis = _servicoTenis.ObterPorId(id);
+            return Ok(tenis);
+        }
+
         [HttpPost]
         public CreatedResult Criar([FromBody] Tenis tenis)
         {
