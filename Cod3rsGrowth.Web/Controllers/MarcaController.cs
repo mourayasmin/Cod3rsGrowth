@@ -1,4 +1,5 @@
 ﻿using Cod3rsGrowth.Dominio.Filtros;
+using Cod3rsGrowth.Infra;
 using Cod3rsGrowth.Servicos.Servicos;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,10 +10,12 @@ namespace Cod3rsGrowth.Web.Controllers
     public class MarcaController : ControllerBase
     {
         private readonly ServicoMarca _servicoMarca;
+        private readonly DBCod3rsGrowth _db;
 
-        public MarcaController(ServicoMarca servicoMarca)
+        public MarcaController(ServicoMarca servicoMarca, DBCod3rsGrowth db)
         {
             _servicoMarca = servicoMarca;
+            _db = db;
         }
 
         [HttpGet]
@@ -34,6 +37,12 @@ namespace Cod3rsGrowth.Web.Controllers
         {
             _servicoMarca.Criar(marca);
             return Created(marca.Id.ToString(), marca);
+        }
+
+        [HttpPatch]
+        public void Atualizar([FromBody] Marca marca)
+        {
+            _servicoMarca.Atualizar(marca);
         }
     }
 }

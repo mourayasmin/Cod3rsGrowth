@@ -20,5 +20,11 @@ namespace Cod3rsGrowth.Web.Controllers
             _servicoTenis.Criar(tenis);
             return Created(tenis.Id.ToString(), tenis);
         }
+
+        [HttpPatch]
+        public void Atualizar([FromBody] Tenis tenis)
+        {
+            _servicoTenis.Atualizar(tenis);
+        }
     }
 }
