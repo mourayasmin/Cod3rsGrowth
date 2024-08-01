@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Cod3rsGrowth.Dominio.Filtros;
 using Cod3rsGrowth.Dominio.InterfacesRepositorio;
@@ -35,7 +36,7 @@ namespace Cod3rsGrowth.Infra.Repositorios
 
         public Marca Criar(Marca marca)
         {
-            _db.Insert(marca);
+            marca.Id = _db.InsertWithInt32Identity(marca);
             return marca;
         }
 

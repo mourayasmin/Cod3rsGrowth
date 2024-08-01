@@ -54,7 +54,7 @@ namespace Cod3rsGrowth.Infra.Repositorios
 
         public Tenis Criar(Tenis tenis)
         {
-            _db.Insert(tenis);
+            tenis.Id = _db.InsertWithInt32Identity(tenis);
             return tenis;
         }
 
