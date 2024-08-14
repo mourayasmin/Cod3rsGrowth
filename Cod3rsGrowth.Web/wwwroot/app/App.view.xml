@@ -1,0 +1,11 @@
+<mvc:View controllerName="ui5.wwwroot.app.App"
+  xmlns="sap.m"
+  xmlns:mvc="sap.ui.core.mvc">
+  <App>
+    <Page>
+      <headerContent>
+        <Button id="pressMeButton" text="Press me" press="onPress" visible="false"/>
+      </headerContent>
+    </Page>
+  </App>
+</mvc:View>
