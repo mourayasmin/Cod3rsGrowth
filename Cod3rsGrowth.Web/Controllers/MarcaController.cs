@@ -3,7 +3,7 @@ using Cod3rsGrowth.Infra;
 using Cod3rsGrowth.Servicos.Servicos;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Cod3rsGrowth.Web.Controllers
+namespace Cod3rsGrowth.Web.MarcaWeb.MarcaController
 {
     [ApiController]
     [Route("api/[controller]")]

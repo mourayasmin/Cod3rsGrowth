@@ -30,4 +30,13 @@ app.MapControllers();
 
 app.ExibeDetalhesDeProblemasDeExcecaoNaAPI(app.Services.GetRequiredService<ILoggerFactory>());
 
+app.UseFileServer(new FileServerOptions()
+{
+    EnableDirectoryBrowsing = true
+});
+app.UseStaticFiles(new StaticFileOptions()
+{
+    ServeUnknownFileTypes = true
+});
+
 app.Run();
