@@ -2,7 +2,7 @@ using Cod3rsGrowth.Dominio.Filtros;
 using Cod3rsGrowth.Servicos.Servicos;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Cod3rsGrowth.Web.Controllers.TenisController
+namespace Cod3rsGrowth.Web.Controllers
 {
     [ApiController]
     [Route("[controller]")]
