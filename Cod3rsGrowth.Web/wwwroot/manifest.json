@@ -40,6 +40,40 @@
           "viewName": "ui5.wwwroot.app.App",
           "type": "XML",
           "id": "app"
+      },
+      "routing": {
+         "config": {
+            "routerClass": "sap.m.routing.Router",
+            "type": "View",
+            "viewType": "XML",
+            "path": "ui5.wwwroot.app",
+            "controlId": "app",
+            "controlAggregation": "pages",
+            "transition": "slide",
+            "bypassed": {
+               "target": "notFound"
+            },
+            "async": true
+         },
+         "routes": [{
+            "pattern": "",
+            "name": "paginaInicial",
+            "target": "listaMarca"
+         }],
+         "targets": {
+            "listaMarca": {
+               "id": "listaMarca",
+               "path": "ui5.wwwroot.app.Marca",
+               "name": "Marca",
+               "level" : 1
+            },
+            "notFound": {
+               "id": "notFound",
+               "path": "ui5.wwwroot.app.NotFound",
+               "name": "NotFound",
+               "transition": "show"
+            }
+    }
       }
     }
   }
