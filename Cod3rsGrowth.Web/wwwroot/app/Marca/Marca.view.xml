@@ -1,9 +1,12 @@
 <mvc:View controllerName="ui5.wwwroot.app.Marca.Marca"
   xmlns="sap.m"
   xmlns:mvc="sap.ui.core.mvc">
-    <Page>
-      <headerContent>
-        <Button id="pressMeButton" text="Press me" press="onPress" visible="false"/>
-      </headerContent>
-    </Page>
+    <Panel
+    headerText="{i18n>helloPanelTitle}"
+      class="sapUiResponsiveMargin"
+      width="auto" 
+      expandable="{device>/system/phone}"
+		  expanded="{= !${device>/system/phone} }"
+      accessibleRole="Region">
+      </Panel>
 </mvc:View>
