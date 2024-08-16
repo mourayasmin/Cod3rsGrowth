@@ -1,4 +1,4 @@
-<mvc:View controllerName="ui5.wwwroot.app.Marca.Marca"
+<mvc:View controllerName="ui5.wwwroot.app.Marca.ListaDeMarcas"
   xmlns="sap.m"
   xmlns:mvc="sap.ui.core.mvc">
     <Panel

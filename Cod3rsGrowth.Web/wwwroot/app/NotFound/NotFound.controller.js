@@ -1,8 +1,8 @@
 sap.ui.define([
     "ui5/wwwroot/app/BaseController"
- ], function (ControllerNotFound) {
+], function (BaseController) {
     "use strict";
-    return ControllerNotFound.extend("ui5.wwwroot.app.NotFound.NotFound", {
+    return BaseController.extend("ui5.wwwroot.app.NotFound.NotFound", {
        aoIniciar: function () {
        }
     });
