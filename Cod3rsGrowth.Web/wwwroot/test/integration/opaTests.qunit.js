@@ -9,7 +9,6 @@ sap.ui.require(["sap/ui/core/Core"], async(Core) => {
     sap.ui.require([
         "ui5/wwwroot/test/integration/JornadaApp",
     ], () => {
-        debugger
         QUnit.start();
     });
 });
