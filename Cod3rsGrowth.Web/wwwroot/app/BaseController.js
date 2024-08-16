@@ -7,23 +7,22 @@ sap.ui.define([
 
 	return Controller.extend("ui5.wwwroot.app.BaseController", {
 
-		getRouter : function () {
+		obterRota : function () {
 			return UIComponent.getRouterFor(this);
 		},
 
-		onNavBack: function () {
-			var oHistory, sPreviousHash;
+		aoClicarNoBotaoDeVoltar: function () {
+			var historico, hashAnterior;
+			const int voltaHash = -1;
 
-			oHistory = History.getInstance();
-			sPreviousHash = oHistory.getPreviousHash();
+			historico = History.getInstance();
+			hashAnterior = historico.getPreviousHash();
 
-			if (sPreviousHash !== undefined) {
-				window.history.go(-1);
+			if (hashAnterior !== undefined) {
+				window.history.go(voltaHash);
 			} else {
-				this.getRouter().navTo("paginaInicial", {}, true);
+				this.obterRota().navTo("paginaInicial", {}, true);
 			}
 		}
-
 	});
-
 });

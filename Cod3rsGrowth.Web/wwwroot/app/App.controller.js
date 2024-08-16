@@ -1,7 +1,7 @@
 sap.ui.define(["ui5/wwwroot/app/BaseController"
-], function(BaseController) {
+], function(ControllerApp) {
     "use strict";
-    return BaseController.extend("ui5.wwwroot.app.App", {
+    return ControllerApp.extend("ui5.wwwroot.app.App", {
     });
 },
 )

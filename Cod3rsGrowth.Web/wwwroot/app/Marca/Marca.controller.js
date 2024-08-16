@@ -1,7 +1,7 @@
 sap.ui.define([
 	"ui5/wwwroot/app/BaseController"
-], function (BaseController) {
+], function (ControllerMarca) {
 	"use strict";
-	return BaseController.extend("ui5.wwwroot.app.Marca.Marca", {
+	return ControllerMarca.extend("ui5.wwwroot.app.Marca.Marca", {
 	});
 });
