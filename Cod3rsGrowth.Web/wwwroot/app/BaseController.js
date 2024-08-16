@@ -13,7 +13,7 @@ sap.ui.define([
 
 		aoClicarNoBotaoDeVoltar: function () {
 			var historico, hashAnterior;
-			const int voltaHash = -1;
+			const voltaHash = -1;
 
 			historico = History.getInstance();
 			hashAnterior = historico.getPreviousHash();
