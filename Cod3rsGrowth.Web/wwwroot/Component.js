@@ -1,7 +1,6 @@
 sap.ui.define([
-    "sap/ui/core/UIComponent",
-    "sap/ui/model/json/JSONModel"
- ], (UIComponent, JSONModel) => {
+    "sap/ui/core/UIComponent"
+ ], (UIComponent) => {
     "use strict";
  
     return UIComponent.extend("ui5.wwwroot.Component", {
@@ -10,9 +9,10 @@ sap.ui.define([
           manifest: "json"
        },
  
-       init() {
-          // call the init function of the parent
+       aoIniciar: function() {
           UIComponent.prototype.init.apply(this, arguments);
+
+          this.getRouter().initialize();
        }
     });
  });
