@@ -9,4 +9,9 @@
 		  expanded="{= !${device>/system/phone} }"
       accessibleRole="Region">
       </Panel>
+      <Table 
+        items="{/}">
+        <columns>
+          <Column>
+            <Text colunaNomeDaMarca="{i18n>colunaNomeDaMarca}" />
 </mvc:View>
