@@ -3,7 +3,7 @@ sap.ui.define([
 ], function (BaseController) {
     "use strict";
     return BaseController.extend("ui5.wwwroot.app.NotFound.NotFound", {
-       aoIniciar: function () {
+       onInit: function () {
        }
     });
  });

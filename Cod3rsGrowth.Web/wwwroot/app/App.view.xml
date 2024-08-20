@@ -2,5 +2,6 @@
   xmlns="sap.m"
   xmlns:mvc="sap.ui.core.mvc">
   <App id="app">
+	  
   </App>
 </mvc:View>

@@ -7,7 +7,7 @@ sap.ui.define([
 
 	return Controller.extend("ui5.wwwroot.app.BaseController", {
 
-		obterRota : function () {
+		obterRota: function () {
 			return UIComponent.getRouterFor(this);
 		},
 
@@ -21,7 +21,7 @@ sap.ui.define([
 			if (hashAnterior !== undefined) {
 				window.history.go(voltaHash);
 			} else {
-				this.obterRota().navTo("paginaInicial", {}, true);
+				this.getRouterFor().navTo("paginaInicial", {}, true);
 			}
 		}
 	});
