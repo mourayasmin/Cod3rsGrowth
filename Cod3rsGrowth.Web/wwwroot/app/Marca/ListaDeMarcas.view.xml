@@ -18,7 +18,11 @@
 				<Toolbar>
 					<Title text ="Relação de marcas"/>
 					<ToolbarSpacer/>
-					<SearchField liveChange=".onSearch" width="40%" id="idSearchField"/>
+					<SearchField 
+						search=".onSearch"
+						value= "{modeloFiltro>nome}"
+						width="40%" 
+						id="idSearchField"/>
 				</Toolbar>
 		</headerToolbar>
 			<CustomListItem>

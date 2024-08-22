@@ -1,8 +1,6 @@
 sap.ui.define([
-	"ui5/wwwroot/app/BaseController",
-	"sap/ui/model/Filter",
-	"sap/ui/model/FilterOperator"
-], function (BaseController, Filter, FilterOperator) {
+	"ui5/wwwroot/app/BaseController"
+], function (BaseController) {
 	"use strict";
 	return BaseController.extend("ui5.wwwroot.app.Marca.ListaDeMarcas", {
 		onInit: function () {
@@ -13,21 +11,29 @@ sap.ui.define([
 			var oModel = new sap.ui.model.json.JSONModel({
 			});
 		oModel.loadData("/api/Marca");
-			this.getView().setModel(oModel, "modelMarcas");
+		this.getView().setModel(oModel, "modelMarcas");
 		},
 
-		onSearch: function(oEvent) {
-			 var aFilters = [];
-			 var sQuery = oEvent.getSource().getValue();
+		onSearch: function(oModel) {
+			//let modeloFiltro = oModel.getProperty("/nome");
+			//let modeloFiltro = oModel.getSource().getValue("nome");
+			//let nomePesquisado = this._modeloFiltro().getProperty("/nome");
+			debugger
+			let modeloFiltro = oModel.getSource().getValue("nome");
 
-			 if(sQuery && sQuery.length > 0) {
-			 	var filter = new Filter("nome", FilterOperator.Contains, sQuery);
-			 	aFilters.push(filter);
+			let url = "https://localhost:7172/api/Marca?";
+			//SE NOME PESQUISADO VAZIO NÃO DEVE FAZER:
+			let params = new URLSearchParams(url.search);
+
+			if(!modeloFiltro == null) {
+				params.append("nome", modeloFiltro);
 			}
 
-			  var oList = this.byId("idListaDeMarcas");
-			  var oBinding = oList.getBinding("items");
-			  oBinding.filter(aFilters, "Application");
+			url += params.toString();
+			fetch(url)
+			.then(response => response.json()) 
+			.then(Marca => console.log(Marca));
+			//oModel.loadData("/api/Marca?nome=${sQuery}");
 		}
 	});
-}); 
+});
