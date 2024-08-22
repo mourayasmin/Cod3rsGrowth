@@ -52,7 +52,9 @@
     "rootView": {
       "viewName": "ui5.wwwroot.app.App",
       "type": "XML",
-      "id": "app"
+      "id": "app",
+      "height": "100%",
+      "displayBlock": true
     },
     "routing": {
       "config": {
@@ -66,7 +68,16 @@
         "bypassed": {
           "target": "notFound"
         },
+        "sample": {
+          "stretch": true,
+          "files": [
+            "ListaDeMarcas.view.xml",
+            "ListaDeMarcas.controller.js",
+            "manifest.json"
+          ]
+        },
         "async": true
+        
       },
       "routes": [{
           "pattern": "",
