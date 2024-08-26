@@ -18,6 +18,9 @@
 				<Toolbar>
 					<Title text ="Relação de marcas"/>
 					<ToolbarSpacer/>
+					<Button
+						text="{i18n>textoBotaoAdicionar}"
+						class="myCustomButton"/>
 					<SearchField 
 						search=".onSearch"
 						value= "{modeloFiltro>nome}"
