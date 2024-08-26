@@ -12,20 +12,38 @@
 		growing="true"
 			growingThreshold="50"
 			includeItemInSelection="true"
-			id="idListaDeMarcas"
-		  scroll="true">
+			id="idListaDeMarcas">
 		<headerToolbar>
 				<Toolbar>
 					<Title text ="Relação de marcas"/>
 					<ToolbarSpacer/>
-					<Button
-						text="{i18n>textoBotaoAdicionar}"
-						class="myCustomButton"/>
+		<DateRangeSelection
+			width="20%"
+			value= "{
+                            'type': 'sap.ui.model.type.DateInterval',
+                            'formatOptions': {
+                                'pattern': 'yyyy-MM-ddTHH:mm:ss'
+                            },
+                            'parts': [
+                                {
+                                    'type': 'sap.ui.model.type.Date',
+                                    'path': '/start'
+                                },
+                                {
+                                    'type': 'sap.ui.model.type.Date',
+                                    'path': '/end'
+                                }
+                            ]
+                        }"
+			change="handleChange"/>
 					<SearchField 
 						search=".onSearch"
 						value= "{modeloFiltro>nome}"
 						width="40%" 
 						id="idSearchField"/>
+						<Button
+						text="{i18n>textoBotaoAdicionar}"
+						class="myCustomButton"/>
 				</Toolbar>
 		</headerToolbar>
 			<CustomListItem>
@@ -36,7 +54,7 @@
 						<Link text="{modelMarcas>nome}" target="{ProductPicUrl}" press="handlePress"/>
 						<Label text="CNPJ: {modelMarcas>cnpj}"/>
 						<Label text="ID: {modelMarcas>id}"/>
-						<Label text="Fundação: {modelMarcas>dataDeCriacao}"/>
+						<Label text="Fundação: {path: 'modelMarcas>dataDeCriacao', type:'sap.ui.model.type.Date', formatOptions: { pattern: 'dd/MM/yyyy'}}"/>
 					</VBox>
 				</HBox>
 			</CustomListItem>

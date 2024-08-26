@@ -1,7 +1,8 @@
 sap.ui.define([
 	"ui5/wwwroot/app/BaseController",
-	"sap/m/MessageBox"
-], function (BaseController, MessageBox, JSONModel) {
+	"sap/m/MessageBox",
+	"sap/ui/core/format/DateFormat"
+], function (BaseController, MessageBox, DateFormat) {
 	"use strict";
 	return BaseController.extend("ui5.wwwroot.app.Marca.ListaDeMarcas", {
 		onInit: function () {
@@ -41,6 +42,24 @@ sap.ui.define([
 		naMensagemDeErro: function(mensagemDeErro) {
 			mensagemDeErro.Title = "Erro na requisição";
 			MessageBox.error(mensagemDeErro);
+		},
+
+		handleChange: function (oModel) {
+			let modeloFiltro = oModel.getSource();
+			let inicio = modeloFiltro.getProperty("dateValue");
+			let fim = modeloFiltro.getProperty("secondDateValue");
+			inicio = DateFormat.getDateInstance({pattern:"yyyy-MM-ddTHH:mm:ss"}).format(inicio);
+			fim = DateFormat.getDateInstance({pattern:"yyyy-MM-ddTHH:mm:ss"}).format(fim);
+			let url = "api/Marca?";
+			let params = new URLSearchParams(url.search); 
+
+			if((inicio != null)&&(fim != null)) {
+				params.append("dataDeInicio", inicio); 
+				params.append("dataDeFim", fim);
+				url += params.toString(); 
+			}
+
+			this.obterListaDeMarcas(url);
 		}
 	});
 });
