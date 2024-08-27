@@ -15,7 +15,7 @@
 			id="idListaDeMarcas">
 		<headerToolbar>
 				<Toolbar>
-					<Title text ="Relação de marcas"/>
+					<Title text="{i18n>tituloListaDeMarcas}"/>
 					<ToolbarSpacer/>
 		<DateRangeSelection
 			width="20%"
@@ -35,15 +35,16 @@
                                 }
                             ]
                         }"
-			change="handleChange"/>
+			change="aoMudarFiltroDeData"/>
 					<SearchField 
-						search=".onSearch"
+						search="aoPesquisarFiltroDeNome"
 						value= "{modeloFiltro>nome}"
 						width="40%" 
 						id="idSearchField"/>
 						<Button
 						text="{i18n>textoBotaoAdicionar}"
-						class="myCustomButton"/>
+						class="myCustomButton"
+						press= "aoClicarNoBotaoAdicionar"/>
 				</Toolbar>
 		</headerToolbar>
 			<CustomListItem>
@@ -52,9 +53,15 @@
 					<VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom"
 						  width="auto">
 						<Link text="{modelMarcas>nome}" target="{ProductPicUrl}" press="handlePress"/>
-						<Label text="CNPJ: {modelMarcas>cnpj}"/>
+						<Label text="CNPJ: {path: 'modelMarcas>cnpj', formatter: '.formatter.formatadorDeCNPJ'}"/>
 						<Label text="ID: {modelMarcas>id}"/>
-						<Label text="Fundação: {path: 'modelMarcas>dataDeCriacao', type:'sap.ui.model.type.Date', formatOptions: { pattern: 'dd/MM/yyyy'}}"/>
+						<Label text="Fundação: {path: 'modelMarcas>dataDeCriacao',
+							type:'sap.ui.model.type.DateTime',
+							formatOptions: { 
+							source: {
+								pattern: 'yyyy-MM-ddTHH:mm:ss.mmm'
+							},
+							pattern: 'dd/MM/yyyy'}}"/>
 					</VBox>
 				</HBox>
 			</CustomListItem>

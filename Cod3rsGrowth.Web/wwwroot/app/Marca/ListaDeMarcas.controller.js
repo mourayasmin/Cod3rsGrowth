@@ -1,10 +1,13 @@
 sap.ui.define([
 	"ui5/wwwroot/app/BaseController",
 	"sap/m/MessageBox",
-	"sap/ui/core/format/DateFormat"
-], function (BaseController, MessageBox, DateFormat) {
+	"sap/ui/core/format/DateFormat",
+	"ui5/wwwroot/app/model/formatter"
+], function (BaseController, MessageBox, DateFormat, formatter) {
 	"use strict";
 	return BaseController.extend("ui5.wwwroot.app.Marca.ListaDeMarcas", {
+		formatter: formatter,
+
 		onInit: function () {
 			this.obterListaDeMarcas("https://localhost:7172/api/Marca");
 		},
@@ -25,7 +28,7 @@ sap.ui.define([
 			this.naMensagemDeErro(erro)})
 		},
 
-		onSearch: function(oModel) {
+		aoPesquisarFiltroDeNome: function(oModel) {
 
 			let modeloFiltro = oModel.getSource().getValue("nome");
 			let url = "api/Marca?";
@@ -40,11 +43,10 @@ sap.ui.define([
 		},
 
 		naMensagemDeErro: function(mensagemDeErro) {
-			mensagemDeErro.Title = "Erro na requisição";
-			MessageBox.error(mensagemDeErro);
+			MessageBox.error(mensagemDeErro.Detail, {title: "Erro na requisição"});
 		},
 
-		handleChange: function (oModel) {
+		aoMudarFiltroDeData: function (oModel) {
 			let modeloFiltro = oModel.getSource();
 			let inicio = modeloFiltro.getProperty("dateValue");
 			let fim = modeloFiltro.getProperty("secondDateValue");

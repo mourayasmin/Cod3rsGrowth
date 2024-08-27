@@ -23,6 +23,12 @@ sap.ui.define([
 			} else {
 				this.getRouterFor().navTo("paginaInicial", {}, true);
 			}
+		},
+
+		aoClicarNoBotaoAdicionar: function () {
+			const rotaAdicionarMarca = this.getOwnerComponent().getRouter();
+			rotaAdicionarMarca.navTo("AdicionarMarca");
+			//this.getRouterFor().navTo("AdicionarMarca", {}, true);
 		}
 	});
 });

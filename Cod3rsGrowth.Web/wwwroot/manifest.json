@@ -73,6 +73,8 @@
           "files": [
             "ListaDeMarcas.view.xml",
             "ListaDeMarcas.controller.js",
+            "AdicionarMarca.view.xml",
+            "AdicionarMarca.controller.js",
             "manifest.json"
           ]
         },
@@ -82,6 +84,11 @@
           "pattern": "",
           "name": "paginaInicial",
           "target": "listaMarca"
+        }, 
+        {
+          "pattern": "AdicionarMarca",
+          "name": "AdicionarMarca",
+          "target": "telaDeAdicionarMarca"
         }],
       "targets": {
         "listaMarca": {
@@ -94,6 +101,11 @@
           "id": "notFound",
           "path": "ui5.wwwroot.app.NotFound",
           "name": "NotFound",
+          "transition": "show"
+        },
+        "telaDeAdicionarMarca": {
+          "id": "telaDeAdicionarMarca",
+          "name": "AdicionarMarca",
           "transition": "show"
         }
       }
