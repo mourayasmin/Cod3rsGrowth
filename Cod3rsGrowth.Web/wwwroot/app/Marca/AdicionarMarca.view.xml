@@ -2,9 +2,10 @@
    controllerName="ui5.wwwroot.app.Marca.AdicionarMarca"
    xmlns="sap.m"
    xmlns:mvc="sap.ui.core.mvc">
-   <Page>
    <Toolbar>
-    <Title text="{i18n>tituloAdicionarMarca}"/>
+      <MessagePage
+      showNavButton="true"
+		navButtonPress="aoClicarNoBotaoDeVoltarNaTelaDeAdicionarMarca"
+      title="Adicionar marca"/>
    </Toolbar>
-</Page>
 </mvc:View>

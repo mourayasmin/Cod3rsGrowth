@@ -7,5 +7,5 @@
       text="{i18n>textoNotFound}"
       description="{i18n>descricaoNotFound}"
       showNavButton="true"
-		navButtonPress="aoClicarNoBotaoDeVoltar"/>
+		navButtonPress="aoClicarNoBotaoDeVoltarNaTelaDeNotFound"/>
 </mvc:View>

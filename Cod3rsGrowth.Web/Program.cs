@@ -1,8 +1,19 @@
+using Cod3rsGrowth.Infra.Repositorios;
 using Cod3rsGrowth.Web.DetalhesDeProblemas;
 using Cod3rsGrowth.Web.Injecao;
+using FluentMigrator.Runner;
 
 var builder = WebApplication.CreateBuilder(args);
 var colecaoDeServicos = new ServiceCollection();
+
+if(args?.FirstOrDefault() == "BancoTeste")
+{
+    StringDeConexao.connectionString = "ConnectionStringTeste";
+}
+
+
+//var stringDeConexao = Environment.GetEnvironmentVariable(StringDeConexao.connectionString)
+    //?? throw new Exception($"Variável de ambiente [{StringDeConexao.connectionString}] não encontrada");
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -15,6 +26,12 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+}
+
+using (var scope = app.Services.CreateScope())
+{
+    var runner = scope.ServiceProvider.GetRequiredService<IMigrationRunner>();
+    runner.MigrateUp();
 }
 
 app.UseHttpsRedirection();

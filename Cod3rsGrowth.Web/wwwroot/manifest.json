@@ -75,6 +75,8 @@
             "ListaDeMarcas.controller.js",
             "AdicionarMarca.view.xml",
             "AdicionarMarca.controller.js",
+            "DetalhesDaMarca.view.xml",
+            "DetalhesDaMarca.controller.js",
             "manifest.json"
           ]
         },
@@ -89,6 +91,11 @@
           "pattern": "AdicionarMarca",
           "name": "AdicionarMarca",
           "target": "telaDeAdicionarMarca"
+        }, 
+        {
+          "pattern": "DetalhesDaMarca",
+          "name": "DetalhesDaMarca",
+          "target": "telaDeDetalhesDaMarca"
         }],
       "targets": {
         "listaMarca": {
@@ -105,7 +112,13 @@
         },
         "telaDeAdicionarMarca": {
           "id": "telaDeAdicionarMarca",
+          "path": "ui5.wwwroot.app.Marca",
           "name": "AdicionarMarca",
+          "transition": "show"
+        },
+        "telaDeDetalhesDaMarca": {
+          "path": "ui5.wwwroot.app.Marca",
+          "name": "DetalhesDaMarca",
           "transition": "show"
         }
       }

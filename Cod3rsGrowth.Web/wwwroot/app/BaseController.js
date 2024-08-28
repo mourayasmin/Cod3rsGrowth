@@ -11,7 +11,7 @@ sap.ui.define([
 			return UIComponent.getRouterFor(this);
 		},
 
-		aoClicarNoBotaoDeVoltar: function () {
+		aoClicarNoBotaoDeVoltarNaTelaDeNotFound: function () {
 			var historico, hashAnterior;
 			const voltaHash = -1;
 
@@ -21,14 +21,25 @@ sap.ui.define([
 			if (hashAnterior !== undefined) {
 				window.history.go(voltaHash);
 			} else {
-				this.getRouterFor().navTo("paginaInicial", {}, true);
+				this.getOwnerComponent().getRouter().navTo("paginaInicial", {}, true);
 			}
 		},
 
 		aoClicarNoBotaoAdicionar: function () {
 			const rotaAdicionarMarca = this.getOwnerComponent().getRouter();
 			rotaAdicionarMarca.navTo("AdicionarMarca");
-			//this.getRouterFor().navTo("AdicionarMarca", {}, true);
+		},
+
+		aoClicarNoBotaoDeVoltarNaTelaDeAdicionarMarca: function() {
+			this.getOwnerComponent().getRouter().navTo("paginaInicial", {}, true);
+		}, 
+
+		aoClicarNaMarca: function() {
+			this.getOwnerComponent().getRouter().navTo("DetalhesDaMarca", {}, true);
+		},
+
+		aoClicarNoBotaoDeVoltarNaTelaDeDetalhesDaMarca: function() {
+			this.getOwnerComponent().getRouter().navTo("paginaInicial", {}, true);
 		}
 	});
 });

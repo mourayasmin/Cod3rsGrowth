@@ -16,7 +16,7 @@ namespace Cod3rsGrowth.Web.Injecao
     {
         public static void ConfigurarServicos(this WebApplicationBuilder build) 
         {
-            var connection = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+            var connection = System.Configuration.ConfigurationManager.ConnectionStrings[StringDeConexao.connectionString].ConnectionString;
 
             build.Services.AddScoped<ServicoMarca>();
             build.Services.AddScoped<ServicoTenis>();
