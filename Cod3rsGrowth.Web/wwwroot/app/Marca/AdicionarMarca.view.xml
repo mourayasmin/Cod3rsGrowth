@@ -3,9 +3,11 @@
    xmlns="sap.m"
    xmlns:mvc="sap.ui.core.mvc">
    <Toolbar>
-      <MessagePage
+      <Page
+      id="paginaAdicionar"
       showNavButton="true"
 		navButtonPress="aoClicarNoBotaoDeVoltarNaTelaDeAdicionarMarca"
-      title="Adicionar marca"/>
+      title="Adicionar marca">
+   </Page>
    </Toolbar>
 </mvc:View>
