@@ -3,9 +3,10 @@
    xmlns="sap.m"
    xmlns:mvc="sap.ui.core.mvc">
    <Toolbar>
-      <MessagePage
+      <Page
       showNavButton="true"
 		navButtonPress="aoClicarNoBotaoDeVoltarNaTelaDeDetalhesDaMarca"
-      title="{i18n>tituloDetalhesDaMarca}"/>
+      title="{i18n>tituloDetalhesDaMarca}">
+   </Page>
    </Toolbar>
 </mvc:View>

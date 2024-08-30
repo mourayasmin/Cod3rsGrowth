@@ -4,7 +4,6 @@
    xmlns:mvc="sap.ui.core.mvc">
    <Toolbar>
       <Page
-      id="paginaAdicionar"
       showNavButton="true"
 		navButtonPress="aoClicarNoBotaoDeVoltarNaTelaDeAdicionarMarca"
       title="Adicionar marca">

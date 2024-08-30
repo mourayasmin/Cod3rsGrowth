@@ -17,8 +17,8 @@ sap.ui.define([
  			fetch(url) 
 			.then(response => response.json())
 			.then(responseJSON => {
-				if(responseJSON.Title) {
-					this.naMensagemDeErro(responseJSON);
+				 if(responseJSON.Title) {
+				 	this.naMensagemDeErro(responseJSON);
 				} else {
 					let oModel = new sap.ui.model.json.JSONModel(responseJSON);
 					this.getView().setModel(oModel, "modelMarcas")
@@ -31,7 +31,7 @@ sap.ui.define([
 		aoPesquisarFiltroDeNome: function(oModel) {
 
 			let modeloFiltro = oModel.getSource().getValue("nome");
-			let url = "api/Marca?";
+			let url = "/api/Marca?";
 			let params = new URLSearchParams(url.search); 
 
 			if(modeloFiltro != null) {
@@ -52,7 +52,7 @@ sap.ui.define([
 			let fim = modeloFiltro.getProperty("secondDateValue");
 			inicio = DateFormat.getDateInstance({pattern:"yyyy-MM-ddTHH:mm:ss"}).format(inicio);
 			fim = DateFormat.getDateInstance({pattern:"yyyy-MM-ddTHH:mm:ss"}).format(fim);
-			let url = "api/Marca?";
+			let url = "/api/Marca?";
 			let params = new URLSearchParams(url.search); 
 
 			if((inicio != null)&&(fim != null)) {

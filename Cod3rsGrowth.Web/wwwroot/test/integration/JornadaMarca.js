@@ -6,7 +6,6 @@ sap.ui.define([
         QUnit.module("ListaDeMarcas", () =>  {
             opaTest("Deve exibir a tela de lista de marcas", function(Given, When, Then) {
         
-
                 Given.iStartMyUIComponent({
                         componentConfig: {
                         name: "ui5.wwwroot",
@@ -24,6 +23,26 @@ sap.ui.define([
             opaTest("Botão voltar na tela de adicionar marcas deve voltar para a tela de lista de marcas", function(Given, When, Then){
                 When.naPaginaAdicionarMarca.oBotaoVoltarDeveSerPressionado();
                 Then.naPaginaInicial.aTelaDeveSerCarregadaCorretamente();
+            }),
+
+            opaTest("Ao clicar em uma marca, deve ir para a tela de detalhes", function (Given, When, Then){
+                When.naPaginaInicial.aMarcaDeveSerPressionada();
+                Then.naPaginaDeDetalhesDaMarca.aTelaDeDetalhesDaMarcaDeveSerCarregadaCorretamente();
+            }),
+
+            opaTest("Botão voltar na tela de detalhes das marcas deve voltar para a tela de lista de marcas", function(Given, When, Then){
+                When.naPaginaDeDetalhesDaMarca.oBotaoVoltarDeveSerPressionado();
+                Then.naPaginaInicial.aTelaDeveSerCarregadaCorretamente();
+            }),
+
+            opaTest("O filtro de pesquisa deve funcionar corretamente", function(Given, When, Then){
+                When.naPaginaInicial.oTextoDoCampoDePesquisaDeveMudar();
+                Then.naPaginaInicial.oResultadoDoCampoDePesquisaDeveSerCorreto();
+            }),
+
+            opaTest("O filtro de data deve funcionar corretamente", function(Given, When, Then){
+                When.naPaginaInicial.asDatasDoCampoDeDataDevemMudar();
+                Then.naPaginaInicial.oResultadoDoCampoDeDataDeveSerCorreto();
             })
     });
 })
