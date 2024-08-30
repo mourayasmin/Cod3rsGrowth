@@ -11,10 +11,6 @@ if(args?.FirstOrDefault() == "BancoTeste")
     StringDeConexao.connectionString = "ConnectionStringTeste";
 }
 
-
-//var stringDeConexao = Environment.GetEnvironmentVariable(StringDeConexao.connectionString)
-    //?? throw new Exception($"Variável de ambiente [{StringDeConexao.connectionString}] não encontrada");
-
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
