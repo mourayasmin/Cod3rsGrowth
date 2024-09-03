@@ -31,6 +31,7 @@ sap.ui.define([
 		},
 
 		aoClicarNoBotaoDeVoltarNaTelaDeAdicionarMarca: function() {
+			this.limparCamposDeEntrada();
 			this.getOwnerComponent().getRouter().navTo("paginaInicial", {}, true);
 		}, 
 
@@ -39,6 +40,17 @@ sap.ui.define([
 		},
 
 		aoClicarNoBotaoDeVoltarNaTelaDeDetalhesDaMarca: function() {
+			this.getOwnerComponent().getRouter().navTo("paginaInicial", {}, true);
+		},
+
+		aoSalvarAdicaoComSucesso: function() {
+			const url = "https://localhost:7172/api/Marca";
+			this.getOwnerComponent().getRouter().navTo("paginaInicial", {}, true);
+			this.obterListaDeMarcas(url);
+		},
+
+		aoClicarNoBotaoCancelarNaTelaDeAdicionar: function() {
+			this.limparCamposDeEntrada();
 			this.getOwnerComponent().getRouter().navTo("paginaInicial", {}, true);
 		}
 	});

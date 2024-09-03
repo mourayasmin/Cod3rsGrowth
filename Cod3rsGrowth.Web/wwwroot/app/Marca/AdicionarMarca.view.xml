@@ -24,15 +24,15 @@
       <form:SimpleForm layout="ResponsiveGridLayout"> 
          <form:content>
             <Label text="Nome"/>
-            <mdc:Field id="campoNome" value="{path: 'modelMarcas>nome', type: 'sap.ui.model.type.String'}"/>
+            <mdc:Field id="campoNome" value="{path: 'modelMarcas>/nome', type: 'sap.ui.model.type.String'}"/>
             <Label text="E-mail"/>
-            <mdc:Field id="campoEmail" value="{path: 'modelMarcas>email', type: 'sap.ui.model.type.String'}"/>
+            <mdc:Field id="campoEmail" value="{path: 'modelMarcas>/email', type: 'sap.ui.model.type.String'}"/>
             <Label text="CNPJ"/>
-            <mdc:Field id="campoCNPJ" value="{path: 'modelMarcas>cnpj', type: 'sap.ui.model.type.String'}"/>
+            <mdc:Field id="campoCNPJ" value="{path: 'modelMarcas>/cnpj', type: 'sap.ui.model.type.String'}"/>
             <Label text="Telefone"/>
-            <mdc:Field id="campoTelefone" value="{path: 'modelMarcas>telefone', type: 'sap.ui.model.type.String'}"/>
+            <mdc:Field id="campoTelefone" value="{path: 'modelMarcas>/telefone', type: 'sap.ui.model.type.String'}"/>
             <Label text="Data de criação"/>
-            <mdc:Field id="campoDataDeCriacao" value="{path: 'modelMarcas>email', type: 'sap.ui.model.type.Date'}"/>
+            <mdc:Field id="campoDataDeCriacao" value="{path: 'modelMarcas>/dataDeCriacao', type: 'sap.ui.model.type.Date'}"/>
          </form:content>
       </form:SimpleForm>
    </Page>
