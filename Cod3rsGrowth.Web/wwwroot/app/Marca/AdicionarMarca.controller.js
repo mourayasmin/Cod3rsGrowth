@@ -5,5 +5,10 @@ sap.ui.define([
     return BaseController.extend("ui5.wwwroot.app.Marca.AdicionarMarca", {
         onInit: function () {
        },
+
+       aoClicarNoBotaoSalvarNaTelaDeAdicionar: function() {
+        //let modeloAdicionado = new sap.ui.model.json.JSONModel("modelMarca");
+        
+    }
     });
  });
