@@ -2,7 +2,7 @@ sap.ui.define([
 	"ui5/wwwroot/app/BaseController",
 	"sap/m/MessageBox",
 	"sap/ui/core/format/DateFormat",
-	"ui5/wwwroot/app/model/formatter"
+	"ui5/wwwroot/app/model/formatter",
 ], function (BaseController, MessageBox, DateFormat, formatter) {
 	"use strict";
 	return BaseController.extend("ui5.wwwroot.app.Marca.ListaDeMarcas", {
@@ -10,14 +10,20 @@ sap.ui.define([
 
 		onInit: function () {
 			this.obterListaDeMarcas("https://localhost:7172/api/Marca");
+			//this.onpageshow();
 		},
+
+		// onpageshow: function() {
+		// 	const url = "https://localhost:7172/api/Marca"
+		// 	this.obterListaDeMarcas(url);
+		// },
 
 		obterListaDeMarcas: function(url) {
 			
  			fetch(url) 
 			.then(response => response.json())
 			.then(responseJSON => {
-				 if(responseJSON.Title) {
+				 if(responseJSON.Title) { 
 				 	this.naMensagemDeErro(responseJSON);
 				} else {
 					let oModel = new sap.ui.model.json.JSONModel(responseJSON);

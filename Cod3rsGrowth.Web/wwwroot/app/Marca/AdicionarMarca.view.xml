@@ -24,7 +24,7 @@
       <form:SimpleForm layout="ResponsiveGridLayout"> 
          <form:content>
             <Label text="Nome"/>
-            <mdc:Field id="campoNome" value="{path: 'modelMarcas>/nome', type: 'sap.ui.model.type.String'}"/>
+            <mdc:Field id="campoNome" valueState="None" value="{path: 'modelMarcas>/nome', type: 'sap.ui.model.type.String'}" valueStateText="O campo de nome deve ser preenchido."/>
             <Label text="E-mail"/>
             <mdc:Field id="campoEmail" value="{path: 'modelMarcas>/email', type: 'sap.ui.model.type.String'}"/>
             <Label text="CNPJ"/>
