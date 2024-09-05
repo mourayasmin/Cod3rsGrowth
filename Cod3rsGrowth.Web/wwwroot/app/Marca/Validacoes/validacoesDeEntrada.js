@@ -19,8 +19,6 @@ sap.ui.define([], function () {
                 view.byId("campoNome").setValueState(statusCorreto);
             }
 
-            //validacao para nome já existente
-
             if(entradaEmail === null || entradaEmail === "" || !entradaEmail.match(re)) {
                 view.byId("campoEmail").setValueState(statusDeErro)
             } else {
@@ -33,8 +31,6 @@ sap.ui.define([], function () {
                 view.byId("campoCNPJ").setValueState(statusCorreto);
             }
 
-            //validacao para cnpj já existente
-            
             if(entradaTelefone === null || entradaTelefone === "" || entradaTelefone.length != 11) {
                 view.byId("campoTelefone").setValueState(statusDeErro);
             } else {

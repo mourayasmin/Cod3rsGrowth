@@ -2,25 +2,13 @@ sap.ui.define([
     "ui5/wwwroot/app/BaseController",
     "sap/m/MessageBox",
     "ui5/wwwroot/app/Marca/Validacoes/validacoesDeEntrada"
-], function (BaseController, MessageBox, validacoesDeEntrada) {
+], function (BaseController, MessageBox, validacoesDeEntrada, ListaDeMarcas) {
     "use strict";
     return BaseController.extend("ui5.wwwroot.app.Marca.AdicionarMarca", {
         onInit: function () {
 			this.getOwnerComponent().getModel("modelMarcas");
             this.criarModeloParaEntrada();
-
-            // const rotaTelaDeAdicionar = "AdicionarMarca";
-            // this.getOwnerComponent().getRouter().getRoute(rotaTelaDeAdicionar).attachMatched(this.aoCarregarTelaDeAdicionar, this);
        },
-//onpageshow
-       
-
-    //    aoCarregarTelaDeAdicionar: function(rotaTelaDeAdicionar) {
-    //         rotaAtual = this.getRouter();
-    //         if(rotaAtual === rotaTelaDeAdicionar) {
-    //             this.limparCamposDeEntrada();
-    //         }
-    //     },
 
        criarModeloParaEntrada: function() {
         let modeloEntrada = {
@@ -30,12 +18,15 @@ sap.ui.define([
             telefone: "", 
             dataDeCriacao: ""
         }
-        this.getView().setModel(new sap.ui.model.json.JSONModel(modeloEntrada), "modelMarcas");
-       },
+        
+        this.getView().setModel(new sap.ui.model.json.JSONModel(modeloEntrada), "modelMarcas");        
+    },
 
        aoClicarNoBotaoSalvarNaTelaDeAdicionar: function() {
 
         let modeloAdicao = this.getView().getModel("modelMarcas").getData();
+        modeloAdicao.cnpj = modeloAdicao.cnpj.replace(/[^\w\s]/gi, '');
+        modeloAdicao.telefone = modeloAdicao.telefone.replace(/[^\w\s]/gi, '');
         var view = this.getView();
         let corpoRequisicaoAdicao = JSON.stringify(modeloAdicao);
 
@@ -66,12 +57,11 @@ sap.ui.define([
                     this.aoClicarNaMensagemDeSucessoAdicionar();
                     this.aoSalvarAdicaoComSucesso();
                 } else if(response.status === 400){
-                    this.limparCamposDeEntrada();
-                    const erroServidor = "Erro na resposta do servidor";
-                    MessageBox.error(erroServidor);
+                    MessageBox.error("Erro na requisição. Preencha os campos corretamente.")
                 } else {
-                    const erroCadastro = "Erro no cadastro."
-                    MessageBox.error(erroCadastro);
+                    response.text().then(function (text) {
+                        MessageBox.error("Erro no servidor", text);
+                    });
                 }
                 return response.json();
             }) 

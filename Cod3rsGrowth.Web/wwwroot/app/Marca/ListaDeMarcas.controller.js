@@ -3,20 +3,15 @@ sap.ui.define([
 	"sap/m/MessageBox",
 	"sap/ui/core/format/DateFormat",
 	"ui5/wwwroot/app/model/formatter",
-], function (BaseController, MessageBox, DateFormat, formatter) {
+	"sap/ui/core/mvc/View"
+], function (BaseController, MessageBox, DateFormat, formatter, View) {
 	"use strict";
 	return BaseController.extend("ui5.wwwroot.app.Marca.ListaDeMarcas", {
 		formatter: formatter,
 
 		onInit: function () {
 			this.obterListaDeMarcas("https://localhost:7172/api/Marca");
-			//this.onpageshow();
 		},
-
-		// onpageshow: function() {
-		// 	const url = "https://localhost:7172/api/Marca"
-		// 	this.obterListaDeMarcas(url);
-		// },
 
 		obterListaDeMarcas: function(url) {
 			

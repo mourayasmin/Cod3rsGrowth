@@ -107,6 +107,21 @@ sap.ui.define([
                         success: () => Opa5.assert.ok(true, "O resultado do campo de data está correto"),
                         errorMessage: "O resultado do campo de data não está correto"
                     })
+                },
+
+                aMarcaAdicionadaDeveEstarNaListaDeMarcas: function() {
+                    return this.waitFor({
+                        viewName: nomeDaView,
+                        controlType: "sap.m.Link",
+                        matchers: [
+                            new PropertyStrictEquals({
+                                name:"text",
+                                value: "Marca OPA"
+                            })
+                        ],
+                        success: () => Opa5.assert.ok(true, "A marca adicionada está na lista de marcas"),
+                        errorMessage: "A marca adicionada não está na lista de marcas"
+                    })
                 }
             }
         },
@@ -125,6 +140,30 @@ sap.ui.define([
                         success: () => Opa5.assert.ok(true, "O botão de voltar na tela de adicionar foi pressionado"),
                         errorMessage: "O botão de voltar na tela de adicionar não foi pressionado"
                     });
+                },
+
+                osCamposDaMarcaDevemSerPreenchidos: function(marca, view) {
+                    return this.waitFor({
+                        viewName: nomeDaViewAdicionarMarca,
+                        success: () => Opa5.assert.ok(true, "Os campos foram preenchidos corretamente"),
+                        errorMessage: "Os campos não foram preenchidos corretamente"
+                    })
+                },
+
+                oBotaoSalvarDeveSerPressionado: function() {
+                    return this.waitFor({
+                        controlType: "sap.m.Dialog",
+                        // matchers: [
+                        //     new PropertyStrictEquals({
+                        //         name: "text",
+                        //         value: "Salvar"
+                        //     })
+                        // ],
+                        //viewName: nomeDaViewAdicionarMarca,
+                        //actions: new Press(),
+                        success: () => Opa5.assert.ok(true, "O botão de salvar foi pressionado"),
+                        errorMessage: "O botão de salvar não foi pressionado"
+                    })
                 }
             },
 
@@ -136,7 +175,23 @@ sap.ui.define([
                         errorMessage: "A tela de adicionar não foi carregada corretamente"
                     });
                 },
-            }
+
+                aMensagemDeErroDeveSerExibida: function() {
+                    return this.waitFor({
+                        controlType: "sap.m.Button",
+                            matchers: [
+                                new PropertyStrictEquals({
+                                    name:"text",
+                                    value: "Fechar"
+                                })
+                            ],
+                            viewName: nomeDaViewAdicionarMarca,
+                            actions: new Press(),
+                            success: () => Opa5.assert.ok(true, "A mensagem de erro foi exibida"),
+                            errorMessage: "A mensagem de erro não foi exibida"
+                    })
+                }
+            },
         },
 
         naPaginaDeDetalhesDaMarca: {

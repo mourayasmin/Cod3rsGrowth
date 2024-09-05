@@ -1,7 +1,7 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
 	"sap/ui/core/routing/History",
-	"sap/ui/core/UIComponent"
+	"sap/ui/core/UIComponent",
 ], function(Controller, History, UIComponent) {
 	"use strict";
 
@@ -46,7 +46,7 @@ sap.ui.define([
 		aoSalvarAdicaoComSucesso: function() {
 			const url = "https://localhost:7172/api/Marca";
 			this.getOwnerComponent().getRouter().navTo("paginaInicial", {}, true);
-			this.obterListaDeMarcas(url);
+			window.location.reload();
 		},
 
 		aoClicarNoBotaoCancelarNaTelaDeAdicionar: function() {

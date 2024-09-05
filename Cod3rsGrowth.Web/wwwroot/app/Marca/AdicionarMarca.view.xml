@@ -24,15 +24,35 @@
       <form:SimpleForm layout="ResponsiveGridLayout"> 
          <form:content>
             <Label text="Nome"/>
-            <mdc:Field id="campoNome" valueState="None" value="{path: 'modelMarcas>/nome', type: 'sap.ui.model.type.String'}" valueStateText="O campo de nome deve ser preenchido."/>
+            <mdc:Field id="campoNome" 
+            valueState="None" 
+            value="{path: 'modelMarcas>/nome', 
+            type: 'sap.ui.model.type.String'}" 
+            valueStateText="O campo de nome deve ser preenchido corretamente." />
             <Label text="E-mail"/>
             <mdc:Field id="campoEmail" value="{path: 'modelMarcas>/email', type: 'sap.ui.model.type.String'}"/>
             <Label text="CNPJ"/>
-            <mdc:Field id="campoCNPJ" value="{path: 'modelMarcas>/cnpj', type: 'sap.ui.model.type.String'}"/>
+            <MaskInput mask="99.999.999/9999-99"
+               placeholderSymbol="_"
+               placeholder="__.___.___/____-__"
+               id="campoCNPJ"
+               value="{path: 'modelMarcas>/cnpj', 
+               type: 'sap.ui.model.type.String'}"
+               valueStateText="O campo de CNPJ deve ser preenchido corretamente.">
+            </MaskInput>
             <Label text="Telefone"/>
-            <mdc:Field id="campoTelefone" value="{path: 'modelMarcas>/telefone', type: 'sap.ui.model.type.String'}"/>
+            <MaskInput mask="(99)99999-9999"
+               placeholderSymbol="_"
+               placeholder="(__)_____-____"
+               id="campoTelefone"
+               value="{path: 'modelMarcas>/telefone', 
+               type: 'sap.ui.model.type.String'}"
+               valueStateText="O campo de telefone deve ser preenchido corretamente.">
+            </MaskInput>
             <Label text="Data de criação"/>
-            <mdc:Field id="campoDataDeCriacao" value="{path: 'modelMarcas>/dataDeCriacao', type: 'sap.ui.model.type.Date'}"/>
+            <mdc:Field id="campoDataDeCriacao" value="{path: 'modelMarcas>/dataDeCriacao', 
+            type: 'sap.ui.model.type.Date'}" 
+            valueStateText="O campo de criação deve ser preenchido corretamente."/>
          </form:content>
       </form:SimpleForm>
    </Page>
