@@ -51,7 +51,7 @@
             </MaskInput>
             <Label text="Data de criação"/>
             <mdc:Field id="campoDataDeCriacao" value="{path: 'modelMarcas>/dataDeCriacao', 
-            type: 'sap.ui.model.type.Date'}" 
+            type: 'sap.ui.model.type.Date'}"
             valueStateText="O campo de criação deve ser preenchido corretamente."/>
          </form:content>
       </form:SimpleForm>

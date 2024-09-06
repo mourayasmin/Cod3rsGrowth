@@ -27,9 +27,10 @@ namespace Cod3rsGrowth.Web.DetalhesDeProblemas
                         {
                             problemDetails.Title = "A requisição é inválida.";
                             problemDetails.Status = StatusCodes.Status400BadRequest;
-                            problemDetails.Detail = excecoes.Message;
+                            problemDetails.Detail = excecoes.StackTrace;
                             problemDetails.Instance = excecoes.StackTrace;
-                            problemDetails.Extensions["Erro de validação"] = excecoes.Errors
+                            problemDetails.Extensions["Erro"] = excecoes.Errors
+
                              .GroupBy(x => x.PropertyName, x => x.ErrorMessage)
                              .ToDictionary(y => y.Key, y => y.ToList());
                         }
