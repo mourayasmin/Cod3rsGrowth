@@ -153,14 +153,14 @@ sap.ui.define([
                 oBotaoSalvarDeveSerPressionado: function() {
                     return this.waitFor({
                         controlType: "sap.m.Dialog",
-                        // matchers: [
-                        //     new PropertyStrictEquals({
-                        //         name: "text",
-                        //         value: "Salvar"
-                        //     })
-                        // ],
-                        //viewName: nomeDaViewAdicionarMarca,
-                        //actions: new Press(),
+                        matchers: [
+                            new PropertyStrictEquals({
+                                name: "text",
+                                value: "Salvar"
+                            })
+                        ],
+                        viewName: nomeDaViewAdicionarMarca,
+                        actions: new Press(),
                         success: () => Opa5.assert.ok(true, "O botão de salvar foi pressionado"),
                         errorMessage: "O botão de salvar não foi pressionado"
                     })
@@ -220,6 +220,10 @@ sap.ui.define([
                     });
                 },
             }
+        },
+
+        preencheOsCampos: function() {
+            
         }
     })
 }

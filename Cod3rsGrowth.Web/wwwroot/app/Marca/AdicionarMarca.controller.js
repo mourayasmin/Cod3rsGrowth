@@ -17,16 +17,13 @@ sap.ui.define([
                 email: "",
                 cnpj: "",
                 telefone: "", 
-                dataDeCriacao: "0001-01-29T14:23:14.057Z"
+                dataDeCriacao: "2090-01-29T14:23:14.057Z"
             }
 
             this.getView().setModel(new JSONModel(modeloEntrada), "modelMarcas");        
     },
 
        aoClicarNoBotaoSalvarNaTelaDeAdicionar: function() {
-
-        //Se o modelo estiver vazio não deve ir ao servidor
-        //Se a validação não passar. não deve ir ao servidor
 
         var view = this.getView();
         let modeloAdicao = view.getModel("modelMarcas").getData();
@@ -35,11 +32,12 @@ sap.ui.define([
         modeloAdicao.telefone = modeloAdicao.telefone.replace(/[^\w\s]/gi, '');
         let corpoRequisicaoAdicao = JSON.stringify(modeloAdicao);
 
-        //var ehMarcaValida = validacoesDeEntrada.validadorDeEntradas(modeloAdicao, view);
+        //var ehMarcaValida = 
+        validacoesDeEntrada.validadorDeEntradas(modeloAdicao, view);
 
-        //if(!ehMarcaValida) return
-    
-        this.salvarMarca(corpoRequisicaoAdicao);
+        //if(ehMarcaValida) {
+            this.salvarMarca(corpoRequisicaoAdicao);
+        //}
         },
 
         limparCamposDeEntrada: function() {
@@ -51,23 +49,19 @@ sap.ui.define([
 		},
 
         salvarMarca(corpoRequisicaoAdicao) {
-            debugger
             fetch("/api/Marca", {  
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
                 },
                 body: corpoRequisicaoAdicao
-                
             })
             .then(response => {
                 if (response.ok) {
-                    debugger
                     this.limparCamposDeEntrada();
                     this.aoClicarNaMensagemDeSucessoAdicionar();
                     this.aoSalvarAdicaoComSucesso();
                 } else {
-                    debugger
                     response.json().then(response => {
                         this.exibirErro(response);
                     })
@@ -76,29 +70,16 @@ sap.ui.define([
         }, 
 
         exibirErro: function(response) {
-            let mensagemDeErro = "";
-            const detalhes = "Detalhes";
-            const status = "Status";
-            const titulo = "Erro"
+            const detalhes = "Detalhes:";
+            const validacoes = "Erros de validação:";
+            const titulo = "Erro";
+            let erros = Object.values(response.Extensions.Erro).join("\n");
+            //let erros = Object.values(response.Extensions.Erro).split(",").join("\n");
             debugger
-            console.log(response);
-            let erros = Object.keys(response.Extensions.Erro);
-            // response.Extensions.Erro.forEach((erros) => {
-            //     erros.forEach( (mensagem) => {
-            //         mensagemDeErro += mensagem + "\n";
-            //     })
-            // })
-            erros.forEach( nomeDoErro => {
-                mensagemDeErro += erros + "\n";
-                response.Extensions.Erro[mensagemDeErro].forEach(mensagem => {
-                    mensagemDeErro += mensagem + "\n" 
-                })
-            }) 
-
-            MessageBox.error(`${response.Title} \n \n`, {
-                title: `${titulo}`,
+            MessageBox.error(`${response.Title} \n \n ${erros}`, {
+                title: titulo,
                 details:              
-                `<p> <strong>${status}: ${mensagemDeErro}` +
+                `<p> <strong>${validacoes} ${erros}` +
                 `<p> <strong>${detalhes}` + `${response.Detail}`,
                 styleClass: "sResponsivePaddingClasses",
                 dependentOn: this.getView()

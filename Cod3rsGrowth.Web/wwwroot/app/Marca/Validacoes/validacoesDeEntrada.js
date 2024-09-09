@@ -10,48 +10,53 @@ sap.ui.define([
             let entradaTelefone = marca.telefone;
             let entradaDataDeCriacao = marca.dataDeCriacao;
             let diaHoje = new Date();
-
             const re =/^\S+@\S+\.\S+$/;
             const statusDeErro = "Error";
             const statusCorreto = "None";
-            var ehValido = 0;
+            var ehValido = true;
 
-            if(entradaNome === null || entradaNome === "") {
-                ehValido ++;
-                view.byId("campoNome").setValueState(statusDeErro);
-            } else {
+            if(entradaNome) {
                 view.byId("campoNome").setValueState(statusCorreto);
-            }
-
-            if(entradaEmail === null || entradaEmail === "" || !entradaEmail.match(re)) {
-                ehValido ++;
-                view.byId("campoEmail").setValueState(statusDeErro)
             } else {
-                view.byId("campoEmail").setValueState(statusCorreto);
+                ehValido = false;
+                view.byId("campoNome").setValueState(statusDeErro);
             }
 
-            if(entradaCNPJ === null || entradaCNPJ === "" || entradaCNPJ.length != 14) {
-                ehValido ++;
+            if(entradaEmail.match(re)) {
+                view.byId("campoEmail").setValueState(statusCorreto);
+            } else {
+                ehValido = false;
+                view.byId("campoEmail").setValueState(statusDeErro)
+            }
+
+            if(entradaCNPJ.length != 14) {
+                ehValido = false;
                 view.byId("campoCNPJ").setValueState(statusDeErro);
             } else {
                 view.byId("campoCNPJ").setValueState(statusCorreto);
             }
 
-            if(entradaTelefone === null || entradaTelefone === "" || entradaTelefone.length != 11) {
-                ehValido ++;
+            if(entradaTelefone.length != 11) {
+                ehValido = false;
                 view.byId("campoTelefone").setValueState(statusDeErro);
             } else {
                 view.byId("campoTelefone").setValueState(statusCorreto);
             }
 
-            if(entradaDataDeCriacao === null || entradaDataDeCriacao === "" || entradaDataDeCriacao > diaHoje) {
-                ehValido ++;
+            if(entradaDataDeCriacao > diaHoje) {
+                ehValido = false;
                 view.byId("campoDataDeCriacao").setValueState(statusDeErro);
             } else {
                 view.byId("campoDataDeCriacao").setValueState(statusCorreto);
             }
 
-            return ehValido > 0 ? false : true;
+            if(!ehValido) {
+                this.mostrarMessageBoxDeErroDePreenchimento();
+            }
+        }, 
+
+        mostrarMessageBoxDeErroDePreenchimento: function() {
+            MessageBox.error("Preencha todos os campos corretamente.");
         }
     }
 })
