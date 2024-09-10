@@ -1,9 +1,11 @@
-﻿using FluentValidation;
+﻿using Cod3rsGrowth.Dominio.InterfacesRepositorio;
+using FluentValidation;
 
 namespace Cod3rsGrowth.Servicos.Validacoes
 {
     public class ValidacaoMarca : AbstractValidator<Marca>
     {
+        private readonly IRepositorioMarca _repositorioMarca;
         public ValidacaoMarca()
         {
             RuleFor(marca => marca.Cnpj)
@@ -33,5 +35,10 @@ namespace Cod3rsGrowth.Servicos.Validacoes
                 .Matches(@"^[^@\s]+@[^@\s]+\.[^@\s]+$")
                 .WithMessage("Insira um e-mail válido.");
         }
-    }
+
+        public void ValidacaoDeCNPJJaExistente()
+        {
+            
+        }
+    } 
 }

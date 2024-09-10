@@ -1,9 +1,9 @@
 sap.ui.define([
     "sap/ui/test/Opa5",
     "ui5/wwwroot/test/integration/arrangements/Startup",
-    "ui5/wwwroot/test/integration/JornadaMarca",
-    "ui5/wwwroot/test/integration/pages/Marca"
-], function (Opa5, Startup, JornadaMarca, Marca) {
+    "ui5/wwwroot/test/integration/JornadaListaMarca",
+    "ui5/wwwroot/test/integration/JornadaAdicionarMarca"
+], function (Opa5, Startup, JornadaListaMarca, JornadaAdicionarMarca) {
     "use strict";
     
     Opa5.extendConfig({

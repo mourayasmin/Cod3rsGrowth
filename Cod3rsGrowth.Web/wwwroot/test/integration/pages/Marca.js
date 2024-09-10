@@ -142,17 +142,9 @@ sap.ui.define([
                     });
                 },
 
-                osCamposDaMarcaDevemSerPreenchidos: function(marca, view) {
-                    return this.waitFor({
-                        viewName: nomeDaViewAdicionarMarca,
-                        success: () => Opa5.assert.ok(true, "Os campos foram preenchidos corretamente"),
-                        errorMessage: "Os campos não foram preenchidos corretamente"
-                    })
-                },
-
                 oBotaoSalvarDeveSerPressionado: function() {
                     return this.waitFor({
-                        controlType: "sap.m.Dialog",
+                        controlType: "sap.m.Button",
                         matchers: [
                             new PropertyStrictEquals({
                                 name: "text",
@@ -163,6 +155,22 @@ sap.ui.define([
                         actions: new Press(),
                         success: () => Opa5.assert.ok(true, "O botão de salvar foi pressionado"),
                         errorMessage: "O botão de salvar não foi pressionado"
+                    })
+                },
+
+                osCamposDaMarcaDevemSerPreenchidosCorretamente: function(id, valor) {
+                    return this.waitFor({
+                        viewName: nomeDaViewAdicionarMarca,
+                        success: () => {
+                            this.waitFor({
+                                viewName: nomeDaViewAdicionarMarca,
+                                id: id,
+                                actions: new EnterText({text: valor, pressEnterKey: true}),
+                                success: () => Opa5.assert.ok(true, "O campo foi preenchido"),
+                                errorMessage: "O campo não foi preenchido"
+                            });
+                        },
+                        errorMessage: "Os campos da marca não foram preenchidos corretamente"
                     })
                 }
             },
@@ -176,7 +184,7 @@ sap.ui.define([
                     });
                 },
 
-                aMensagemDeErroDeveSerExibida: function() {
+                aMensagemDeErroDeveSerExibidaEFechada: function() {
                     return this.waitFor({
                         controlType: "sap.m.Button",
                             matchers: [
@@ -187,11 +195,11 @@ sap.ui.define([
                             ],
                             viewName: nomeDaViewAdicionarMarca,
                             actions: new Press(),
-                            success: () => Opa5.assert.ok(true, "A mensagem de erro foi exibida"),
-                            errorMessage: "A mensagem de erro não foi exibida"
+                            success: () => Opa5.assert.ok(true, "A mensagem de erro foi exibida e fechada"),
+                            errorMessage: "A mensagem de erro não foi exibida e fechada"
                     })
                 }
-            },
+            }
         },
 
         naPaginaDeDetalhesDaMarca: {
@@ -220,10 +228,6 @@ sap.ui.define([
                     });
                 },
             }
-        },
-
-        preencheOsCampos: function() {
-            
         }
     })
 }

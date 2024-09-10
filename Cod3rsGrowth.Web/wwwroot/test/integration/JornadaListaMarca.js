@@ -1,7 +1,8 @@
 sap.ui.define([
     "sap/ui/test/opaQunit",
+    "ui5/wwwroot/test/integration/JornadaAdicionarMarca",
     "./pages/Marca"
-], function (opaQunit, Marca) {
+], function (opaQunit, Marca, JornadaAdicionarMarca) {
     "use strict";
     QUnit.module("ListaDeMarcas", () =>  {
         opaTest("Deve exibir a tela de lista de marcas", function(Given, When, Then) {
@@ -10,8 +11,8 @@ sap.ui.define([
                     componentConfig: {
                     name: "ui5.wwwroot",
                     manifest: true
-                }
-                }),
+                    }
+            }),
             Then.naPaginaInicial.aTelaDeveSerCarregadaCorretamente();
         }),
         
@@ -44,33 +45,6 @@ sap.ui.define([
             When.naPaginaInicial.asDatasDoCampoDeDataDevemMudar();
             Then.naPaginaInicial.oResultadoDoCampoDeDataDeveSerCorreto();
             Then.iTeardownMyApp();
-        })
-    });
-
-    QUnit.module("AdicionarMarcas", () => {
-        opaTest("Deve exibir a tela de adicionar marcas", function(Given, When, Then) {
-    
-            Given.iStartMyUIComponent({
-                    componentConfig: {
-                    name: "ui5.wwwroot",
-                    manifest: true
-                }
-                }),
-            When.naPaginaInicial.oBotaoAdicionarDeveSerPressionado();    
-            Then.naPaginaAdicionarMarca.aTelaAdicionarMarcaDeveSerCarregadaCorretamente();
-        }),
-
-        opaTest("Deve exibir uma mensagem de erro ao tentar salvar uma marca com campos vazios", function(Given, When, Then){
-            When.naPaginaAdicionarMarca.oBotaoSalvarDeveSerPressionado();
-            Then.naPaginaAdicionarMarca.aMensagemDeErroDeveSerExibida();
-        }),
-
-        opaTest("Deve adicionar uma marca com dados corretos", function(Given, When, Then){
-            //When.naPaginaAdicionarMarca.osCamposDaMarcaDevemSerPreenchidosCorretamente();
-            When.naPaginaAdicionarMarca.oCampoNomeDeveSerPreenchidoCorretamente();
-            When.naPaginaAdicionarMarca.oCampoEmailDeveSerPreenchidoCorretamente();
-            When.naPaginaAdicionarMarca.oBotaoSalvarDeveSerPressionado();
-            Then.naPaginaInicial.aMarcaAdicionadaDeveEstarNaListaDeMarcas();
         })
     });
 })

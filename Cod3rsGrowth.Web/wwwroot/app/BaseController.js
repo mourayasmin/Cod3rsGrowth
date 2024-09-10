@@ -31,7 +31,7 @@ sap.ui.define([
 		},
 
 		aoClicarNoBotaoDeVoltarNaTelaDeAdicionarMarca: function() {
-			this.limparCamposDeEntrada();
+			this.limparCamposDeEntradaEValueState();
 			this.getOwnerComponent().getRouter().navTo("paginaInicial", {}, true);
 		}, 
 
@@ -50,7 +50,7 @@ sap.ui.define([
 		},
 
 		aoClicarNoBotaoCancelarNaTelaDeAdicionar: function() {
-			this.limparCamposDeEntrada();
+			this.limparCamposDeEntradaEValueState();
 			this.getOwnerComponent().getRouter().navTo("paginaInicial", {}, true);
 		}
 	});

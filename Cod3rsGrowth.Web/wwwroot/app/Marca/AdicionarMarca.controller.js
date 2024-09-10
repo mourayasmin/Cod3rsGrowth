@@ -21,7 +21,7 @@ sap.ui.define([
             }
 
             this.getView().setModel(new JSONModel(modeloEntrada), "modelMarcas");        
-    },
+        },
 
        aoClicarNoBotaoSalvarNaTelaDeAdicionar: function() {
 
@@ -32,16 +32,21 @@ sap.ui.define([
         modeloAdicao.telefone = modeloAdicao.telefone.replace(/[^\w\s]/gi, '');
         let corpoRequisicaoAdicao = JSON.stringify(modeloAdicao);
 
-        //var ehMarcaValida = 
-        validacoesDeEntrada.validadorDeEntradas(modeloAdicao, view);
-
-        //if(ehMarcaValida) {
+        var ehMarcaValida = validacoesDeEntrada.validadorDeEntradas(modeloAdicao, view);
+        if(ehMarcaValida) {
             this.salvarMarca(corpoRequisicaoAdicao);
-        //}
+        }
         },
 
-        limparCamposDeEntrada: function() {
-           this.getView().getModel("modelMarcas").setData({});
+        limparCamposDeEntradaEValueState: function() {
+            const statusCorreto = "None";
+            const statusDeErro = "Error";
+            this.getView().getModel("modelMarcas").setData({});
+            this.getView().byId("campoNome").setValueState(statusCorreto);
+            this.getView().byId("campoEmail").setValueState(statusCorreto);
+            this.getView().byId("campoCNPJ").setValueState(statusCorreto);
+            this.getView().byId("campoTelefone").setValueState(statusCorreto);
+            this.getView().byId("campoDataDeCriacao").setValueState(statusCorreto);
         },
 
         aoClicarNaMensagemDeSucessoAdicionar: function () {
@@ -58,7 +63,7 @@ sap.ui.define([
             })
             .then(response => {
                 if (response.ok) {
-                    this.limparCamposDeEntrada();
+                    this.limparCamposDeEntradaEValueState();
                     this.aoClicarNaMensagemDeSucessoAdicionar();
                     this.aoSalvarAdicaoComSucesso();
                 } else {
@@ -73,13 +78,11 @@ sap.ui.define([
             const detalhes = "Detalhes:";
             const validacoes = "Erros de validação:";
             const titulo = "Erro";
-            let erros = Object.values(response.Extensions.Erro).join("\n");
-            //let erros = Object.values(response.Extensions.Erro).split(",").join("\n");
-            debugger
+            let erros = Object.values(response.Extensions.Erro).join(",").split(",").join("\n");
+
             MessageBox.error(`${response.Title} \n \n ${erros}`, {
                 title: titulo,
                 details:              
-                `<p> <strong>${validacoes} ${erros}` +
                 `<p> <strong>${detalhes}` + `${response.Detail}`,
                 styleClass: "sResponsivePaddingClasses",
                 dependentOn: this.getView()

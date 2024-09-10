@@ -53,6 +53,7 @@ sap.ui.define([
             if(!ehValido) {
                 this.mostrarMessageBoxDeErroDePreenchimento();
             }
+            return ehValido;
         }, 
 
         mostrarMessageBoxDeErroDePreenchimento: function() {
