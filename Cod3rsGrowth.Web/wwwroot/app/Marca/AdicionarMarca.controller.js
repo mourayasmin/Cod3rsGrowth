@@ -7,6 +7,7 @@ sap.ui.define([
     "use strict";
     return BaseController.extend("ui5.wwwroot.app.Marca.AdicionarMarca", {
         onInit: function () {
+            this.aoCoincidirRotaDaTelaDeAdicionarMarca(); 
 			this.getOwnerComponent().getModel("modelMarcas");
             this.criarModeloParaEntrada();
        },
@@ -24,12 +25,12 @@ sap.ui.define([
         },
 
        aoClicarNoBotaoSalvarNaTelaDeAdicionar: function() {
-
         var view = this.getView();
         let modeloAdicao = view.getModel("modelMarcas").getData();
-
-        modeloAdicao.cnpj = modeloAdicao.cnpj.replace(/[^\w\s]/gi, '');
-        modeloAdicao.telefone = modeloAdicao.telefone.replace(/[^\w\s]/gi, '');
+        if(modeloAdicao.cnpj && modeloAdicao.telefone) {
+            modeloAdicao.cnpj = modeloAdicao.cnpj.replace(/[^\w\s]/gi, '');
+            modeloAdicao.telefone = modeloAdicao.telefone.replace(/[^\w\s]/gi, '');
+        }
         let corpoRequisicaoAdicao = JSON.stringify(modeloAdicao);
 
         var ehMarcaValida = validacoesDeEntrada.validadorDeEntradas(modeloAdicao, view);
@@ -40,7 +41,6 @@ sap.ui.define([
 
         limparCamposDeEntradaEValueState: function() {
             const statusCorreto = "None";
-            const statusDeErro = "Error";
             this.getView().getModel("modelMarcas").setData({});
             this.getView().byId("campoNome").setValueState(statusCorreto);
             this.getView().byId("campoEmail").setValueState(statusCorreto);

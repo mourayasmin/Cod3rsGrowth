@@ -46,12 +46,21 @@ sap.ui.define([
 		aoSalvarAdicaoComSucesso: function() {
 			const url = "https://localhost:7172/api/Marca";
 			this.getOwnerComponent().getRouter().navTo("paginaInicial", {}, true);
-			window.location.reload();
 		},
 
 		aoClicarNoBotaoCancelarNaTelaDeAdicionar: function() {
 			this.limparCamposDeEntradaEValueState();
 			this.getOwnerComponent().getRouter().navTo("paginaInicial", {}, true);
+		},
+
+		aoCoincidirRotaDaTelaDeListaMarca: function() {
+			const oRouter = this.getOwnerComponent().getRouter();
+			oRouter.getRoute("paginaInicial").attachPatternMatched(this.obterListaDeMarcas, this);
+		},
+
+		aoCoincidirRotaDaTelaDeAdicionarMarca: function() {
+			const oRouter = this.getOwnerComponent().getRouter();
+			oRouter.getRoute("AdicionarMarca").attachPatternMatched(this.onInit, this);
 		}
 	});
 });

@@ -54,7 +54,7 @@
 					<VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom"
 						  width="auto">
 						<Link text="{modelMarcas>nome}" target="" press="aoClicarNaMarca"/>
-						<Label text="CNPJ: {path: 'modelMarcas>cnpj', formatter: '.formatter.formatadorDeCNPJ'}"/>
+						<Label text="CNPJ: {path: 'modelMarcas>cnpj', formatter: '.formatter.formatadorDeCNPJ'}" id= "textoCNPJ"/>
 						<Label text="ID: {modelMarcas>id}"/>
 						<Label text="Fundação: {path: 'modelMarcas>dataDeCriacao',
 							type:'sap.ui.model.type.DateTime',

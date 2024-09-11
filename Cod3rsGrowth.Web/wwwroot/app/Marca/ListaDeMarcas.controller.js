@@ -10,17 +10,18 @@ sap.ui.define([
 		formatter: formatter,
 
 		onInit: function () {
+            this.aoCoincidirRotaDaTelaDeListaMarca();
 			this.obterListaDeMarcas("https://localhost:7172/api/Marca");
 		},
 
-		obterListaDeMarcas: function(url) {
-			
+		obterListaDeMarcas: function() {
+			const url = "/api/Marca"
  			fetch(url) 
 			.then(response => response.json())
 			.then(responseJSON => {
-				 if(responseJSON.Title) { 
-				 	this.naMensagemDeErro(responseJSON);
-				} else {
+				  if(responseJSON.Title) { 
+				  	this.naMensagemDeErro(responseJSON);
+				 } else {
 					let oModel = new sap.ui.model.json.JSONModel(responseJSON);
 					this.getView().setModel(oModel, "modelMarcas")
 				}

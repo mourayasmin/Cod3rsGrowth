@@ -109,14 +109,13 @@ sap.ui.define([
                     })
                 },
 
-                aMarcaAdicionadaDeveEstarNaListaDeMarcas: function() {
+                aMarcaAdicionadaDeveEstarNaListaDeMarcas: function(cnpjFormatado) {
                     return this.waitFor({
                         viewName: nomeDaView,
-                        controlType: "sap.m.Link",
+                        controlType: "sap.m.Label",
                         matchers: [
-                            new PropertyStrictEquals({
-                                name:"text",
-                                value: "Marca OPA"
+                            new Properties({
+                                text: cnpjFormatado
                             })
                         ],
                         success: () => Opa5.assert.ok(true, "A marca adicionada está na lista de marcas"),
@@ -145,13 +144,13 @@ sap.ui.define([
                 oBotaoSalvarDeveSerPressionado: function() {
                     return this.waitFor({
                         controlType: "sap.m.Button",
+                        viewName: nomeDaViewAdicionarMarca,
                         matchers: [
                             new PropertyStrictEquals({
                                 name: "text",
                                 value: "Salvar"
                             })
                         ],
-                        viewName: nomeDaViewAdicionarMarca,
                         actions: new Press(),
                         success: () => Opa5.assert.ok(true, "O botão de salvar foi pressionado"),
                         errorMessage: "O botão de salvar não foi pressionado"
@@ -160,18 +159,12 @@ sap.ui.define([
 
                 osCamposDaMarcaDevemSerPreenchidosCorretamente: function(id, valor) {
                     return this.waitFor({
-                        viewName: nomeDaViewAdicionarMarca,
-                        success: () => {
-                            this.waitFor({
-                                viewName: nomeDaViewAdicionarMarca,
-                                id: id,
-                                actions: new EnterText({text: valor, pressEnterKey: true}),
-                                success: () => Opa5.assert.ok(true, "O campo foi preenchido"),
-                                errorMessage: "O campo não foi preenchido"
-                            });
-                        },
-                        errorMessage: "Os campos da marca não foram preenchidos corretamente"
-                    })
+                        viewName: ".Marca.AdicionarMarca",
+                        id: id,
+                        actions: new EnterText({text: valor}),
+                        success: () => Opa5.assert.ok(true, "O campo foi preenchido"),
+                        errorMessage: "O campo não foi preenchido"
+                    });
                 }
             },
 
