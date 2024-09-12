@@ -8,15 +8,6 @@
     "type": "application",
     "applicationVersion": {
       "version": "1.0.0"
-    },
-    "dataSources": {
-      "invoiceRemote": {
-        "uri": "/api/Marca",
-        "type": "JSON",
-        "settings": {
-          "odataVersion": "2.0"
-        }
-      }
     }
   },
   "sap.ui": {
@@ -44,9 +35,6 @@
           "supportedLocales": [ "" ],
           "fallbackLocale": ""
         }
-      },
-      "invoice": {
-        "dataSource": "invoiceRemote"
       }
     },
     "rootView": {

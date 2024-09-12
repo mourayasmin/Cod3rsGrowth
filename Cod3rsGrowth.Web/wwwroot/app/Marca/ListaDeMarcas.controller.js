@@ -2,24 +2,28 @@ sap.ui.define([
 	"ui5/wwwroot/app/BaseController",
 	"sap/m/MessageBox",
 	"sap/ui/core/format/DateFormat",
-	"ui5/wwwroot/app/model/formatter"
-], function (BaseController, MessageBox, DateFormat, formatter) {
+	"ui5/wwwroot/app/model/formatter",
+	"sap/ui/core/mvc/View"
+], function (BaseController, MessageBox, DateFormat, formatter, View) {
 	"use strict";
 	return BaseController.extend("ui5.wwwroot.app.Marca.ListaDeMarcas", {
 		formatter: formatter,
 
 		onInit: function () {
-			this.obterListaDeMarcas("https://localhost:7172/api/Marca");
+            this.vincularRota("paginaInicial", this.aoCoincidirRotaDaTelaDeListaMarca);
 		},
 
-		obterListaDeMarcas: function(url) {
-			
- 			fetch(url) 
+		aoCoincidirRotaDaTelaDeListaMarca: function() {
+			return this.obterListaDeMarcas("https://localhost:7172/api/Marca");
+		},
+
+		obterListaDeMarcas: async function(url) {
+ 			return fetch(url) 
 			.then(response => response.json())
 			.then(responseJSON => {
-				 if(responseJSON.Title) {
-				 	this.naMensagemDeErro(responseJSON);
-				} else {
+				  if(responseJSON.Title) { 
+				  	this.naMensagemDeErro(responseJSON);
+				 } else {
 					let oModel = new sap.ui.model.json.JSONModel(responseJSON);
 					this.getView().setModel(oModel, "modelMarcas")
 				}

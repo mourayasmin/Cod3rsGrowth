@@ -1,15 +1,12 @@
 sap.ui.define([
     "sap/ui/test/Opa5",
     "sap/ui/test/actions/Press",
-    "sap/ui/test/matchers/Properties",
     "sap/ui/test/matchers/PropertyStrictEquals",
     "sap/ui/test/actions/EnterText"
-], (Opa5, Press, Properties, PropertyStrictEquals, EnterText) => {
+], (Opa5, Press, PropertyStrictEquals, EnterText) => {
     "use strict";
 
     const nomeDaView = ".Marca.ListaDeMarcas";
-    const nomeDaViewAdicionarMarca = ".Marca.AdicionarMarca";
-    const nomeDaViewDetalhesDaMarca = ".Marca.DetalhesDaMarca";
 
     Opa5.createPageObjects({
         naPaginaInicial: {
@@ -107,63 +104,22 @@ sap.ui.define([
                         success: () => Opa5.assert.ok(true, "O resultado do campo de data está correto"),
                         errorMessage: "O resultado do campo de data não está correto"
                     })
-                }
-            }
-        },
-
-        naPaginaAdicionarMarca: {
-            actions: {
-                oBotaoVoltarDeveSerPressionado: function() {
-                    return this.waitFor({
-                        matchers: [
-                            new Properties({
-                                type: "Back"
-                            })
-                        ],
-                        actions: new Press(),
-                        viewName: nomeDaViewAdicionarMarca,
-                        success: () => Opa5.assert.ok(true, "O botão de voltar na tela de adicionar foi pressionado"),
-                        errorMessage: "O botão de voltar na tela de adicionar não foi pressionado"
-                    });
-                }
-            },
-
-            assertions: {
-                aTelaAdicionarMarcaDeveSerCarregadaCorretamente: function() {
-                    return this.waitFor({
-                        viewName: nomeDaViewAdicionarMarca,
-                        success: () => Opa5.assert.ok(true, "A tela de adicionar foi carregada corretamente"),
-                        errorMessage: "A tela de adicionar não foi carregada corretamente"
-                    });
                 },
-            }
-        },
 
-        naPaginaDeDetalhesDaMarca: {
-            actions: {
-                oBotaoVoltarDeveSerPressionado: function() {
+                aMarcaAdicionadaDeveEstarNaListaDeMarcas: function(cnpjFormatado) {
                     return this.waitFor({
+                        viewName: nomeDaView,
+                        controlType: "sap.m.Label",
                         matchers: [
-                            new Properties({
-                                type: "Back"
+                            new PropertyStrictEquals({
+                                name: "text",
+                                value: cnpjFormatado
                             })
                         ],
-                        actions: new Press(),
-                        viewName: nomeDaViewDetalhesDaMarca,
-                        success: () => Opa5.assert.ok(true, "O botão de voltar na tela de detalhes foi pressionado"),
-                        errorMessage: "O botão de voltar na tela de detalhes não foi pressionado"
+                        success: () => Opa5.assert.ok(true, "A marca adicionada está na lista de marcas"),
+                        errorMessage: "A marca adicionada não está na lista de marcas"
                     })
                 }
-            },
-
-            assertions: {
-                aTelaDeDetalhesDaMarcaDeveSerCarregadaCorretamente: function() {
-                    return this.waitFor({
-                        viewName: nomeDaViewDetalhesDaMarca,
-                        success: () => Opa5.assert.ok(true, "A tela de detalhes foi carregada corretamente"),
-                        errorMessage: "A tela de detalhes não foi carregada corretamente"
-                    });
-                },
             }
         }
     })
