@@ -13,41 +13,48 @@ sap.ui.define([
             const re =/^\S+@\S+\.\S+$/;
             const statusDeErro = "Error";
             const statusCorreto = "None";
+            const numeroDeDigitosCNPJ = 14;
+            const numeroDeDigitosTelefone = 11;
+            const idCampoNomeDaMarca = "campoNome";
+            const idCampoEmailDaMarca = "campoEmail";
+            const idCampoCNPJDaMarca = "campoCNPJ";
+            const idCampoTelefoneDaMarca = "campoTelefone";
+            const idCampoDataDeCriacaoDaMarca = "campoDataDeCriacao";
             var ehValido = true;
 
             if(entradaNome) {
-                view.byId("campoNome").setValueState(statusCorreto);
+                view.byId(idCampoNomeDaMarca).setValueState(statusCorreto);
             } else {
                 ehValido = false;
-                view.byId("campoNome").setValueState(statusDeErro);
+                view.byId(idCampoNomeDaMarca).setValueState(statusDeErro);
             }
 
             if(entradaEmail.match(re)) {
-                view.byId("campoEmail").setValueState(statusCorreto);
+                view.byId(idCampoEmailDaMarca).setValueState(statusCorreto);
             } else {
                 ehValido = false;
-                view.byId("campoEmail").setValueState(statusDeErro)
+                view.byId(idCampoEmailDaMarca).setValueState(statusDeErro)
             }
 
-            if(entradaCNPJ.length != 14) {
+            if(entradaCNPJ.length != numeroDeDigitosCNPJ) {
                 ehValido = false;
-                view.byId("campoCNPJ").setValueState(statusDeErro);
+                view.byId(idCampoCNPJDaMarca).setValueState(statusDeErro);
             } else {
-                view.byId("campoCNPJ").setValueState(statusCorreto);
+                view.byId(idCampoCNPJDaMarca).setValueState(statusCorreto);
             }
 
-            if(entradaTelefone.length != 11) {
+            if(entradaTelefone.length != numeroDeDigitosTelefone) {
                 ehValido = false;
-                view.byId("campoTelefone").setValueState(statusDeErro);
+                view.byId(idCampoTelefoneDaMarca).setValueState(statusDeErro);
             } else {
-                view.byId("campoTelefone").setValueState(statusCorreto);
+                view.byId(idCampoTelefoneDaMarca).setValueState(statusCorreto);
             }
 
             if(entradaDataDeCriacao > diaHoje) {
                 ehValido = false;
-                view.byId("campoDataDeCriacao").setValueState(statusDeErro);
+                view.byId(idCampoDataDeCriacaoDaMarca).setValueState(statusDeErro);
             } else {
-                view.byId("campoDataDeCriacao").setValueState(statusCorreto);
+                view.byId(idCampoDataDeCriacaoDaMarca).setValueState(statusCorreto);
             }
 
             if(!ehValido) {
@@ -57,7 +64,8 @@ sap.ui.define([
         }, 
 
         mostrarMessageBoxDeErroDePreenchimento: function() {
-            MessageBox.error("Preencha todos os campos corretamente.");
+            const mensagemDeErroDePreenchimento = "Preencha todos os campos corretamente.";
+            MessageBox.error(mensagemDeErroDePreenchimento);
         }
     }
 })

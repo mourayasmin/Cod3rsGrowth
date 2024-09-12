@@ -14,6 +14,7 @@ sap.ui.define([
 		aoClicarNoBotaoDeVoltarNaTelaDeNotFound: function () {
 			var historico, hashAnterior;
 			const voltaHash = -1;
+			const rotaPaginaDeListaDeMarcas = "paginaInicial";
 
 			historico = History.getInstance();
 			hashAnterior = historico.getPreviousHash();
@@ -21,46 +22,46 @@ sap.ui.define([
 			if (hashAnterior !== undefined) {
 				window.history.go(voltaHash);
 			} else {
-				this.getOwnerComponent().getRouter().navTo("paginaInicial", {}, true);
+				this.getOwnerComponent().getRouter().navTo(rotaPaginaDeListaDeMarcas, {}, true);
 			}
 		},
 
 		aoClicarNoBotaoAdicionar: function () {
+			const rotaPaginaDeAdicionarMarca = "AdicionarMarca";
 			const rotaAdicionarMarca = this.getOwnerComponent().getRouter();
-			rotaAdicionarMarca.navTo("AdicionarMarca");
+			rotaAdicionarMarca.navTo(rotaPaginaDeAdicionarMarca);
 		},
 
 		aoClicarNoBotaoDeVoltarNaTelaDeAdicionarMarca: function() {
 			this.limparCamposDeEntradaEValueState();
-			this.getOwnerComponent().getRouter().navTo("paginaInicial", {}, true);
+			this.getOwnerComponent().getRouter().navTo(rotaPaginaDeListaDeMarcas, {}, true);
 		}, 
 
 		aoClicarNaMarca: function() {
-			this.getOwnerComponent().getRouter().navTo("DetalhesDaMarca", {}, true);
+			const rotaPaginaDeDetalhesDaMarca = "DetalhesMarca";
+			this.getOwnerComponent().getRouter().navTo(rotaPaginaDeDetalhesDaMarca, {}, true);
 		},
 
 		aoClicarNoBotaoDeVoltarNaTelaDeDetalhesDaMarca: function() {
-			this.getOwnerComponent().getRouter().navTo("paginaInicial", {}, true);
+			const rotaPaginaDeListaDeMarcas = "paginaInicial";
+			this.getOwnerComponent().getRouter().navTo(rotaPaginaDeListaDeMarcas, {}, true);
 		},
 
 		aoSalvarAdicaoComSucesso: function() {
 			const url = "https://localhost:7172/api/Marca";
-			this.getOwnerComponent().getRouter().navTo("paginaInicial", {}, true);
+			const rotaPaginaDeListaDeMarcas = "paginaInicial";
+			this.getOwnerComponent().getRouter().navTo(rotaPaginaDeListaDeMarcas, {}, true);
 		},
 
 		aoClicarNoBotaoCancelarNaTelaDeAdicionar: function() {
+			const rotaPaginaDeListaDeMarcas = "paginaInicial";
 			this.limparCamposDeEntradaEValueState();
-			this.getOwnerComponent().getRouter().navTo("paginaInicial", {}, true);
+			this.getOwnerComponent().getRouter().navTo(rotaPaginaDeListaDeMarcas, {}, true);
 		},
 
-		aoCoincidirRotaDaTelaDeListaMarca: function() {
+		vincularRota: function(rota, funcaoInicial) {
 			const oRouter = this.getOwnerComponent().getRouter();
-			oRouter.getRoute("paginaInicial").attachPatternMatched(this.aoIniciarAPaginaDeLista, this);
-		},
-
-		aoCoincidirRotaDaTelaDeAdicionarMarca: function() {
-			const oRouter = this.getOwnerComponent().getRouter();
-			oRouter.getRoute("AdicionarMarca").attachPatternMatched(this.aoIniciarAPaginaDeAdicionar, this);
+			oRouter.getRoute(rota).attachPatternMatched(funcaoInicial, this);
 		}
 	});
 });

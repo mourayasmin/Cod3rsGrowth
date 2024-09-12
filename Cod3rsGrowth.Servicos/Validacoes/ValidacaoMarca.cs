@@ -5,7 +5,6 @@ namespace Cod3rsGrowth.Servicos.Validacoes
 {
     public class ValidacaoMarca : AbstractValidator<Marca>
     {
-        private readonly IRepositorioMarca _repositorioMarca;
         public ValidacaoMarca()
         {
             RuleFor(marca => marca.Cnpj)
@@ -34,11 +33,6 @@ namespace Cod3rsGrowth.Servicos.Validacoes
             RuleFor(marca => marca.Email)
                 .Matches(@"^[^@\s]+@[^@\s]+\.[^@\s]+$")
                 .WithMessage("Insira um e-mail válido.");
-        }
-
-        public void ValidacaoDeCNPJJaExistente()
-        {
-            
         }
     } 
 }

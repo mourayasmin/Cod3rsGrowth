@@ -10,17 +10,15 @@ sap.ui.define([
 		formatter: formatter,
 
 		onInit: function () {
-            this.aoCoincidirRotaDaTelaDeListaMarca();
-			this.obterListaDeMarcas("https://localhost:7172/api/Marca");
+            this.vincularRota("paginaInicial", this.aoCoincidirRotaDaTelaDeListaMarca);
 		},
 
-		aoIniciarAPaginaDeLista: function() {
-			this.aoCoincidirRotaDaTelaDeListaMarca();
-			this.obterListaDeMarcas("https://localhost:7172/api/Marca");
+		aoCoincidirRotaDaTelaDeListaMarca: function() {
+			return this.obterListaDeMarcas("https://localhost:7172/api/Marca");
 		},
 
-		obterListaDeMarcas: function(url) {
- 			fetch(url) 
+		obterListaDeMarcas: async function(url) {
+ 			return fetch(url) 
 			.then(response => response.json())
 			.then(responseJSON => {
 				  if(responseJSON.Title) { 

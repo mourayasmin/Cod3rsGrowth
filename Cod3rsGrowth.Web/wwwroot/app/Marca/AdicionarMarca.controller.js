@@ -7,13 +7,11 @@ sap.ui.define([
     "use strict";
     return BaseController.extend("ui5.wwwroot.app.Marca.AdicionarMarca", {
         onInit: function () {
-            this.aoCoincidirRotaDaTelaDeAdicionarMarca(); 
 			this.getOwnerComponent().getModel("modelMarcas");
-            this.criarModeloParaEntrada();
+            this.vincularRota("AdicionarMarca", this.aoCoincidirRotaDaTelaDeAdicionarMarca); 
         },
 
-        aoIniciarAPaginaDeAdicionar: function() {
-            this.aoCoincidirRotaDaTelaDeAdicionarMarca();
+        aoCoincidirRotaDaTelaDeAdicionarMarca: function() {
             this.criarModeloParaEntrada();
         },
 
@@ -46,16 +44,23 @@ sap.ui.define([
 
         limparCamposDeEntradaEValueState: function() {
             const statusCorreto = "None";
+            const idCampoNomeDaMarca = "campoNome";
+            const idCampoEmailDaMarca = "campoEmail";
+            const idCampoCNPJDaMarca = "campoCNPJ";
+            const idCampoTelefoneDaMarca = "campoTelefone";
+            const idCampoDataDeCriacaoDaMarca = "campoDataDeCriacao";
+
             this.getView().getModel("modelMarcas").setData({});
-            this.getView().byId("campoNome").setValueState(statusCorreto);
-            this.getView().byId("campoEmail").setValueState(statusCorreto);
-            this.getView().byId("campoCNPJ").setValueState(statusCorreto);
-            this.getView().byId("campoTelefone").setValueState(statusCorreto);
-            this.getView().byId("campoDataDeCriacao").setValueState(statusCorreto);
+            this.getView().byId(idCampoNomeDaMarca).setValueState(statusCorreto);
+            this.getView().byId(idCampoEmailDaMarca).setValueState(statusCorreto);
+            this.getView().byId(idCampoCNPJDaMarca).setValueState(statusCorreto);
+            this.getView().byId(idCampoTelefoneDaMarca).setValueState(statusCorreto);
+            this.getView().byId(idCampoDataDeCriacaoDaMarca).setValueState(statusCorreto);
         },
 
         aoClicarNaMensagemDeSucessoAdicionar: function () {
-			MessageBox.success("Marca criada com sucesso.");
+            const mensagemDeSucessoAoAdicionarMarca = "Marca criada com sucesso.";
+			MessageBox.success(mensagemDeSucessoAoAdicionarMarca);
 		},
 
         salvarMarca(corpoRequisicaoAdicao) {
