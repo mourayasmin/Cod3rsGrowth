@@ -26,7 +26,7 @@ namespace Cod3rsGrowth.Dominio.Migracoes
                     'Nike do Brasil LTDA', 
                     'Vans do Brasil LTDA', 
                     'New Balance do Brasil do LTDA',
-                    'Puma Sports LTDA'),
+                    'Puma Sports LTDA',
                     'Asics America Corporation');"
             );
         }

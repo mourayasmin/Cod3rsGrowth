@@ -1,10 +1,12 @@
 sap.ui.define([
     "sap/ui/test/opaQunit",
     "ui5/wwwroot/test/integration/JornadaListaMarca",
-    "./pages/Marca",
+    "./pages/AdicionarMarca",
+    "./pages/ListaDeMarcas",
+    "./pages/DetalhesDaMarca",
     "ui5/wwwroot/app/model/formatter"
 
-], function (opaQunit, JornadaListaMarca, Marca, formatter) { 
+], function (opaQunit, JornadaListaMarca, AdicionarMarca, ListaDeMarcas, DetalhesDaMarca, formatter) { 
     "use strict";
 
     function gerarCnpj() {
@@ -83,4 +85,3 @@ sap.ui.define([
         })
     })
 })
-
