@@ -14,8 +14,12 @@ sap.ui.define([
 			this.obterListaDeMarcas("https://localhost:7172/api/Marca");
 		},
 
-		obterListaDeMarcas: function() {
-			const url = "/api/Marca"
+		aoIniciarAPaginaDeLista: function() {
+			this.aoCoincidirRotaDaTelaDeListaMarca();
+			this.obterListaDeMarcas("https://localhost:7172/api/Marca");
+		},
+
+		obterListaDeMarcas: function(url) {
  			fetch(url) 
 			.then(response => response.json())
 			.then(responseJSON => {

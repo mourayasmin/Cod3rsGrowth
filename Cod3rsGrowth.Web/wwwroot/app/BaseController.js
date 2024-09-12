@@ -55,12 +55,12 @@ sap.ui.define([
 
 		aoCoincidirRotaDaTelaDeListaMarca: function() {
 			const oRouter = this.getOwnerComponent().getRouter();
-			oRouter.getRoute("paginaInicial").attachPatternMatched(this.obterListaDeMarcas, this);
+			oRouter.getRoute("paginaInicial").attachPatternMatched(this.aoIniciarAPaginaDeLista, this);
 		},
 
 		aoCoincidirRotaDaTelaDeAdicionarMarca: function() {
 			const oRouter = this.getOwnerComponent().getRouter();
-			oRouter.getRoute("AdicionarMarca").attachPatternMatched(this.onInit, this);
+			oRouter.getRoute("AdicionarMarca").attachPatternMatched(this.aoIniciarAPaginaDeAdicionar, this);
 		}
 	});
 });

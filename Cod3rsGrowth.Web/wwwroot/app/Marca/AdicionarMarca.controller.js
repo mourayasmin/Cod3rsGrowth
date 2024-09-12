@@ -10,7 +10,12 @@ sap.ui.define([
             this.aoCoincidirRotaDaTelaDeAdicionarMarca(); 
 			this.getOwnerComponent().getModel("modelMarcas");
             this.criarModeloParaEntrada();
-       },
+        },
+
+        aoIniciarAPaginaDeAdicionar: function() {
+            this.aoCoincidirRotaDaTelaDeAdicionarMarca();
+            this.criarModeloParaEntrada();
+        },
 
        criarModeloParaEntrada: function() {
             let modeloEntrada = {
