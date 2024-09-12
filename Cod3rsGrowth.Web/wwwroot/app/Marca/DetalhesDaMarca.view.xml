@@ -7,6 +7,18 @@
       showNavButton="true"
 		navButtonPress="aoClicarNoBotaoDeVoltarNaTelaDeDetalhesDaMarca"
       title="{i18n>tituloDetalhesDaMarca}">
+      <content>
+         <ObjectHeader
+         title="{modelMarcas>nome}"
+         backgroundDesign="Solid">
+         <attributes>
+            <ObjectAttribute title="{i18n>tituloCNPJDetalhesMarca}" text="{modelMarcas>/cnpj}"/>
+            <ObjectAttribute title="{i18n>tituloTelefoneDetalhesMarca}" text="{modelMarcas>/telefone}"/>
+            <ObjectAttribute title="{i18n>tituloEmailDetalhesMarca}" text="{modelMarcas>/email}"/>
+            <ObjectAttribute title="{i18n>tituloDataDeCriacaoDetalhesMarca}" text="{modelMarcas>/dataDeCriacao}"/>
+         </attributes>
+      </ObjectHeader>
+      </content>
    </Page>
    </Toolbar>
 </mvc:View>

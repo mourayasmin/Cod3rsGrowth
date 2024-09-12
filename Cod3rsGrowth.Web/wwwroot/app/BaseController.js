@@ -33,12 +33,13 @@ sap.ui.define([
 		},
 
 		aoClicarNoBotaoDeVoltarNaTelaDeAdicionarMarca: function() {
+			const rotaPaginaDeListaDeMarcas = "paginaInicial";
 			this.limparCamposDeEntradaEValueState();
 			this.getOwnerComponent().getRouter().navTo(rotaPaginaDeListaDeMarcas, {}, true);
 		}, 
 
 		aoClicarNaMarca: function() {
-			const rotaPaginaDeDetalhesDaMarca = "DetalhesMarca";
+			const rotaPaginaDeDetalhesDaMarca = "DetalhesDaMarca";
 			this.getOwnerComponent().getRouter().navTo(rotaPaginaDeDetalhesDaMarca, {}, true);
 		},
 
