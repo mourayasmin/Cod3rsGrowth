@@ -22,6 +22,22 @@ sap.ui.define([
                         success: () => Opa5.assert.ok(true, "O botão de voltar na tela de detalhes foi pressionado"),
                         errorMessage: "O botão de voltar na tela de detalhes não foi pressionado"
                     })
+                },
+
+                oBotaoEditarDeveSerPressionado: function() {
+                    return this.waitFor({
+                        viewName: nomeDaViewDetalhesDaMarca,
+                        controlType: "sap.m.Button",
+                        matchers: [
+                            new PropertyStrictEquals({
+                                name: "text",
+                                value: "Editar"
+                            })
+                        ],
+                        actions: new Press(),
+                        success: () => Opa5.assert.ok(true, "O botão de edição foi pressionado"),
+                        errorMessage: "O botão de edição foi pressionado"
+                    });
                 }
             },
 

@@ -6,6 +6,11 @@ sap.ui.define([
 	"sap/ui/core/mvc/View"
 ], function (BaseController, MessageBox, DateFormat, formatter, View) {
 	"use strict";
+	const rotaPaginaDeAdicionarMarca = "AdicionarMarca";
+	const rotaPaginaDeDetalhesDaMarca = "DetalhesDaMarca";
+	const itensDaListaDeMarcas = "modelMarcas";
+	const propriedadeIdDaMarcaDetalhada = "id";
+
 	return BaseController.extend("ui5.wwwroot.app.Marca.ListaDeMarcas", {
 		formatter: formatter,
 
@@ -66,6 +71,16 @@ sap.ui.define([
 			}
 
 			this.obterListaDeMarcas(url);
+		},
+
+		aoClicarNaMarca: function(oEvent) {
+			this.getOwnerComponent().getRouter().navTo(rotaPaginaDeDetalhesDaMarca, {id: oEvent.getSource().getBindingContext(itensDaListaDeMarcas).getProperty(propriedadeIdDaMarcaDetalhada)}, true);
+		},
+
+		aoClicarNoBotaoAdicionar: function () {
+			debugger
+			const rotaAdicionarMarca = this.getOwnerComponent().getRouter();
+			rotaAdicionarMarca.navTo(rotaPaginaDeAdicionarMarca);
 		}
 	});
 });

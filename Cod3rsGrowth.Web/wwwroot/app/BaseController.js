@@ -26,43 +26,21 @@ sap.ui.define([
 			}
 		},
 
-		aoClicarNoBotaoAdicionar: function () {
-			const rotaPaginaDeAdicionarMarca = "AdicionarMarca";
-			const rotaAdicionarMarca = this.getOwnerComponent().getRouter();
-			rotaAdicionarMarca.navTo(rotaPaginaDeAdicionarMarca);
-		},
-
-		aoClicarNoBotaoDeVoltarNaTelaDeAdicionarMarca: function() {
-			const rotaPaginaDeListaDeMarcas = "paginaInicial";
-			this.limparCamposDeEntradaEValueState();
-			this.getOwnerComponent().getRouter().navTo(rotaPaginaDeListaDeMarcas, {}, true);
-		}, 
-
-		aoClicarNaMarca: function() {
-			const rotaPaginaDeDetalhesDaMarca = "DetalhesDaMarca";
-			this.getOwnerComponent().getRouter().navTo(rotaPaginaDeDetalhesDaMarca, {}, true);
-		},
-
-		aoClicarNoBotaoDeVoltarNaTelaDeDetalhesDaMarca: function() {
-			const rotaPaginaDeListaDeMarcas = "paginaInicial";
-			this.getOwnerComponent().getRouter().navTo(rotaPaginaDeListaDeMarcas, {}, true);
-		},
-
-		aoSalvarAdicaoComSucesso: function() {
-			const url = "https://localhost:7172/api/Marca";
-			const rotaPaginaDeListaDeMarcas = "paginaInicial";
-			this.getOwnerComponent().getRouter().navTo(rotaPaginaDeListaDeMarcas, {}, true);
-		},
-
-		aoClicarNoBotaoCancelarNaTelaDeAdicionar: function() {
-			const rotaPaginaDeListaDeMarcas = "paginaInicial";
-			this.limparCamposDeEntradaEValueState();
-			this.getOwnerComponent().getRouter().navTo(rotaPaginaDeListaDeMarcas, {}, true);
-		},
-
 		vincularRota: function(rota, funcaoInicial) {
 			const oRouter = this.getOwnerComponent().getRouter();
 			oRouter.getRoute(rota).attachPatternMatched(funcaoInicial, this);
-		}
+		},
+
+		obterDetalhesDaMarca: async function(idModeloDetalhado) {
+            let url = `/api/Marca/${idModeloDetalhado}`;
+
+            fetch(url) 
+            .then(response => response.json())
+            .then(response => {
+                const modeloDetalhado = new JSONModel();
+                modeloDetalhado.setData(response);
+				this.getView().setModel(modeloDetalhado, itensDaListaDeMarcas);
+            })
+        }
 	});
 });

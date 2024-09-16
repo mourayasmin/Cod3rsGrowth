@@ -73,6 +73,18 @@ sap.ui.define([
             Then
                 .naPaginaInicial    
                 .aMarcaAdicionadaDeveEstarNaListaDeMarcas(cnpjFormatado);
+            
+            Then
+                .naPaginaInicial
+                .aMarcaAdicionadaDeveSerPressionada(cnpjFormatado);
+            
+            Then
+                .naPaginaDeDetalhesDaMarca
+                .aTelaDeDetalhesDaMarcaDeveSerCarregadaCorretamente();
+            
+            Then
+                .naPaginaDeDetalhesDaMarca
+                .oBotaoVoltarDeveSerPressionado();
 
             When
                 .naPaginaInicial
