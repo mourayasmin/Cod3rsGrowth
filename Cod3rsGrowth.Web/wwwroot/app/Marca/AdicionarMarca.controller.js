@@ -70,23 +70,23 @@ sap.ui.define([
 		},
 
         salvarMarca: async function(corpoRequisicaoAdicao) {
-            fetch("/api/Marca", {  
+            return fetch("/api/Marca", {  
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
                 },
                 body: corpoRequisicaoAdicao
             })
-            .then(response => {
+            .then (async response => {
                 if (response.ok) {
                     this.limparCamposDeEntradaEValueState();
                     this.aoClicarNaMensagemDeSucessoAdicionar();
-                    response.json().then (response => 
-                        this.aoSalvarAdicaoComSucesso(response.id)
+                    response.json().then (async response => 
+                        await this.aoSalvarAdicaoComSucesso(response.id)
                     )
                 } else {
-                    response.json().then(response => {
-                        this.exibirErro(response);
+                    response.json().then(async response => {
+                        await this.exibirErro(response);
                     })
                 }
             })
@@ -116,8 +116,8 @@ sap.ui.define([
 			this.getOwnerComponent().getRouter().navTo(rotaPaginaDeListaDeMarcas, {}, true);
 		},
 
-        aoSalvarAdicaoComSucesso: function(idMarcaAdicionada) {
-            this.obterDetalhesDaMarca(idMarcaAdicionada);
+        aoSalvarAdicaoComSucesso: async function(idMarcaAdicionada) {
+            await this.obterDetalhesDaMarca(idMarcaAdicionada);
             this.getOwnerComponent().getRouter().navTo(rotaPaginaDeDetalhesDaMarca, {id: idMarcaAdicionada}, true);
         }
     });

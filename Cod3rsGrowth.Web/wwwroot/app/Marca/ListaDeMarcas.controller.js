@@ -37,7 +37,7 @@ sap.ui.define([
 			this.naMensagemDeErro(erro)})
 		},
 
-		aoPesquisarFiltroDeNome: function(oModel) {
+		aoPesquisarFiltroDeNome: async function(oModel) {
 
 			let modeloFiltro = oModel.getSource().getValue("nome");
 			let url = "/api/Marca?";
@@ -48,14 +48,14 @@ sap.ui.define([
 				url += params.toString(); 
 			}
 
-			this.obterListaDeMarcas(url);
+			return this.obterListaDeMarcas(url);
 		},
 
 		naMensagemDeErro: function(mensagemDeErro) {
 			MessageBox.error(mensagemDeErro.Detail, {title: "Erro na requisição"});
 		},
 
-		aoMudarFiltroDeData: function (oModel) {
+		aoMudarFiltroDeData: async function (oModel) {
 			let modeloFiltro = oModel.getSource();
 			let inicio = modeloFiltro.getProperty("dateValue");
 			let fim = modeloFiltro.getProperty("secondDateValue");
@@ -70,7 +70,7 @@ sap.ui.define([
 				url += params.toString(); 
 			}
 
-			this.obterListaDeMarcas(url);
+			return this.obterListaDeMarcas(url);
 		},
 
 		aoClicarNaMarca: function(oEvent) {

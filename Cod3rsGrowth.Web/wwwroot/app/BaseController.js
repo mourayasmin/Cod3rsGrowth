@@ -36,7 +36,7 @@ sap.ui.define([
 		obterDetalhesDaMarca: async function(idModeloDetalhado) {
             let url = `/api/Marca/${idModeloDetalhado}`;
 
-            fetch(url) 
+            return fetch(url) 
             .then(response => response.json())
             .then(response => {
                 const modeloDetalhado = new JSONModel();

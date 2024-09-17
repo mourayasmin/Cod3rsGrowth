@@ -1,8 +1,7 @@
 sap.ui.define([
     "ui5/wwwroot/app/BaseController",
-    "sap/ui/model/json/JSONModel",
     "ui5/wwwroot/app/model/formatter"
-], function (BaseController, JSONModel, formatter) {
+], function (BaseController, formatter) {
     "use strict";
 	const rotaPaginaDeListaDeMarcas = "paginaInicial";
     const rotaPaginaDeAdicionarMarca = "AdicionarMarca";
@@ -13,9 +12,9 @@ sap.ui.define([
             this.vincularRota("DetalhesDaMarca", this.aoCoincidirRotaDaTelaDeDetalhes);
         },
 
-        aoCoincidirRotaDaTelaDeDetalhes: function(eventoURL) {
+        aoCoincidirRotaDaTelaDeDetalhes: async function(eventoURL) {
             let idModeloDetalhado = eventoURL.getParameters().arguments.id
-            this.obterDetalhesDaMarca(idModeloDetalhado);
+            return this.obterDetalhesDaMarca(idModeloDetalhado);
         },
 
         aoClicarNoBotaoDeVoltarNaTelaDeDetalhesDaMarca: function() {
