@@ -2,8 +2,10 @@ sap.ui.define([
 	"sap/ui/core/mvc/Controller",
 	"sap/ui/core/routing/History",
 	"sap/ui/core/UIComponent",
-], function(Controller, History, UIComponent) {
+	"sap/ui/model/json/JSONModel"
+], function(Controller, History, UIComponent, JSONModel) {
 	"use strict";
+	const itensDaListaDeMarcas = "modelMarcas";
 
 	return Controller.extend("ui5.wwwroot.app.BaseController", {
 

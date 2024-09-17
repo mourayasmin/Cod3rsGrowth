@@ -50,7 +50,7 @@ sap.ui.define([
                 .aTelaAdicionarMarcaDeveSerCarregadaCorretamente();
         }),
 
-        opaTest("Deve adicionar uma marca com dados corretos", function(Given, When, Then){
+        opaTest("Deve adicionar uma marca com dados corretos", function(Given, When, Then) {
             let cnpjGerado = gerarCnpj();
             let cnpjFormatado = "CNPJ: " + formatter.formatadorDeCNPJ(cnpjGerado);
 
@@ -67,25 +67,17 @@ sap.ui.define([
                 .oBotaoSalvarDeveSerPressionado();
 
             Then
-                .naPaginaInicial
-                .aTelaDeveSerCarregadaCorretamente();
+                .naPaginaDeDetalhesDaMarca
+                .aTelaDeDetalhesDaMarcaDeveSerCarregadaCorretamente();
+
+            When 
+                .naPaginaDeDetalhesDaMarca
+                .oBotaoVoltarDeveSerPressionado();
 
             Then
                 .naPaginaInicial    
                 .aMarcaAdicionadaDeveEstarNaListaDeMarcas(cnpjFormatado);
             
-            Then
-                .naPaginaInicial
-                .aMarcaAdicionadaDeveSerPressionada(cnpjFormatado);
-            
-            Then
-                .naPaginaDeDetalhesDaMarca
-                .aTelaDeDetalhesDaMarcaDeveSerCarregadaCorretamente();
-            
-            Then
-                .naPaginaDeDetalhesDaMarca
-                .oBotaoVoltarDeveSerPressionado();
-
             When
                 .naPaginaInicial
                 .oBotaoAdicionarDeveSerPressionado(); 
@@ -93,7 +85,9 @@ sap.ui.define([
             Then
                 .naPaginaAdicionarMarca
                 .aTelaAdicionarMarcaDeveSerCarregadaCorretamente();
-            
+
+            Then 
+                .iTeardownMyApp();
         })
     })
 })

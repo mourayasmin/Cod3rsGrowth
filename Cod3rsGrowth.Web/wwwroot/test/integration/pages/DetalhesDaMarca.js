@@ -1,8 +1,9 @@
 sap.ui.define([
     "sap/ui/test/Opa5",
     "sap/ui/test/actions/Press",
-    "sap/ui/test/matchers/Properties"
-], (Opa5, Press, Properties) => {
+    "sap/ui/test/matchers/Properties",
+    "sap/ui/test/matchers/PropertyStrictEquals"
+], (Opa5, Press, Properties, PropertyStrictEquals) => {
     "use strict";
 
     const nomeDaViewDetalhesDaMarca = ".Marca.DetalhesDaMarca";

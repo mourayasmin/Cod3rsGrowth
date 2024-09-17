@@ -5,7 +5,7 @@ sap.ui.define([
 ], function (BaseController, JSONModel, formatter) {
     "use strict";
 	const rotaPaginaDeListaDeMarcas = "paginaInicial";
-    const itensDaListaDeMarcas = "modelMarcas";
+    const rotaPaginaDeAdicionarMarca = "AdicionarMarca";
 
     return BaseController.extend("ui5.wwwroot.app.Marca.DetalhesDaMarca", {
         formatter: formatter,
@@ -20,6 +20,10 @@ sap.ui.define([
 
         aoClicarNoBotaoDeVoltarNaTelaDeDetalhesDaMarca: function() {
 			this.getOwnerComponent().getRouter().navTo(rotaPaginaDeListaDeMarcas, {}, true);
-		}
+		},
+
+        aoClicarNoBotaoEditar: function() {
+            this.getOwnerComponent().getRouter().navTo(rotaPaginaDeAdicionarMarca, {}, true);
+        }
     });
 });

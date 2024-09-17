@@ -9,7 +9,6 @@ sap.ui.define([
     const rotaPaginaDeAdicionarMarca = "AdicionarMarca";
     const rotaPaginaDeDetalhesDaMarca = "DetalhesDaMarca";
     const modeloListaDeMarcas = "modelMarcas";
-    const propriedadeIdDaMarcaDetalhada = "id";
 
     return BaseController.extend("ui5.wwwroot.app.Marca.AdicionarMarca", {
 
@@ -82,8 +81,6 @@ sap.ui.define([
                 if (response.ok) {
                     this.limparCamposDeEntradaEValueState();
                     this.aoClicarNaMensagemDeSucessoAdicionar();
-                    debugger
-                    //let idMarcaAdicionada = response.body.id;
                     response.json().then (response => 
                         this.aoSalvarAdicaoComSucesso(response.id)
                     )
@@ -120,7 +117,6 @@ sap.ui.define([
 		},
 
         aoSalvarAdicaoComSucesso: function(idMarcaAdicionada) {
-            debugger
             this.obterDetalhesDaMarca(idMarcaAdicionada);
             this.getOwnerComponent().getRouter().navTo(rotaPaginaDeDetalhesDaMarca, {id: idMarcaAdicionada}, true);
         }

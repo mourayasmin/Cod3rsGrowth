@@ -37,26 +37,6 @@ sap.ui.define([
                     })
                 },
 
-                aMarcaAdicionadaDeveSerPressionada: function(cnpjFormatado) {
-                    return this.waitFor({
-                        controlType: "sap.m.Link",
-                        viewName: nomeDaView,
-                        matchers: [
-                            new PropertyStrictEquals({
-                                name: "text",
-                                value: cnpjFormatado
-                            },
-                            new PropertyStrictEquals({
-                                name: "text",
-                                value: "Marca Teste OPA"
-                            })
-                        )],
-                        actions: new Press(),
-                        success: () => Opa5.assert.ok(true, "A marca adicionada foi pressionada"),
-                        errorMessage: "A marca adicionada não foi pressionada"
-                    })
-                },
-
                 oTextoDoCampoDePesquisaDeveMudar: function() {
                     return this.waitFor({
                         controlType: "sap.m.SearchField",

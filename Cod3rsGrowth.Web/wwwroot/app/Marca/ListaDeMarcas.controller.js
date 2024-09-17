@@ -78,7 +78,6 @@ sap.ui.define([
 		},
 
 		aoClicarNoBotaoAdicionar: function () {
-			debugger
 			const rotaAdicionarMarca = this.getOwnerComponent().getRouter();
 			rotaAdicionarMarca.navTo(rotaPaginaDeAdicionarMarca);
 		}

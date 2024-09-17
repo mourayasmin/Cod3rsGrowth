@@ -21,6 +21,7 @@ sap.ui.define([
             When
                 .naPaginaInicial
                 .aMarcaDeveSerPressionada();
+                
             Then 
                 .naPaginaDeDetalhesDaMarca
                 .aTelaDeDetalhesDaMarcaDeveSerCarregadaCorretamente();
@@ -30,18 +31,23 @@ sap.ui.define([
             When
                 .naPaginaDeDetalhesDaMarca
                 .oBotaoEditarDeveSerPressionado();
+
             Then
                 .naPaginaAdicionarMarca
                 .aTelaAdicionarMarcaDeveSerCarregadaCorretamente();
-            Then    
+
+            When    
                 .naPaginaAdicionarMarca
                 .oBotaoVoltarDeveSerPressionado();
+
             Then
                 .naPaginaInicial
                 .aTelaDeveSerCarregadaCorretamente();
-            Then    
+
+            When    
                 .naPaginaInicial
                 .aMarcaDeveSerPressionada();
+
             Then    
                 .naPaginaDeDetalhesDaMarca
                 .aTelaDeDetalhesDaMarcaDeveSerCarregadaCorretamente();
@@ -51,9 +57,13 @@ sap.ui.define([
             When    
                 .naPaginaDeDetalhesDaMarca
                 .oBotaoVoltarDeveSerPressionado();
+
             Then
                 .naPaginaInicial
                 .aTelaDeveSerCarregadaCorretamente();
+            
+            Then
+                .iTeardownMyApp();
         })
     })
 })
