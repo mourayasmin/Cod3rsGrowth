@@ -3,9 +3,10 @@ sap.ui.define([
 	"sap/ui/core/routing/History",
 	"sap/ui/core/UIComponent",
 	"sap/ui/model/json/JSONModel"
-], function(Controller, History, UIComponent, JSONModel) {
+], function (Controller, History, UIComponent, JSONModel) {
 	"use strict";
 	const itensDaListaDeMarcas = "modelMarcas";
+	const rotaPaginaDeAdicionarMarca = "AdicionarMarca";
 
 	return Controller.extend("ui5.wwwroot.app.BaseController", {
 
@@ -28,21 +29,25 @@ sap.ui.define([
 			}
 		},
 
-		vincularRota: function(rota, funcaoInicial) {
+		vincularRota: function (rota, funcaoInicial) {
 			const oRouter = this.getOwnerComponent().getRouter();
 			oRouter.getRoute(rota).attachPatternMatched(funcaoInicial, this);
 		},
 
-		obterDetalhesDaMarca: async function(idModeloDetalhado) {
-            let url = `/api/Marca/${idModeloDetalhado}`;
+		obterDetalhesDaMarca: async function (idModeloDetalhado) {
+			let url = `/api/Marca/${idModeloDetalhado}`;
 
-            return fetch(url) 
-            .then(response => response.json())
-            .then(response => {
-                const modeloDetalhado = new JSONModel();
-                modeloDetalhado.setData(response);
-				this.getView().setModel(modeloDetalhado, itensDaListaDeMarcas);
-            })
-        }
+			return fetch(url)
+				.then(response => response.json())
+				.then(response => {
+					const modeloDetalhado = new JSONModel();
+					modeloDetalhado.setData(response);
+					this.getView().setModel(modeloDetalhado, itensDaListaDeMarcas);
+				})
+		},
+
+		aoClicarNoBotaoEditar: function () {
+			this.getOwnerComponent().getRouter().navTo(rotaPaginaDeAdicionarMarca, {}, true);
+		}
 	});
 });

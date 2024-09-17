@@ -1,37 +1,55 @@
 <mvc:View
-   controllerName="ui5.wwwroot.app.Marca.DetalhesDaMarca"
-   xmlns="sap.m"
-   xmlns:mvc="sap.ui.core.mvc">
-      <Page
-      showNavButton="true"
-		navButtonPress="aoClicarNoBotaoDeVoltarNaTelaDeDetalhesDaMarca"
-      title="{i18n>tituloDetalhesDaMarca}">
-      <Button
-         id="idBotaoEditar"
-         text="{i18n>textoBotaoEditar}"
-         class="myCustomButton"
-         press="aoClicarNoBotaoEditar"/>
-      <Button
-         id="idBotaoRemover"
-         text="{i18n>textoBotaoRemover}"
-         class="myCustomButton"
-         press="aoClicarNoBotaoRemover"/>   
-      <ObjectHeader
-         title="{modelMarcas>/nome}"
-         backgroundDesign="Solid">
-         
-         <attributes>
-            <ObjectAttribute title="{i18n>tituloCNPJDetalhesMarca}" text="{path: 'modelMarcas>/cnpj', formatter: '.formatter.formatadorDeCNPJ'}"/>
-            <ObjectAttribute title="{i18n>tituloTelefoneDetalhesMarca}" text="{path: 'modelMarcas>/telefone', formatter: '.formatter.formatadorDeTelefone'}"/>
-            <ObjectAttribute title="{i18n>tituloEmailDetalhesMarca}" text="{modelMarcas>/email}"/>
-            <ObjectAttribute title="{i18n>tituloDataDeCriacaoDetalhesMarca}" text="{path: 'modelMarcas>/dataDeCriacao',
+    controllerName="ui5.wwwroot.app.Marca.DetalhesDaMarca"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+>
+    <Page
+        showNavButton="true"
+        navButtonPress="aoClicarNoBotaoDeVoltarNaTelaDeDetalhesDaMarca"
+        title="{i18n>tituloDetalhesDaMarca}"
+    >
+        <Button
+            id="idBotaoEditar"
+            text="{i18n>textoBotaoEditar}"
+            class="myCustomButton"
+            press="aoClicarNoBotaoEditar"
+            icon="sap-icon://edit"
+        />
+        <Button
+            id="idBotaoRemover"
+            text="{i18n>textoBotaoRemover}"
+            class="myCustomButton"
+            press="aoClicarNoBotaoRemover"
+            icon="sap-icon://delete"
+        />
+        <ObjectHeader
+            title="{modelMarcas>/nome}"
+            backgroundDesign="Solid"
+        >
+            <attributes>
+                <ObjectAttribute
+                    title="{i18n>tituloCNPJDetalhesMarca}"
+                    text="{path: 'modelMarcas>/cnpj', formatter: '.formatter.formatadorDeCNPJ'}"
+                />
+                <ObjectAttribute
+                    title="{i18n>tituloTelefoneDetalhesMarca}"
+                    text="{path: 'modelMarcas>/telefone', formatter: '.formatter.formatadorDeTelefone'}"
+                />
+                <ObjectAttribute
+                    title="{i18n>tituloEmailDetalhesMarca}"
+                    text="{modelMarcas>/email}"
+                />
+                <ObjectAttribute
+                    title="{i18n>tituloDataDeCriacaoDetalhesMarca}"
+                    text="{path: 'modelMarcas>/dataDeCriacao',
             type:'sap.ui.model.type.DateTime',
             formatOptions: { 
             source: {
                pattern: 'yyyy-MM-ddTHH:mm:ss.mmm'
             },
-            pattern: 'dd/MM/yyyy'}}"/>
-         </attributes>
-      </ObjectHeader>
-   </Page>
+            pattern: 'dd/MM/yyyy'}}"
+                />
+            </attributes>
+        </ObjectHeader>
+    </Page>
 </mvc:View>
