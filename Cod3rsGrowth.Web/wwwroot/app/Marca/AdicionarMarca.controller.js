@@ -85,8 +85,8 @@ sap.ui.define([
                         await this.aoSalvarAdicaoComSucesso(response.id)
                     )
                 } else {
-                    response.json().then(async response => {
-                        await this.exibirErro(response);
+                    response.json().then( response => {
+                         this.exibirErro(response);
                     })
                 }
             })
