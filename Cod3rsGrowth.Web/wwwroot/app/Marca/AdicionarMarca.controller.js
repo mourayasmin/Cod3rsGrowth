@@ -5,10 +5,16 @@ sap.ui.define([
     "sap/ui/model/json/JSONModel"
 ], function (BaseController, MessageBox, validacoesDeEntrada, JSONModel) {
     "use strict";
+	const rotaPaginaDeListaDeMarcas = "paginaInicial";
+    const rotaPaginaDeAdicionarMarca = "AdicionarMarca";
+    const rotaPaginaDeDetalhesDaMarca = "DetalhesDaMarca";
+    const modeloListaDeMarcas = "modelMarcas";
+
     return BaseController.extend("ui5.wwwroot.app.Marca.AdicionarMarca", {
+
         onInit: function () {
-			this.getOwnerComponent().getModel("modelMarcas");
-            this.vincularRota("AdicionarMarca", this.aoCoincidirRotaDaTelaDeAdicionarMarca); 
+			this.getOwnerComponent().getModel(modeloListaDeMarcas);
+            this.vincularRota(rotaPaginaDeAdicionarMarca, this.aoCoincidirRotaDaTelaDeAdicionarMarca); 
         },
 
         aoCoincidirRotaDaTelaDeAdicionarMarca: function() {
@@ -24,12 +30,12 @@ sap.ui.define([
                 dataDeCriacao: "2090-01-29T14:23:14.057Z"
             }
 
-            this.getView().setModel(new JSONModel(modeloEntrada), "modelMarcas");        
+            this.getView().setModel(new JSONModel(modeloEntrada), modeloListaDeMarcas);        
         },
 
        aoClicarNoBotaoSalvarNaTelaDeAdicionar: function() {
         var view = this.getView();
-        let modeloAdicao = view.getModel("modelMarcas").getData();
+        let modeloAdicao = view.getModel(modeloListaDeMarcas).getData();
         if(modeloAdicao.cnpj && modeloAdicao.telefone) {
             modeloAdicao.cnpj = modeloAdicao.cnpj.replace(/[^\w\s]/gi, '');
             modeloAdicao.telefone = modeloAdicao.telefone.replace(/[^\w\s]/gi, '');
@@ -50,7 +56,7 @@ sap.ui.define([
             const idCampoTelefoneDaMarca = "campoTelefone";
             const idCampoDataDeCriacaoDaMarca = "campoDataDeCriacao";
 
-            this.getView().getModel("modelMarcas").setData({});
+            this.getView().getModel(modeloListaDeMarcas).setData({});
             this.getView().byId(idCampoNomeDaMarca).setValueState(statusCorreto);
             this.getView().byId(idCampoEmailDaMarca).setValueState(statusCorreto);
             this.getView().byId(idCampoCNPJDaMarca).setValueState(statusCorreto);
@@ -63,22 +69,24 @@ sap.ui.define([
 			MessageBox.success(mensagemDeSucessoAoAdicionarMarca);
 		},
 
-        salvarMarca(corpoRequisicaoAdicao) {
-            fetch("/api/Marca", {  
+        salvarMarca: async function(corpoRequisicaoAdicao) {
+            return fetch("/api/Marca", {  
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
                 },
                 body: corpoRequisicaoAdicao
             })
-            .then(response => {
+            .then (async response => {
                 if (response.ok) {
                     this.limparCamposDeEntradaEValueState();
                     this.aoClicarNaMensagemDeSucessoAdicionar();
-                    this.aoSalvarAdicaoComSucesso();
+                    response.json().then (async response => 
+                        await this.aoSalvarAdicaoComSucesso(response.id)
+                    )
                 } else {
-                    response.json().then(response => {
-                        this.exibirErro(response);
+                    response.json().then( response => {
+                         this.exibirErro(response);
                     })
                 }
             })
@@ -86,7 +94,6 @@ sap.ui.define([
 
         exibirErro: function(response) {
             const detalhes = "Detalhes:";
-            const validacoes = "Erros de validação:";
             const titulo = "Erro";
             let erros = Object.values(response.Extensions.Erro).join(",").split(",").join("\n");
 
@@ -97,6 +104,21 @@ sap.ui.define([
                 styleClass: "sResponsivePaddingClasses",
                 dependentOn: this.getView()
             })
+        },
+
+        aoClicarNoBotaoDeVoltarNaTelaDeAdicionarMarca: function() {
+			this.limparCamposDeEntradaEValueState();
+			this.getOwnerComponent().getRouter().navTo(rotaPaginaDeListaDeMarcas, {}, true);
+		},
+
+        aoClicarNoBotaoCancelarNaTelaDeAdicionar: function() {
+			this.limparCamposDeEntradaEValueState();
+			this.getOwnerComponent().getRouter().navTo(rotaPaginaDeListaDeMarcas, {}, true);
+		},
+
+        aoSalvarAdicaoComSucesso: async function(idMarcaAdicionada) {
+            await this.obterDetalhesDaMarca(idMarcaAdicionada);
+            this.getOwnerComponent().getRouter().navTo(rotaPaginaDeDetalhesDaMarca, {id: idMarcaAdicionada}, true);
         }
     });
  });

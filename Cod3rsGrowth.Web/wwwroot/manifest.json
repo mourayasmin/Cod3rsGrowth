@@ -81,7 +81,7 @@
           "target": "telaDeAdicionarMarca"
         }, 
         {
-          "pattern": "DetalhesDaMarca",
+          "pattern": "DetalhesDaMarca/{id}",
           "name": "DetalhesDaMarca",
           "target": "telaDeDetalhesDaMarca"
         }],

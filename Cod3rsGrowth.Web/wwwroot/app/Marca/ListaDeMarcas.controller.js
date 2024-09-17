@@ -6,6 +6,11 @@ sap.ui.define([
 	"sap/ui/core/mvc/View"
 ], function (BaseController, MessageBox, DateFormat, formatter, View) {
 	"use strict";
+	const rotaPaginaDeAdicionarMarca = "AdicionarMarca";
+	const rotaPaginaDeDetalhesDaMarca = "DetalhesDaMarca";
+	const itensDaListaDeMarcas = "modelMarcas";
+	const propriedadeIdDaMarcaDetalhada = "id";
+
 	return BaseController.extend("ui5.wwwroot.app.Marca.ListaDeMarcas", {
 		formatter: formatter,
 
@@ -32,7 +37,7 @@ sap.ui.define([
 			this.naMensagemDeErro(erro)})
 		},
 
-		aoPesquisarFiltroDeNome: function(oModel) {
+		aoPesquisarFiltroDeNome: async function(oModel) {
 
 			let modeloFiltro = oModel.getSource().getValue("nome");
 			let url = "/api/Marca?";
@@ -43,14 +48,14 @@ sap.ui.define([
 				url += params.toString(); 
 			}
 
-			this.obterListaDeMarcas(url);
+			return this.obterListaDeMarcas(url);
 		},
 
 		naMensagemDeErro: function(mensagemDeErro) {
 			MessageBox.error(mensagemDeErro.Detail, {title: "Erro na requisição"});
 		},
 
-		aoMudarFiltroDeData: function (oModel) {
+		aoMudarFiltroDeData: async function (oModel) {
 			let modeloFiltro = oModel.getSource();
 			let inicio = modeloFiltro.getProperty("dateValue");
 			let fim = modeloFiltro.getProperty("secondDateValue");
@@ -65,7 +70,16 @@ sap.ui.define([
 				url += params.toString(); 
 			}
 
-			this.obterListaDeMarcas(url);
+			return this.obterListaDeMarcas(url);
+		},
+
+		aoClicarNaMarca: function(oEvent) {
+			this.getOwnerComponent().getRouter().navTo(rotaPaginaDeDetalhesDaMarca, {id: oEvent.getSource().getBindingContext(itensDaListaDeMarcas).getProperty(propriedadeIdDaMarcaDetalhada)}, true);
+		},
+
+		aoClicarNoBotaoAdicionar: function () {
+			const rotaAdicionarMarca = this.getOwnerComponent().getRouter();
+			rotaAdicionarMarca.navTo(rotaPaginaDeAdicionarMarca);
 		}
 	});
 });

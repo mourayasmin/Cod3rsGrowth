@@ -2,8 +2,10 @@ sap.ui.define([
 	"sap/ui/core/mvc/Controller",
 	"sap/ui/core/routing/History",
 	"sap/ui/core/UIComponent",
-], function(Controller, History, UIComponent) {
+	"sap/ui/model/json/JSONModel"
+], function(Controller, History, UIComponent, JSONModel) {
 	"use strict";
+	const itensDaListaDeMarcas = "modelMarcas";
 
 	return Controller.extend("ui5.wwwroot.app.BaseController", {
 
@@ -26,42 +28,21 @@ sap.ui.define([
 			}
 		},
 
-		aoClicarNoBotaoAdicionar: function () {
-			const rotaPaginaDeAdicionarMarca = "AdicionarMarca";
-			const rotaAdicionarMarca = this.getOwnerComponent().getRouter();
-			rotaAdicionarMarca.navTo(rotaPaginaDeAdicionarMarca);
-		},
-
-		aoClicarNoBotaoDeVoltarNaTelaDeAdicionarMarca: function() {
-			this.limparCamposDeEntradaEValueState();
-			this.getOwnerComponent().getRouter().navTo(rotaPaginaDeListaDeMarcas, {}, true);
-		}, 
-
-		aoClicarNaMarca: function() {
-			const rotaPaginaDeDetalhesDaMarca = "DetalhesMarca";
-			this.getOwnerComponent().getRouter().navTo(rotaPaginaDeDetalhesDaMarca, {}, true);
-		},
-
-		aoClicarNoBotaoDeVoltarNaTelaDeDetalhesDaMarca: function() {
-			const rotaPaginaDeListaDeMarcas = "paginaInicial";
-			this.getOwnerComponent().getRouter().navTo(rotaPaginaDeListaDeMarcas, {}, true);
-		},
-
-		aoSalvarAdicaoComSucesso: function() {
-			const url = "https://localhost:7172/api/Marca";
-			const rotaPaginaDeListaDeMarcas = "paginaInicial";
-			this.getOwnerComponent().getRouter().navTo(rotaPaginaDeListaDeMarcas, {}, true);
-		},
-
-		aoClicarNoBotaoCancelarNaTelaDeAdicionar: function() {
-			const rotaPaginaDeListaDeMarcas = "paginaInicial";
-			this.limparCamposDeEntradaEValueState();
-			this.getOwnerComponent().getRouter().navTo(rotaPaginaDeListaDeMarcas, {}, true);
-		},
-
 		vincularRota: function(rota, funcaoInicial) {
 			const oRouter = this.getOwnerComponent().getRouter();
 			oRouter.getRoute(rota).attachPatternMatched(funcaoInicial, this);
-		}
+		},
+
+		obterDetalhesDaMarca: async function(idModeloDetalhado) {
+            let url = `/api/Marca/${idModeloDetalhado}`;
+
+            return fetch(url) 
+            .then(response => response.json())
+            .then(response => {
+                const modeloDetalhado = new JSONModel();
+                modeloDetalhado.setData(response);
+				this.getView().setModel(modeloDetalhado, itensDaListaDeMarcas);
+            })
+        }
 	});
 });
