@@ -61,8 +61,8 @@
           "files": [
             "ListaDeMarcas.view.xml",
             "ListaDeMarcas.controller.js",
-            "AdicionarMarca.view.xml",
-            "AdicionarMarca.controller.js",
+            "AdicionarEditarMarca.view.xml",
+            "AdicionarEditarMarca.controller.js",
             "DetalhesDaMarca.view.xml",
             "DetalhesDaMarca.controller.js",
             "manifest.json"
@@ -84,7 +84,13 @@
           "pattern": "DetalhesDaMarca/{id}",
           "name": "DetalhesDaMarca",
           "target": "telaDeDetalhesDaMarca"
-        }],
+        },
+        {
+          "pattern": "EditarMarca/{id}",
+          "name": "EditarMarca",
+          "target": "telaDeEditarMarca"
+        }
+      ],
       "targets": {
         "listaMarca": {
           "id": "listaMarca",
@@ -99,14 +105,20 @@
           "transition": "show"
         },
         "telaDeAdicionarMarca": {
-          "id": "telaDeAdicionarMarca",
+          "id": "telaDeAdicionarEditarMarca",
           "path": "ui5.wwwroot.app.Marca",
-          "name": "AdicionarMarca",
+          "name": "AdicionarEditarMarca",
           "transition": "show"
         },
         "telaDeDetalhesDaMarca": {
           "path": "ui5.wwwroot.app.Marca",
           "name": "DetalhesDaMarca",
+          "transition": "show"
+        },
+        "telaDeEditarMarca": {
+          "id": "telaDeEditarMarca",
+          "path": "ui5.wwwroot.app.Marca",
+          "name": "AdicionarEditarMarca",
           "transition": "show"
         }
       }

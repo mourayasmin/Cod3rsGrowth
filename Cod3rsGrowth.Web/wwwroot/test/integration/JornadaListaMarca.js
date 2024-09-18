@@ -2,9 +2,9 @@ sap.ui.define([
     "sap/ui/test/opaQunit",
     "./pages/ListaDeMarcas",
     "./pages/DetalhesDaMarca",
-    "./pages/AdicionarMarca",
-    "ui5/wwwroot/test/integration/JornadaAdicionarMarca"
-], function (opaQunit, ListaDeMarcas, DetalhesDaMarca, AdicionarMarca, JornadaAdicionarMarca) {
+    "./pages/AdicionarEditarMarca",
+    "ui5/wwwroot/test/integration/JornadaAdicionarEditarMarca"
+], function (opaQunit, ListaDeMarcas, DetalhesDaMarca, AdicionarEditarMarca, JornadaAdicionarEditarMarca) {
     "use strict";
     QUnit.module("ListaDeMarcas", () =>  {
         opaTest("Deve exibir a tela de lista de marcas", function(Given, When, Then) {

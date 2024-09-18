@@ -1,5 +1,5 @@
 <mvc:View
-    controllerName="ui5.wwwroot.app.Marca.AdicionarMarca"
+    controllerName="ui5.wwwroot.app.Marca.AdicionarEditarMarca"
     xmlns="sap.m"
     xmlns:core="sap.ui.core"
     xmlns:form="sap.ui.layout.form"
@@ -66,8 +66,9 @@
                 <Label text="Data de criação" />
                 <mdc:Field
                     id="campoDataDeCriacao"
-                    value="{path: 'modelMarcas>/dataDeCriacao', 
-            type: 'sap.ui.model.type.Date'}"
+                    value="{
+                        path: 'modelMarcas>/dataDeCriacao', 
+                        formatter: '.formatter.formatarDataDeCadastro'}"
                     valueStateText="O campo de criação deve ser preenchido corretamente."
                 />
             </form:content>

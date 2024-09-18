@@ -2,27 +2,52 @@ sap.ui.define([
     "ui5/wwwroot/app/BaseController",
     "sap/m/MessageBox",
     "ui5/wwwroot/app/Marca/Validacoes/validacoesDeEntrada",
-    "sap/ui/model/json/JSONModel"
-], function (BaseController, MessageBox, validacoesDeEntrada, JSONModel) {
+    "sap/ui/model/json/JSONModel",
+    "sap/ui/core/format/DateFormat",
+    "ui5/wwwroot/app/model/formatter"
+], function (BaseController, MessageBox, validacoesDeEntrada, JSONModel, DateFormat, formatter) {
     "use strict";
     const rotaPaginaDeListaDeMarcas = "paginaInicial";
     const rotaPaginaDeAdicionarMarca = "AdicionarMarca";
     const rotaPaginaDeDetalhesDaMarca = "DetalhesDaMarca";
     const modeloDeMarcas = "modelMarcas";
+    const rotaPaginaDeEditarMarca = "EditarMarca";
 
-    return BaseController.extend("ui5.wwwroot.app.Marca.AdicionarMarca", {
+    return BaseController.extend("ui5.wwwroot.app.Marca.AdicionarEditarMarca", {
+        formatter: formatter,
 
         onInit: function () {
             this.getOwnerComponent().getModel(modeloDeMarcas);
             this.vincularRota(rotaPaginaDeAdicionarMarca, this.aoCoincidirRotaDaTelaDeAdicionarMarca);
+            this.vincularRota(rotaPaginaDeEditarMarca, this.aoCoincidirRotaDaTelaDeEditarMarca);
+        },
+
+        obterMarcaParaEditar: async function (id) {
+            let url = `/api/Marca/${id}`;
+            await fetch(url)
+                .then(response => response.json())
+                .then(response => {
+                    let modeloParaEditar = new JSONModel();
+                    modeloParaEditar.setData(response);
+                    response.telefone = this.formatter.formatadorDeTelefone(response.telefone);
+                    response.cnpj = this.formatter.formatadorDeCNPJ(response.cnpj);
+                    this.getView().setModel(modeloParaEditar, modeloDeMarcas);
+                })
+        },
+
+        aoCoincidirRotaDaTelaDeEditarMarca: function(eventoURL) {
+            let idModeloDetalhado = eventoURL.getParameters().arguments.id
+            if (idModeloDetalhado) {
+                let parametrosDaURL = eventoURL.getParameter("arguments");
+                let idMarcaParaEditar = parametrosDaURL.id;
+                if (idMarcaParaEditar) {
+                    this.obterMarcaParaEditar(idMarcaParaEditar);
+                }
+            }
         },
 
         aoCoincidirRotaDaTelaDeAdicionarMarca: function () {
-            if (this.aoClicarNoBotaoEditar()) {
-                this.obterMarcaParaEditar();
-                this.getView().setModel(modeloParaEditar, modeloDeMarcas);
-            }
-            this.criarModeloParaEntrada();
+                this.criarModeloParaEntrada();
         },
 
         criarModeloParaEntrada: function () {
@@ -31,7 +56,7 @@ sap.ui.define([
                 email: "",
                 cnpj: "",
                 telefone: "",
-                dataDeCriacao: "2090-01-29T14:23:14.057Z"
+                dataDeCriacao: ""
             }
 
             this.getView().setModel(new JSONModel(modeloEntrada), modeloDeMarcas);
@@ -85,9 +110,11 @@ sap.ui.define([
                     if (response.ok) {
                         this.limparCamposDeEntradaEValueState();
                         this.aoClicarNaMensagemDeSucessoAdicionar();
-                        response.json().then(async response =>
-                            await this.aoSalvarAdicaoComSucesso(response.id)
+                        response.json()
+                        .then(async response =>
+                            await this.aoSalvarAdicaoComSucesso(response.id),
                         )
+                        console.log(response.id);
                     } else {
                         response.json().then(response => {
                             this.exibirErro(response);

@@ -7,6 +7,8 @@ sap.ui.define([
 	"use strict";
 	const itensDaListaDeMarcas = "modelMarcas";
 	const rotaPaginaDeAdicionarMarca = "AdicionarMarca";
+	const rotaPaginaDeEditarMarca = "EditarMarca";
+	const propriedadeIdDaMarcaEditada = "id";
 
 	return Controller.extend("ui5.wwwroot.app.BaseController", {
 
@@ -46,8 +48,13 @@ sap.ui.define([
 				})
 		},
 
-		aoClicarNoBotaoEditar: function () {
-			this.getOwnerComponent().getRouter().navTo(rotaPaginaDeAdicionarMarca, {}, true);
+		// aoClicarNoBotaoEditar: function (eventoURL) {
+		// 	debugger
+		// 	this.getOwnerComponent().getRouter().navTo(rotaPaginaDeEditarMarca, {id: eventoURL.getSource().getBindingContext(itensDaListaDeMarcas).getProperty(propriedadeIdDaMarcaEditada)}, true);
+		// }
+		navegarParaEditarMarca: function (idModeloDetalhado) {
+			this.getOwnerComponent().getRouter().navTo(rotaPaginaDeEditarMarca, { id: idModeloDetalhado }, true);
+			return idModeloDetalhado;
 		}
 	});
 });

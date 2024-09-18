@@ -5,7 +5,9 @@ sap.ui.define([
     "use strict";
     const rotaPaginaDeListaDeMarcas = "paginaInicial";
     const rotaPaginaDeAdicionarMarca = "AdicionarMarca";
-
+    const itensDaListaDeMarcas = "modelMarcas";
+    var idModeloDetalhado = "";
+    const rotaPaginaDeEditarMarca = "EditarMarca"
     return BaseController.extend("ui5.wwwroot.app.Marca.DetalhesDaMarca", {
         formatter: formatter,
         onInit: function () {
@@ -13,12 +15,16 @@ sap.ui.define([
         },
 
         aoCoincidirRotaDaTelaDeDetalhes: async function (eventoURL) {
-            let idModeloDetalhado = eventoURL.getParameters().arguments.id
+            idModeloDetalhado = eventoURL.getParameters().arguments.id
             return this.obterDetalhesDaMarca(idModeloDetalhado);
         },
 
         aoClicarNoBotaoDeVoltarNaTelaDeDetalhesDaMarca: function () {
             this.getOwnerComponent().getRouter().navTo(rotaPaginaDeListaDeMarcas, {}, true);
-        }
+        },
+
+        aoClicarNoBotaoEditar: function () {
+            this.navegarParaEditarMarca(idModeloDetalhado);
+		}
     });
 });

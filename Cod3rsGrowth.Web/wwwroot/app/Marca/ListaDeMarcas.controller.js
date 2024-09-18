@@ -74,7 +74,9 @@ sap.ui.define([
 		},
 
 		aoClicarNaMarca: function(oEvent) {
-			this.getOwnerComponent().getRouter().navTo(rotaPaginaDeDetalhesDaMarca, {id: oEvent.getSource().getBindingContext(itensDaListaDeMarcas).getProperty(propriedadeIdDaMarcaDetalhada)}, true);
+			this.getOwnerComponent().getRouter().navTo(rotaPaginaDeDetalhesDaMarca, 
+				{id: oEvent.getSource().getBindingContext(itensDaListaDeMarcas).getProperty(propriedadeIdDaMarcaDetalhada)}, 
+				true);
 		},
 
 		aoClicarNoBotaoAdicionar: function () {
