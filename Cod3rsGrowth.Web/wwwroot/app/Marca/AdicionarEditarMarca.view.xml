@@ -37,6 +37,7 @@
                     value="{path: 'modelMarcas>/nome', 
             type: 'sap.ui.model.type.String'}"
                     valueStateText="O campo de nome deve ser preenchido corretamente."
+                    editMode="{controleDeTela>/ehEditavel}"
                 />
                 <Label text="E-mail" />
                 <mdc:Field
@@ -52,6 +53,7 @@
                     value="{path: 'modelMarcas>/cnpj', 
                type: 'sap.ui.model.type.String'}"
                     valueStateText="O campo de CNPJ deve ser preenchido corretamente."
+                    editable="{controleDeTelaCNPJ>/ehEditavelCNPJ}"
                 />
                 <Label text="Telefone" />
                 <MaskInput
@@ -66,10 +68,10 @@
                 <Label text="Data de criação" />
                 <mdc:Field
                     id="campoDataDeCriacao"
-                    value="{
-                        path: 'modelMarcas>/dataDeCriacao', 
-                        formatter: '.formatter.formatarDataDeCadastro'}"
+                    value="{path: 'modelMarcas>/dataDeCriacao',
+                        type: 'sap.ui.model.type.Date'}"
                     valueStateText="O campo de criação deve ser preenchido corretamente."
+                    editMode="{controleDeTela>/ehEditavel}"
                 />
             </form:content>
         </form:SimpleForm>

@@ -48,10 +48,6 @@ sap.ui.define([
 				})
 		},
 
-		// aoClicarNoBotaoEditar: function (eventoURL) {
-		// 	debugger
-		// 	this.getOwnerComponent().getRouter().navTo(rotaPaginaDeEditarMarca, {id: eventoURL.getSource().getBindingContext(itensDaListaDeMarcas).getProperty(propriedadeIdDaMarcaEditada)}, true);
-		// }
 		navegarParaEditarMarca: function (idModeloDetalhado) {
 			this.getOwnerComponent().getRouter().navTo(rotaPaginaDeEditarMarca, { id: idModeloDetalhado }, true);
 			return idModeloDetalhado;
