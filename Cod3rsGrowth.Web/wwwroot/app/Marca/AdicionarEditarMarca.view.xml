@@ -12,7 +12,7 @@
                 <Button
                     id="botaoVoltarTelaDeAdicionar"
                     type="Back"
-                    press="aoClicarNoBotaoDeVoltarNaTelaDeAdicionarMarca"
+                    press="aoClicarNoBotaoDeVoltarNaTelaDeAdicionarEditarMarca"
                 />
                 <Title text="{i18n>tituloTelaDeAdicionar}" />
                 <ToolbarSpacer />

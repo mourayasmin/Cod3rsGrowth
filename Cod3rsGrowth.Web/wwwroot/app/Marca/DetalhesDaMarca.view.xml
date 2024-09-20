@@ -8,20 +8,22 @@
         navButtonPress="aoClicarNoBotaoDeVoltarNaTelaDeDetalhesDaMarca"
         title="{i18n>tituloDetalhesDaMarca}"
     >
-        <Button
-            id="idBotaoEditar"
-            text="{i18n>textoBotaoEditar}"
-            class="myCustomButton"
-            press="aoClicarNoBotaoEditar"
-            icon="sap-icon://edit"
-        />
+    <HBox justifyContent="SpaceBetween" width="100%">
         <Button
             id="idBotaoRemover"
             text="{i18n>textoBotaoRemover}"
-            class="myCustomButton"
+            class="sapUiSmallMarginBegin"
             press="aoClicarNoBotaoRemover"
             icon="sap-icon://delete"
         />
+        <Button
+            id="idBotaoEditar"
+            text="{i18n>textoBotaoEditar}"
+            class="sapUiSmallMarginEnd"
+            press="aoClicarNoBotaoEditar"
+            icon="sap-icon://edit"
+        />
+    </HBox>
         <ObjectHeader
             title="{modelMarcas>/nome}"
             backgroundDesign="Solid"

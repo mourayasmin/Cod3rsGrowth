@@ -3,23 +3,24 @@ sap.ui.define([
     "sap/m/MessageBox",
     "ui5/wwwroot/app/Marca/Validacoes/validacoesDeEntrada",
     "sap/ui/model/json/JSONModel",
-    "sap/ui/core/format/DateFormat",
+    "sap/ui/core/routing/History",
     "ui5/wwwroot/app/model/formatter"
-], function (BaseController, MessageBox, validacoesDeEntrada, JSONModel, DateFormat, formatter) {
+], function (BaseController, MessageBox, validacoesDeEntrada, JSONModel, History, formatter) {
     "use strict";
-    const rotaPaginaDeListaDeMarcas = "paginaInicial";
-    const rotaPaginaDeAdicionarMarca = "AdicionarMarca";
-    const rotaPaginaDeDetalhesDaMarca = "DetalhesDaMarca";
-    const modeloDeMarcas = "modelMarcas";
-    const rotaPaginaDeEditarMarca = "EditarMarca";
+    const ROTA_PAGINA_DE_LISTA = "paginaInicial";
+    const ROTA_PAGINA_DE_ADICIONAR_MARCA = "AdicionarMarca";
+    const ROTA_PAGINA_DE_DETALHES_MARCA = "DetalhesDaMarca";
+    const MODELO_DE_MARCAS = "modelMarcas";
+    const ROTA_PAGINA_DE_EDITAR_MARCA = "EditarMarca";
 
     return BaseController.extend("ui5.wwwroot.app.Marca.AdicionarEditarMarca", {
         formatter: formatter,
+        id: null,
 
         onInit: function () {
-            this.getOwnerComponent().getModel(modeloDeMarcas);
-            this.vincularRota(rotaPaginaDeAdicionarMarca, this.aoCoincidirRotaDaTelaDeAdicionarMarca);
-            this.vincularRota(rotaPaginaDeEditarMarca, this.aoCoincidirRotaDaTelaDeEditarMarca);
+            this.getOwnerComponent().getModel(MODELO_DE_MARCAS);
+            this.vincularRota(ROTA_PAGINA_DE_ADICIONAR_MARCA, this.aoCoincidirRotaDaTelaDeAdicionarMarca);
+            this.vincularRota(ROTA_PAGINA_DE_EDITAR_MARCA, this.aoCoincidirRotaDaTelaDeEditarMarca);
         },
 
         aoCoincidirRotaDaTelaDeAdicionarMarca: function () {
@@ -29,14 +30,16 @@ sap.ui.define([
         },
 
         aoCoincidirRotaDaTelaDeEditarMarca: function (eventoURL) {
-            let idModeloDetalhado = eventoURL.getParameters().arguments.id
-            if (idModeloDetalhado) {
+            this.id = eventoURL.getParameters().arguments.id
+
+            if (this.id) {
                 let parametrosDaURL = eventoURL.getParameter("arguments");
                 let idMarcaParaEditar = parametrosDaURL.id;
                 if (idMarcaParaEditar) {
                     this.obterMarcaParaEditar(idMarcaParaEditar);
                 }
             }
+
             this.criarModeloParaControleDeTela();
             this.criarModeloParaControleDeTelaCNPJ();
             this.getView().getModel("controleDeTela").setProperty("/ehEditavel", "Display");
@@ -51,9 +54,7 @@ sap.ui.define([
                     let modeloParaEditar = new JSONModel();
                     response.telefone = this.formatter.formatadorDeTelefone(response.telefone);
                     response.cnpj = this.formatter.formatadorDeCNPJ(response.cnpj);
-                    response.dataDeCriacao = this.formatter.formatarDataDeCadastro(response.dataDeCriacao);
-
-                    this.getView().setModel(modeloParaEditar, modeloDeMarcas);
+                    this.getView().setModel(modeloParaEditar, MODELO_DE_MARCAS);
                     modeloParaEditar.setData(response);
                 })
         },
@@ -81,25 +82,35 @@ sap.ui.define([
                 dataDeCriacao: ""
             }
 
-            this.getView().setModel(new JSONModel(modeloEntrada), modeloDeMarcas);
+            this.getView().setModel(new JSONModel(modeloEntrada), MODELO_DE_MARCAS);
         },
 
         aoClicarNoBotaoSalvarNaTelaDeAdicionar: function () {
-            let modeloAdicao = this.getView().getModel(modeloDeMarcas).getData();
+            let modeloAdicao = this.getView().getModel(MODELO_DE_MARCAS).getData();
             let idMarcaParaEditar = modeloAdicao.id;
             let view = this.getView();
-debugger
+            
             if (modeloAdicao.cnpj && modeloAdicao.telefone) {
-                debugger
                 modeloAdicao.cnpj = modeloAdicao.cnpj.replace(/[^\w\s]/gi, '');
                 modeloAdicao.telefone = modeloAdicao.telefone.replace(/[^\w\s]/gi, '');
             }
-            let corpoRequisicaoAdicaoEdicao = JSON.stringify(modeloAdicao);
+
+            let marca = JSON.stringify(modeloAdicao);
             var ehMarcaValida = validacoesDeEntrada.validadorDeEntradas(modeloAdicao, view);
-            debugger
+
             if (ehMarcaValida) {
-                this.salvarMarca(corpoRequisicaoAdicaoEdicao, idMarcaParaEditar);
+                if(idMarcaParaEditar) {
+                    return this.salvarEdicaoDeMarca(marca);
+                }
+                this.salvarMarca(marca);
             }
+        },
+
+        navegar: function() {
+            if(this.id){
+                return this.getOwnerComponent().getRouter().navTo(ROTA_PAGINA_DE_DETALHES_MARCA, {id: this.id}, true);
+            }
+            return this.getOwnerComponent().getRouter().navTo(ROTA_PAGINA_DE_LISTA, true);
         },
 
         limparCamposDeEntradaEValueState: function () {
@@ -110,7 +121,7 @@ debugger
             const idCampoTelefoneDaMarca = "campoTelefone";
             const idCampoDataDeCriacaoDaMarca = "campoDataDeCriacao";
 
-            this.getView().getModel(modeloDeMarcas).setData({});
+            this.getView().getModel(MODELO_DE_MARCAS).setData({});
             this.getView().byId(idCampoNomeDaMarca).setValueState(statusCorreto);
             this.getView().byId(idCampoEmailDaMarca).setValueState(statusCorreto);
             this.getView().byId(idCampoCNPJDaMarca).setValueState(statusCorreto);
@@ -123,28 +134,7 @@ debugger
             MessageBox.success(mensagemDeSucessoAoAdicionarMarca);
         },
 
-        salvarMarca: async function (corpoRequisicaoAdicaoEdicao, idMarcaParaEditar) {
-            if (idMarcaParaEditar) {
-                let url = `/api/Marca/`
-                return fetch(url, {
-                    method: "PATCH",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: corpoRequisicaoAdicaoEdicao
-                })
-                    .then(async response => {
-                        if (response.ok) {
-                            await this.aoSalvarAdicaoComSucesso(idMarcaParaEditar)
-                        }
-                        else {
-                            response.json()
-                                .then(response => {
-                                    this.exibirErro(response);
-                                })
-                        }
-                    })
-            } else {
+        salvarMarca: async function (corpoRequisicaoAdicaoEdicao) {
                 return fetch("/api/Marca", {
                     method: "POST",
                     headers: {
@@ -166,7 +156,27 @@ debugger
                             })
                         }
                     })
-            }
+        },
+
+        salvarEdicaoDeMarca: async function(marca) {
+            return fetch("/api/Marca", {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: marca
+            })
+                .then(async response => {
+                    if (response.ok) {
+                        let id = this.getView().getModel("modelMarcas").getProperty("/id");
+                        this.aoClicarNaMensagemDeSucessoEditar();
+                        await this.aoSalvarAdicaoComSucesso(id);
+                    }
+                    else {
+                        let erro = Object.values(response.errors).join(",").split(",").join("\n");
+                        MessageBox.error(erro);
+                    }
+                })
         },
 
         exibirErro: function (response) {
@@ -184,20 +194,24 @@ debugger
             })
         },
 
-        aoClicarNoBotaoDeVoltarNaTelaDeAdicionarMarca: function () {
+        aoClicarNoBotaoDeVoltarNaTelaDeAdicionarEditarMarca: function () {
             this.limparCamposDeEntradaEValueState();
-            this.getOwnerComponent().getRouter().navTo(rotaPaginaDeListaDeMarcas, {}, true);
+            this.navegar()
         },
 
         aoClicarNoBotaoCancelarNaTelaDeAdicionar: function () {
             this.limparCamposDeEntradaEValueState();
-            this.getOwnerComponent().getRouter().navTo(rotaPaginaDeListaDeMarcas, {}, true);
+            this.getOwnerComponent().getRouter().navTo(ROTA_PAGINA_DE_LISTA, {}, true);
         },
 
         aoSalvarAdicaoComSucesso: async function (idMarcaAdicionada) {
-            debugger
             await this.obterDetalhesDaMarca(idMarcaAdicionada);
-            this.getOwnerComponent().getRouter().navTo(rotaPaginaDeDetalhesDaMarca, { id: idMarcaAdicionada }, true);
+            this.getOwnerComponent().getRouter().navTo(ROTA_PAGINA_DE_DETALHES_MARCA, { id: idMarcaAdicionada }, true);
+        },
+
+        aoClicarNaMensagemDeSucessoEditar: function() {
+            const mensagemDeSucessoAoEditarMarca = "Marca editada com sucesso.";
+            MessageBox.success(mensagemDeSucessoAoEditarMarca);
         }
     });
 });

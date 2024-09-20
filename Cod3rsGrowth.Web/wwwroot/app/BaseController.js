@@ -23,10 +23,11 @@ sap.ui.define([
 
 			historico = History.getInstance();
 			hashAnterior = historico.getPreviousHash();
-
+			debugger
 			if (hashAnterior !== undefined) {
 				window.history.go(voltaHash);
-			} else {
+			} 
+			else {
 				this.getOwnerComponent().getRouter().navTo(rotaPaginaDeListaDeMarcas, {}, true);
 			}
 		},

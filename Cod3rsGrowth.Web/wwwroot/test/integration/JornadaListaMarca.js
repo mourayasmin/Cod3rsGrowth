@@ -3,8 +3,9 @@ sap.ui.define([
     "./pages/ListaDeMarcas",
     "./pages/DetalhesDaMarca",
     "./pages/AdicionarEditarMarca",
-    "ui5/wwwroot/test/integration/JornadaAdicionarEditarMarca"
-], function (opaQunit, ListaDeMarcas, DetalhesDaMarca, AdicionarEditarMarca, JornadaAdicionarEditarMarca) {
+    "ui5/wwwroot/test/integration/JornadaAdicionarMarca",
+    "ui5/wwwroot/test/integration/JornadaEditarMarca"
+], function (opaQunit, ListaDeMarcas, DetalhesDaMarca, AdicionarEditarMarca, JornadaAdicionarMarca, JornadaEditarMarca) {
     "use strict";
     QUnit.module("ListaDeMarcas", () =>  {
         opaTest("Deve exibir a tela de lista de marcas", function(Given, When, Then) {
@@ -25,13 +26,13 @@ sap.ui.define([
                 .naPaginaInicial
                 .oBotaoAdicionarDeveSerPressionado();
             Then
-                .naPaginaAdicionarMarca
+                .naPaginaAdicionarEditarMarca
                 .aTelaAdicionarMarcaDeveSerCarregadaCorretamente();
         }),
 
         opaTest("Botão voltar na tela de adicionar marcas deve voltar para a tela de lista de marcas", function(Given, When, Then){
             When
-                .naPaginaAdicionarMarca
+                .naPaginaAdicionarEditarMarca
                 .oBotaoVoltarDeveSerPressionado();
             Then
                 .naPaginaInicial
