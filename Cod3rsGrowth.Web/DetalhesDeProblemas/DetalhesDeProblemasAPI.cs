@@ -39,15 +39,16 @@ namespace Cod3rsGrowth.Web.DetalhesDeProblemas
                             problemDetails.Title = "Erro no Banco de Dados";
                             problemDetails.Status = StatusCodes.Status500InternalServerError;
                             problemDetails.Detail = sqlException.StackTrace;
-                            problemDetails.Extensions["Erro Banco de Dados"] = sqlException.Message;
+                            problemDetails.Extensions["Erro"] = sqlException.Message;
                         }
                         else
                         {
                             var logger = loggerFactory.CreateLogger("GlobalExceptionHandler");
                             logger.LogError($"Erro inesperado: {exceptionHandlerFeature.Error}");
-                            problemDetails.Title = exception.Message;
+                            problemDetails.Title = "Erro inesperado";
                             problemDetails.Status = StatusCodes.Status500InternalServerError;
                             problemDetails.Detail = exception.Demystify().ToString();
+                            problemDetails.Extensions["Erro"] = exception.Message;
                         }
                         context.Response.StatusCode = problemDetails.Status.Value;
                         context.Response.ContentType = "application/problem+json";

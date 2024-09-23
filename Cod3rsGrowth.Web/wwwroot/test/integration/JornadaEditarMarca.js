@@ -27,9 +27,6 @@ sap.ui.define([
             Then
                 .naPaginaAdicionarEditarMarca
                 .aTelaAdicionarMarcaDeveSerCarregadaCorretamente();
-                
-            Then
-                .iTeardownMyApp();
         }),
 
         opaTest("Deve editar uma marca corretamente", function(Given, When, Then) {
@@ -64,6 +61,11 @@ sap.ui.define([
             Then 
                 .naPaginaDeDetalhesDaMarca
                 .aTelaDeDetalhesDaMarcaDeveSerCarregadaCorretamente();
+
+            Then 
+                .naPaginaDeDetalhesDaMarca
+                .oBotaoEditarDeveSerPressionado();
+                
             Then 
                 .iTeardownMyApp();
         })

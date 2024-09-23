@@ -2,18 +2,32 @@ sap.ui.define([
 	"sap/ui/core/mvc/Controller",
 	"sap/ui/core/routing/History",
 	"sap/ui/core/UIComponent",
-	"sap/ui/model/json/JSONModel"
-], function (Controller, History, UIComponent, JSONModel) {
+	"sap/ui/model/json/JSONModel",
+    "sap/ui/core/BusyIndicator",
+    "sap/m/MessageBox",
+], function (Controller, History, UIComponent, JSONModel, BusyIndicator, MessageBox) {
 	"use strict";
-	const itensDaListaDeMarcas = "modelMarcas";
-	const rotaPaginaDeAdicionarMarca = "AdicionarMarca";
-	const rotaPaginaDeEditarMarca = "EditarMarca";
-	const propriedadeIdDaMarcaEditada = "id";
 
 	return Controller.extend("ui5.wwwroot.app.BaseController", {
 
 		obterRota: function () {
 			return UIComponent.getRouterFor(this);
+		},
+
+		statusDeCarregamentoDaTela: function(func){
+			try {
+				BusyIndicator.show(0)
+				return Promise.resolve()
+					.then(()=> func())
+					.then(() => BusyIndicator.hide())
+					.catch(e => {
+						BusyIndicator.hide();
+						MessageBox.error(e.message)
+					})
+			} catch (error) {
+				BusyIndicator.hide();
+				MessageBox.error(error.message)
+			}
 		},
 
 		aoClicarNoBotaoDeVoltarNaTelaDeNotFound: function () {
@@ -23,12 +37,11 @@ sap.ui.define([
 
 			historico = History.getInstance();
 			hashAnterior = historico.getPreviousHash();
-			debugger
 			if (hashAnterior !== undefined) {
 				window.history.go(voltaHash);
 			} 
 			else {
-				this.getOwnerComponent().getRouter().navTo(rotaPaginaDeListaDeMarcas, {}, true);
+				this.navegarPara(rotaPaginaDeListaDeMarcas, {}, true);
 			}
 		},
 
@@ -37,21 +50,8 @@ sap.ui.define([
 			oRouter.getRoute(rota).attachPatternMatched(funcaoInicial, this);
 		},
 
-		obterDetalhesDaMarca: async function (idModeloDetalhado) {
-			let url = `/api/Marca/${idModeloDetalhado}`;
-
-			return fetch(url)
-				.then(response => response.json())
-				.then(response => {
-					const modeloDetalhado = new JSONModel();
-					modeloDetalhado.setData(response);
-					this.getView().setModel(modeloDetalhado, itensDaListaDeMarcas);
-				})
-		},
-
-		navegarParaEditarMarca: function (idModeloDetalhado) {
-			this.getOwnerComponent().getRouter().navTo(rotaPaginaDeEditarMarca, { id: idModeloDetalhado }, true);
-			return idModeloDetalhado;
+		navegarPara: function(rota, parametros = {}){
+			this.getOwnerComponent().getRouter().navTo(rota, parametros, true);
 		}
 	});
 });

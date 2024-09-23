@@ -21,8 +21,8 @@ sap.ui.define([
                         ],
                         actions: new Press(),
                         viewName: nomeDaViewAdicionarEditarMarca,
-                        success: () => Opa5.assert.ok(true, "O botão de voltar na tela de adicionar foi pressionado"),
-                        errorMessage: "O botão de voltar na tela de adicionar não foi pressionado"
+                        success: () => Opa5.assert.ok(true, "O botão de voltar na tela de adicionar/editar foi pressionado"),
+                        errorMessage: "O botão de voltar na tela de adicionar/editar não foi pressionado"
                     });
                 },
 

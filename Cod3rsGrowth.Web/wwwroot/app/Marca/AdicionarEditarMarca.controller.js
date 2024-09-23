@@ -4,8 +4,9 @@ sap.ui.define([
     "ui5/wwwroot/app/Marca/Validacoes/validacoesDeEntrada",
     "sap/ui/model/json/JSONModel",
     "sap/ui/core/routing/History",
-    "ui5/wwwroot/app/model/formatter"
-], function (BaseController, MessageBox, validacoesDeEntrada, JSONModel, History, formatter) {
+    "ui5/wwwroot/app/model/formatter",
+    "ui5/wwwroot/app/model/RepositorioBase"
+], function (BaseController, MessageBox, validacoesDeEntrada, JSONModel, History, formatter, RepositorioBase) {
     "use strict";
     const ROTA_PAGINA_DE_LISTA = "paginaInicial";
     const ROTA_PAGINA_DE_ADICIONAR_MARCA = "AdicionarMarca";
@@ -29,35 +30,34 @@ sap.ui.define([
             this.criarModeloParaControleDeTelaCNPJ();
         },
 
-        aoCoincidirRotaDaTelaDeEditarMarca: function (eventoURL) {
-            this.id = eventoURL.getParameters().arguments.id
+        aoCoincidirRotaDaTelaDeEditarMarca: async function (eventoURL) {
+            this.statusDeCarregamentoDaTela(async () => {
+                this.id = eventoURL.getParameters().arguments.id
 
-            if (this.id) {
                 let parametrosDaURL = eventoURL.getParameter("arguments");
                 let idMarcaParaEditar = parametrosDaURL.id;
-                if (idMarcaParaEditar) {
-                    this.obterMarcaParaEditar(idMarcaParaEditar);
-                }
-            }
 
-            this.criarModeloParaControleDeTela();
-            this.criarModeloParaControleDeTelaCNPJ();
-            this.getView().getModel("controleDeTela").setProperty("/ehEditavel", "Display");
-            this.getView().getModel("controleDeTelaCNPJ").setProperty("/ehEditavelCNPJ", false);
+                await RepositorioBase.obterMarcaParaEditar(idMarcaParaEditar, this.getView());
+
+                this.criarModeloParaControleDeTela();
+                this.criarModeloParaControleDeTelaCNPJ();
+                this.getView().getModel("controleDeTela").setProperty("/ehEditavel", "Display");
+                this.getView().getModel("controleDeTelaCNPJ").setProperty("/ehEditavelCNPJ", false);
+            });
         },
 
-        obterMarcaParaEditar: async function (id) {
-            let url = `/api/Marca/${id}`;
-            await fetch(url)
-                .then(response => response.json())
-                .then(response => {
-                    let modeloParaEditar = new JSONModel();
-                    response.telefone = this.formatter.formatadorDeTelefone(response.telefone);
-                    response.cnpj = this.formatter.formatadorDeCNPJ(response.cnpj);
-                    this.getView().setModel(modeloParaEditar, MODELO_DE_MARCAS);
-                    modeloParaEditar.setData(response);
-                })
-        },
+        // obterMarcaParaEditar: async function (id) {
+        //     let url = `/api/Marca/${id}`;
+        //     await fetch(url)
+        //         .then(response => response.json())
+        //         .then(response => {
+        //             let modeloParaEditar = new JSONModel();
+        //             response.telefone = this.formatter.formatadorDeTelefone(response.telefone);
+        //             response.cnpj = this.formatter.formatadorDeCNPJ(response.cnpj);
+        //             this.getView().setModel(modeloParaEditar, MODELO_DE_MARCAS);
+        //             modeloParaEditar.setData(response);
+        //         })
+        // },
 
         criarModeloParaControleDeTela: function () {
             let controle = {
@@ -66,7 +66,7 @@ sap.ui.define([
             this.getView().setModel(new JSONModel(controle), "controleDeTela");
         },
 
-        criarModeloParaControleDeTelaCNPJ: function() {
+        criarModeloParaControleDeTelaCNPJ: function () {
             let controle = {
                 ehEditavelCNPJ: true
             }
@@ -85,32 +85,33 @@ sap.ui.define([
             this.getView().setModel(new JSONModel(modeloEntrada), MODELO_DE_MARCAS);
         },
 
-        aoClicarNoBotaoSalvarNaTelaDeAdicionar: function () {
+        aoClicarNoBotaoSalvar: function () {
+            debugger
             let modeloAdicao = this.getView().getModel(MODELO_DE_MARCAS).getData();
-            let idMarcaParaEditar = modeloAdicao.id;
             let view = this.getView();
-            
-            if (modeloAdicao.cnpj && modeloAdicao.telefone) {
-                modeloAdicao.cnpj = modeloAdicao.cnpj.replace(/[^\w\s]/gi, '');
-                modeloAdicao.telefone = modeloAdicao.telefone.replace(/[^\w\s]/gi, '');
-            }
 
-            let marca = JSON.stringify(modeloAdicao);
+            modeloAdicao.cnpj = modeloAdicao.cnpj.replace(/[^\w\s]/gi, '');
+            modeloAdicao.telefone = modeloAdicao.telefone.replace(/[^\w\s]/gi, '');
+
+            
             var ehMarcaValida = validacoesDeEntrada.validadorDeEntradas(modeloAdicao, view);
+            let marca = JSON.stringify(modeloAdicao);
 
             if (ehMarcaValida) {
-                if(idMarcaParaEditar) {
-                    return this.salvarEdicaoDeMarca(marca);
+                if (this.id) {
+                    this.editarMarca(marca);
+                    this.navegar();
+                } else {
+                    this.criarMarca(marca);
                 }
-                this.salvarMarca(marca);
             }
         },
 
-        navegar: function() {
-            if(this.id){
-                return this.getOwnerComponent().getRouter().navTo(ROTA_PAGINA_DE_DETALHES_MARCA, {id: this.id}, true);
-            }
-            return this.getOwnerComponent().getRouter().navTo(ROTA_PAGINA_DE_LISTA, true);
+        navegar: function () {
+            if (this.id)
+                return this.navegarPara(ROTA_PAGINA_DE_DETALHES_MARCA, { id: this.id }, true);
+
+            return this.navegarPara(ROTA_PAGINA_DE_LISTA);
         },
 
         limparCamposDeEntradaEValueState: function () {
@@ -134,50 +135,39 @@ sap.ui.define([
             MessageBox.success(mensagemDeSucessoAoAdicionarMarca);
         },
 
-        salvarMarca: async function (corpoRequisicaoAdicaoEdicao) {
-                return fetch("/api/Marca", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: corpoRequisicaoAdicaoEdicao
-                })
-                    .then(async response => {
-                        if (response.ok) {
-                            this.limparCamposDeEntradaEValueState();
-                            this.aoClicarNaMensagemDeSucessoAdicionar();
-                            response.json()
-                                .then(async response =>
-                                    await this.aoSalvarAdicaoComSucesso(response.id),
-                                )
-                        } else {
-                            response.json().then(response => {
-                                this.exibirErro(response);
-                            })
-                        }
-                    })
+        _exibirMensagemDeSucesso: function(){
+            MessageBox.success("Operação realizada com sucesso", {
+                actions: [MessageBox.Action.OK],
+                emphasizedAction: MessageBox.Action.OK,
+                onClose: ()=> this._aoSalvarAdicaoComSucesso(id),
+                dependentOn: this.getView()
+            });
         },
 
-        salvarEdicaoDeMarca: async function(marca) {
-            return fetch("/api/Marca", {
-                method: "PATCH",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: marca
-            })
-                .then(async response => {
-                    if (response.ok) {
-                        let id = this.getView().getModel("modelMarcas").getProperty("/id");
-                        this.aoClicarNaMensagemDeSucessoEditar();
-                        await this.aoSalvarAdicaoComSucesso(id);
-                    }
-                    else {
-                        let erro = Object.values(response.errors).join(",").split(",").join("\n");
-                        MessageBox.error(erro);
-                    }
-                })
+        salvarMarca: async function () {
+            return RepositorioBase.salvarMarca(marca)
+                .then(() => this._exibirMensagemDeSucesso());
         },
+
+        // salvarEdicaoDeMarca: async function(marca) {
+        //     return fetch("/api/Marca", {
+        //         method: "PATCH",
+        //         headers: {
+        //             "Content-Type": "application/json"
+        //         },
+        //         body: marca
+        //     })
+        //         .then(async response => {
+        //             if (response.ok) {
+        //                 let id = this.getView().getModel("modelMarcas").getProperty("/id");
+        //                 this.aoClicarNaMensagemDeSucessoEditar(id, this);
+        //             }
+        //             else {
+        //                 let erro = Object.values(response.errors).join(",").split(",").join("\n");
+        //                 MessageBox.error(erro);
+        //             }
+        //         })
+        // },
 
         exibirErro: function (response) {
             const detalhes = "Detalhes:";
@@ -201,17 +191,45 @@ sap.ui.define([
 
         aoClicarNoBotaoCancelarNaTelaDeAdicionar: function () {
             this.limparCamposDeEntradaEValueState();
-            this.getOwnerComponent().getRouter().navTo(ROTA_PAGINA_DE_LISTA, {}, true);
+            this.getOwnerComponent().getRouter().navTo(ROTA_PAGINA_DE_LISTA, {});
+            this.navegarPara(ROTA_PAGINA_DE_LISTA);
         },
 
-        aoSalvarAdicaoComSucesso: async function (idMarcaAdicionada) {
-            await this.obterDetalhesDaMarca(idMarcaAdicionada);
-            this.getOwnerComponent().getRouter().navTo(ROTA_PAGINA_DE_DETALHES_MARCA, { id: idMarcaAdicionada }, true);
+        _aoSalvarAdicaoComSucesso: async function (idMarcaAdicionada) {
+            this.navegarPara(ROTA_PAGINA_DE_DETALHES_MARCA, { id: idMarcaAdicionada });
         },
 
-        aoClicarNaMensagemDeSucessoEditar: function() {
+        aoClicarNaMensagemDeSucessoEditar: function (id) {
             const mensagemDeSucessoAoEditarMarca = "Marca editada com sucesso.";
-            MessageBox.success(mensagemDeSucessoAoEditarMarca);
+            MessageBox.success(mensagemDeSucessoAoEditarMarca, {
+                actions: [MessageBox.Action.OK],
+                emphasizedAction: MessageBox.Action.OK,
+                onClose: function () {
+                    this._aoSalvarAdicaoComSucesso(id);
+                },
+                dependentOn: this.getView()
+            });
+        },
+
+        editarMarca: function (marca) {
+            let response = RepositorioBase.salvarEdicaoDeMarca(marca, this.getView());
+            this.aoClicarNaMensagemDeSucessoEditar(this.id);
+        },
+
+        criarMarca: async function (marca) {
+            let response = await RepositorioBase.salvarMarca(marca);
+            if (response.ok) {
+                this.limparCamposDeEntradaEValueState();
+                this.aoClicarNaMensagemDeSucessoAdicionar();
+                response.json()
+                    .then(async response =>
+                        await this.aoSalvarAdicaoComSucesso(response.id),
+                    )
+            } else {
+                response.json().then(response => {
+                    this.exibirErro(response);
+                })
+            }
         }
     });
 });

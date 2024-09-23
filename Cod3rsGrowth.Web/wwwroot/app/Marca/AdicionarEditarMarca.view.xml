@@ -24,7 +24,7 @@
                 <Button
                     text="{i18n>textoBotaoSalvarAdicionar}"
                     class="myCustomButton"
-                    press="aoClicarNoBotaoSalvarNaTelaDeAdicionar"
+                    press="aoClicarNoBotaoSalvar"
                 />
             </Toolbar>
         </customHeader>
