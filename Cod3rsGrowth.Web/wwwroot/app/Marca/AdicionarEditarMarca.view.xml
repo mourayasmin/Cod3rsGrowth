@@ -43,6 +43,7 @@
                 <mdc:Field
                     id="campoEmail"
                     value="{path: 'modelMarcas>/email', type: 'sap.ui.model.type.String'}"
+                    valueStateText="O campo do e-mail deve ser preenchido corretamente."
                 />
                 <Label text="CNPJ" />
                 <MaskInput
@@ -52,7 +53,7 @@
                     id="campoCNPJ"
                     value="{path: 'modelMarcas>/cnpj', 
                type: 'sap.ui.model.type.String'}"
-                    valueStateText="O campo de CNPJ deve ser preenchido corretamente."
+                    valueStateText="O campo do CNPJ deve ser preenchido corretamente."
                     editable="{controleDeTelaCNPJ>/ehEditavelCNPJ}"
                 />
                 <Label text="Telefone" />
@@ -63,14 +64,14 @@
                     id="campoTelefone"
                     value="{path: 'modelMarcas>/telefone', 
                type: 'sap.ui.model.type.String'}"
-                    valueStateText="O campo de telefone deve ser preenchido corretamente."
+                    valueStateText="O campo do telefone deve ser preenchido corretamente."
                 />
                 <Label text="Data de criação" />
                 <mdc:Field
                     id="campoDataDeCriacao"
                     value="{path: 'modelMarcas>/dataDeCriacao',
                         type: 'sap.ui.model.type.Date'}"
-                    valueStateText="O campo de criação deve ser preenchido corretamente."
+                    valueStateText="O campo de data de fundação da marca deve ser preenchido corretamente."
                     editMode="{controleDeTela>/ehEditavel}"
                 />
             </form:content>

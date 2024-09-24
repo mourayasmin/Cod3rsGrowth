@@ -26,7 +26,6 @@ namespace Cod3rsGrowth.Web.Controllers
         [HttpGet("{Id}")]
         public IActionResult ObterPorId(int id)
         {
-            //throw new Exception("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
             var marca = _servicoMarca.ObterPorId(id);
             return Ok(marca);
         }
@@ -41,7 +40,6 @@ namespace Cod3rsGrowth.Web.Controllers
         [HttpPatch]
         public NoContentResult Atualizar([FromBody] Marca marca)
         {
-            throw new Exception("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
             _servicoMarca.Atualizar(marca);
             return NoContent();
         }

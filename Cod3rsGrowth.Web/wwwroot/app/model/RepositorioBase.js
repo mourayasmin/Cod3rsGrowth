@@ -21,69 +21,45 @@ sap.ui.define([
                 .then(response => this._ehErro(response));
         },
 
-        salvarMarca: async function (corpoRequisicaoAdicaoEdicao) {
+        criar: async function (body) {
             return fetch("/api/Marca", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: corpoRequisicaoAdicaoEdicao
+                body: JSON.stringify(body)
             })
-            .then(response => response.json())
-            .then(response => this._ehErro(response));
-        },
-
-        obterMarcaParaEditar: async function (id, view) {
-            let url = `/api/Marca/${id}`;
-            await fetch(url)
                 .then(response => response.json())
-                .then(response => {
-                    let modeloParaEditar = new JSONModel();
-                    response.telefone = this.formatter.formatadorDeTelefone(response.telefone);
-                    response.cnpj = this.formatter.formatadorDeCNPJ(response.cnpj);
-                    view.setModel(modeloParaEditar, MODELO_DE_MARCAS);
-                    modeloParaEditar.setData(response);
-                })
+                .then(response => this._ehErro(response));
         },
 
-        salvarEdicaoDeMarca: async function(marca, view) {
+        atualizar: async function (body) {
             return fetch("/api/Marca", {
                 method: "PATCH",
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: marca
+                body: JSON.stringify(body)
             })
-            .then(response => response.ok ? {} : response.json())
-            .then(response => this._ehErro(response));
-
-
-            // return fetch("/api/Marca", {
-            //     method: "PATCH",
-            //     headers: {
-            //         "Content-Type": "application/json"
-            //     },
-            //     body: marca
-            // })
-            //     .then(async response => {
-            //         if (response.ok) {
-            //             let id = view.getModel("modelMarcas").getProperty("/id");
-            //             this.aoClicarNaMensagemDeSucessoEditar(id, this);
-            //         }
-            //         else {
-            //             let erro = Object.values(response.errors).join(",").split(",").join("\n");
-            //             MessageBox.error(erro);
-            //         }
-            //     })
+                .then(response => response.ok ? {} : response.json())
+                .then(response => this._ehErro(response));
         },
 
         _ehErro(retorno) {
-            let status = ( retorno || { Status : 200 });
-            debugger
-            if (retorno.Status >= 400 || retorno.Status <= 599) {
-                throw new Error(retorno.Extensions);
+            let data = ({ status: retorno.Status || retorno.status });
+            if (data.status >= 400 || data.status <= 599) {
+                let mensagem = "";
+                if (retorno?.errors) {
+                    Object.entries(retorno.errors)[1][1].forEach(x => {
+                        mensagem += `${x}\n`
+                    })
+                } else {
+                    mensagem = retorno.Extensions.Erro;
+                }
+                let error = new Error(mensagem);
+                error.stack = retorno.title
+                throw error;
             }
-
             return retorno;
         },
     }

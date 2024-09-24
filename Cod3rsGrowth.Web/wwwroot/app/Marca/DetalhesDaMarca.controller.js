@@ -20,7 +20,6 @@ sap.ui.define([
         _aoCoincidirRotaDaTelaDeDetalhes: function (evento) {
             this.statusDeCarregamentoDaTela(() => {
                 let id = evento.getParameter("arguments").id
-                debugger
                 return RepositorioBase.obterPorId(id)
                     .then(marca => {
                         this.getView().setModel(new JSONModel(marca), ITENS_DA_LISTA_DE_MARCAS);

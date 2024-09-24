@@ -58,14 +58,13 @@ sap.ui.define([
             }
 
             if(!ehValido) {
-                this.mostrarMessageBoxDeErroDePreenchimento();
+                this._mostrarMessageBoxDeErroDePreenchimento();
             }
-            return ehValido;
         }, 
 
-        mostrarMessageBoxDeErroDePreenchimento: function() {
-            const mensagemDeErroDePreenchimento = "Preencha todos os campos corretamente.";
-            MessageBox.error(mensagemDeErroDePreenchimento);
+        _mostrarMessageBoxDeErroDePreenchimento: function() {
+            const mensagem = "Preencha todos os campos corretamente.";
+            throw new Error(mensagem);
         }
     }
 })
