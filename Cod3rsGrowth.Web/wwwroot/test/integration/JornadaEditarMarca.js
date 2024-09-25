@@ -3,9 +3,9 @@ sap.ui.define([
     "ui5/wwwroot/test/integration/JornadaListaMarca",
     "./pages/AdicionarEditarMarca",
     "./pages/ListaDeMarcas",
-    "./pages/DetalhesDaMarca",
+    "./pages/DetalhesRemocaoDaMarca",
     "ui5/wwwroot/app/model/formatter"
-], function (opaQunit, JornadaListaMarca, AdicionarEditarMarca, ListaDeMarcas, DetalhesDaMarca, formatter) {
+], function (opaQunit, JornadaListaMarca, AdicionarEditarMarca, ListaDeMarcas, DetalhesRemocaoDaMarca, formatter) {
     "use strict";
 
     QUnit.module("EditarMarcas", () => {
