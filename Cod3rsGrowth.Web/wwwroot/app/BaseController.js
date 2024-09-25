@@ -3,8 +3,8 @@ sap.ui.define([
 	"sap/ui/core/routing/History",
 	"sap/ui/core/UIComponent",
 	"sap/ui/model/json/JSONModel",
-    "sap/ui/core/BusyIndicator",
-    "sap/m/MessageBox",
+	"sap/ui/core/BusyIndicator",
+	"sap/m/MessageBox",
 ], function (Controller, History, UIComponent, JSONModel, BusyIndicator, MessageBox) {
 	"use strict";
 
@@ -14,11 +14,11 @@ sap.ui.define([
 			return UIComponent.getRouterFor(this);
 		},
 
-		statusDeCarregamentoDaTela: function(func){
+		statusDeCarregamentoDaTela: function (func) {
 			try {
 				BusyIndicator.show(0)
 				return Promise.resolve()
-					.then(()=> func())
+					.then(() => func())
 					.then(() => BusyIndicator.hide())
 					.catch(e => {
 						BusyIndicator.hide();
@@ -39,7 +39,7 @@ sap.ui.define([
 			hashAnterior = historico.getPreviousHash();
 			if (hashAnterior !== undefined) {
 				window.history.go(voltaHash);
-			} 
+			}
 			else {
 				this.navegarPara(rotaPaginaDeListaDeMarcas, {}, true);
 			}
@@ -50,7 +50,7 @@ sap.ui.define([
 			oRouter.getRoute(rota).attachPatternMatched(funcaoInicial, this);
 		},
 
-		navegarPara: function(rota, parametros = {}){
+		navegarPara: function (rota, parametros = {}) {
 			this.getOwnerComponent().getRouter().navTo(rota, parametros, true);
 		}
 	});

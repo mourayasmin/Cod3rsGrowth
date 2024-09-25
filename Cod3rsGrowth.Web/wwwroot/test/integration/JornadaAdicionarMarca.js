@@ -66,6 +66,10 @@ sap.ui.define([
            When
                 .naPaginaAdicionarEditarMarca
                 .oBotaoSalvarDeveSerPressionado();
+            
+            Then 
+                .naPaginaAdicionarEditarMarca
+                .aMensagemDeSucessoNaAdicaoEdicaoDeveSerExibida();
 
             Then
                 .naPaginaDeDetalhesDaMarca

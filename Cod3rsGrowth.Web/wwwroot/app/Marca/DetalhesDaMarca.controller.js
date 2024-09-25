@@ -1,7 +1,7 @@
 sap.ui.define([
     "ui5/wwwroot/app/BaseController",
     "ui5/wwwroot/app/model/formatter",
-	"sap/ui/model/json/JSONModel",
+    "sap/ui/model/json/JSONModel",
     "ui5/wwwroot/app/model/RepositorioBase"
 ], function (BaseController, formatter, JSONModel, RepositorioBase) {
     "use strict";

@@ -24,7 +24,7 @@ sap.ui.define([
             this.vincularRota(ROTA_PAGINA_DE_EDITAR_MARCA, this._aoCoincidirRotaDaTelaDeEditarMarca);
         },
 
-        _inicializarModelos: function(ehEditavel, ehEditavelCNPJ) {
+        _inicializarModelos: function (ehEditavel, ehEditavelCNPJ) {
             this.getView().setModel(new JSONModel({
                 nome: "",
                 email: "",
@@ -36,7 +36,7 @@ sap.ui.define([
             this.getView().setModel(new JSONModel({
                 ehEditavel: ehEditavel
             }), "controleDeTela");
-            
+
             this.getView().setModel(new JSONModel({
                 ehEditavelCNPJ: ehEditavelCNPJ
             }), "controleDeTelaCNPJ");
@@ -58,16 +58,16 @@ sap.ui.define([
             this.getView().byId(idCampoDataDeCriacaoDaMarca).setValueState(statusCorreto);
         },
 
-        _exibirMensagemDeSucesso: function(mensagem, id){
+        _exibirMensagemDeSucesso: function (mensagem, id) {
             MessageBox.success(mensagem, {
                 actions: [MessageBox.Action.OK],
                 emphasizedAction: MessageBox.Action.OK,
-                onClose: ()=> this._aoSalvarAdicaoComSucesso(id),
+                onClose: () => this._aoSalvarAdicaoComSucesso(id),
                 dependentOn: this.getView()
             });
         },
 
-        _obterMarcaPorId: function(id){
+        _obterMarcaPorId: function (id) {
             return RepositorioBase.obterPorId(id)
                 .then(response => {
                     response.telefone = this.formatter.formatadorDeTelefone(response.telefone);
@@ -115,7 +115,7 @@ sap.ui.define([
             });
         },
 
-        _obterMarca: function(){
+        _obterMarca: function () {
             let modelo = this.getView().getModel(MODELO_DE_MARCAS).getData();
             modelo.cnpj = modelo.cnpj.replace(/[^\w\s]/gi, '');
             modelo.telefone = modelo.telefone.replace(/[^\w\s]/gi, '');
@@ -124,7 +124,7 @@ sap.ui.define([
             return modelo;
         },
 
-        _salvar: function(marca){
+        _salvar: function (marca) {
             if (marca.id)
                 return this._editarMarca(marca);
 

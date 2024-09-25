@@ -56,13 +56,13 @@ sap.ui.define([
             
             Then    
                 .naPaginaAdicionarEditarMarca
-                .aMensagemDeSucessoNaEdicaoDeveSerExibida();
+                .aMensagemDeSucessoNaAdicaoEdicaoDeveSerExibida();
             
             Then 
                 .naPaginaDeDetalhesDaMarca
                 .aTelaDeDetalhesDaMarcaDeveSerCarregadaCorretamente();
 
-            Then 
+            When 
                 .naPaginaDeDetalhesDaMarca
                 .oBotaoEditarDeveSerPressionado();
                 

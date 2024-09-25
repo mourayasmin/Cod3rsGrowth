@@ -88,15 +88,14 @@ sap.ui.define([
                     })
                 },
 
-                aMensagemDeSucessoNaEdicaoDeveSerExibida: function() {
+                aMensagemDeSucessoNaAdicaoEdicaoDeveSerExibida: function() {
                     return this.waitFor({
                         controlType: "sap.m.Button",
                         searchOpenDialogs: true, 
-                        viewName: nomeDaViewAdicionarEditarMarca,
                         matchers: [
                             new PropertyStrictEquals({
                                 name: "text",
-                                value: "Ok"
+                                value: "OK"
                             })
                         ],
                         actions: new Press(),
