@@ -37,6 +37,16 @@ sap.ui.define([
                     })
                 },
 
+                aMarcaASerEditadaDeveSerPressionada: function() {
+                    return this.waitFor({
+                        viewName: nomeDaView,
+                        controlType: "sap.m.Link",
+                        actions: new Press(),
+                        success: () => Opa5.assert.ok(true, "A marca a ser editada foi pressionada"),
+                        errorMessage: "A marca a ser editada não foi pressionada"
+                    })
+                },
+
                 oTextoDoCampoDePesquisaDeveMudar: function() {
                     return this.waitFor({
                         controlType: "sap.m.SearchField",

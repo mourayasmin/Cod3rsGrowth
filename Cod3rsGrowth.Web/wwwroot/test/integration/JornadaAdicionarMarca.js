@@ -1,12 +1,12 @@
 sap.ui.define([
     "sap/ui/test/opaQunit",
     "ui5/wwwroot/test/integration/JornadaListaMarca",
-    "./pages/AdicionarMarca",
+    "./pages/AdicionarEditarMarca",
     "./pages/ListaDeMarcas",
     "./pages/DetalhesDaMarca",
     "ui5/wwwroot/app/model/formatter"
 
-], function (opaQunit, JornadaListaMarca, AdicionarMarca, ListaDeMarcas, DetalhesDaMarca, formatter) { 
+], function (opaQunit, JornadaListaMarca, AdicionarEditarMarca, ListaDeMarcas, DetalhesDaMarca, formatter) { 
     "use strict";
 
     function gerarCnpj() {
@@ -38,7 +38,8 @@ sap.ui.define([
             Given.iStartMyUIComponent({
                 componentConfig: {
                     name: "ui5.wwwroot",
-                    manifest: true
+                    manifest: true,
+                    hash: ".Marca.AdicionarEditarMarca"
                 }
             }),
             When
@@ -46,7 +47,7 @@ sap.ui.define([
                 .oBotaoAdicionarDeveSerPressionado();    
 
             Then
-                .naPaginaAdicionarMarca
+                .naPaginaAdicionarEditarMarca
                 .aTelaAdicionarMarcaDeveSerCarregadaCorretamente();
         }),
 
@@ -55,7 +56,7 @@ sap.ui.define([
             let cnpjFormatado = "CNPJ: " + formatter.formatadorDeCNPJ(cnpjGerado);
 
             When
-                .naPaginaAdicionarMarca
+                .naPaginaAdicionarEditarMarca
                 .osCamposDaMarcaDevemSerPreenchidosCorretamente("campoNome", "Marca Teste OPA")
                 .osCamposDaMarcaDevemSerPreenchidosCorretamente("campoEmail", "teste@opa.com")
                 .osCamposDaMarcaDevemSerPreenchidosCorretamente("campoCNPJ", cnpjGerado)
@@ -63,8 +64,12 @@ sap.ui.define([
                 .osCamposDaMarcaDevemSerPreenchidosCorretamente("campoDataDeCriacao", "1 de set. de 2022");
 
            When
-                .naPaginaAdicionarMarca
+                .naPaginaAdicionarEditarMarca
                 .oBotaoSalvarDeveSerPressionado();
+            
+            Then 
+                .naPaginaAdicionarEditarMarca
+                .aMensagemDeSucessoNaAdicaoEdicaoDeveSerExibida();
 
             Then
                 .naPaginaDeDetalhesDaMarca
@@ -83,11 +88,11 @@ sap.ui.define([
                 .oBotaoAdicionarDeveSerPressionado(); 
 
             Then
-                .naPaginaAdicionarMarca
+                .naPaginaAdicionarEditarMarca
                 .aTelaAdicionarMarcaDeveSerCarregadaCorretamente();
 
             Then 
                 .iTeardownMyApp();
         })
     })
-})
+});

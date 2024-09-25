@@ -13,13 +13,13 @@ sap.ui.define([
             actions: {
                 oBotaoVoltarDeveSerPressionado: function() {
                     return this.waitFor({
+                        viewName: nomeDaViewDetalhesDaMarca,
                         matchers: [
                             new Properties({
                                 type: "Back"
                             })
                         ],
                         actions: new Press(),
-                        viewName: nomeDaViewDetalhesDaMarca,
                         success: () => Opa5.assert.ok(true, "O botão de voltar na tela de detalhes foi pressionado"),
                         errorMessage: "O botão de voltar na tela de detalhes não foi pressionado"
                     })
@@ -37,7 +37,7 @@ sap.ui.define([
                         ],
                         actions: new Press(),
                         success: () => Opa5.assert.ok(true, "O botão de edição foi pressionado"),
-                        errorMessage: "O botão de edição foi pressionado"
+                        errorMessage: "O botão de edição não foi pressionado"
                     });
                 }
             },
@@ -49,7 +49,7 @@ sap.ui.define([
                         success: () => Opa5.assert.ok(true, "A tela de detalhes foi carregada corretamente"),
                         errorMessage: "A tela de detalhes não foi carregada corretamente"
                     });
-                },
+                }
             }
         }
     })

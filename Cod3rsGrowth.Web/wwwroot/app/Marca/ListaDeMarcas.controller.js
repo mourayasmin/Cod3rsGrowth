@@ -15,14 +15,14 @@ sap.ui.define([
 		formatter: formatter,
 
 		onInit: function () {
-            this.vincularRota("paginaInicial", this.aoCoincidirRotaDaTelaDeListaMarca);
+            this.vincularRota("paginaInicial", this._aoCoincidirRotaDaTelaDeListaMarca);
 		},
 
-		aoCoincidirRotaDaTelaDeListaMarca: function() {
-			return this.obterListaDeMarcas("https://localhost:7172/api/Marca");
+		_aoCoincidirRotaDaTelaDeListaMarca: function() {
+			return this._obterListaDeMarcas("https://localhost:7172/api/Marca");
 		},
 
-		obterListaDeMarcas: async function(url) {
+		_obterListaDeMarcas: async function(url) {
  			return fetch(url) 
 			.then(response => response.json())
 			.then(responseJSON => {
@@ -37,7 +37,7 @@ sap.ui.define([
 			this.naMensagemDeErro(erro)})
 		},
 
-		aoPesquisarFiltroDeNome: async function(oModel) {
+		_aoPesquisarFiltroDeNome: async function(oModel) {
 
 			let modeloFiltro = oModel.getSource().getValue("nome");
 			let url = "/api/Marca?";
@@ -48,14 +48,14 @@ sap.ui.define([
 				url += params.toString(); 
 			}
 
-			return this.obterListaDeMarcas(url);
+			return this._obterListaDeMarcas(url);
 		},
 
-		naMensagemDeErro: function(mensagemDeErro) {
+		_naMensagemDeErro: function(mensagemDeErro) {
 			MessageBox.error(mensagemDeErro.Detail, {title: "Erro na requisição"});
 		},
 
-		aoMudarFiltroDeData: async function (oModel) {
+		_aoMudarFiltroDeData: async function (oModel) {
 			let modeloFiltro = oModel.getSource();
 			let inicio = modeloFiltro.getProperty("dateValue");
 			let fim = modeloFiltro.getProperty("secondDateValue");
@@ -70,11 +70,13 @@ sap.ui.define([
 				url += params.toString(); 
 			}
 
-			return this.obterListaDeMarcas(url);
+			return this._obterListaDeMarcas(url);
 		},
 
 		aoClicarNaMarca: function(oEvent) {
-			this.getOwnerComponent().getRouter().navTo(rotaPaginaDeDetalhesDaMarca, {id: oEvent.getSource().getBindingContext(itensDaListaDeMarcas).getProperty(propriedadeIdDaMarcaDetalhada)}, true);
+			this.getOwnerComponent().getRouter().navTo(rotaPaginaDeDetalhesDaMarca, 
+				{id: oEvent.getSource().getBindingContext(itensDaListaDeMarcas).getProperty(propriedadeIdDaMarcaDetalhada)}, 
+				true);
 		},
 
 		aoClicarNoBotaoAdicionar: function () {

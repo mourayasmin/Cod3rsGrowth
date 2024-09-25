@@ -38,10 +38,10 @@ namespace Cod3rsGrowth.Web.Controllers
         }
 
         [HttpPatch]
-        public IActionResult Atualizar([FromBody] Marca marca)
+        public NoContentResult Atualizar([FromBody] Marca marca)
         {
             _servicoMarca.Atualizar(marca);
-            return Ok();
+            return NoContent();
         }
 
         [HttpDelete("{Id}")]

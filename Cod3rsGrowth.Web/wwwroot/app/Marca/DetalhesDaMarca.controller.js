@@ -1,28 +1,39 @@
 sap.ui.define([
     "ui5/wwwroot/app/BaseController",
-    "ui5/wwwroot/app/model/formatter"
-], function (BaseController, formatter) {
+    "ui5/wwwroot/app/model/formatter",
+    "sap/ui/model/json/JSONModel",
+    "ui5/wwwroot/app/model/RepositorioBase"
+], function (BaseController, formatter, JSONModel, RepositorioBase) {
     "use strict";
-	const rotaPaginaDeListaDeMarcas = "paginaInicial";
-    const rotaPaginaDeAdicionarMarca = "AdicionarMarca";
+    const ROTA_PAGINA_DE_LISTA_DE_MARCAS = "paginaInicial";
+    const ROTA_PAGINA_DE_ADICIONAR_MARCA = "AdicionarMarca";
+    const ROTA_PAGINA_DE_EDITAR_MARCA = "EditarMarca"
+    const ITENS_DA_LISTA_DE_MARCAS = "modelMarcas";
+    var idModeloDetalhado = "";
 
     return BaseController.extend("ui5.wwwroot.app.Marca.DetalhesDaMarca", {
         formatter: formatter,
         onInit: function () {
-            this.vincularRota("DetalhesDaMarca", this.aoCoincidirRotaDaTelaDeDetalhes);
+            this.vincularRota("DetalhesDaMarca", this._aoCoincidirRotaDaTelaDeDetalhes);
         },
 
-        aoCoincidirRotaDaTelaDeDetalhes: async function(eventoURL) {
-            let idModeloDetalhado = eventoURL.getParameters().arguments.id
-            return this.obterDetalhesDaMarca(idModeloDetalhado);
+        _aoCoincidirRotaDaTelaDeDetalhes: function (evento) {
+            this.statusDeCarregamentoDaTela(() => {
+                let id = evento.getParameter("arguments").id
+                return RepositorioBase.obterPorId(id)
+                    .then(marca => {
+                        this.getView().setModel(new JSONModel(marca), ITENS_DA_LISTA_DE_MARCAS);
+                    });
+            });
         },
 
-        aoClicarNoBotaoDeVoltarNaTelaDeDetalhesDaMarca: function() {
-			this.getOwnerComponent().getRouter().navTo(rotaPaginaDeListaDeMarcas, {}, true);
-		},
+        aoClicarNoBotaoDeVoltarNaTelaDeDetalhesDaMarca: function () {
+            this.getOwnerComponent().getRouter().navTo(ROTA_PAGINA_DE_LISTA_DE_MARCAS, {}, true);
+        },
 
-        aoClicarNoBotaoEditar: function() {
-            this.getOwnerComponent().getRouter().navTo(rotaPaginaDeAdicionarMarca, {}, true);
+        aoClicarNoBotaoEditar: function () {
+            let id = this.getView().getModel(ITENS_DA_LISTA_DE_MARCAS).getProperty("/id");
+            this.navegarPara(ROTA_PAGINA_DE_EDITAR_MARCA, { id });
         }
     });
 });

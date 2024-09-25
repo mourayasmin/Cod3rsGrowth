@@ -2,11 +2,12 @@ sap.ui.define([
     "sap/ui/test/opaQunit",
     "ui5/wwwroot/test/integration/JornadaListaMarca",
     "ui5/wwwroot/test/integration/JornadaAdicionarMarca",
-    "./pages/AdicionarMarca",
+    "ui5/wwwroot/test/integration/JornadaEditarMarca",
+    "./pages/AdicionarEditarMarca",
     "./pages/ListaDeMarcas",
     "./pages/DetalhesDaMarca",
     "ui5/wwwroot/app/model/formatter"
-], function (opaQunit, JornadaListaMarca, JornadaAdicionarMarca, AdicionarMarca, ListaDeMarcas, DetalhesDaMarca, formatter) {
+], function (opaQunit, JornadaListaMarca, JornadaAdicionarMarca, JornadaEditarMarca, AdicionarEditarMarca, ListaDeMarcas, DetalhesDaMarca, formatter) {
     "use strict";
 
     QUnit.module("DetalhesDaMarca", () => {
@@ -33,16 +34,20 @@ sap.ui.define([
                 .oBotaoEditarDeveSerPressionado();
 
             Then
-                .naPaginaAdicionarMarca
+                .naPaginaAdicionarEditarMarca
                 .aTelaAdicionarMarcaDeveSerCarregadaCorretamente();
 
             When    
-                .naPaginaAdicionarMarca
+                .naPaginaAdicionarEditarMarca
                 .oBotaoVoltarDeveSerPressionado();
 
             Then
-                .naPaginaInicial
-                .aTelaDeveSerCarregadaCorretamente();
+                .naPaginaDeDetalhesDaMarca
+                .aTelaDeDetalhesDaMarcaDeveSerCarregadaCorretamente();
+
+            When
+                .naPaginaDeDetalhesDaMarca
+                .oBotaoVoltarDeveSerPressionado();
 
             When    
                 .naPaginaInicial
