@@ -1,45 +1,127 @@
 {
-    "_version": "1.58.0",
-    "sap.app": {
-      "id": "ui5.wwwroot",
-      "i18n": "i18n/i18n.properties",
-      "title": "{{appTitle}}",
-      "description": "{{appDescription}}",
-      "type": "application",
-      "applicationVersion": {
-        "version": "1.0.0"
+  "_version": "1.58.0",
+  "sap.app": {
+    "id": "ui5.wwwroot",
+    "i18n": "i18n/i18n.properties",
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "type": "application",
+    "applicationVersion": {
+      "version": "1.0.0"
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "dependencies": {
+      "minUI5Version": "1.108.0",
+      "libs": {
+        "sap.ui.core": {},
+        "sap.m": {}
       }
     },
-    "sap.ui": {
-      "technology": "UI5",
-      "deviceTypes": {
-          "desktop": true,
-          "tablet": true,
-          "phone": true
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "defaultBindingMode": "OneWay",
+          "bundleName": "ui5.wwwroot.i18n.i18n",
+          "supportedLocales": [ "" ],
+          "fallbackLocale": ""
+        }
       }
     },
-    "sap.ui5": {
-      "dependencies": {
-        "minUI5Version": "1.108.0",
-        "libs": {
-          "sap.ui.core": {},
-          "sap.m": {}
-        }
+    "rootView": {
+      "viewName": "ui5.wwwroot.app.App",
+      "type": "XML",
+      "id": "app",
+      "height": "100%",
+      "displayBlock": true
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "type": "View",
+        "viewType": "XML",
+        "path": "ui5.wwwroot.app",
+        "controlId": "app",
+        "controlAggregation": "pages",
+        "transition": "slide",
+        "bypassed": {
+          "target": "notFound"
+        },
+        "sample": {
+          "stretch": true,
+          "files": [
+            "ListaDeMarcas.view.xml",
+            "ListaDeMarcas.controller.js",
+            "AdicionarEditarMarca.view.xml",
+            "AdicionarEditarMarca.controller.js",
+            "DetalhesDaMarca.view.xml",
+            "DetalhesDaMarca.controller.js",
+            "manifest.json"
+          ]
+        },
+        "async": true
       },
-      "models": {
-        "i18n": {
-          "type": "sap.ui.model.resource.ResourceModel",
-          "settings": {
-            "bundleName": "ui5.wwwroot.i18n.i18n",
-            "supportedLocales": [""],
-            "fallbackLocale": ""
-          }
+      "routes": [{
+          "pattern": "",
+          "name": "paginaInicial",
+          "target": "listaMarca"
+        }, 
+        {
+          "pattern": "AdicionarMarca",
+          "name": "AdicionarMarca",
+          "target": "telaDeAdicionarMarca"
+        }, 
+        {
+          "pattern": "DetalhesDaMarca/{id}",
+          "name": "DetalhesDaMarca",
+          "target": "telaDeDetalhesDaMarca"
+        },
+        {
+          "pattern": "EditarMarca/{id}",
+          "name": "EditarMarca",
+          "target": "telaDeEditarMarca"
         }
+      ],
+      "targets": {
+        "listaMarca": {
+          "id": "listaMarca",
+          "path": "ui5.wwwroot.app.Marca",
+          "name": "ListaDeMarcas",
+          "level": 1
       },
-      "rootView": {
-          "viewName": "ui5.wwwroot.app.App",
-          "type": "XML",
-          "id": "app"
+        "notFound": {
+          "id": "notFound",
+          "path": "ui5.wwwroot.app.NotFound",
+          "name": "NotFound",
+          "transition": "show"
+        },
+        "telaDeAdicionarMarca": {
+          "id": "telaDeAdicionarEditarMarca",
+          "path": "ui5.wwwroot.app.Marca",
+          "name": "AdicionarEditarMarca",
+          "transition": "show"
+        },
+        "telaDeDetalhesDaMarca": {
+          "path": "ui5.wwwroot.app.Marca",
+          "name": "DetalhesDaMarca",
+          "transition": "show"
+        },
+        "telaDeEditarMarca": {
+          "id": "telaDeEditarMarca",
+          "path": "ui5.wwwroot.app.Marca",
+          "name": "AdicionarEditarMarca",
+          "transition": "show"
+        }
       }
     }
   }
+}

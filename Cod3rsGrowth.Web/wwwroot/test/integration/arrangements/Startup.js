@@ -1,13 +1,24 @@
 sap.ui.define([
-    "sap/ui/test/Opa5",
-    "ui5/wwwroot/test/integration/Startup",
-    "ui5/wwwroot/test/integration/JornadaApp"
-], function (Opa5, Startup) {
+    "sap/ui/test/Opa5"
+], function (Opa5) {
     "use strict";
  
-    Opa5.extendConfig({
-        arrangements: new Startup(),
-        viewNamespace: "ui5.wwwroot",
-        autoWait: true
-    });
+    return Opa5.extend("ui5.wwwroot.test.integration.arrangements.Startup", {
+        iStartMyApp: function () {
+            const caminhoApp = "ui5.wwwroot";
+
+            var opcoes = parametroOpcoes || {};
+ 
+            opcoes.delay = opcoes.delay || 1;
+ 
+            this.iStartMyUIComponent({
+                componentConfig: {
+                    name: caminhoApp,
+                    manifest: true
+                },
+                hash: opcoes.hash,
+                autoWait: opcoes.autoWait
+            });
+        },
+    })
 });

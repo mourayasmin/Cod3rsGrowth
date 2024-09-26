@@ -36,6 +36,7 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
             };
             SingletonTenis.Instancia.Add(tenisEsperado);
             var tenisRetornado = _servicoTenis.ObterPorId(tenisEsperado.Id);
+
             Assert.NotNull(tenisRetornado);
             Assert.Equal(tenisEsperado.Id, tenisRetornado.Id);
             Assert.Equal(tenisEsperado.Nome, tenisRetornado.Nome);
