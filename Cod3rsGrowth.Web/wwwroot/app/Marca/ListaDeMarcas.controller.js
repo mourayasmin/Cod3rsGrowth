@@ -3,8 +3,10 @@ sap.ui.define([
 	"sap/m/MessageBox",
 	"sap/ui/core/format/DateFormat",
 	"ui5/wwwroot/app/model/formatter",
-	"sap/ui/core/mvc/View"
-], function (BaseController, MessageBox, DateFormat, formatter, View) {
+	"sap/ui/core/mvc/View",
+	"ui5/wwwroot/app/model/RepositorioBase",
+	"sap/ui/model/json/JSONModel"
+], function (BaseController, MessageBox, DateFormat, formatter, View, RepositorioBase, JSONModel) {
 	"use strict";
 	const rotaPaginaDeAdicionarMarca = "AdicionarMarca";
 	const rotaPaginaDeDetalhesDaMarca = "DetalhesDaMarca";
@@ -15,67 +17,59 @@ sap.ui.define([
 		formatter: formatter,
 
 		onInit: function () {
-            this.vincularRota("paginaInicial", this._aoCoincidirRotaDaTelaDeListaMarca);
+			this.vincularRota("paginaInicial", this._aoCoincidirRotaDaTelaDeListaMarca);
 		},
 
-		_aoCoincidirRotaDaTelaDeListaMarca: function() {
-			return this._obterListaDeMarcas("https://localhost:7172/api/Marca");
-		},
-
-		_obterListaDeMarcas: async function(url) {
- 			return fetch(url) 
-			.then(response => response.json())
-			.then(responseJSON => {
-				  if(responseJSON.Title) { 
-				  	this.naMensagemDeErro(responseJSON);
-				 } else {
-					let oModel = new sap.ui.model.json.JSONModel(responseJSON);
-					this.getView().setModel(oModel, "modelMarcas")
-				}
+		_aoCoincidirRotaDaTelaDeListaMarca: function () {
+			this.statusDeCarregamentoDaTela(() => {
+				return this._obterListaDeMarcas("https://localhost:7172/api/Marca");
 			})
-			.catch(erro => {
-			this.naMensagemDeErro(erro)})
 		},
 
-		_aoPesquisarFiltroDeNome: async function(oModel) {
+		_obterListaDeMarcas: async function (url) {
+			const listaDeMarcas = await RepositorioBase.obterTodas(url)
+			this.getView().setModel(new JSONModel(listaDeMarcas), "modelMarcas");
+		},
+
+		aoPesquisarFiltroDeNome: async function (oModel) {
 
 			let modeloFiltro = oModel.getSource().getValue("nome");
 			let url = "/api/Marca?";
-			let params = new URLSearchParams(url.search); 
+			let params = new URLSearchParams(url.search);
 
-			if(modeloFiltro != null) {
-				params.append("nome", modeloFiltro); 
-				url += params.toString(); 
+			if (modeloFiltro != null) {
+				params.append("nome", modeloFiltro);
+				url += params.toString();
 			}
 
-			return this._obterListaDeMarcas(url);
+			await this._obterListaDeMarcas(url);
 		},
 
-		_naMensagemDeErro: function(mensagemDeErro) {
-			MessageBox.error(mensagemDeErro.Detail, {title: "Erro na requisição"});
+		_naMensagemDeErro: function (mensagemDeErro) {
+			MessageBox.error(mensagemDeErro.Detail, { title: "Erro na requisição" });
 		},
 
-		_aoMudarFiltroDeData: async function (oModel) {
+		aoMudarFiltroDeData: async function (oModel) {
 			let modeloFiltro = oModel.getSource();
 			let inicio = modeloFiltro.getProperty("dateValue");
 			let fim = modeloFiltro.getProperty("secondDateValue");
-			inicio = DateFormat.getDateInstance({pattern:"yyyy-MM-ddTHH:mm:ss"}).format(inicio);
-			fim = DateFormat.getDateInstance({pattern:"yyyy-MM-ddTHH:mm:ss"}).format(fim);
-			let url = "/api/Marca?";
-			let params = new URLSearchParams(url.search); 
+			inicio = DateFormat.getDateInstance({ pattern: "yyyy-MM-ddTHH:mm:ss" }).format(inicio);
+			fim = DateFormat.getDateInstance({ pattern: "yyyy-MM-ddTHH:mm:ss" }).format(fim);
+			let urlComFiltro = "/api/Marca?";
+			let params = new URLSearchParams(urlComFiltro.search);
 
-			if((inicio != null)&&(fim != null)) {
-				params.append("dataDeInicio", inicio); 
+			if ((inicio != null) && (fim != null)) {
+				params.append("dataDeInicio", inicio);
 				params.append("dataDeFim", fim);
-				url += params.toString(); 
+				urlComFiltro += params.toString();
 			}
 
-			return this._obterListaDeMarcas(url);
+			await this._obterListaDeMarcas(urlComFiltro);
 		},
 
-		aoClicarNaMarca: function(oEvent) {
-			this.getOwnerComponent().getRouter().navTo(rotaPaginaDeDetalhesDaMarca, 
-				{id: oEvent.getSource().getBindingContext(itensDaListaDeMarcas).getProperty(propriedadeIdDaMarcaDetalhada)}, 
+		aoClicarNaMarca: function (oEvent) {
+			this.getOwnerComponent().getRouter().navTo(rotaPaginaDeDetalhesDaMarca,
+				{ id: oEvent.getSource().getBindingContext(itensDaListaDeMarcas).getProperty(propriedadeIdDaMarcaDetalhada) },
 				true);
 		},
 

@@ -2,14 +2,13 @@ sap.ui.define([
     "ui5/wwwroot/app/BaseController",
     "ui5/wwwroot/app/model/formatter",
     "sap/ui/model/json/JSONModel",
-    "ui5/wwwroot/app/model/RepositorioBase"
-], function (BaseController, formatter, JSONModel, RepositorioBase) {
+    "ui5/wwwroot/app/model/RepositorioBase",
+    "sap/m/MessageBox"
+], function (BaseController, formatter, JSONModel, RepositorioBase, MessageBox) {
     "use strict";
     const ROTA_PAGINA_DE_LISTA_DE_MARCAS = "paginaInicial";
-    const ROTA_PAGINA_DE_ADICIONAR_MARCA = "AdicionarMarca";
     const ROTA_PAGINA_DE_EDITAR_MARCA = "EditarMarca"
     const ITENS_DA_LISTA_DE_MARCAS = "modelMarcas";
-    var idModeloDetalhado = "";
 
     return BaseController.extend("ui5.wwwroot.app.Marca.DetalhesDaMarca", {
         formatter: formatter,
@@ -34,6 +33,30 @@ sap.ui.define([
         aoClicarNoBotaoEditar: function () {
             let id = this.getView().getModel(ITENS_DA_LISTA_DE_MARCAS).getProperty("/id");
             this.navegarPara(ROTA_PAGINA_DE_EDITAR_MARCA, { id });
+        },
+
+        aoClicarNoBotaoRemover: async function() {
+            let id = this.getView().getModel(ITENS_DA_LISTA_DE_MARCAS).getProperty("/id");
+            let mensagem = "Deseja remover a marca?";
+            MessageBox.confirm(mensagem, {
+                actions: [MessageBox.Action.YES, MessageBox.Action.NO],
+                onClose: async (evento) => {
+                    if(evento === "YES") {
+                        await RepositorioBase.remover(id);
+                        this._mostrarMensagemDeSucessoAoRemoverEVoltarParaTelaDeLista();
+                    } 
+                }
+            })
+        },
+
+        _mostrarMensagemDeSucessoAoRemoverEVoltarParaTelaDeLista: function() {
+            let mensagem = "Marca removida com sucesso";
+            MessageBox.success(mensagem, {
+                actions: [MessageBox.Action.OK],
+                emphasizedAction: MessageBox.Action.OK,
+                onClose: () => this.navegarPara(ROTA_PAGINA_DE_LISTA_DE_MARCAS),
+                dependentOn: this.getView()
+            });
         }
     });
 });

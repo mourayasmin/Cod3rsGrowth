@@ -45,6 +45,24 @@ sap.ui.define([
                 .then(response => this._ehErro(response));
         },
 
+        obterTodas: async function (url) {
+            return fetch(url)
+                .then(response => response.json())
+                .then(response => this._ehErro(response))
+        },
+
+        remover: async function (id) {
+            let url = `/api/Marca/${id}`;
+            return fetch(url, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+            })
+                .then(response => response.ok ? {} : response.json())
+                .then(response => this._ehErro(response));
+        },
+
         _ehErro(retorno) {
             let data = ({ status: retorno.Status || retorno.status });
             if (data.status >= 400 || data.status <= 599) {

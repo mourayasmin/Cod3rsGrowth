@@ -45,10 +45,10 @@ namespace Cod3rsGrowth.Web.Controllers
         }
 
         [HttpDelete("{Id}")]
-        public IActionResult Deletar(int id)
+        public NoContentResult Deletar(int id)
         {
             _servicoMarca.Deletar(id);
-            return Ok();
+            return NoContent();
         }
     }
 }
