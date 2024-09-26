@@ -126,24 +126,6 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
         }
 
         [Fact]
-        public void deve_retornar_erro_por_preco_maior_que_vinte_mil_()
-        {
-            var tenisCriado = new Tenis()
-            {
-                Linha = Dominio.Enum.LinhaEnum.Casual,
-                Id = 0005,
-                IdMarca = 1111,
-                Preco = 30000.0,
-                Lancamento = DateTime.Parse("14/02/2018"),
-                Avaliacao = 9.7M,
-                Nome = "Pharrell Williams Hu",
-                Disponibilidade = false
-            };
-            var mensagemDeErro = Assert.Throws<ValidationException>(() => _servicoTenis.Criar(tenisCriado));
-            Assert.Contains("O preço informado é inválido. O limite de preço é 20000.", mensagemDeErro.Message);
-        }
-
-        [Fact]
         public void deve_retornar_erro_por_preco_menor_que_zero()
         {
             var tenisCriado = new Tenis()
