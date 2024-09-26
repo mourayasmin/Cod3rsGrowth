@@ -40,9 +40,9 @@ sap.ui.define([
             let mensagem = "Deseja remover a marca?";
             MessageBox.confirm(mensagem, {
                 actions: [MessageBox.Action.YES, MessageBox.Action.NO],
-                onClose: (evento) => {
+                onClose: async (evento) => {
                     if(evento === "YES") {
-                        RepositorioBase.remover(id);
+                        await RepositorioBase.remover(id);
                         this._mostrarMensagemDeSucessoAoRemoverEVoltarParaTelaDeLista();
                     } 
                 }
