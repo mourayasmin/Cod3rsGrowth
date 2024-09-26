@@ -1,0 +1,11 @@
+<mvc:View
+   controllerName="ui5.wwwroot.app.NotFound.NotFound"
+   xmlns="sap.m"
+   xmlns:mvc="sap.ui.core.mvc">
+   <MessagePage
+      title="{i18n>NotFound}"
+      text="{i18n>textoNotFound}"
+      description="{i18n>descricaoNotFound}"
+      showNavButton="true"
+		navButtonPress="aoClicarNoBotaoDeVoltarNaTelaDeNotFound"/>
+</mvc:View>

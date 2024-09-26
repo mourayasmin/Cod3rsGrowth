@@ -62,7 +62,7 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
                 Cnpj = "65498732132165",
                 Email = "oxerbrasil@oxer.com.br",
                 Nome = "Oxer do Brasil LTDA",
-                Telefone = "1158963256",
+                Telefone = "11958963256",
                 Id = 6666
             };
             var resultadoMarca = _servicoMarca.Criar(marcaCriada);
@@ -80,7 +80,7 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
                 Cnpj = cnpj,
                 Email = "oxerbrasil@oxer.com.br",
                 Nome = "Oxer do Brasil LTDA",
-                Telefone = "1158963256",
+                Telefone = "11958963256",
                 Id = 6666
             };
             var mensagemDeErro = Assert.Throws<ValidationException>(() => _servicoMarca.Criar(marcaCriada));
@@ -95,7 +95,7 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
                 Cnpj = "654987321321",
                 Email = "oxerbrasil@oxer.com.br",
                 Nome = "Oxer do Brasil LTDA",
-                Telefone = "1158963256",
+                Telefone = "11958963256",
                 Id = 6666
             };
             var mensagemDeErro = Assert.Throws<ValidationException>(() => _servicoMarca.Criar(marcaCriada));
@@ -112,7 +112,7 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
                 Nome = nome,
                 Cnpj = "65498732132165",
                 Email = "oxerbrasil@oxer.com.br",
-                Telefone = "1158963256",
+                Telefone = "11958963256",
                 Id = 6666
             };
             var mensagemDeErro = Assert.Throws<ValidationException>(() => _servicoMarca.Criar(marcaCriada));
@@ -128,7 +128,7 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
             {
                 Email = email,
                 Cnpj = "65498732132165",
-                Telefone = "1158963256",
+                Telefone = "11958963256",
                 Id = 6666
             };
             var mensagemDeErro = Assert.Throws<ValidationException>(() => _servicoMarca.Criar(marcaCriada));
@@ -143,7 +143,7 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
                 Cnpj = "42274696002561",
                 Email = "contato@adidasbrasil.com.br",
                 Nome = "Adidas do Brasil LTDA",
-                Telefone = "1158963256",
+                Telefone = "11958963256",
                 Id = 1111
             };
             SingletonMarca.Instancia.Add(marcaASerAtualizada);
@@ -152,7 +152,7 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
                 Cnpj = "42274696002561",
                 Email = "contato@adidasbr.com.br",
                 Nome = "Adidas do Brasil LTDA",
-                Telefone = "1158963289",
+                Telefone = "11958963289",
                 Id = 1111
             };
             marcaASerAtualizada = _servicoMarca.Atualizar(marcaRetornada);
@@ -167,7 +167,7 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
                 Cnpj = "42274696002561",
                 Email = null,
                 Nome = "Adidas do Brasil LTDA",
-                Telefone = "1158963256",
+                Telefone = "11958963256",
                 Id = 1111
             };
             var mensagemDeErro = Assert.Throws<ValidationException>(() => _servicoMarca.Atualizar(marcaAtualizada));
@@ -190,7 +190,7 @@ namespace Cod3rsGrowth.Testes.TestesUnitarios
                 Cnpj = "42274696002561",
                 Email = "empresarial@adidas.com.br",
                 Nome = "Adidas do Brasil",
-                Telefone = "1158963256",
+                Telefone = "11958963256",
                 Id = 7984
             };
             _servicoMarca.Deletar(marcaASerDeletada.Id);

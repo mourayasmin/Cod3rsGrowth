@@ -1,0 +1,57 @@
+<mvc:View
+    controllerName="ui5.wwwroot.app.Marca.DetalhesDaMarca"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+>
+    <Page
+        showNavButton="true"
+        navButtonPress="aoClicarNoBotaoDeVoltarNaTelaDeDetalhesDaMarca"
+        title="{i18n>tituloDetalhesDaMarca}"
+    >
+    <HBox justifyContent="SpaceBetween" width="100%">
+        <Button
+            id="idBotaoRemover"
+            text="{i18n>textoBotaoRemover}"
+            class="sapUiSmallMarginBegin"
+            press="aoClicarNoBotaoRemover"
+            icon="sap-icon://delete"
+        />
+        <Button
+            id="idBotaoEditar"
+            text="{i18n>textoBotaoEditar}"
+            class="sapUiSmallMarginEnd"
+            press="aoClicarNoBotaoEditar"
+            icon="sap-icon://edit"
+        />
+    </HBox>
+        <ObjectHeader
+            title="{modelMarcas>/nome}"
+            backgroundDesign="Solid"
+        >
+            <attributes>
+                <ObjectAttribute
+                    title="{i18n>tituloCNPJDetalhesMarca}"
+                    text="{path: 'modelMarcas>/cnpj', formatter: '.formatter.formatadorDeCNPJ'}"
+                />
+                <ObjectAttribute
+                    title="{i18n>tituloTelefoneDetalhesMarca}"
+                    text="{path: 'modelMarcas>/telefone', formatter: '.formatter.formatadorDeTelefone'}"
+                />
+                <ObjectAttribute
+                    title="{i18n>tituloEmailDetalhesMarca}"
+                    text="{modelMarcas>/email}"
+                />
+                <ObjectAttribute
+                    title="{i18n>tituloDataDeCriacaoDetalhesMarca}"
+                    text="{path: 'modelMarcas>/dataDeCriacao',
+            type:'sap.ui.model.type.DateTime',
+            formatOptions: { 
+            source: {
+               pattern: 'yyyy-MM-ddTHH:mm:ss.mmm'
+            },
+            pattern: 'dd/MM/yyyy'}}"
+                />
+            </attributes>
+        </ObjectHeader>
+    </Page>
+</mvc:View>

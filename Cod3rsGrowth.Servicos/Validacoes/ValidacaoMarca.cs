@@ -1,4 +1,5 @@
-﻿using FluentValidation;
+﻿using Cod3rsGrowth.Dominio.InterfacesRepositorio;
+using FluentValidation;
 
 namespace Cod3rsGrowth.Servicos.Validacoes
 {
@@ -33,5 +34,5 @@ namespace Cod3rsGrowth.Servicos.Validacoes
                 .Matches(@"^[^@\s]+@[^@\s]+\.[^@\s]+$")
                 .WithMessage("Insira um e-mail válido.");
         }
-    }
+    } 
 }
